@@ -29,7 +29,7 @@ lazy([1, 2, 3])
 // 1, 3
 ```
 
-And to "thunk" a lazy sequence, (to cause it to be evaluated), the `array()` method can be used:
+And to "thunk" a lazy sequence, (to force it to be evaluated), the `array()` method can be used:
 
 ```swift
 lazy([1, 2, 3])
@@ -72,7 +72,7 @@ func reduce (@noescape combine: (Generator.Element, Generator.Element) -> Genera
  [1, 2, 3].reduce(+) // 6
  ```
 
-This function works the same as the standard library reduce, except it takes the initial value to be the first element of `self` It returns an optional, which is `nil` if `self` is empty.
+This function works the same as the standard library reduce, except it takes the initial value to be the first element of `self`. It returns an optional, which is `nil` if `self` is empty.
 
 ### Scan ###
 Return an array where every value is equal to combine called on the previous element, and the current element. The first element is taken to be initial.
@@ -83,7 +83,7 @@ Return an array where every value is equal to combine called on the previous ele
 [1, 3, 6]
 ```
 
-This function has a lazy and an eager version. The eager returns an array, lazy returns a sequence, generated on-demand. There is also, like reduce, a version that takes the first element of the sequence to be `initial`:
+There is also, like reduce, a version that takes the first element of the sequence to be `initial`:
 
 ```swift
 [1, 2, 3, 4, 5].scan(+)
@@ -138,7 +138,7 @@ This function returns all of the elements of `self` up until an element returns 
 [1, 2, 3]
 ```
 
-Note that it's not the same as filter: if any elements return true for the predicate *after* the first element that returns false, they're still not returned. This function has both a lazy and an eager version.
+Note that it's not the same as filter: if any elements return true for the predicate *after* the first element that returns false, they're still not returned.
 
 ### DropWhile ###
 
@@ -151,8 +151,6 @@ lazy([1, 2, 3, 4, 5, 2]).dropWhile { $0 < 4 }
 ```
 
 ## HopJump ##
-
-These functions allow for more versatile slice-like behaviour.
 
 ### Hop ###
 
@@ -193,9 +191,62 @@ lazy([1, 2, 3, 4, 5, 6, 7, 8]).jump(2)
 3, 6
 ```
 
-
-
 ## Interpose ##
+
+These functions allow lazy and eager insertion of elements into sequences at regular intervals.
+
+### Interpose ###
+
+This function returns `self`, with `element` inserted between every element:
+
+```swift
+[1, 2, 3].interpose(10)
+
+[1, 10, 2, 10, 3]
+```
+
+The intervals at which to insert `element` can be specified:
+
+```swift
+[1, 2, 3, 4, 5].interpose(10, n: 2)
+
+[1, 2, 10, 3, 4, 10, 5]
+```
+
+More than one element can be interposed:
+
+```swift
+[1, 2, 3].interpose([10, 20])
+
+[1, 10, 20, 2, 10, 20, 3]
+```
+
+And, again, the interval can be specified:
+
+```swift
+[1, 2, 3, 4, 5].interpose([10, 20], n: 2)
+
+[1, 2, 10, 20, 3, 4, 10, 20, 5]
+```
+
+### interdig ###
+
+This function allows you to combine two sequences by alternately selecting elements from each:
+
+```swift
+interdig([1, 2, 3], [10, 20, 30])
+
+[1, 10, 2, 20, 3, 30]
+``
+
+The length of the interdigitations can be specified:
+
+```swift
+interdig([1, 2, 3, 4, 5], [10, 20, 30, 40, 50, 60], s0Len: 2, s1Len: 3)
+
+[1, 2, 10, 20, 30, 3, 4, 40, 50, 60, 5]
+```
+
 ## Combinations ##
 ## Permutations ##
 ## GenericGenerators ##

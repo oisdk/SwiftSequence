@@ -257,7 +257,7 @@ let lazySequence = lazy([1, 2, 3])
 
 let lazyCombos = lazySequence.lazyCombinations(2)
 
-// Here, lazySequence was "thunked", but no combinations have yet been evaluated.
+// Here, lazySequence was evaluated, but no combinations have yet been evaluated.
 
 var g = lazyCombos.generate()
 

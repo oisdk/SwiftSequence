@@ -43,20 +43,20 @@ SwiftSequence has no dependancies beyond the Swift standard library.
 
 ## Contents ##
 
-- [ScanReduce] (#ScanReduce)
-- [TakeDrop] (#TakeDrop)
-- [HopJump] (#HopJump)
-- [Interpose] (#Interpose)
-- [Combinations] (#Combinations)
-- [Permutations] (#Permutations)
-- [GenericGenerators] (#GenericGenerators)
-- [Cycle] (#Cycle)
-- [Categorise] (#Categorise)
-- [ChunkWindowSplit] (#ChunkWindowSplit)
-- [Enumerate] (#Enumerate)
-- [Finding] (#Finding)
-- [NestedSequences] (#NestedSequences)
-- [Zip] (#Zip)
+- [ScanReduce] (#scanreduce)
+- [TakeDrop] (#takedrop)
+- [HopJump] (#hopjump)
+- [Interpose] (#interpose)
+- [Combinations] (#combinations)
+- [Permutations] (#permutations)
+- [GenericGenerators] (#genericgenerators)
+- [Cycle] (#cycle)
+- [Categorise] (#categorise)
+- [ChunkWindowSplit] (#chunkwindowsplit)
+- [Enumerate] (#enumerate)
+- [Finding] (#finding)
+- [NestedSequences] (#nestedsequences)
+- [Zip] (#zip)
 
 ## ScanReduce ##
 ## TakeDrop ##

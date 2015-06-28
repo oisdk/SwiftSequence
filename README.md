@@ -248,6 +248,57 @@ interdig([1, 2, 3, 4, 5], [10, 20, 30, 40, 50, 60], s0Len: 2, s1Len: 3)
 ```
 
 ## Combinations ##
+
+These functions return combinations with or without repetition, lazily or eagerly. The lazy version of these function doesn't maintain laziness of the underlying sequence, but they produce combinations on-demand, with neither future nor past combinations stored in memory, e.g:
+
+```swift
+
+let lazySequence = lazy([1, 2, 3])
+
+let lazyCombos = lazySequence.lazyCombinations(2)
+
+// Here, lazySequence was "thunked", but no combinations have yet been evaluated.
+
+var g = lazyCombos.generate()
+
+g.next() // [1, 2]
+
+// Here, only one combination has been evaluated, and only that combination is stored in memory
+
+g.next() // [1, 3]
+
+// Here, two combinations have been evaluated, but no extra combinations have been stored in memory.
+
+```
+
+### Combinations ###
+
+Returns combinations without repetitions of self of length `n`
+
+Combinations are returned in lexicographical order, according to the order of `self`
+
+```swift
+[1, 2, 3].combinations(2)
+
+[1, 2], [1, 3], [2, 3]
+```
+
+To have combinations generate lazily and on-demand, use `lazyCombinations()`.
+
+### Combinations with Repetition ###
+
+Returns combinations with repetition of self of length `n`.
+
+Combinations are returned in lexicographical order, according to the order of `self`.
+
+```swift
+[1, 2, 3].combinationsWithRep(2)
+
+[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]
+```
+
+To have combinations generate lazily and on-demand, use `lazyCombinationsWithRep()`.
+
 ## Permutations ##
 ## GenericGenerators ##
 ## Cycle ##

@@ -59,6 +59,21 @@ SwiftSequence has no dependancies beyond the Swift standard library.
 - [Zip] (#zip)
 
 ## ScanReduce ##
+
+### Reduce ###
+
+```swift
+func reduce (@noescape combine: (Generator.Element, Generator.Element) -> Generator.Element)
+```
+ Return the result of repeatedly calling combine with an accumulated value
+ initialized to the first element of self and each element of self, in turn, i.e.
+ return `combine(combine(...combine(combine(self[0], self[1]), self[2]),...self[count-2]), self[count-1]).`
+ ```swift
+ [1, 2, 3].reduce(+) // 6
+ ```
+
+This function works the same as the standard library reduce, except it takes the initial value to be the first element of `self` It returns an optional, which is nil if `self` is empty.
+
 ## TakeDrop ##
 ## HopJump ##
 ## Interpose ##

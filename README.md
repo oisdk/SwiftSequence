@@ -301,7 +301,7 @@ To have combinations generate lazily and on-demand, use `lazyCombinationsWithRep
 
 ## Permutations ##
 
-### Lexicographical Permutations ### 
+### Lexicographical Permutations
 
 These functions return `self`, permuted, in lexicographical order. If `self` is not the first permutation, lexicographically, not all permutations will be returned. (to ensure all permutations are returned, `sort()` can be used). This function can operate on a collection of `Comparable` elements, or, is the closure `isOrderedBefore` is provided, it can operate on any collection. In terms of laziness, it behaves the same as the combination functions: forcing the evaluation of the underlying collection, but capable of lazily producing each new permutation. To access the lazy version, use the versions of these functions with the `lazy` prefix. (e.g., `lexPermutations()` becomes `lazyLexPermutations()`)
 ```swift

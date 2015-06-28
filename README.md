@@ -538,15 +538,44 @@ There are two functions here, `first()` and `last()`. These return the first and
 
 ### Transpose ###
 
-Allows both lazy and eager transposition.
+Allows both lazy and eager transposition. When lazily transposing, each row is evaluated eagerly, but only that row:
+
+```swift
+let transposed = lazy([
+  [1, 2, 3],
+  [1, 2, 3],
+  [1, 2, 3]
+]).transpose()
+
+var g = transposed.generate()
+
+g.next() // [1, 1, 1]
+
+// Each row is an eager array, but only that row is evaluated.
+
+g.next() // [2, 2, 2]
+
+// It's safe to use with single-pass sequences, also, as each sequence is only evaluated once.
+
+```
 
 ### Product ###
 
 Both lazy and eager Cartesian Products.
 
+```swift
+product([1, 2], [3, 4])
+
+[[1, 3], [1, 4], [2, 3], [2, 4]]
+
+lazyProduct([1, 2], [3, 4])
+
+[1, 3], [1, 4], [2, 3], [2, 4]
+```
+
 ## Zip ##
 
-These functions allow you to zip two sequences of different lengths together, and to specify the padding for the shorter sequence. If unspecified, the padding is `nil`.
+These functions allow you to zip two sequences of different lengths together, and to specify the padding for the shorter sequence. If unspecified, the padding is `nil`. There is no eager version of this function (there is no eager standard library zip)
 
 ## FlatMap ##
 

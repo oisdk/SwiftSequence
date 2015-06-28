@@ -237,7 +237,7 @@ This function allows you to combine two sequences by alternately selecting eleme
 interdig([1, 2, 3], [10, 20, 30])
 
 [1, 10, 2, 20, 3, 30]
-``
+```
 
 The length of the interdigitations can be specified:
 

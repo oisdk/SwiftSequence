@@ -365,7 +365,7 @@ iterate(2) { $0 * 2 }
 
 These functions return a cycle of self. The number of cycles can be specified, if not, `self` is cycled infinitely.
 
-When called on a `LazySequenceType`, the sequence returned is lazy, otherwise, it's eager. (the infinite cycle is not available on eager sequences, obviously)
+When called on a `LazySequenceType`, the sequence returned is lazy, otherwise, it's eager. (the infinite cycle is always lazy, however)
 
 ```swift
 [1, 2, 3].cycle(2)

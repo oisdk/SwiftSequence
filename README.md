@@ -577,6 +577,19 @@ lazyProduct([1, 2], [3, 4])
 
 These functions allow you to zip two sequences of different lengths together, and to specify the padding for the shorter sequence. If unspecified, the padding is `nil`. There is no eager version of this function (there is no eager standard library zip)
 
+
+```swift
+zipWithPadding([1, 2, 3], [1, 2], pad0: 100, pad1: 900)
+
+(1, 1), (2, 2), (3, 900)
+```
+
+```swift
+zipWithPadding([1, 2, 3], [1, 2])
+
+(1?, 1?), (2?, 2?), (3?, nil)
+```
+
 ## FlatMap ##
 
 This is just a reimplementation of the standard library `flatMap()` that returns a lazy sequence.

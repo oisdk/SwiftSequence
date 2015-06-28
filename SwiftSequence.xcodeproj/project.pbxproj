@@ -10,8 +10,6 @@
 		7037D0451B403AB500FA04C6 /* SwiftSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 7037D0441B403AB500FA04C6 /* SwiftSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7037D04C1B403AB500FA04C6 /* SwiftSequence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7037D0411B403AB500FA04C6 /* SwiftSequence.framework */; };
 		7037D0511B403AB500FA04C6 /* SwiftSequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0501B403AB500FA04C6 /* SwiftSequenceTests.swift */; };
-		7037D06B1B403AC800FA04C6 /* Catagorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05B1B403AC800FA04C6 /* Catagorise.swift */; };
-		7037D06C1B403AC800FA04C6 /* Catagorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05B1B403AC800FA04C6 /* Catagorise.swift */; };
 		7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */; };
 		7037D06E1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */; };
 		7037D06F1B403AC800FA04C6 /* Combinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05D1B403AC800FA04C6 /* Combinations.swift */; };
@@ -42,6 +40,8 @@
 		7037D0881B403AC800FA04C6 /* TakeDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0691B403AC800FA04C6 /* TakeDrop.swift */; };
 		7037D0891B403AC800FA04C6 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D06A1B403AC800FA04C6 /* Zip.swift */; };
 		7037D08A1B403AC800FA04C6 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D06A1B403AC800FA04C6 /* Zip.swift */; };
+		7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
+		7037D08E1B40437F00FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +61,6 @@
 		7037D04B1B403AB500FA04C6 /* SwiftSequenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSequenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7037D0501B403AB500FA04C6 /* SwiftSequenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSequenceTests.swift; sourceTree = "<group>"; };
 		7037D0521B403AB500FA04C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7037D05B1B403AC800FA04C6 /* Catagorise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catagorise.swift; sourceTree = "<group>"; };
 		7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkWindowSplit.swift; sourceTree = "<group>"; };
 		7037D05D1B403AC800FA04C6 /* Combinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinations.swift; sourceTree = "<group>"; };
 		7037D05E1B403AC800FA04C6 /* Cycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cycle.swift; sourceTree = "<group>"; };
@@ -77,6 +76,7 @@
 		7037D0681B403AC800FA04C6 /* ScanReduce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReduce.swift; sourceTree = "<group>"; };
 		7037D0691B403AC800FA04C6 /* TakeDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeDrop.swift; sourceTree = "<group>"; };
 		7037D06A1B403AC800FA04C6 /* Zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zip.swift; sourceTree = "<group>"; };
+		7037D08C1B40437100FA04C6 /* Categorise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categorise.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 		7037D0431B403AB500FA04C6 /* SwiftSequence */ = {
 			isa = PBXGroup;
 			children = (
-				7037D05B1B403AC800FA04C6 /* Catagorise.swift */,
+				7037D08C1B40437100FA04C6 /* Categorise.swift */,
 				7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */,
 				7037D05D1B403AC800FA04C6 /* Combinations.swift */,
 				7037D05E1B403AC800FA04C6 /* Cycle.swift */,
@@ -270,7 +270,7 @@
 				7037D07F1B403AC800FA04C6 /* LazySeq.swift in Sources */,
 				7037D0751B403AC800FA04C6 /* Finding.swift in Sources */,
 				7037D07B1B403AC800FA04C6 /* HopJump.swift in Sources */,
-				7037D06B1B403AC800FA04C6 /* Catagorise.swift in Sources */,
+				7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */,
 				7037D0711B403AC800FA04C6 /* Cycle.swift in Sources */,
 				7037D0731B403AC800FA04C6 /* Enumerate.swift in Sources */,
 				7037D06F1B403AC800FA04C6 /* Combinations.swift in Sources */,
@@ -285,7 +285,6 @@
 				7037D07C1B403AC800FA04C6 /* HopJump.swift in Sources */,
 				7037D0721B403AC800FA04C6 /* Cycle.swift in Sources */,
 				7037D0881B403AC800FA04C6 /* TakeDrop.swift in Sources */,
-				7037D06C1B403AC800FA04C6 /* Catagorise.swift in Sources */,
 				7037D06E1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */,
 				7037D0861B403AC800FA04C6 /* ScanReduce.swift in Sources */,
 				7037D0821B403AC800FA04C6 /* NestedSequences.swift in Sources */,
@@ -294,6 +293,7 @@
 				7037D0781B403AC800FA04C6 /* FlatMap.swift in Sources */,
 				7037D0701B403AC800FA04C6 /* Combinations.swift in Sources */,
 				7037D0801B403AC800FA04C6 /* LazySeq.swift in Sources */,
+				7037D08E1B40437F00FA04C6 /* Categorise.swift in Sources */,
 				7037D07E1B403AC800FA04C6 /* Interpose.swift in Sources */,
 				7037D0841B403AC800FA04C6 /* Permutations.swift in Sources */,
 				7037D0761B403AC800FA04C6 /* Finding.swift in Sources */,
@@ -476,6 +476,7 @@
 				7037D0571B403AB500FA04C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7037D0581B403AB500FA04C6 /* Build configuration list for PBXNativeTarget "SwiftSequenceTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +485,7 @@
 				7037D05A1B403AB500FA04C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

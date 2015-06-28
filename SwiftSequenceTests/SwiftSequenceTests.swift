@@ -10,13 +10,13 @@ import XCTest
 
 class SwiftSequenceTests: XCTestCase {
   
-  // MARK: - Catagorise
+  // MARK: - Categorise
   
   // MARK: Eager
   
   func testCat() {
     
-    let catByRemTwo = [1, 2, 3, 4, 5, 6].catagorise {(i: Int) -> Int in i % 2 }
+    let catByRemTwo = [1, 2, 3, 4, 5, 6].categorise {(i: Int) -> Int in i % 2 }
     
     let expectation = [0:[2, 4, 6], 1:[1, 3, 5]]
     

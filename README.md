@@ -40,3 +40,7 @@ lazy([1, 2, 3])
 ```
 
 SwiftSequence has no dependancies beyond the Swift standard library.
+
+## Contents ##
+
+- [Categorise]

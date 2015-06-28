@@ -1,12 +1,12 @@
 // MARK: - Eager
 
-// MARK: Catagorise
+// MARK: Categorise
 
 public extension SequenceType {
   
-  /// Catagorises elements of self into a dictionary, with the keys given by keyFunc
+  /// Categorises elements of self into a dictionary, with the keys given by keyFunc
   
-  func catagorise<U : Hashable>(keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
+  func categorise<U : Hashable>(keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
     var dict: [U:[Generator.Element]] = [:]
     for el in self {
       let key = keyFunc(el)

@@ -66,13 +66,33 @@ SwiftSequence has no dependancies beyond the Swift standard library.
 func reduce (@noescape combine: (Generator.Element, Generator.Element) -> Generator.Element)
 ```
  Return the result of repeatedly calling combine with an accumulated value
- initialized to the first element of self and each element of self, in turn, i.e.
- return `combine(combine(...combine(combine(self[0], self[1]), self[2]),...self[count-2]), self[count-1]).`
+ initialised to the first element of self and each element of self, in turn, i.e.
+
  ```swift
  [1, 2, 3].reduce(+) // 6
  ```
 
-This function works the same as the standard library reduce, except it takes the initial value to be the first element of `self` It returns an optional, which is nil if `self` is empty.
+This function works the same as the standard library reduce, except it takes the initial value to be the first element of `self` It returns an optional, which is `nil` if `self` is empty.
+
+### Scan ###
+Return an array where every value is equal to combine called on the previous element, and the current element. The first element is taken to be initial.
+
+```swift
+[1, 2, 3].scan(0, combine: +)
+ 
+[1, 3, 6]
+```
+
+This function has a lazy and an eager version. The eager returns an array, lazy returns a sequence, generated on-demand. There is also, like reduce, a version that takes the first element of the sequence to be `initial`:
+
+```swift
+[1, 2, 3, 4, 5].scan(+)
+
+// [1, 3, 6, 10, 15]
+```
+
+This also is evaluated lazily if the sequence it is called on is lazy.
+
 
 ## TakeDrop ##
 ## HopJump ##

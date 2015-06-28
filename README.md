@@ -1,9 +1,9 @@
 # SwiftSequence
-SwiftSequence is a framework of extensions to `SequenceType`, that provides functional, lightweight methods, similar to Python's itertools.
+SwiftSequence is a framework of extensions to `SequenceType`, that provides functional, lightweight methods, similar to Python's itertools. Every function and method, unless otherwise specified, has both a lazy and eager version.
 
 SwiftSequence adds one new protocol: `LazySequenceType`. This protocol has all of the same requirements as `SequenceType`, but anything that conforms to it is assumed to be lazily evaluated.
 
-Every function and method has both a lazy and an eager version (if possible). When using a method, if the underlying sequence conforms to `LazySequenceType`, the method used will be the lazy version. If the sequence is eager, the eager method will be used.
+When using a method, if the underlying sequence conforms to `LazySequenceType`, the method used will be the lazy version. If the sequence is eager, the eager method will be used.
 
 All sequences returned by lazy methods conform to `LazySequenceType`, and these standard library structs have been made to conform, also:
 
@@ -57,6 +57,7 @@ SwiftSequence has no dependancies beyond the Swift standard library.
 - [Finding] (#finding)
 - [NestedSequences] (#nestedsequences)
 - [Zip] (#zip)
+- [FlatMap] (#flatmap)
 
 ## ScanReduce ##
 
@@ -471,7 +472,82 @@ lazy([1, 3, 5, 2, 4, 6, 6, 7, 1, 1]).groupBy { $0 % 2 }
 ```
 
 ## ChunkWindowSplit ##
+
+These functions divide up a sequence.
+
+### Chunk ###
+
+This function returns `self`, broken up into non-overlapping arrays of length `n`:
+
+```swift
+[1, 2, 3, 4, 5].chunk(2)
+
+[[1, 2], [3, 4], [5]]
+```
+
+### Window ###
+
+This function returns `self`, broken up into overlapping arrays of length `n`:
+
+```swift
+[1, 2, 3, 4, 5].window(3)
+
+[[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+```
+
+### Split ###
+
+Returns an array of arrays that end with elements that return true for `isSplit`
+```swift
+[1, 3, 4, 4, 5, 6].splitAt {$0 % 2 == 0}
+
+[[1, 3, 4], [4], [5, 6]]
+```
+
 ## Enumerate ##
+
+This just adds the function `specEnumerate()` which is the same as the standard library `enumerate()`, except that the indices it returns are specific to the base, rater than just `Int`s. So, for instance, this:
+
+```swift
+"hello".characters.specEnumerate()
+```
+
+Would return a sequence of `(String.Index, Character)` (rather than `(Int, Character)`, which is what the standard library `enumerate()` returns). There is no eager version of this function (as there is no eager `enumerate()`)
+
 ## Finding ##
+
+There are two functions here, `first()` and `last()`. These return the first and the last element that satisfies the supplied predicate. (or nil if it doesn't exist)
+
+```swift
+
+[1, 2, 3, 4, 5].first { $0 > 3 }
+
+4
+
+```
+
+```swift
+
+[1, 2, 3, 4, 5].last { $0 < 5 }
+
+4
+
+```
+
 ## NestedSequences ##
+
+### Transpose ###
+
+Allows both lazy and eager transposition.
+
+### Product ###
+
+Both lazy and eager Cartesian Products.
+
 ## Zip ##
+
+These functions allow you to zip two sequences of different lengths together, and to specify the padding for the shorter sequence. If unspecified, the padding is `nil`.
+
+## FlatMap ##
+
+This is just a reimplementation of the standard library `flatMap()` that returns a lazy sequence.

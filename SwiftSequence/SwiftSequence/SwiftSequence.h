@@ -6,7 +6,7 @@
 //  Copyright © 2015 Donnacha Oisín Kidney. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Cocoa/Cocoa.h>
 
 //! Project version number for SwiftSequence.
 FOUNDATION_EXPORT double SwiftSequenceVersionNumber;

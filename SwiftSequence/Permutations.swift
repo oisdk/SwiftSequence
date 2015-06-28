@@ -125,11 +125,6 @@ public extension CollectionType where Self.Index : Comparable {
   /// 
   /// [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
   /// ```
-  /// ```swift
-  /// [3, 2, 1].permutations()
-  ///
-  /// [[3, 2, 1], [3, 1, 2], [2, 3, 1], [2, 1, 3], [1, 3, 2], [1, 2, 3]]
-  /// ```
   
   func permutations() -> [[Self.Generator.Element]] {
     return LexPermSeq(col: Array(self.indices)).map { inds in inds.map{self[$0]} }.array()

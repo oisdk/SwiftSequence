@@ -300,6 +300,47 @@ Combinations are returned in lexicographical order, according to the order of `s
 To have combinations generate lazily and on-demand, use `lazyCombinationsWithRep()`.
 
 ## Permutations ##
+
+### Lexicographical Permutations ### 
+
+These functions return `self`, permuted, in lexicographical order. If `self` is not the first permutation, lexicographically, not all permutations will be returned. (to ensure all permutations are returned, `sort()` can be used). This function can operate on a collection of `Comparable` elements, or, is the closure `isOrderedBefore` is provided, it can operate on any collection. In terms of laziness, it behaves the same as the combination functions: forcing the evaluation of the underlying collection, but capable of lazily producing each new permutation. To access the lazy version, use the versions of these functions with the `lazy` prefix. (e.g., `lexPermutations()` becomes `lazyLexPermutations()`)
+```swift
+[1, 2, 3].lexPermutations()
+
+[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+```
+```swift
+[3, 2, 1].lexPermutations()
+
+[[3, 2, 1]]
+```
+
+```swift
+[1, 2, 3].lexPermutations(<)
+
+[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+```
+```swift
+[1, 2, 3].lexPermutations(>)
+
+[[1, 2, 3]]
+```
+
+### Permutations ###
+
+These functions use the same algorithm as the lexicographical permutations, but the indices of self are permuted. (Indices aren't returned: they're just used for the permutation)
+
+```swift
+[1, 2, 3].permutations()
+
+[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+```
+```swift
+lazy([3, 2, 1]).lazyPermutations()
+
+[3, 2, 1], [3, 1, 2], [2, 3, 1], [2, 1, 3], [1, 3, 2], [1, 2, 3]
+```
+
 ## GenericGenerators ##
 ## Cycle ##
 ## Categorise ##

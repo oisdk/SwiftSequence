@@ -196,7 +196,7 @@ public extension LazySequenceType {
   ///  [1, 3, 5], [20, 22, 18], [6, 7]
   /// ```
   
-  func groupBy(isEquivalent: (Generator.Element, Generator.Element) -> Bool)
+  func group(isEquivalent: (Generator.Element, Generator.Element) -> Bool)
     -> GroupBySeq<Self> {
       return GroupBySeq(seq: self, isEquivalent: isEquivalent)
   }

@@ -90,9 +90,9 @@ class SwiftSequenceTests: XCTestCase {
     )
   }
   
-  func testLazyGroupBy() {
+  func testLazyGroupClos() {
     
-    let groupSeq = lazy([1, 3, 5, 20, 22, 18, 6, 7]).groupBy { abs($0 - $1) < 5 }
+    let groupSeq = lazy([1, 3, 5, 20, 22, 18, 6, 7]).group { abs($0 - $1) < 5 }
     
     let expectation = lazy([[1, 3, 5], [20, 22, 18], [6, 7]])
     

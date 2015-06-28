@@ -379,6 +379,97 @@ When called on a `LazySequenceType`, the sequence returned is lazy, otherwise, i
 ```
 
 ## Categorise ##
+
+These functions can be used to group elements of a sequence on certain conditions.
+
+### categorise ###
+
+```swift
+func categorise<U : Hashable>(keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] 
+```
+
+This categorises all elements of self into a dictionary, with the keys of that dictionary given by the `keyFunc`.
+
+```swift
+[1, 2, 3, 4, 5, 6].categorise { $0 % 2 }
+
+
+[
+  0: [2, 4, 6],
+  1: [1, 3, 5]
+]
+
+```
+
+(this function has no lazy version)
+
+### Frequencies ###
+
+This returns a dictionary where the keys are the elements of self, and the values are their respective frequencies:
+
+```swift
+
+[1, 1, 1, 2, 2, 3].freqs()
+
+[
+  1: 3,
+  2: 2,
+  3: 1
+]
+
+```
+
+(this function has no lazy version)
+
+### Uniques ###
+
+Returns `self` with duplicates removed:
+
+```swift
+[1, 2, 3, 2, 2, 4, 1, 2, 5, 6].uniques()
+
+[1, 2, 3, 4, 5, 6]
+```
+
+### Replace ###
+
+Returns `self` with all of the keys in `reps` replaced by their values:
+
+```swift
+
+[1, 2, 3, 4].replace( [1:10, 2:20] )
+
+[10, 20, 3, 4]
+
+```
+
+### Grouping ###
+
+Since `categorise()` and `freqs()` can't have lazy versions, these grouping functions give similar behaviour. Instead of categorising based on the whole sequence, they categories based on *adjacent* values.
+
+This groups adjacent equal values:
+
+``` swift
+lazy([1, 2, 2, 3, 1, 1, 3, 4, 2]).group()
+
+[1], [2, 2], [3], [1, 1], [3], [4], [2]
+```
+This groups adjacent equal values according to a closure:
+
+```swift
+lazy([1, 3, 5, 20, 22, 18, 6, 7]).group { abs($0 - $1) < 5 }
+
+[1, 3, 5], [20, 22, 18], [6, 7]
+```
+
+This groups adjacent values that return the same from `keyFunc`:
+
+```swift
+lazy([1, 3, 5, 2, 4, 6, 6, 7, 1, 1]).groupBy { $0 % 2 }
+
+[1, 3, 5], [2, 4, 6, 6], [7, 1, 1]
+```
+
 ## ChunkWindowSplit ##
 ## Enumerate ##
 ## Finding ##

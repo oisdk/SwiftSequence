@@ -88,13 +88,58 @@ This function has a lazy and an eager version. The eager returns an array, lazy 
 ```swift
 [1, 2, 3, 4, 5].scan(+)
 
-// [1, 3, 6, 10, 15]
+[1, 3, 6, 10, 15]
 ```
 
 This also is evaluated lazily if the sequence it is called on is lazy.
 
-
 ## TakeDrop ##
+
+### Take ###
+
+This function returns the first `n` elements of self:
+
+```swift
+[1, 2, 3, 4, 5].take(3)
+
+[1, 2, 3]
+```
+
+It has an eager, and a lazy version.
+
+### Drop ###
+
+This function returns self with the first `n` elements dropped:
+
+```swift
+[1, 2, 3, 4, 5].drop(3)
+
+[4, 5]
+```
+
+It is *not* analogous to slicing: the function walks over `n` elements of self in order to return the rest, so it is far less efficient than `ArraySlice` (*O(n)* vs *O(1)*). However, it has the advantage of being capable of lazy evaluation. Combined with `take`, it can allow easy manipulation of infinite sequences:
+
+```swift
+(1...)
+  .drop(10)
+  .take(10)
+  .array()
+
+[11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+```
+
+### TakeWhile ###
+
+This function returns all of the elements of `self` up until an element returns false for `predicate`:
+
+```swift
+[1, 2, 3, 4, 5, 2].takeWhile { $0 < 4 }
+
+[1, 2, 3]
+```
+
+Note that it's not the same as filter: if any elements return true for the predicate *after* the first element that returns false, they're still not returned. This function has both a lazy and an eager version.
+
 ## HopJump ##
 ## Interpose ##
 ## Combinations ##

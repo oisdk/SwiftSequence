@@ -342,7 +342,42 @@ lazy([3, 2, 1]).lazyPermutations()
 ```
 
 ## GenericGenerators ##
+
+These are some helper generators and sequences, like a `Stride` sequence that is infinite, and a `count` sequence:
+
+```swift
+(1...)
+
+1, 2, 3, 4, 5, 6, 7, 8...
+```
+```swift
+stride(1, by: 2)
+
+1, 3, 5, 7...
+```
+```swift
+iterate(2) { $0 * 2 }
+
+2, 4, 8, 16, 32, 64...
+```
+
 ## Cycle ##
+
+These functions return a cycle of self. The number of cycles can be specified, if not, `self` is cycled infinitely.
+
+When called on a `LazySequenceType`, the sequence returned is lazy, otherwise, it's eager. (the infinite cycle is not available on eager sequences, obviously)
+
+```swift
+[1, 2, 3].cycle(2)
+
+[1, 2, 3, 1, 2, 3]
+```
+```swift
+[1, 2, 3].cycle()
+
+1, 2, 3, 1, 2, 3, 1...
+```
+
 ## Categorise ##
 ## ChunkWindowSplit ##
 ## Enumerate ##

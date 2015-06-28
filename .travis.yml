@@ -1,5 +1,0 @@
-language: objective-c
-osx_image: beta-xcode7.0
-
-script:
-- xctool -project SwiftSequence.xcodeproj -scheme SwiftSequence

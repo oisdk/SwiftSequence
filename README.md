@@ -1,5 +1,5 @@
 # SwiftSequence
-SwiftSequence is a framework of extensions to `SequenceType`, that provides functional, lightweight methods, similar to Python's itertools. Every function and method, unless otherwise specified, has both a lazy and eager version.
+SwiftSequence is a framework of extensions to `SequenceType`, that provides functional, lightweight methods, similar to Python's itertools. Every function and method, unless otherwise specified, has both a lazy and eager version. SwiftSequence has no dependancies beyond the Swift standard library.
 
 SwiftSequence adds one new protocol: `LazySequenceType`. This protocol has all of the same requirements as `SequenceType`, but anything that conforms to it is assumed to be lazily evaluated.
 
@@ -38,8 +38,6 @@ lazy([1, 2, 3])
 
 // [1, 3]
 ```
-
-SwiftSequence has no dependancies beyond the Swift standard library.
 
 ## Contents ##
 

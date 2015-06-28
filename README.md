@@ -29,7 +29,7 @@ lazy([1, 2, 3])
 // 1, 3
 ```
 
-And to "thunk" a lazy sequence, (to force it to be evaluated), the `array()` method can be used:
+And to force evaluation of a lazy sequence, the `array()` method can be used:
 
 ```swift
 lazy([1, 2, 3])

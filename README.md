@@ -140,7 +140,61 @@ This function returns all of the elements of `self` up until an element returns 
 
 Note that it's not the same as filter: if any elements return true for the predicate *after* the first element that returns false, they're still not returned. This function has both a lazy and an eager version.
 
+### DropWhile ###
+
+Similar in behaviour to `TakeWhile`, this function drops the first elements of `self` that return true for a predicate:
+
+```swift
+lazy([1, 2, 3, 4, 5, 2]).dropWhile { $0 < 4 }
+
+4, 5, 2
+```
+
 ## HopJump ##
+
+These functions allow for more versatile slice-like behaviour.
+
+### Hop ###
+
+Returns a sequence with `n` elements of self hopped over. The sequence includes the first element of self.
+
+```swift
+[1, 2, 3, 4, 5, 6, 7, 8].hop(2)
+
+[1, 4, 7]
+```
+
+When combined with `take` and `drop`, it's easy to emulate Python's islice, for lazy, on-demand slicing:
+
+```swift
+extension LazySequenceType {
+  func islice(from from: Int, to: Int, by: Int) -> HopSeq<TakeSeq<DropSeq<Self>>>  {
+    return self
+      .drop(from)
+      .take(to - from + 1)
+      .hop(by - 1)
+  }
+}
+
+lazy([1, 2, 3, 4, 5, 6, 7, 8, 9])
+  .islice(from: 1, to: 5, by: 2)
+  .array()
+
+[2, 4, 6]
+```
+
+### Jump ###
+
+Operates the same as `hop`, but jumps over the first element in self:
+
+```swift
+lazy([1, 2, 3, 4, 5, 6, 7, 8]).jump(2)
+
+3, 6
+```
+
+
+
 ## Interpose ##
 ## Combinations ##
 ## Permutations ##

@@ -588,4 +588,10 @@ zipWithPadding([1, 2, 3], [1, 2])
 
 ## FlatMap ##
 
-This is just a reimplementation of the standard library `flatMap()` that returns a lazy sequence.
+This is just a reimplementation of the standard library `flatMap()` that returns a lazy sequence. It doesn't duplicate `flatMap()`'s functionality: it fills a gap that was in the standard library:
+
+|function|when used on an eager sequence|when used on a lazy sequence|
+|--:|--:|--:|---|---|
+| `map()` | `Array` | `MapSequenceView` |
+| `filter()` | `Array` | `FilterSequenceView` |
+| `flatMap()` | `Array` | `Array` |

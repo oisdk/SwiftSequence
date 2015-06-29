@@ -104,8 +104,6 @@ This function returns the first `n` elements of self:
 [1, 2, 3]
 ```
 
-It has an eager, and a lazy version.
-
 ### Drop ###
 
 This function returns self with the first `n` elements dropped:

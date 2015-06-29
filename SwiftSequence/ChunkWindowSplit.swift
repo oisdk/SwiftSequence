@@ -75,7 +75,7 @@ public extension SequenceType {
   /// [[1, 3, 4], [4], [5, 6]]
   /// ```
   
-  func splitAt(isSplit : Generator.Element -> Bool) -> [[Generator.Element]] {
+  func splitAt(@noescape isSplit : Generator.Element -> Bool) -> [[Generator.Element]] {
     var g = self.generate()
     var ret: [[Generator.Element]] = [[]]
     while let next = g.next() {

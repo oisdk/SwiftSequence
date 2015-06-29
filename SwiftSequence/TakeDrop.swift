@@ -39,7 +39,7 @@ public extension SequenceType {
   /// [1, 2, 3]
   /// ```
   
-  func takeWhile(condition: Generator.Element -> Bool) -> [Generator.Element] {
+  func takeWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
     var ret : [Generator.Element] = []
     var g = self.generate()
     while let next = g.next() where condition(next) { ret.append(next) }
@@ -59,7 +59,7 @@ public extension SequenceType {
   /// [4, 5, 2]
   /// ```
   
-  func dropWhile(condition: Generator.Element -> Bool) -> [Generator.Element] {
+  func dropWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
     var g = self.generate()
     while let next = g.next() {
       if !condition(next) {

@@ -6,7 +6,7 @@ public extension SequenceType {
   
   /// Categorises elements of self into a dictionary, with the keys given by keyFunc
   
-  func categorise<U : Hashable>(keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
+  func categorise<U : Hashable>(@noescape keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
     var dict: [U:[Generator.Element]] = [:]
     for el in self {
       let key = keyFunc(el)

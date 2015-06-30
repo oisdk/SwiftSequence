@@ -90,7 +90,7 @@ public struct ComboGen<C : MutableCollectionType> : GeneratorType {
   private var inds: [C.Index]
   
   mutating public func next() -> [C.Generator.Element]? {
-    for (max, curInd) in zip(lazy(coll.indices).reverse(), inds.indices.reverse())
+    for (max, curInd) in zip(coll.indices.reverse(), inds.indices.reverse())
       where max != inds[curInd] {
       curr[curInd] = coll[++inds[curInd]]
       for j in (curInd+1)..<inds.count {

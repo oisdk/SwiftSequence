@@ -378,6 +378,6 @@ public func interdig<
 public func interdig<
   S0 : SequenceType, S1 : SequenceType where
   S0.Generator.Element == S1.Generator.Element
-  >(s0: S0, _ s1: S1, s0Len: Int, s1Len: Int) -> InterDigSeq<S0, S1> {
+  >(s0: S0, _ s1: S1, s0Len: Int, s1Len: Int = 1) -> InterDigSeq<S0, S1> {
     return InterDigSeq(s0: s0, s1: s1, aN: s0Len, bN: s1Len)
 }

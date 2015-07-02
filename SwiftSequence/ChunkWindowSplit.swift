@@ -95,17 +95,20 @@ public struct ChunkGen<G : GeneratorType> : GeneratorType {
   
   private var g: G
   private let n: Int
+  private var c: [G.Element]
   
   public mutating func next() -> [G.Element]? {
-    var ret: [G.Element]?
     var i = n
-    while --i >= 0, let next = g.next() {
-      ret?.append(next) ?? {
-        ret = [next]
-        ret!.reserveCapacity(n)
-        }()
-    }
-    return ret
+    c = []
+    while --i >= 0, let next = g.next() { c.append(next) }
+    return c.isEmpty ? nil : c
+  }
+  
+  private init(g: G, n: Int) {
+    self.g = g
+    self.n = n
+    self.c = []
+    self.c.reserveCapacity(n)
   }
 }
 

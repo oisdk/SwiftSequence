@@ -261,6 +261,14 @@ class SwiftSequenceTests: XCTestCase {
     
   }
   
+  func testCount() {
+    
+    let seq = [1, 2, 3, 4, 5, 6, 7, 8]
+    
+    XCTAssert(seq.count { $0 % 2 == 0} == 4)
+    
+  }
+  
   // MARK: - FlatMap
   
   func testFlatMapSeq() {

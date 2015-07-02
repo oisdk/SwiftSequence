@@ -99,9 +99,11 @@ public struct ChunkGen<G : GeneratorType> : GeneratorType {
   
   public mutating func next() -> [G.Element]? {
     var i = n
-    c = []
-    while --i >= 0, let next = g.next() { c.append(next) }
-    return c.isEmpty ? nil : c
+    return g.next().map {
+      c = [$0]
+      while --i > 0, let next = g.next() { c.append(next) }
+      return c
+    }
   }
   
   private init(g: G, n: Int) {

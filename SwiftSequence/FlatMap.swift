@@ -16,13 +16,30 @@ public struct FlatMapGen<G : GeneratorType, S : SequenceType> : GeneratorType {
   private var innerGen : S.Generator?
   
   public mutating func next() -> S.Generator.Element? {
-    return innerGen?.next() ?? {
-      g.next().flatMap {
-        innerGen = transform($0).generate()
-        return next()
+    for ; innerGen != nil; innerGen = g.next().map(transform)?.generate() {
+      if let next = innerGen?.next() {
+        return next
       }
-    }()
+    }
+    return nil
   }
+  private init(transform: G.Element -> S, var g: G) {
+    self.transform = transform
+    self.innerGen = g.next().map(transform)?.generate()
+    self.g = g
+  }
+
+//  Recursive version:
+//
+//  public mutating func next() -> S.Generator.Element? {
+//    return innerGen?.next() ?? {
+//      g.next().flatMap {
+//        innerGen = transform($0).generate()
+//        return next()
+//      }
+//    }()
+//  }
+//  (this version has no custom init: innerGen should be initialised to nil)
 }
 
 public struct FlatMapSeq<S0 : SequenceType, S1 : SequenceType> : LazySequenceType {
@@ -31,7 +48,7 @@ public struct FlatMapSeq<S0 : SequenceType, S1 : SequenceType> : LazySequenceTyp
   private let transform: S0.Generator.Element -> S1
   
   public func generate() -> FlatMapGen<S0.Generator, S1> {
-    return FlatMapGen(transform: transform, g: seq.generate(), innerGen: nil)
+    return FlatMapGen(transform: transform, g: seq.generate())
   }
   
 }
@@ -54,7 +71,17 @@ public struct FlatMapOptGen<G : GeneratorType, T> : GeneratorType {
   private var g : G
   
   mutating public func next() -> T? {
-    return g.next().flatMap { transform($0) ?? next() }
+    
+    while let next = g.next() {
+      if let ret = transform(next) {
+        return ret
+      }
+    }
+    return nil
+    
+//    Recursive version:
+//
+//    return g.next().flatMap { transform($0) ?? next() }
   }
 }
 

@@ -1,6 +1,9 @@
 // MARK: - Common
 
 public extension MutableCollectionType where Generator.Element : Comparable {
+  
+  /// [Algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order)
+  
   mutating func nextLexPerm() -> Self? {
     for k in dropFirst(self.indices.reverse()) where self[k] < self[k.successor()] {
       for l in self.indices.reverse() where self[k] < self[l] {
@@ -17,6 +20,9 @@ public extension MutableCollectionType where Generator.Element : Comparable {
 }
 
 public extension MutableCollectionType {
+  
+  /// [Algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order)
+  
   mutating func nextLexPerm
     (isOrderedBefore: (Generator.Element, Generator.Element) -> Bool) -> Self? {
       for k in dropFirst(self.indices.reverse())

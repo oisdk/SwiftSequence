@@ -282,6 +282,20 @@ Combinations are returned in lexicographical order, according to the order of `s
 
 To have combinations generate lazily and on-demand, use `lazyCombinations()`.
 
+Example Recipe:
+
+```swift
+extension CollectionType {
+  func powerSet() -> FlatMapSeq<LazyForwardCollection<Self>, ComboSeq<[Self.Generator.Element]>> {
+    var i = 0
+    return lazy(self).flatMap { _ in self.lazyCombinations(++i) }
+  }
+}
+
+[1, 2, 3]       // [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]
+  .powerSet()
+```
+
 ### Combinations with Repetition ###
 
 Returns combinations with repetition of self of length `n`.

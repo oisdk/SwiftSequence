@@ -90,14 +90,21 @@ public struct ComboGen<C : MutableCollectionType> : GeneratorType {
   private var inds: [C.Index]
   
   mutating public func next() -> [C.Generator.Element]? {
+    guard inds.count > 1 else {
+      if inds.isEmpty {
+        inds = [coll.endIndex]
+        return []
+      }
+      return { $0 == coll.endIndex ? nil : [coll[$0]] } (inds[0]++)
+    }
     for (max, curInd) in zip(coll.indices.reverse(), inds.indices.reverse())
       where max != inds[curInd] {
-      curr[curInd] = coll[++inds[curInd]]
-      for j in (curInd+1)..<inds.count {
-        inds[j] = inds[j-1].successor()
-        curr[j] = coll[inds[j]]
-      }
-      return curr
+        curr[curInd] = coll[++inds[curInd]]
+        for j in (curInd+1)..<inds.count {
+          inds[j] = inds[j-1].successor()
+          curr[j] = coll[inds[j]]
+        }
+        return curr
     }
     return nil
   }
@@ -118,8 +125,9 @@ public struct ComboSeq<C : MutableCollectionType> : LazySequenceType {
     var i = col.startIndex
     self.start = (0..<n).map{ (_: Int) in col[i++] }
     i = col.startIndex
+    guard n != 0 else {self.inds = []; return}
     var inds = (1..<n).map{ (_: Int) in i++ }
-    inds += [inds.last!]
+    inds.append(inds.last ?? col.startIndex)
     self.inds = inds
   }
 }

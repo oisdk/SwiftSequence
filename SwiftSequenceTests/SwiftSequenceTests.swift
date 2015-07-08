@@ -352,22 +352,21 @@ class SwiftSequenceTests: XCTestCase {
   
   func testHop() {
     
-    let hopped = [1, 2, 3, 4, 5, 6].hop(1)
+    let toHop = [1, 2, 3, 4, 5, 6]
     
-    let expectation = [1, 3, 5]
-    
-    XCTAssert(hopped == expectation)
+    XCTAssert(toHop.hop(2) == [1, 4])
+    XCTAssert(toHop.hop(1) == [1, 3, 5])
+    XCTAssert(toHop.hop(0) == toHop)
     
   }
   
   func testJump() {
     
-    let jumped = [1, 2, 3, 4, 5, 6].jump(1)
+    let toJump = [1, 2, 3, 4, 5, 6]
     
-    let expectation = [2, 4, 6]
-    
-    XCTAssert(jumped == expectation)
-    
+    XCTAssert(toJump.jump(2) == [3, 6])
+    XCTAssert(toJump.jump(1) == [2, 4, 6])
+    XCTAssert(toJump.jump(0) == toJump)
   }
   
   // MARK: Lazy

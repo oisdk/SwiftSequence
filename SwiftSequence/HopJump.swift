@@ -26,6 +26,22 @@ public extension SequenceType {
   }
 }
 
+public extension CollectionType where Index : RandomAccessIndexType {
+  
+  /// Returns an array with `n` elements of self hopped over. The sequence includes the
+  /// first element of self.
+  /// ```swift
+  /// [1, 2, 3, 4, 5, 6, 7, 8].hop(2)
+  ///
+  /// [1, 4, 7]
+  /// ```
+  
+  func hop(n: Index.Stride) -> [Generator.Element] {
+    let adjustedHop: Index.Stride = startIndex.distanceTo(startIndex.advancedBy(n).successor())
+    return stride(from: startIndex, to: endIndex, by: adjustedHop).map{self[$0]}
+  }
+}
+
 // MARK: Jump
 
 public extension SequenceType {
@@ -49,6 +65,22 @@ public extension SequenceType {
         return false
       }
     }
+  }
+}
+
+public extension CollectionType where Index : RandomAccessIndexType {
+
+  /// Returns an array with `n` elements of self jumped over. The sequence does not
+  /// include the first element of self.
+  /// ```swift
+  /// [1, 2, 3, 4, 5, 6, 7, 8].jump(2)
+  ///
+  /// [3, 6]
+  /// ```
+  
+  func jump(n: Index.Stride) -> [Generator.Element] {
+    let adjustedJump: Index.Stride = startIndex.distanceTo(startIndex.advancedBy(n).successor())
+    return stride(from: startIndex.advancedBy(n), to: endIndex, by: adjustedJump).map{self[$0]}
   }
 }
 

@@ -13,12 +13,12 @@ public extension SequenceType {
   /// ```
   
   func reduce
-    (@noescape combine: (Generator.Element, Generator.Element) -> Generator.Element)
+    (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element)
     -> Generator.Element? {
       var g = self.generate()
       return g.next().map {
         (var accu) in
-        while let next = g.next() { accu = combine(accu, next) }
+        while let next = g.next() { accu = combine(accumulator: accu, element: next) }
         return accu
       }
   }
@@ -33,9 +33,9 @@ public extension SequenceType {
   /// [1, 3, 6]
   /// ```
   
-  func scan<T>(var initial: T, @noescape combine: (T, Generator.Element) -> T) -> [T] {
+  func scan<T>(var initial: T, @noescape combine: (accumulator: T, element: Generator.Element) -> T) -> [T] {
     return self.map {
-      initial = combine(initial, $0)
+      initial = combine(accumulator: initial, element: $0)
       return initial
     }
   }
@@ -50,11 +50,11 @@ public extension SequenceType {
   /// [1, 3, 6]
   /// ```
   
-  func scan(@noescape combine: (Generator.Element, Generator.Element) -> Generator.Element) -> [Generator.Element] {
+  func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element) -> [Generator.Element] {
     var initial: Generator.Element?
     return self.map {
       element in
-      initial = initial.map{combine($0, element)} ?? element
+      initial = initial.map{combine(accumulator: $0, element: element)} ?? element
       return initial!
     }
   }
@@ -99,7 +99,7 @@ public extension LazySequenceType {
   /// 1, 3, 6
   /// ```
   
-  func scan<T>(initial: T, combine: (T, Generator.Element) -> T) -> LazyScanSeq<Self, T> {
+  func scan<T>(initial: T, combine: (accumulator: T, element: Generator.Element) -> T) -> LazyScanSeq<Self, T> {
     return LazyScanSeq(seq: self, combine: combine, initial: initial)
   }
 }
@@ -141,7 +141,7 @@ public extension LazySequenceType {
   /// 1, 3, 6
   /// ```
   
-  func scan(combine: (Generator.Element, Generator.Element) -> Generator.Element)
+  func scan(combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element)
     -> LazyScan1Seq<Self> {
     return LazyScan1Seq(seq: self, combine: combine)
   }

@@ -64,6 +64,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(uniqueSeq.elementsEqual(expectation))
     
+    let _ = uniqueSeq.array()
+    
   }
   
   func testLazyReplace() {
@@ -73,6 +75,8 @@ class SwiftSequenceTests: XCTestCase {
     let expectation = lazy([1, 20, 30, 4])
     
     XCTAssert(replaceSeq.elementsEqual(expectation, isEquivalent: ==))
+    
+    let _ = replaceSeq.array()
     
   }
   
@@ -88,6 +92,9 @@ class SwiftSequenceTests: XCTestCase {
         a != b
       }
     )
+    
+    let _ = groupSeq.array()
+    
   }
   
   func testLazyGroupClos() {
@@ -102,6 +109,9 @@ class SwiftSequenceTests: XCTestCase {
         a != b
       }
     )
+    
+    let _ = groupSeq.array()
+
   }
   
   func testLazyKeyGroupBy() {
@@ -116,6 +126,9 @@ class SwiftSequenceTests: XCTestCase {
         a != b
       }
     )
+    
+    let _ = groupSeq.array()
+    
   }
   
   // MARK: - ChunkWindowSplit
@@ -162,6 +175,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(chunkd.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = chunkd.array()
+    
   }
   
   func testLazyWindow() {
@@ -172,6 +187,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(windowed.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = windowed.array()
+    
   }
   
   func testLazySplit() {
@@ -181,6 +198,8 @@ class SwiftSequenceTests: XCTestCase {
     let expectation =  lazy([[1, 2], [3, 4], [4], [5, 6]])
     
     XCTAssert(splitted.elementsEqual(expectation, isEquivalent: ==))
+    
+    let _ = splitted.array()
     
   }
   
@@ -218,6 +237,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(comboed.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = comboed.array()
+    
   }
   
   func testLazyCombosWithRep() {
@@ -227,6 +248,8 @@ class SwiftSequenceTests: XCTestCase {
     let expectation = lazy([[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]])
     
     XCTAssert(comboed.elementsEqual(expectation, isEquivalent: ==))
+    
+    let _ = comboed.array()
     
   }
   
@@ -281,6 +304,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(flattened.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = seq.array()
+    
   }
   
   func testFlatMapOpt() {
@@ -293,6 +318,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(flattened.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = seq.array()
+
   }
   
   // MARK: - GenericGenerators
@@ -323,6 +350,8 @@ class SwiftSequenceTests: XCTestCase {
     let expectation = lazy([1, 2, 3, 1, 2, 3])
     
     XCTAssert(cycled.elementsEqual(expectation, isEquivalent: ==))
+    
+    let _ = cycled.array()
     
   }
   
@@ -379,6 +408,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(hopped.elementsEqual(expectation))
     
+    let _ = hopped.array()
+    
   }
   
   func testLazyJump() {
@@ -388,6 +419,8 @@ class SwiftSequenceTests: XCTestCase {
     let expectation = [2, 4, 6]
     
     XCTAssert(jumped.elementsEqual(expectation))
+    
+    let _ = jumped.array()
     
   }
   
@@ -465,6 +498,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(interposed.elementsEqual(expectation))
     
+    let _ = interposed.array()
+    
   }
   
   func testLazyInterposeMultiple() {
@@ -475,6 +510,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(interposed.elementsEqual(expectation))
     
+    let _ = interposed.array()
+
   }
   
   func testLazyInterposeColSingle() {
@@ -485,6 +522,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(interposed.elementsEqual(expectation))
     
+    let _ = interposed.array()
+
   }
   
   func testLazyInterposeColMultiple() {
@@ -495,6 +534,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(interposed.elementsEqual(expectation))
     
+    let _ = interposed.array()
+
   }
   
   func testLazyInterdigitate() {
@@ -505,6 +546,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(interdigged.elementsEqual(expectation))
     
+    let _ = interdigged.array()
+
   }
   
   func testLazyInterdigitateMultiple() {
@@ -515,6 +558,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(interdigged.elementsEqual(expectation))
     
+    let _ = interdigged.array()
+
   }
   
   // MARK: - NestedSequences
@@ -569,6 +614,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(prod.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = prod.array()
+
   }
   
   func testLazyProdFunc() {
@@ -579,6 +626,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(prod.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = prod.array()
+
   }
   
   func testLazyTranspose() {
@@ -597,6 +646,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(transposed.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = transposed.array()
+
   }
   
   // MARK: - Permutations
@@ -661,6 +712,9 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(backward.elementsEqual(bExpectation, isEquivalent: ==))
     
+    let _ = forward.array()
+    let _ = backward.array()
+    
   }
   
   func testLazyLexPerms() {
@@ -677,6 +731,9 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(backward.elementsEqual(bExpectation, isEquivalent: ==))
     
+    let _ = forward.array()
+    let _ = backward.array()
+    
   }
   
   func testLazyPermsInds() {
@@ -686,6 +743,8 @@ class SwiftSequenceTests: XCTestCase {
     let expectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
     XCTAssert(perms.elementsEqual(expectation, isEquivalent: ==))
+    
+    let _ = perms.array()
     
   }
   
@@ -739,6 +798,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(scanSum.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = scanSum.array()
+
   }
   
   func testLazyScan1() {
@@ -751,6 +812,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(scanSum.elementsEqual(expectation, isEquivalent: ==))
     
+    let _ = scanSum.array()
+
   }
   
   // MARK: - TakeDrop
@@ -807,6 +870,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(taken.elementsEqual(expectation))
     
+    let _ = taken.array()
+
   }
   
   func testLazyDrop() {
@@ -817,6 +882,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(dropped.elementsEqual(expectation))
     
+    let _ = dropped.array()
+
   }
   
   func testLazyTakeWhile() {
@@ -827,6 +894,8 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(taken.elementsEqual(expectation))
     
+    let _ = taken.array()
+
   }
   
   func testLazyDropwhile() {
@@ -837,13 +906,15 @@ class SwiftSequenceTests: XCTestCase {
     
     XCTAssert(dropped.elementsEqual(expectation))
     
+    let _ = dropped.array()
+
   }
   
   // MARK: - Zip
   
   func testWithNilPadding() {
-    let zipped = zipWithPadding([1, 2, 3], [1, 2])
     
+    let zipped = zipWithPadding([1, 2, 3], [1, 2])
     
     let expectation: Array<(Int?, Int?)> = [ (1, 1), (2, 2), (3, nil) ]
     
@@ -852,6 +923,8 @@ class SwiftSequenceTests: XCTestCase {
       isEquivalent: { $0.0 == $1.0 && $0.1 == $1.1 }
       )
     )
+    
+    let _ = zipped.array()
     
   }
   
@@ -866,5 +939,8 @@ class SwiftSequenceTests: XCTestCase {
       isEquivalent: { $0.0 == $1.0 && $0.1 == $1.1 }
       )
     )
+    
+    let _ = zipped.array()
+
   }
 }

@@ -162,9 +162,7 @@ public extension MutableCollectionType {
   }
 }
 
-public extension CollectionType where
-  Self : MutableCollectionType,
-  Generator.Element : Comparable {
+public extension MutableCollectionType where Generator.Element : Comparable {
   
   /// Returns a lazy sequence of the permutations of self, ordered lexicographically.
   /// - Note: The permutations returned follow self, so if self is not the first
@@ -199,7 +197,7 @@ public extension CollectionType where Self.Index : Comparable {
   /// ```
   
   func lazyPermutations()
-    -> LazySequence<MapSequenceView<LexPermSeq<Array<Self.Index>>, [Self.Generator.Element]>> {
+    -> LazySequence<MapSequence<LexPermSeq<Array<Self.Index>>, [Self.Generator.Element]>> {
       return LexPermSeq(col: Array(self.indices)).map { inds in inds.map{self[$0]} }
   }
 }

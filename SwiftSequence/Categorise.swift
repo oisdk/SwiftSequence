@@ -2,19 +2,19 @@
 
 // MARK: Categorise
 
-    public extension SequenceType {
-      
-      /// Categorises elements of self into a dictionary, with the keys given by keyFunc
-      
-      func categorise<U : Hashable>(@noescape keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
-        var dict: [U:[Generator.Element]] = [:]
-        for el in self {
-          let key = keyFunc(el)
-          dict[key]?.append(el) ?? {dict[key] = [el]}()
-        }
-        return dict
-      }
+public extension SequenceType {
+  
+  /// Categorises elements of self into a dictionary, with the keys given by keyFunc
+  
+  func categorise<U : Hashable>(@noescape keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
+    var dict: [U:[Generator.Element]] = [:]
+    for el in self {
+      let key = keyFunc(el)
+      dict[key]?.append(el) ?? {dict[key] = [el]}()
     }
+    return dict
+  }
+}
 
 public extension SequenceType where Generator.Element : Hashable {
   
@@ -96,7 +96,7 @@ public extension LazySequenceType where Generator.Element : Hashable {
   
   /// Returns a lzy sequence of self with all of the keys in reps replaced by their values
   
-  func replace(reps: [Generator.Element:Generator.Element]) -> LazySequence<MapSequenceView<Self, Self.Generator.Element>> {
+  func replace(reps: [Generator.Element:Generator.Element]) -> LazySequence<MapSequence<Self, Self.Generator.Element>> {
     return lazy(self).map { reps[$0] ?? $0 }
   }
   

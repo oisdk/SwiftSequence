@@ -1,17 +1,13 @@
-public protocol LazySequenceType : SequenceType {
-  typealias S : SequenceType
-  func filter(includeElement: (S.Generator.Element) -> Bool)
-    -> LazySequence<FilterSequenceView<S>>
-}
+public protocol LazySequenceType : SequenceType {}
 
 public extension LazySequenceType {
   func map<T>(transform: (Self.Generator.Element) -> T)
-    -> LazySequence<MapSequenceView<Self, T>>  {
+    -> LazySequence<MapSequence<Self, T>>  {
       return lazy(self).map(transform)
   }
   
   func filter(includeElement: (Self.Generator.Element) -> Bool)
-    -> LazySequence<FilterSequenceView<Self>> {
+    -> LazySequence<FilterSequence<Self>> {
       return lazy(self).filter(includeElement)
   }
 }
@@ -20,11 +16,11 @@ extension LazySequence                : LazySequenceType {}
 extension LazyForwardCollection       : LazySequenceType {}
 extension LazyBidirectionalCollection : LazySequenceType {}
 extension LazyRandomAccessCollection  : LazySequenceType {}
-extension FilterSequenceView          : LazySequenceType {}
-extension FilterCollectionView        : LazySequenceType {}
-extension MapSequenceView             : LazySequenceType {}
-extension MapCollectionView           : LazySequenceType {}
-extension Zip2                        : LazySequenceType {}
+extension FilterSequence              : LazySequenceType {}
+extension FilterCollection            : LazySequenceType {}
+extension MapSequence                 : LazySequenceType {}
+extension MapCollection               : LazySequenceType {}
+extension Zip2Sequence                : LazySequenceType {}
 extension EnumerateSequence           : LazySequenceType {}
 
 public extension LazySequenceType {

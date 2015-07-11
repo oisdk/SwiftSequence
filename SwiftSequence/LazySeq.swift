@@ -1,5 +1,6 @@
 public protocol LazySequenceType : SequenceType {}
 
+
 public extension LazySequenceType {
   func map<T>(transform: (Self.Generator.Element) -> T)
     -> LazySequence<MapSequence<Self, T>>  {

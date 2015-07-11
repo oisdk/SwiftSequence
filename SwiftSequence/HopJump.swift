@@ -92,11 +92,11 @@ public extension LazySequenceType {
 //  Base: CollectionType where
 //  Base.Index : RandomAccessIndexType,
 //  Base.Index : IntegerArithmeticType
-//  > : CollectionType, LazySequenceType {
+//  > : CollectionType {
 //  
 //    typealias Index = Base.Index
 //    
-//    private let base: Base
+//    private let base: LazyRandomAccessCollection<Base>
 //    public let startIndex: Base.Index
 //    public var endIndex: Base.Index
 //    
@@ -108,7 +108,7 @@ public extension LazySequenceType {
 //    public func generate() -> IndexingGenerator<LazyHopCollection> {
 //      return IndexingGenerator(self)
 //    }
-//    public init(_ base: Base, by: Base.Index) {
+//    public init(_ base: LazyRandomAccessCollection<Base>, by: Base.Index) {
 //      startIndex = base.startIndex
 //      hop = by
 //      self.base = base
@@ -128,7 +128,7 @@ public extension LazySequenceType {
 //  /// ```
 //  
 //  func hop(n: Index)
-//    -> LazyRandomAccessCollection<LazyHopCollection<LazyRandomAccessCollection<Base>>> {
+//    -> LazyRandomAccessCollection<LazyHopCollection<Base>> {
 //      return lazy(LazyHopCollection(self, by: n))
 //  }
 //}

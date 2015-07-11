@@ -172,34 +172,38 @@ public extension LazySequenceType {
 
 // MARK: Random Access Hop:
 //
-//public struct LazyHopCollection<Base: CollectionType where Base.Index : RandomAccessIndexType, Base.Index : IntegerArithmeticType> : CollectionType {
+//public struct LazyHopCollection<
+//  Base: CollectionType where
+//  Base.Index : RandomAccessIndexType,
+//  Base.Index : IntegerArithmeticType
+//  > : CollectionType {
 //  
-//  typealias Index = Base.Index
-//  
-//  private let base: Base
-//  public let startIndex: Base.Index
-//  public var endIndex: Base.Index
-//  
-//  private let hop: Base.Index
-//  
-//  public subscript(ind: Base.Index) -> Base.Generator.Element {
-//    return base[ind * hop]
-//  }
-//  public func generate() -> IndexingGenerator<LazyHopCollection> {
-//    return IndexingGenerator(self)
-//  }
-//  public init(_ base: Base, by: Base.Index) {
-//    startIndex = base.startIndex
-//    hop = by
-//    self.base = base
-//    let under = (base.endIndex / by)
-//    endIndex = (base.endIndex % hop) == startIndex ? under : under.successor()
-//  }
+//    typealias Index = Base.Index
+//    
+//    private let base: Base
+//    public let startIndex: Base.Index
+//    public var endIndex: Base.Index
+//    
+//    private let hop: Base.Index
+//    
+//    public subscript(ind: Base.Index) -> Base.Generator.Element {
+//      return base[ind * hop]
+//    }
+//    public func generate() -> IndexingGenerator<LazyHopCollection> {
+//      return IndexingGenerator(self)
+//    }
+//    public init(_ base: Base, by: Base.Index) {
+//      startIndex = base.startIndex
+//      hop = by
+//      self.base = base
+//      let under = (base.endIndex / by)
+//      endIndex = (base.endIndex % hop) == startIndex ? under : under.successor()
+//    }
 //}
 //
 //extension LazyRandomAccessCollection where Index : IntegerArithmeticType {
-//  func hop(by: Index) -> LazyRandomAccessCollection<LazyHopCollection<LazyRandomAccessCollection<Base>>> {
-//    return lazy(LazyHopCollection(self, by: by))
+//  func hop(by: Index)
+//    -> LazyRandomAccessCollection<LazyHopCollection<LazyRandomAccessCollection<Base>>> {
+//      return lazy(LazyHopCollection(self, by: by))
 //  }
 //}
-

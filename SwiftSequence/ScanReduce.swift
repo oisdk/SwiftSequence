@@ -113,7 +113,7 @@ public struct Scan1Gen<G : GeneratorType> : GeneratorType {
   private var g: G
   
   public mutating func next() -> G.Element? {
-    return g.next().map{
+    return g.next().map {
       element in
       accu = accu.map{ combine($0, element) } ?? element
       return accu!

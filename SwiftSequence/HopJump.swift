@@ -9,15 +9,15 @@ public extension SequenceType {
   /// ```swift
   /// [1, 2, 3, 4, 5, 6, 7, 8].hop(2)
   ///
-  /// [1, 4, 7]
+  /// [1, 3, 5, 7]
   /// ```
   
   func hop(n: Int) -> [Generator.Element] {
-    var i = 0
+    var i = n.predecessor()
     return self.filter {
       _ -> Bool in
-      if --i < 0 {
-        i = n
+      if ++i == n {
+        i = 0
         return true
       } else {
         return false
@@ -33,54 +33,11 @@ public extension CollectionType where Index : RandomAccessIndexType {
   /// ```swift
   /// [1, 2, 3, 4, 5, 6, 7, 8].hop(2)
   ///
-  /// [1, 4, 7]
+  /// [1, 3, 5, 7]
   /// ```
   
   func hop(n: Index.Stride) -> [Generator.Element] {
-    let adjustedHop: Index.Stride = startIndex.distanceTo(startIndex.advancedBy(n).successor())
-    return stride(from: startIndex, to: endIndex, by: adjustedHop).map{self[$0]}
-  }
-}
-
-// MARK: Jump
-
-public extension SequenceType {
-  
-  /// Returns an array with `n` elements of self jumped over. The sequence does not
-  /// include the first element of self.
-  /// ```swift
-  /// [1, 2, 3, 4, 5, 6, 7, 8].jump(2)
-  ///
-  /// [3, 6]
-  /// ```
-  
-  func jump(n: Int) -> [Generator.Element] {
-    var i = n
-    return self.filter {
-      _ -> Bool in
-      if --i < 0 {
-        i = n
-        return true
-      } else {
-        return false
-      }
-    }
-  }
-}
-
-public extension CollectionType where Index : RandomAccessIndexType {
-
-  /// Returns an array with `n` elements of self jumped over. The sequence does not
-  /// include the first element of self.
-  /// ```swift
-  /// [1, 2, 3, 4, 5, 6, 7, 8].jump(2)
-  ///
-  /// [3, 6]
-  /// ```
-  
-  func jump(n: Index.Stride) -> [Generator.Element] {
-    let adjustedJump: Index.Stride = startIndex.distanceTo(startIndex.advancedBy(n).successor())
-    return stride(from: startIndex.advancedBy(n), to: endIndex, by: adjustedJump).map{self[$0]}
+    return stride(from: startIndex, to: endIndex, by: n).map{self[$0]}
   }
 }
 
@@ -97,7 +54,7 @@ public struct HopGen<G: GeneratorType> : GeneratorType {
   mutating public func next() -> G.Element? {
     
     while let next = g.next() {
-      if --i < 0 {
+      if --i == 0 {
         i = n
         return next
       }
@@ -111,7 +68,7 @@ public struct HopSeq<S : SequenceType> : LazySequenceType {
   private let (seq, n): (S, Int)
   
   public func generate() -> HopGen<S.Generator> {
-    return HopGen(n: n, g: seq.generate(), i: 0)
+    return HopGen(n: n, g: seq.generate(), i: 1)
   }
 }
 
@@ -122,61 +79,20 @@ public extension LazySequenceType {
   /// ```swift
   /// lazy([1, 2, 3, 4, 5, 6, 7, 8]).hop(2)
   ///
-  /// 1, 4, 7
+  /// 1, 3, 5, 7
   /// ```
   
   func hop(n: Int) -> HopSeq<Self> {
     return HopSeq(seq: self, n: n)
   }
 }
-
-// MARK: Jump
-
-public struct JumpGen<G: GeneratorType> : GeneratorType {
-  
-  private let n: Int
-  private var g: G
-  
-  mutating public func next() -> G.Element? {
-    for _ in 0..<n { g.next() }
-    return g.next()
-  }
-}
-
-public struct JumpSeq<S : SequenceType> : LazySequenceType {
-  
-  private let (seq, n): (S, Int)
-  
-  public func generate() -> JumpGen<S.Generator> {
-    return JumpGen(n: n, g: seq.generate())
-  }
-}
-
-public extension LazySequenceType {
-  
-  /// Returns a lazy sequence with `n` elements of self jumped over. The sequence does not
-  /// include the first element of self.
-  /// ```swift
-  /// lazy([1, 2, 3, 4, 5, 6, 7, 8]).jump(2)
-  ///
-  /// 3, 6
-  /// ```
-  
-  func jump(n: Int) -> JumpSeq<Self> {
-    return JumpSeq(seq: self, n: n)
-  }
-}
-
-// TODO: Change hop/jump semantics (hop(1) should return the same sequence).
-// TODO: Add random access versions
-
 // MARK: Random Access Hop:
-//
+
 //public struct LazyHopCollection<
 //  Base: CollectionType where
 //  Base.Index : RandomAccessIndexType,
 //  Base.Index : IntegerArithmeticType
-//  > : CollectionType {
+//  > : CollectionType, LazySequenceType {
 //  
 //    typealias Index = Base.Index
 //    
@@ -202,8 +118,17 @@ public extension LazySequenceType {
 //}
 //
 //extension LazyRandomAccessCollection where Index : IntegerArithmeticType {
-//  func hop(by: Index)
+//  
+//  /// Returns a lazy sequence with `n` elements of self hopped over. The sequence includes
+//  /// the first element of self.
+//  /// ```swift
+//  /// lazy([1, 2, 3, 4, 5, 6, 7, 8]).hop(2)
+//  ///
+//  /// 1, 3, 5, 7
+//  /// ```
+//  
+//  func hop(n: Index)
 //    -> LazyRandomAccessCollection<LazyHopCollection<LazyRandomAccessCollection<Base>>> {
-//      return lazy(LazyHopCollection(self, by: by))
+//      return lazy(LazyHopCollection(self, by: n))
 //  }
 //}

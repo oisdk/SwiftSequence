@@ -383,44 +383,24 @@ class SwiftSequenceTests: XCTestCase {
     
     let toHop = [1, 2, 3, 4, 5, 6]
     
-    XCTAssert(toHop.hop(2) == [1, 4])
-    XCTAssert(toHop.hop(1) == [1, 3, 5])
-    XCTAssert(toHop.hop(0) == toHop)
+    XCTAssert(toHop.hop(3) == [1, 4])
+    XCTAssert(toHop.hop(2) == [1, 3, 5])
+    XCTAssert(toHop.hop(1) == toHop)
     
   }
-  
-  func testJump() {
-    
-    let toJump = [1, 2, 3, 4, 5, 6]
-    
-    XCTAssert(toJump.jump(2) == [3, 6])
-    XCTAssert(toJump.jump(1) == [2, 4, 6])
-    XCTAssert(toJump.jump(0) == toJump)
-  }
+
   
   // MARK: Lazy
   
   func testLazyHop() {
-    
-    let hopped = lazy([1, 2, 3, 4, 5, 6]).hop(1)
-    
-    let expectation = [1, 3, 5]
-    
-    XCTAssert(hopped.elementsEqual(expectation))
-    
-    let _ = hopped.array()
-    
-  }
   
-  func testLazyJump() {
+    let toHop = lazy([1, 2, 3, 4, 5, 6])
     
-    let jumped = lazy([1, 2, 3, 4, 5, 6]).jump(1)
-    
-    let expectation = [2, 4, 6]
-    
-    XCTAssert(jumped.elementsEqual(expectation))
-    
-    let _ = jumped.array()
+    XCTAssert(toHop.hop(3).elementsEqual([1, 4]))
+    XCTAssert(toHop.hop(2).elementsEqual([1, 3, 5]))
+    XCTAssert(toHop.hop(1).elementsEqual(toHop))
+        
+    let _ = toHop.hop(1).array()
     
   }
   

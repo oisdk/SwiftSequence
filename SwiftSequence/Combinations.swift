@@ -5,8 +5,8 @@
 public extension RangeReplaceableCollectionType where
   Index : BidirectionalIndexType,
   _prext_SubSlice : RangeReplaceableCollectionType,
-  _prext_SubSlice.Index == Self.Index,
-  _prext_SubSlice.Generator.Element == Self.Generator.Element {
+  _prext_SubSlice.Index == Index,
+  _prext_SubSlice.Generator.Element == Generator.Element {
   
   /// Returns combinations without repetitions of self of length `n`
   /// - Note: Combinations are returned in lexicographical order, according to the order of `self`
@@ -18,10 +18,10 @@ public extension RangeReplaceableCollectionType where
   
   func combinations(var n: Int) -> [[Generator.Element]] {
     guard --n >= 0 else { return [[]] }
-    return self.indices.flatMap {
+    return indices.flatMap {
       ind -> [[Generator.Element]] in
-      let element: Self.Generator.Element = self[ind]
-      return self[ind.successor()..<self.endIndex]
+      let element: Generator.Element = self[ind]
+      return self[ind.successor()..<endIndex]
         .combinations(n)
         .map { [element] + $0 }
     }
@@ -48,8 +48,8 @@ public extension CollectionType {
 public extension RangeReplaceableCollectionType where
   Index : BidirectionalIndexType,
   _prext_SubSlice : RangeReplaceableCollectionType,
-  _prext_SubSlice.Index == Self.Index,
-  _prext_SubSlice.Generator.Element == Self.Generator.Element {
+  _prext_SubSlice.Index == Index,
+  _prext_SubSlice.Generator.Element == Generator.Element {
   /// Returns combinations with repetitions of self of length `n`
   /// - Note: Combinations are returned in lexicographical order, according to the order of `self`
   ///```swift
@@ -60,10 +60,10 @@ public extension RangeReplaceableCollectionType where
   
   func combinationsWithRep(var n: Int) -> [[Generator.Element]] {
     guard --n >= 0 else { return [[]] }
-    return self.indices.flatMap {
+    return indices.flatMap {
       ind -> [[Generator.Element]] in
-      let element: Self.Generator.Element = self[ind]
-      return self[ind..<self.endIndex]
+      let element: Generator.Element = self[ind]
+      return self[ind..<endIndex]
         .combinationsWithRep(n)
         .map { [element] + $0 }
     }

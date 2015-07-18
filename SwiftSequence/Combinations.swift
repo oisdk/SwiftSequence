@@ -2,7 +2,11 @@
 
 // MARK: Combinations
 
-public extension RangeReplaceableCollectionType where Index : BidirectionalIndexType {
+public extension RangeReplaceableCollectionType where
+  Index : BidirectionalIndexType,
+  _prext_SubSlice : RangeReplaceableCollectionType,
+  _prext_SubSlice.Index == Self.Index,
+  _prext_SubSlice.Generator.Element == Self.Generator.Element {
   
   /// Returns combinations without repetitions of self of length `n`
   /// - Note: Combinations are returned in lexicographical order, according to the order of `self`
@@ -14,13 +18,13 @@ public extension RangeReplaceableCollectionType where Index : BidirectionalIndex
   
   func combinations(var n: Int) -> [[Generator.Element]] {
     guard --n >= 0 else { return [[]] }
-    var combos: [[Generator.Element]] = []
-    var objects = self
-    while !objects.isEmpty {
-      let element = objects.removeAtIndex(objects.startIndex)
-      combos.extend(objects.combinations(n).map{ [element] + $0 })
+    return self.indices.flatMap {
+      ind -> [[Generator.Element]] in
+      let element: Self.Generator.Element = self[ind]
+      return self[ind.successor()..<self.endIndex]
+        .combinations(n)
+        .map { [element] + $0 }
     }
-    return combos
   }
 }
 
@@ -41,8 +45,11 @@ public extension CollectionType {
 
 // MARK: Combinations with Repetition
 
-public extension RangeReplaceableCollectionType {
-  
+public extension RangeReplaceableCollectionType where
+  Index : BidirectionalIndexType,
+  _prext_SubSlice : RangeReplaceableCollectionType,
+  _prext_SubSlice.Index == Self.Index,
+  _prext_SubSlice.Generator.Element == Self.Generator.Element {
   /// Returns combinations with repetitions of self of length `n`
   /// - Note: Combinations are returned in lexicographical order, according to the order of `self`
   ///```swift
@@ -53,13 +60,13 @@ public extension RangeReplaceableCollectionType {
   
   func combinationsWithRep(var n: Int) -> [[Generator.Element]] {
     guard --n >= 0 else { return [[]] }
-    var combos: [[Generator.Element]] = []
-    var objects = self
-    while let element = objects.first {
-      combos.extend(objects.combinationsWithRep(n).map{ [element] + $0 })
-      objects.removeAtIndex(objects.startIndex)
+    return self.indices.flatMap {
+      ind -> [[Generator.Element]] in
+      let element: Self.Generator.Element = self[ind]
+      return self[ind..<self.endIndex]
+        .combinationsWithRep(n)
+        .map { [element] + $0 }
     }
-    return combos
   }
 }
 

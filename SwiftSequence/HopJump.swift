@@ -13,7 +13,7 @@ public extension SequenceType {
   /// ```
   
   func hop(n: Int) -> [Generator.Element] {
-    var i = n.predecessor()
+    var i = n - 1
     return self.filter {
       _ -> Bool in
       if ++i == n {

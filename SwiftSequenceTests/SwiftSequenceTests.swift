@@ -16,32 +16,32 @@ class SwiftSequenceTests: XCTestCase {
   
   func testCat() {
     
-    let catByRemTwo = [1, 2, 3, 4, 5, 6].categorise {(i: Int) -> Int in i % 2 }
+    let result = [1, 2, 3, 4, 5, 6].categorise {(i: Int) -> Int in i % 2 }
     
     let expectation = [0:[2, 4, 6], 1:[1, 3, 5]]
     
-    for key in catByRemTwo.keys {
-      XCTAssert(catByRemTwo[key]!.elementsEqual(expectation[key]!))
+    for key in result.keys {
+      XCTAssert(result[key]!.elementsEqual(expectation[key]!))
     }
   }
   
   func testFreqs() {
     
-    let freqd = [1, 1, 1, 2, 2, 3].freqs()
+    let result = [1, 1, 1, 2, 2, 3].freqs()
     
     let expectation = [1:3, 2:2, 3:1]
     
-    XCTAssert(freqd == expectation)
+    XCTAssert(result == expectation)
     
   }
   
   func testUniques() {
     
-    let uniques = [1, 1, 1, 3, 3, 2, 4, 3].uniques()
+    let result = [1, 1, 1, 3, 3, 2, 4, 3].uniques()
     
     let expectation = [1, 3, 2, 4]
     
-    XCTAssert(uniques == expectation)
+    XCTAssert(result == expectation)
   }
   
   func testReplace() {

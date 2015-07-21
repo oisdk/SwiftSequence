@@ -42,6 +42,7 @@
 		7037D08A1B403AC800FA04C6 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D06A1B403AC800FA04C6 /* Zip.swift */; };
 		7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
 		7037D08E1B40437F00FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
+		7074F13C1B5F025400E046B2 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13B1B5F025400E046B2 /* List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		7037D0691B403AC800FA04C6 /* TakeDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeDrop.swift; sourceTree = "<group>"; };
 		7037D06A1B403AC800FA04C6 /* Zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zip.swift; sourceTree = "<group>"; };
 		7037D08C1B40437100FA04C6 /* Categorise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categorise.swift; sourceTree = "<group>"; };
+		7074F13B1B5F025400E046B2 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				7037D08C1B40437100FA04C6 /* Categorise.swift */,
+				7074F13B1B5F025400E046B2 /* List.swift */,
 				7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */,
 				7037D05D1B403AC800FA04C6 /* Combinations.swift */,
 				7037D05E1B403AC800FA04C6 /* Cycle.swift */,
@@ -262,6 +265,7 @@
 				7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */,
 				7037D07D1B403AC800FA04C6 /* Interpose.swift in Sources */,
 				7037D0871B403AC800FA04C6 /* TakeDrop.swift in Sources */,
+				7074F13C1B5F025400E046B2 /* List.swift in Sources */,
 				7037D0831B403AC800FA04C6 /* Permutations.swift in Sources */,
 				7037D0791B403AC800FA04C6 /* GenericGenerators.swift in Sources */,
 				7037D0811B403AC800FA04C6 /* NestedSequences.swift in Sources */,

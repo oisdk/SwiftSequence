@@ -4,9 +4,9 @@
 
 public extension RangeReplaceableCollectionType where
   Index : BidirectionalIndexType,
-  _prext_SubSlice : RangeReplaceableCollectionType,
-  _prext_SubSlice.Index == Index,
-  _prext_SubSlice.Generator.Element == Generator.Element {
+  SubSequence : RangeReplaceableCollectionType,
+  SubSequence.Index == Index,
+  SubSequence.Generator.Element == Generator.Element {
   
   /// Returns combinations without repetitions of self of length `n`
   /// - Note: Combinations are returned in lexicographical order, according to the order of `self`
@@ -47,9 +47,9 @@ public extension CollectionType {
 
 public extension RangeReplaceableCollectionType where
   Index : BidirectionalIndexType,
-  _prext_SubSlice : RangeReplaceableCollectionType,
-  _prext_SubSlice.Index == Index,
-  _prext_SubSlice.Generator.Element == Generator.Element {
+  SubSequence : RangeReplaceableCollectionType,
+  SubSequence.Index == Index,
+  SubSequence.Generator.Element == Generator.Element  {
   /// Returns combinations with repetitions of self of length `n`
   /// - Note: Combinations are returned in lexicographical order, according to the order of `self`
   ///```swift
@@ -65,7 +65,10 @@ public extension RangeReplaceableCollectionType where
       let element: Generator.Element = self[ind]
       return self[ind..<endIndex]
         .combinationsWithRep(n)
-        .map { [element] + $0 }
+        .map {
+          (rest: [Generator.Element]) -> [Generator.Element] in
+          [element] + rest
+      }
     }
   }
 }

@@ -42,6 +42,7 @@ class SwiftSequenceTests: XCTestCase {
     let expectation = [1, 3, 2, 4]
     
     XCTAssert(result == expectation)
+    
   }
   
   func testReplace() {

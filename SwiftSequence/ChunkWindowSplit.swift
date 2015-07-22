@@ -239,3 +239,87 @@ public extension LazySequenceType {
     return SplitSeq(seq: self, isSplit: isSplit)
   }
 }
+
+// MARK: List
+
+extension List {
+  private func split(n: Int) -> (List<Element>, List<Element>) {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return (nil, self)
+    case (_, let .Cons(head, tail)): return {(head |> $0.0, $0.1)}(tail.split(n - 1))
+    }
+  }
+  public func chunk(n: Int) -> List<List<Element>> {
+    switch self {
+    case .Nil: return nil
+    case .Cons: return {$0.0 |> $0.1.chunk(n)}(self.split(n))
+    }
+  }
+}
+
+extension LazyList {
+  private func split(n: Int) -> (LazyList<Element>, LazyList<Element>) {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return (nil, self)
+    case (_, let .Cons(head, tail)): return {(head |> $0.0, $0.1)}(tail().split(n - 1))
+    }
+  }
+  public func chunk(n: Int) -> LazyList<LazyList<Element>> {
+    switch self {
+    case .Nil: return nil
+    case .Cons: return {$0.0 |> $0.1.chunk(n)}(self.split(n))
+    }
+  }
+}
+
+extension List {
+  public func window(n: Int) -> List<List<Element>> {
+    switch self {
+    case .Nil: return nil
+    case let .Cons(_, tail): return self.take(n) |> tail.window(n)
+    }
+  }
+}
+
+extension LazyList {
+  public func window(n: Int) -> LazyList<LazyList<Element>> {
+    switch self {
+    case .Nil: return nil
+    case let .Cons(_, tail): return self.take(n) |> tail().window(n)
+    }
+  }
+}
+
+extension List {
+  private func split(@noescape isSplit: Element -> Bool) -> (List<Element>, List<Element>) {
+    switch self {
+    case .Nil: return (nil, self)
+    case let .Cons(head, tail):
+      return isSplit(head) ? (nil, self) :
+        {(head |> $0.0, $0.1)}(tail.split(isSplit))
+    }
+  }
+  public func splitAt(@noescape isSplit: Element -> Bool) -> List<List<Element>> {
+    switch self {
+    case .Nil:  return nil
+    case .Cons: return { $0.0 |> $0.1.splitAt(isSplit) }(self.split(isSplit))
+    }
+  }
+}
+
+extension LazyList {
+  private func split(@noescape isSplit: Element -> Bool) -> (LazyList<Element>, LazyList<Element>) {
+    switch self {
+    case .Nil: return (nil, self)
+    case let .Cons(head, tail):
+      return isSplit(head) ? (nil, self) :
+        {(head |> $0.0, $0.1)}(tail().split(isSplit))
+    }
+  }
+  public func splitAt(isSplit: Element -> Bool) -> LazyList<LazyList<Element>> {
+    switch self {
+    case .Nil:  return nil
+    case .Cons: return { $0.0 |> $0.1.splitAt(isSplit) }(self.split(isSplit))
+    }
+  }
+}

@@ -153,7 +153,7 @@ public extension List {
   public func scan<T>(initial: T, @noescape combine: (accumulator: T, element: Element) -> T) -> List<T> {
     switch self {
     case .Nil: return nil
-    case .Cons(let head, let tail):
+    case let .Cons(head, tail):
       let tHead = combine(accumulator: initial, element: head)
       return tHead |> tail.scan(tHead, combine: combine)
     }
@@ -161,7 +161,7 @@ public extension List {
   public func scan(@noescape combine: (accumulator: Element, element: Element) -> Element) -> List<Element> {
     switch self {
     case .Nil: return nil
-    case .Cons(let head, let tail): return tail.scan(head, combine: combine)
+    case let .Cons(head, tail): return tail.scan(head, combine: combine)
     }
   }
 }
@@ -170,7 +170,7 @@ public extension LazyList {
   public func scan<T>(initial: T, combine: (accumulator: T, element: Element) -> T) -> LazyList<T> {
     switch self {
     case .Nil: return nil
-    case .Cons(let head, let tail):
+    case let .Cons(head, tail):
       let tHead = combine(accumulator: initial, element: head)
       return tHead |> tail().scan(tHead, combine: combine)
     }
@@ -178,7 +178,7 @@ public extension LazyList {
   public func scan(combine: (accumulator: Element, element: Element) -> Element) -> LazyList<Element> {
     switch self {
     case .Nil: return nil
-    case .Cons(let head, let tail): return tail().scan(head, combine: combine)
+    case let .Cons(head, tail): return tail().scan(head, combine: combine)
     }
   }
 }

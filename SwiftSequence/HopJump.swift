@@ -90,7 +90,7 @@ public extension LazySequenceType {
 public extension List {
   public func hop(n: Int, i: Int = 0) -> List<Element> {
     switch (i, self) {
-    case (0, .Cons(let head, let tail)): return head |> tail.hop(n, i: n)
+    case (0, let .Cons(head, tail)): return head |> tail.hop(n, i: n)
     case (_, .Cons(_, let tail)): return tail.hop(n, i: i - 1)
     case (_, .Nil): return nil
     }
@@ -100,7 +100,7 @@ public extension List {
 public extension LazyList {
   public func hop(n: Int, i: Int = 0) -> LazyList<Element> {
     switch (i, self) {
-    case (0, .Cons(let head, let tail)): return head |> tail().hop(n, i: n)
+    case (0, let .Cons(head, tail)): return head |> tail().hop(n, i: n)
     case (_, .Cons(_, let tail)): return tail().hop(n, i: i - 1)
     case (_, .Nil): return nil
     }

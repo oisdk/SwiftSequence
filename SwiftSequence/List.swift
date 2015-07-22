@@ -9,7 +9,7 @@ infix operator |> {
 }
 
 public func |> <T>(lhs: T, rhs: List<T>) -> List<T> {
-  return List.Cons(head: lhs, tail: rhs)
+  return .Cons(head: lhs, tail: rhs)
 }
 
 prefix operator |> {}
@@ -23,9 +23,9 @@ public struct ListGenerator<Element> : GeneratorType {
   public mutating func next() -> Element? {
     switch list {
     case .Nil: return nil
-    case .Cons(let element, let rest):
-      list = rest
-      return element
+    case let .Cons(head, tail):
+      list = tail
+      return head
     }
   }
 }
@@ -103,13 +103,13 @@ public extension List {
   public func appended(with: Element) -> List<Element> {
     switch self {
     case .Nil: return [with]
-    case .Cons(let head, let tail): return head |> tail.appended(with)
+    case let .Cons(head, tail): return head |> tail.appended(with)
     }
   }
   public func extended(with: List<Element>) -> List<Element> {
     switch self {
     case .Nil: return with
-    case .Cons(let head, let tail): return head |> tail.extended(with)
+    case let .Cons(head, tail): return head |> tail.extended(with)
     }
   }
   public func extended<
@@ -131,7 +131,7 @@ extension List : Indexable {
   public func with(val: Element, atIndex n: Int) -> List<Element> {
     switch (n, self) {
     case (0, .Cons(_, let tail)): return val |> tail
-    case (_, .Cons(let head, let tail)): return head |> tail.with(val, atIndex: n - 1)
+    case (_, let .Cons(head, tail)): return head |> tail.with(val, atIndex: n - 1)
     case (_, .Nil): fatalError("Index out of range")
     }
   }

@@ -61,9 +61,9 @@ public struct LazyListGenerator<Element> : GeneratorType {
   public mutating func next() -> Element? {
     switch list {
     case .Nil: return nil
-    case .Cons(let element, let rest):
-      list = rest()
-      return element
+    case let .Cons(head, tail):
+      list = tail()
+      return head
     }
   }
 }
@@ -91,7 +91,7 @@ extension LazyList : Indexable {
   public func with(val: Element, atIndex n: Int) -> LazyList<Element> {
     switch (n, self) {
     case (0, .Cons(_, let tail)): return val |> tail
-    case (_, .Cons(let head, let tail)): return head |> tail().with(val, atIndex: n - 1)
+    case (_, let .Cons(head, tail)): return head |> tail().with(val, atIndex: n - 1)
     case (_, .Nil): fatalError("Index out of range")
     }
   }
@@ -121,13 +121,13 @@ public extension LazyList {
   public func appended(with: Element) -> LazyList<Element> {
     switch self {
     case .Nil: return with |> nil
-    case .Cons(let head, let tail): return head |> tail().appended(with)
+    case let .Cons(head, tail): return head |> tail().appended(with)
     }
   }
   public func extended(@autoclosure(escaping) with: () -> LazyList<Element>) -> LazyList<Element> {
     switch self {
     case .Nil: return with()
-    case .Cons(let head, let tail): return head |> tail().extended(with)
+    case let .Cons(head, tail): return head |> tail().extended(with)
     }
   }
   public func extended<

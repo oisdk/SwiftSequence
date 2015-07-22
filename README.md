@@ -24,7 +24,7 @@ To make an eager sequence lazy, the `lazy()` function can be used:
 
 ```swift
 lazy([1, 2, 3])
-  .hop(1)
+  .hop(2)
 
 // 1, 3
 ```
@@ -33,7 +33,7 @@ And to force evaluation of a lazy sequence, the `array()` method can be used:
 
 ```swift
 lazy([1, 2, 3])
-  .hop(1)
+  .hop(2)
   .array()
 
 // [1, 3]
@@ -147,19 +147,18 @@ lazy([1, 2, 3, 4, 5, 2]).dropWhile { $0 < 4 }
 4, 5, 2
 ```
 
-## HopJump ##
+## Hop ##
 
-### Hop ###
-
-Returns a sequence with `n` elements of self hopped over. The sequence includes the first element of self.
+Similar to Python's slicing, this returns a sequence made by walking
+over the underlying sequence with hops of length `n`
 
 ```swift
-[1, 2, 3, 4, 5, 6, 7, 8].hop(2)
+[1, 2, 3, 4, 5, 6, 7, 8].hop(3)
 
 [1, 4, 7]
 ```
 
-When combined with `take` and `drop`, it's easy to emulate Python's islice, for lazy, on-demand slicing:
+When combined with `take` and `drop`, it's easy to fully emulate Python's islice, for lazy, on-demand slicing:
 
 ```swift
 extension LazySequenceType {
@@ -167,7 +166,7 @@ extension LazySequenceType {
     return self
       .drop(from)
       .take(to - from + 1)
-      .hop(by - 1)
+      .hop(by)
   }
 }
 
@@ -176,16 +175,6 @@ lazy([1, 2, 3, 4, 5, 6, 7, 8, 9])
   .array()
 
 [2, 4, 6]
-```
-
-### Jump ###
-
-Operates the same as `hop`, but jumps over the first element in self:
-
-```swift
-lazy([1, 2, 3, 4, 5, 6, 7, 8]).jump(2)
-
-3, 6
 ```
 
 ## Interpose ##

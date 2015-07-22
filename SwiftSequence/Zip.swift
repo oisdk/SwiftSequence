@@ -113,4 +113,3 @@ public func zip<A, B>(s0: LazyList<A>, _ s1: LazyList<B>, pad0: A, pad1: B) -> L
   default: return nil
   }
 }
-

@@ -86,6 +86,27 @@ public extension LazySequenceType {
     return HopSeq(seq: self, n: n)
   }
 }
+
+public extension List {
+  public func hop(n: Int, i: Int = 0) -> List<Element> {
+    switch (i, self) {
+    case (0, .Cons(let head, let tail)): return head |> tail.hop(n, i: n)
+    case (_, .Cons(_, let tail)): return tail.hop(n, i: i - 1)
+    case (_, .Nil): return nil
+    }
+  }
+}
+
+public extension LazyList {
+  public func hop(n: Int, i: Int = 0) -> LazyList<Element> {
+    switch (i, self) {
+    case (0, .Cons(let head, let tail)): return head |> tail().hop(n, i: n)
+    case (_, .Cons(_, let tail)): return tail().hop(n, i: i - 1)
+    case (_, .Nil): return nil
+    }
+  }
+}
+
 // MARK: Random Access Hop:
 
 //public struct LazyHopCollection<

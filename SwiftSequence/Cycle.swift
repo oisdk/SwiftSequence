@@ -97,3 +97,29 @@ public extension CollectionType {
     return CycleGen(col: self)
   }
 }
+
+// MARK: List
+
+extension LazyList {
+  func cycle() -> LazyList<Element> {
+    return extended(self.cycle())
+  }
+}
+
+extension List {
+  func cycle() -> LazyList<Element> {
+    return LazyList(self).cycle()
+  }
+}
+
+extension List {
+  func cycle(n: Int) -> List<Element> {
+    return List<Int>(seq: 0..<n).flatMap { _ in self }
+  }
+}
+
+extension LazyList {
+  func cycle(n: Int) -> LazyList<Element> {
+    return LazyList<Int>(0..<n).flatMap { _ in self }
+  }
+}

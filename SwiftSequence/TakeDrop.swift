@@ -225,3 +225,63 @@ public extension LazySequenceType {
     return DropWhileSeq(predicate: predicate, seq: self)
   }
 }
+
+// MARK: List
+
+public extension List {
+  public func take(n: Int) -> List<Element> {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return nil
+    case (_, .Cons(let head, let tail)): return head |> tail.take(n - 1)
+    }
+  }
+  public func drop(n: Int) -> List<Element> {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return self
+    case (_, .Cons(_, let tail)): return tail.drop(n - 1)
+    }
+  }
+  public func takeWhile(@noescape condition: Element -> Bool) -> List<Element> {
+    switch self {
+    case .Nil: return self
+    case .Cons(let head, let tail):
+      return condition(head) ? (head |> tail.takeWhile(condition)) : nil
+    }
+  }
+  public func dropWhile(@noescape condition: Element -> Bool) -> List<Element> {
+    switch self {
+    case .Nil: return self
+    case .Cons(let head, let tail):
+      return condition(head) ? tail.dropWhile(condition) : (head |> tail)
+    }
+  }
+}
+
+public extension LazyList {
+  public func take(n: Int) -> LazyList<Element> {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return nil
+    case (_, .Cons(let head, let tail)): return head |> tail().take(n - 1)
+    }
+  }
+  public func drop(n: Int) -> LazyList<Element> {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return self
+    case (_, .Cons(_, let tail)): return tail().drop(n - 1)
+    }
+  }
+  public func takeWhile(condition: Element -> Bool) -> LazyList<Element> {
+    switch self {
+    case .Nil: return self
+    case .Cons(let head, let tail):
+      return condition(head) ? (head |> tail().takeWhile(condition)) : nil
+    }
+  }
+  public func dropWhile(@noescape condition: Element -> Bool) -> LazyList<Element> {
+    switch self {
+    case .Nil: return self
+    case .Cons(let head, let tail):
+      return condition(head) ? tail().dropWhile(condition) : (head |> tail)
+    }
+  }
+}

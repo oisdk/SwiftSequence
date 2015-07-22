@@ -55,14 +55,14 @@ public func ~= <T> (lhs: EmptyCollection<T>, rhs: List<T>) -> Bool {
 }
 
 extension List : ArrayLiteralConvertible {
-  public init<G : GeneratorType where G.Element == Element>(var gen: G) {
-    self = gen.next().map {.Cons(head: $0, tail: List(gen: gen))} ?? .Nil
+  public init<G : GeneratorType where G.Element == Element>(var _ gen: G) {
+    self = gen.next().map {.Cons(head: $0, tail: List(gen))} ?? .Nil
   }
   public init<S : SequenceType where S.Generator.Element == Element>(seq: S) {
-    self = List(gen: seq.generate())
+    self = List(seq.generate())
   }
   public init(arrayLiteral: Element...) {
-    self = List(gen: arrayLiteral.generate())
+    self = List(arrayLiteral.generate())
   }
 }
 
@@ -79,13 +79,13 @@ public extension List {
   public func appended(with: Element) -> List<Element> {
     switch self {
     case .Nil: return [with]
-    case .Cons(let head, let tail): return List.Cons(head: head, tail: tail.appended(with))
+    case .Cons(let head, let tail): return head |> tail.appended(with)
     }
   }
   public func extended(with: List<Element>) -> List<Element> {
     switch self {
     case .Nil: return with
-    case .Cons(let head, let tail): return List.Cons(head: head, tail: tail.extended(with))
+    case .Cons(let head, let tail): return head |> tail.extended(with)
     }
   }
   public func extended<
@@ -93,23 +93,6 @@ public extension List {
     >(with: S) -> List<Element> {
       return extended(List(seq: with))
   }
-  public func map<T>(@noescape transform: Element -> T) -> List<T> {
-    switch self {
-    case .Nil: return []
-    case .Cons(let head, let rest): return transform(head) |> rest.map(transform)
-    }
-  }
-//  public func flatMap<S : SequenceType>(@noescape transform: (Element) -> S) -> List<S.Generator.Element> {
-//    switch self {
-//    case .Nil:
-//      let ret: List<S.Generator.Element> = .Nil
-//      return ret
-//    case .Cons(let head, let tail):
-//      let seq: S.Generator = transform(head).generate()
-//      let ret: List<S.Generator.Element> = List(gen: seq)
-//      return ret
-//    }
-//  }
 }
 
 extension List : Indexable {
@@ -120,12 +103,11 @@ extension List : Indexable {
     case .Cons(_, let tail): return tail.endIndex.successor()
     }
   }
+  
   public func with(val: Element, atIndex n: Int) -> List<Element> {
     switch (n, self) {
-    case (0, .Cons(_, let tail)):
-      return Cons(head: val, tail: tail)
-    case (_, .Cons(let head, let tail)):
-      return Cons(head: head, tail: tail.with(val, atIndex: n - 1))
+    case (0, .Cons(_, let tail)): return val |> tail
+    case (_, .Cons(let head, let tail)): return head |> tail.with(val, atIndex: n - 1)
     case (_, .Nil): fatalError("Index out of range")
     }
   }
@@ -147,20 +129,26 @@ public enum LazyList<Element> {
   case Cons(head: Element, tail: () -> LazyList<Element>)
 }
 
-public extension LazyList {
-  init<G : GeneratorType where G.Element == Element>(var gen: G) {
-    self = gen.next().map {Cons(head: $0, tail: {LazyList(gen: gen)})} ?? Nil
+extension LazyList {
+  public init<G : GeneratorType where G.Element == Element>(var _ gen: G) {
+    self = gen.next().map {Cons(head: $0, tail: {LazyList(gen)})} ?? Nil
   }
 }
 
-public extension LazyList {
-  init<S : SequenceType where S.Generator.Element == Element>(seq: S) {
-    self = LazyList(gen: seq.generate())
+extension LazyList {
+  public init<S : SequenceType where S.Generator.Element == Element>(_ seq: S) {
+    self = LazyList(seq.generate())
+  }
+}
+
+extension LazyList : ArrayLiteralConvertible {
+  public init(arrayLiteral: Element...) {
+    self = LazyList(arrayLiteral)
   }
 }
 
 public func lazy<T>(list: List<T>) -> LazyList<T> {
-  return LazyList(seq: list)
+  return LazyList(list)
 }
 
 public struct LazyListGenerator<Element> : GeneratorType {
@@ -187,18 +175,38 @@ extension LazyList : LazySequenceType {
   }
 }
 
-extension LazyList {
-  func map<T>(transform: (Element -> T)) -> LazyList<T> {
+public func |> <T>(lhs: T, rhs: LazyList<T>) -> LazyList<T> {
+  return LazyList.Cons(head: lhs, tail: {rhs})
+}
+
+public func |> <T>(lhs: T, rhs: () -> LazyList<T>) -> LazyList<T> {
+  return LazyList.Cons(head: lhs, tail: rhs)
+}
+
+extension LazyList : Indexable {
+  public var startIndex: Int { return 0 }
+  public var endIndex: Int {
     switch self {
-    case .Nil:
-      let ret: LazyList<T> = .Nil
-      return ret
-    case .Cons(let head, let tail):
-      let ret: LazyList<T> = .Cons(head: transform(head), tail: {tail().map(transform)})
-      return ret
+    case .Nil: return 0
+    case .Cons(_, let tail): return tail().endIndex.successor()
+    }
+  }
+  public func with(val: Element, atIndex n: Int) -> LazyList<Element> {
+    switch (n, self) {
+    case (0, .Cons(_, let tail)): return val |> tail
+    case (_, .Cons(let head, let tail)): return head |> {tail().with(val, atIndex: n - 1)}
+    case (_, .Nil): fatalError("Index out of range")
+    }
+  }
+  public subscript(n: Int) -> Element {
+    get {
+      switch (n, self) {
+      case (0, .Cons(let head, _)): return head
+      case (_, .Cons(_, let tail)): return tail()[n - 1]
+      case (_, .Nil): fatalError("Index out of range")
+      }
+    } set {
+      self = with(newValue, atIndex: n)
     }
   }
 }
-
-
-

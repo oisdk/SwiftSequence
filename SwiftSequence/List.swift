@@ -101,8 +101,13 @@ public extension List {
   }
 //  public func flatMap<S : SequenceType>(@noescape transform: (Element) -> S) -> List<S.Generator.Element> {
 //    switch self {
-//    case .Nil: return []
-//    case .Cons(let head, let tail): return List(seq: transform(head)).extended(tail.flatMap(transform))
+//    case .Nil:
+//      let ret: List<S.Generator.Element> = .Nil
+//      return ret
+//    case .Cons(let head, let tail):
+//      let seq: S.Generator = transform(head).generate()
+//      let ret: List<S.Generator.Element> = List(gen: seq)
+//      return ret
 //    }
 //  }
 }
@@ -182,15 +187,18 @@ extension LazyList : LazySequenceType {
   }
 }
 
-//extension LazyList {
-//  func map<T>(transform: (Element -> T)) -> LazyList<T> {
-//    switch self {
-//    case .Nil: return LazyList.Nil
-//    case .Cons(let head, let tail):
-//      return LazyList.Cons(head: transform(head), tail: {tail().map(transform)})
-//    }
-//  }
-//}
-//}
+extension LazyList {
+  func map<T>(transform: (Element -> T)) -> LazyList<T> {
+    switch self {
+    case .Nil:
+      let ret: LazyList<T> = .Nil
+      return ret
+    case .Cons(let head, let tail):
+      let ret: LazyList<T> = .Cons(head: transform(head), tail: {tail().map(transform)})
+      return ret
+    }
+  }
+}
+
 
 

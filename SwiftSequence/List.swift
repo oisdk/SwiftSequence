@@ -44,7 +44,7 @@ extension List : SequenceType {
 
 public extension List {
   public var isEmpty: Bool {
-		switch self {
+    switch self {
     case .Nil:  return true
     case .Cons: return false
     }

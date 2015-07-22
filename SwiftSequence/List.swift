@@ -54,13 +54,16 @@ public func ~= <T> (lhs: EmptyCollection<T>, rhs: List<T>) -> Bool {
   }
 }
 
-extension List : ArrayLiteralConvertible {
+public extension List {
   public init<G : GeneratorType where G.Element == Element>(var _ gen: G) {
     self = gen.next().map {.Cons(head: $0, tail: List(gen))} ?? .Nil
   }
   public init<S : SequenceType where S.Generator.Element == Element>(seq: S) {
     self = List(seq.generate())
   }
+}
+
+extension List : ArrayLiteralConvertible {
   public init(arrayLiteral: Element...) {
     self = List(arrayLiteral.generate())
   }
@@ -175,11 +178,11 @@ extension LazyList : LazySequenceType {
   }
 }
 
-public func |> <T>(lhs: T, rhs: LazyList<T>) -> LazyList<T> {
-  return LazyList.Cons(head: lhs, tail: {rhs})
+public func |> <T>(lhs: T, rhs: () -> LazyList<T>) -> LazyList<T> {
+  return LazyList.Cons(head: lhs, tail: rhs)
 }
 
-public func |> <T>(lhs: T, rhs: () -> LazyList<T>) -> LazyList<T> {
+public func |> <T>(lhs: T, @autoclosure(escaping) rhs: () -> LazyList<T>) -> LazyList<T> {
   return LazyList.Cons(head: lhs, tail: rhs)
 }
 
@@ -194,7 +197,7 @@ extension LazyList : Indexable {
   public func with(val: Element, atIndex n: Int) -> LazyList<Element> {
     switch (n, self) {
     case (0, .Cons(_, let tail)): return val |> tail
-    case (_, .Cons(let head, let tail)): return head |> {tail().with(val, atIndex: n - 1)}
+    case (_, .Cons(let head, let tail)): return head |> tail().with(val, atIndex: n - 1)
     case (_, .Nil): fatalError("Index out of range")
     }
   }
@@ -208,5 +211,34 @@ extension LazyList : Indexable {
     } set {
       self = with(newValue, atIndex: n)
     }
+  }
+}
+
+extension LazyList {
+  public var isEmpty: Bool {
+    switch self {
+    case .Nil:  return true
+    case .Cons: return false
+    }
+  }
+}
+
+public extension LazyList {
+  public func appended(with: Element) -> LazyList<Element> {
+    switch self {
+    case .Nil: return Cons(head: with, tail: {Nil})
+    case .Cons(let head, let tail): return head |> tail().appended(with)
+    }
+  }
+  public func extended(@autoclosure(escaping) with: () -> LazyList<Element>) -> LazyList<Element> {
+    switch self {
+    case .Nil: return with()
+    case .Cons(let head, let tail): return head |> tail().extended(with)
+    }
+  }
+  public func extended<
+    S : SequenceType where S.Generator.Element == Element
+    >(with: S) -> LazyList<Element> {
+      return extended(LazyList(with))
   }
 }

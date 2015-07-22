@@ -51,15 +51,9 @@ public extension List {
   }
 }
 
-extension List: NilLiteralConvertible {
-  public init(nilLiteral: ()) {
-    self = .Nil
-  }
-}
-
 public extension Optional {
   public func flatMap<U>(@noescape transform: T -> List<U>) -> List<U> {
-    return map(transform) ?? nil
+    return map(transform) ?? .Nil
   }
 }
 

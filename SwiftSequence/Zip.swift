@@ -85,31 +85,31 @@ public func zipWithPadding<
 public func zip<A, B>(s0: List<A>, _ s1: List<B>) -> List<(A, B)> {
   switch (s0, s1) {
   case let (.Cons(h0, t0), .Cons(h1, t1)): return (h0, h1) |> zip(t0, t1)
-  default: return nil
+  default: return .Nil
   }
 }
 
 public func zip<A, B>(s0: LazyList<A>, _ s1: LazyList<B>) -> LazyList<(A, B)> {
   switch (s0, s1) {
   case let (.Cons(h0, t0), .Cons(h1, t1)): return (h0, h1) |> zip(t0(), t1())
-  default: return nil
+  default: return .Nil
   }
 }
 
 public func zip<A, B>(s0: List<A>, _ s1: List<B>, pad0: A, pad1: B) -> List<(A, B)> {
   switch (s0, s1) {
   case let (.Cons(h0, t0), .Cons(h1, t1)): return (h0, h1) |> zip(t0, t1, pad0: pad0, pad1: pad1)
-  case let (.Cons(h0, t0), .Nil): return (h0, pad1) |> zip(t0, nil, pad0: pad0, pad1: pad1)
-  case let (.Nil, .Cons(h1, t1)): return (pad0, h1) |> zip(nil, t1, pad0: pad0, pad1: pad1)
-  default: return nil
+  case let (.Cons(h0, t0), .Nil): return (h0, pad1) |> zip(t0, .Nil, pad0: pad0, pad1: pad1)
+  case let (.Nil, .Cons(h1, t1)): return (pad0, h1) |> zip(.Nil, t1, pad0: pad0, pad1: pad1)
+  default: return .Nil
   }
 }
 
 public func zip<A, B>(s0: LazyList<A>, _ s1: LazyList<B>, pad0: A, pad1: B) -> LazyList<(A, B)> {
   switch (s0, s1) {
   case let (.Cons(h0, t0), .Cons(h1, t1)): return (h0, h1) |> zip(t0(), t1(), pad0: pad0, pad1: pad1)
-  case let (.Cons(h0, t0), .Nil): return (h0, pad1) |> zip(t0(), nil, pad0: pad0, pad1: pad1)
-  case let (.Nil, .Cons(h1, t1)): return (pad0, h1) |> zip(nil, t1(), pad0: pad0, pad1: pad1)
-  default: return nil
+  case let (.Cons(h0, t0), .Nil): return (h0, pad1) |> zip(t0(), .Nil, pad0: pad0, pad1: pad1)
+  case let (.Nil, .Cons(h1, t1)): return (pad0, h1) |> zip(.Nil, t1(), pad0: pad0, pad1: pad1)
+  default: return .Nil
   }
 }

@@ -5,7 +5,7 @@ public enum LazyList<Element> {
 
 public extension Optional {
   public func flatMap<U>(@noescape transform: T -> LazyList<U>) -> LazyList<U> {
-    return map(transform) ?? nil
+    return map(transform) ?? .Nil
   }
 }
 
@@ -40,12 +40,6 @@ public extension LazyList {
 extension LazyList : ArrayLiteralConvertible {
   public init(arrayLiteral: Element...) {
     self = LazyList(arrayLiteral)
-  }
-}
-
-extension LazyList : NilLiteralConvertible {
-  public init(nilLiteral: ()) {
-    self = .Nil
   }
 }
 
@@ -117,7 +111,7 @@ extension LazyList {
 public extension LazyList {
   public func appended(with: Element) -> LazyList<Element> {
     switch self {
-    case .Nil: return with |> nil
+    case .Nil: return with |> .Nil
     case let .Cons(head, tail): return head |> tail().appended(with)
     }
   }

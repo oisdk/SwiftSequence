@@ -110,7 +110,7 @@ public extension LazySequenceType {
 public extension List {
   public func map<T>(@noescape transform: (Element) -> T) -> List<T> {
     switch self {
-    case .Nil: return nil
+    case .Nil: return .Nil
     case let .Cons(head, tail): return transform(head) |> tail.map(transform)
     }
   }
@@ -119,7 +119,7 @@ public extension List {
 public extension LazyList {
   public func map<T>(transform: (Element) -> T) -> LazyList<T> {
     switch self {
-    case .Nil: return nil
+    case .Nil: return .Nil
     case let .Cons(head, tail): return transform(head) |> tail().map(transform)
     }
   }
@@ -128,7 +128,7 @@ public extension LazyList {
 public extension List {
   public func flatMap<S : SequenceType>(@noescape transform: (Element -> S)) -> List<S.Generator.Element> {
     switch self {
-    case .Nil: return nil
+    case .Nil: return .Nil
     case let .Cons(head, tail):
       return List<S.Generator.Element>(seq: transform(head))
           .extended(tail.flatMap(transform))
@@ -136,7 +136,7 @@ public extension List {
   }
   public func flatMap<T>(@noescape transform: (Element -> List<T>)) -> List<T> {
     switch self {
-    case .Nil: return nil
+    case .Nil: return .Nil
     case let .Cons(head, tail): return transform(head).extended(tail.flatMap(transform))
     }
   }
@@ -145,7 +145,7 @@ public extension List {
 public extension LazyList {
   public func flatMap<S : SequenceType>(transform: Element -> S) -> LazyList<S.Generator.Element> {
     switch self {
-    case .Nil: return nil
+    case .Nil: return .Nil
     case let .Cons(head, tail):
       return LazyList<S.Generator.Element>(transform(head))
         .extended(tail().flatMap(transform))
@@ -153,7 +153,7 @@ public extension LazyList {
   }
   public func flatMap<T>(transform: (Element -> LazyList<T>)) -> LazyList<T> {
     switch self {
-    case .Nil: return nil
+    case .Nil: return .Nil
     case let .Cons(head, tail): return transform(head).extended(tail().flatMap(transform))
     }
   }

@@ -92,7 +92,7 @@ public extension List {
     switch (i, self) {
     case (0, let .Cons(head, tail)): return head |> tail.hop(n, i: n)
     case (_, .Cons(_, let tail)): return tail.hop(n, i: i - 1)
-    case (_, .Nil): return nil
+    case (_, .Nil): return .Nil
     }
   }
 }
@@ -102,7 +102,7 @@ public extension LazyList {
     switch (i, self) {
     case (0, let .Cons(head, tail)): return head |> tail().hop(n, i: n)
     case (_, .Cons(_, let tail)): return tail().hop(n, i: i - 1)
-    case (_, .Nil): return nil
+    case (_, .Nil): return .Nil
     }
   }
 }

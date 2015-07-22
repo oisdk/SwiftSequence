@@ -231,7 +231,7 @@ public extension LazySequenceType {
 public extension List {
   public func take(n: Int) -> List<Element> {
     switch (n, self) {
-    case (0, _), (_, .Nil): return nil
+    case (0, _), (_, .Nil): return .Nil
     case (_, let .Cons(head, tail)): return head |> tail.take(n - 1)
     }
   }
@@ -245,7 +245,7 @@ public extension List {
     switch self {
     case .Nil: return self
     case let .Cons(head, tail):
-      return condition(head) ? (head |> tail.takeWhile(condition)) : nil
+      return condition(head) ? (head |> tail.takeWhile(condition)) : .Nil
     }
   }
   public func dropWhile(@noescape condition: Element -> Bool) -> List<Element> {
@@ -260,7 +260,7 @@ public extension List {
 public extension LazyList {
   public func take(n: Int) -> LazyList<Element> {
     switch (n, self) {
-    case (0, _), (_, .Nil): return nil
+    case (0, _), (_, .Nil): return .Nil
     case (_, let .Cons(head, tail)): return head |> tail().take(n - 1)
     }
   }
@@ -274,7 +274,7 @@ public extension LazyList {
     switch self {
     case .Nil: return self
     case let .Cons(head, tail):
-      return condition(head) ? (head |> tail().takeWhile(condition)) : nil
+      return condition(head) ? (head |> tail().takeWhile(condition)) : .Nil
     }
   }
   public func dropWhile(@noescape condition: Element -> Bool) -> LazyList<Element> {

@@ -54,12 +54,12 @@ public func lazy<T>(list: List<T>) -> LazyList<T> {
 }
 
 public struct LazyListGenerator<Element> : GeneratorType {
-  private var list: LazyList<Element>
+  private var list: () -> LazyList<Element>
   public mutating func next() -> Element? {
-    switch list {
+    switch list() {
     case .Nil: return nil
     case let .Cons(head, tail):
-      list = tail()
+      list = tail
       return head
     }
   }
@@ -73,7 +73,7 @@ extension LazyListGenerator : LazySequenceType {
 
 extension LazyList : LazySequenceType {
   public func generate() -> LazyListGenerator<Element> {
-    return LazyListGenerator(list: self)
+    return LazyListGenerator(list: {self})
   }
 }
 

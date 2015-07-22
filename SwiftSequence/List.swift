@@ -182,3 +182,15 @@ extension LazyList : LazySequenceType {
   }
 }
 
+//extension LazyList {
+//  func map<T>(transform: (Element -> T)) -> LazyList<T> {
+//    switch self {
+//    case .Nil: return LazyList.Nil
+//    case .Cons(let head, let tail):
+//      return LazyList.Cons(head: transform(head), tail: {tail().map(transform)})
+//    }
+//  }
+//}
+//}
+
+

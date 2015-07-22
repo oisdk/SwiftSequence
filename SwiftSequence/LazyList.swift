@@ -4,11 +4,8 @@ public enum LazyList<Element> {
 }
 
 public extension Optional {
-  public func flatMap<U>(transform: T -> LazyList<U>) -> LazyList<U> {
-    switch self {
-    case .None: return nil
-    case .Some(let value): return transform(value)
-    }
+  public func flatMap<U>(@noescape transform: T -> LazyList<U>) -> LazyList<U> {
+    return map(transform) ?? nil
   }
 }
 

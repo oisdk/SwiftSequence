@@ -51,24 +51,6 @@ public extension List {
   }
 }
 
-extension EmptyCollection : ArrayLiteralConvertible {
-  public init(arrayLiteral: Element...) {
-    assert(arrayLiteral.isEmpty)
-  }
-}
-
-public func ~= <C : CollectionType>
-  (lhs: EmptyCollection<C.Generator.Element>, rhs: C) -> Bool {
-    return rhs.isEmpty
-}
-
-public func ~= <T> (lhs: EmptyCollection<T>, rhs: List<T>) -> Bool {
-  switch rhs {
-  case .Cons: return false
-  default:    return true
-  }
-}
-
 extension List: NilLiteralConvertible {
   public init(nilLiteral: ()) {
     self = .Nil
@@ -76,11 +58,8 @@ extension List: NilLiteralConvertible {
 }
 
 public extension Optional {
-  public func flatMap<U>(transform: T -> List<U>) -> List<U> {
-    switch self {
-    case .None: return nil
-    case .Some(let value): return transform(value)
-    }
+  public func flatMap<U>(@noescape transform: T -> List<U>) -> List<U> {
+    return map(transform) ?? nil
   }
 }
 

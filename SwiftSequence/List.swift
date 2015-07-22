@@ -129,13 +129,13 @@ public enum LazyList<Element> {
   case Cons(head: Element, tail: () -> LazyList<Element>)
 }
 
-extension LazyList {
+public extension LazyList {
   public init<G : GeneratorType where G.Element == Element>(var _ gen: G) {
     self = gen.next().map {Cons(head: $0, tail: {LazyList(gen)})} ?? Nil
   }
 }
 
-extension LazyList {
+public extension LazyList {
   public init<S : SequenceType where S.Generator.Element == Element>(_ seq: S) {
     self = LazyList(seq.generate())
   }

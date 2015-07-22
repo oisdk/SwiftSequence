@@ -43,6 +43,7 @@
 		7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
 		7037D08E1B40437F00FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
 		7074F13C1B5F025400E046B2 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13B1B5F025400E046B2 /* List.swift */; };
+		7074F13D1B5FAA9800E046B2 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13B1B5F025400E046B2 /* List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -302,6 +303,7 @@
 				7037D0841B403AC800FA04C6 /* Permutations.swift in Sources */,
 				7037D0761B403AC800FA04C6 /* Finding.swift in Sources */,
 				7037D08A1B403AC800FA04C6 /* Zip.swift in Sources */,
+				7074F13D1B5FAA9800E046B2 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

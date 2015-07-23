@@ -5,7 +5,7 @@ public enum List<Element> {
 
 infix operator |> {
   associativity right
-  precedence 90
+  precedence 100
 }
 
 public func |> <T>(lhs: T, rhs: List<T>) -> List<T> {

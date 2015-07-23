@@ -42,6 +42,12 @@ extension List : SequenceType {
   }
 }
 
+extension List : CustomDebugStringConvertible {
+  public var debugDescription: String {
+    return ", ".join(map{String(reflecting: $0)})
+  }
+}
+
 public extension List {
   public var isEmpty: Bool {
     switch self {

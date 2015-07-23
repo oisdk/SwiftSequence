@@ -71,6 +71,12 @@ extension LazyList : LazySequenceType {
   }
 }
 
+extension LazyList : CustomDebugStringConvertible {
+  public var debugDescription: String {
+    return ", ".join(map{String(reflecting: $0)})
+  }
+}
+
 extension LazyList : Indexable {
   public var startIndex: Int { return 0 }
   public var endIndex: Int {

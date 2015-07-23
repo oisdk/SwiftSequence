@@ -38,11 +38,11 @@ extension Deque {
 }
 
 extension Deque {
-  public mutating func cons(with: Element) {
+  public mutating func prepend(with: Element) {
     ++fCount
     front = with |> front
   }
-  public mutating func snoc(with: Element) {
+  public mutating func append(with: Element) {
     ++bCount
     back = with |> front
   }
@@ -176,6 +176,25 @@ extension Deque {
     )
   }
 }
+
+extension Deque {
+  public func reverse() -> Deque<Element> {
+    return Deque(front: back, back: front, fCount: bCount, bCount: fCount)
+  }
+}
+
+extension Deque {
+  public func filter(@noescape includeElement: Element -> Bool) -> Deque<Element> {
+    var (nFCount, nBCount) = (0, 0)
+    let nFront = front.filter { includeElement($0) ? {++nFCount; return true}() : false }
+    let nBack  = back .filter { includeElement($0) ? {++nBCount; return true}() : false }
+    
+    var ret = Deque(front: nFront, back: nBack, fCount: nFCount, bCount: nBCount)
+    ret.check()
+    return ret
+  }
+}
+
 extension Deque {
   public func flatMap<S : SequenceType>(@noescape transform: Element -> S) -> Deque<S.Generator.Element> {
     let frontAr: [S.Generator.Element] = front.flatMap(transform)

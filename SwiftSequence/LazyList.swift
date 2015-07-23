@@ -114,6 +114,18 @@ extension LazyList {
   }
 }
 
+extension LazyList {
+  func filter(includeElement: Element -> Bool) -> LazyList<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail):
+      return includeElement(head) ?
+        head |> tail().filter(includeElement) :
+        tail().filter(includeElement)
+    }
+  }
+}
+
 public extension LazyList {
   public func appended(@autoclosure(escaping) with: () -> Element) -> LazyList<Element> {
     switch self {

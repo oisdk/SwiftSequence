@@ -114,6 +114,18 @@ public func + <T>(lhs: List<T>, rhs: List<T>) -> List<T> {
   return lhs.extended(rhs)
 }
 
+extension List {
+  func filter(@noescape includeElement: Element -> Bool) -> List<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail):
+      return includeElement(head) ?
+        head |> tail.filter(includeElement) :
+        tail.filter(includeElement)
+    }
+  }
+}
+
 extension List : Indexable {
   public var startIndex: Int { return 0 }
   public var endIndex: Int {

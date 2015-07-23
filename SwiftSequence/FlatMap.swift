@@ -140,6 +140,12 @@ public extension List {
     case let .Cons(head, tail): return transform(head).extended(tail.flatMap(transform))
     }
   }
+  public func flatMap<T>(@noescape transform: Element -> T?) -> List<T> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return transform(head).map(|>tail.flatMap(transform)) ?? tail.flatMap(transform)
+    }
+  }
 }
 
 public extension LazyList {
@@ -155,6 +161,12 @@ public extension LazyList {
     switch self {
     case .Nil: return .Nil
     case let .Cons(head, tail): return transform(head).extended(tail().flatMap(transform))
+    }
+  }
+  public func flatMap<T>(transform: Element -> T?) -> LazyList<T> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return transform(head).map(|>tail().flatMap(transform)) ?? tail().flatMap(transform)
     }
   }
 }

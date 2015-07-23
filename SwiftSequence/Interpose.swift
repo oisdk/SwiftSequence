@@ -381,3 +381,93 @@ public func interdig<
   >(s0: S0, _ s1: S1, s0Len: Int, s1Len: Int = 1) -> InterDigSeq<S0, S1> {
     return InterDigSeq(s0: s0, s1: s1, aN: s0Len, bN: s1Len)
 }
+
+// MARK: List
+
+extension List {
+  func prependtoAll(with: Element) -> List<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return with |> head |> tail.prependtoAll(with)
+    }
+  }
+}
+
+extension LazyList {
+  func prependtoAll(with: Element) -> LazyList<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return with |> head |> tail().prependtoAll(with)
+    }
+  }
+}
+
+extension List {
+  func interpose(element: Element) -> List<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return head |> tail.prependtoAll(element)
+    }
+  }
+}
+
+extension LazyList {
+  func interpose(element: Element) -> LazyList<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return head |> tail().prependtoAll(element)
+    }
+  }
+}
+
+extension List {
+  func prependtoAll(with: List<Element>) -> List<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return with + (head |> tail.prependtoAll(with))
+    }
+  }
+}
+
+extension LazyList {
+  func prependtoAll(with: LazyList<Element>) -> LazyList<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return with + (head |> tail().prependtoAll(with))
+    }
+  }
+}
+
+extension List {
+  func interpose(with: List<Element>) -> List<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return head |> tail.prependtoAll(with)
+    }
+  }
+}
+
+extension LazyList {
+  func interpose(with: LazyList<Element>) -> LazyList<Element> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return head |> tail().prependtoAll(with)
+    }
+  }
+}
+
+public func interdig<T>(s0: List<T>, _ s1: List<T>) -> List<T> {
+  switch (s0, s1) {
+  case let (.Cons(h0, t0), .Cons(h1, t1)): return h0 |> h1 |> interdig(t0, t1)
+  case let(.Cons(h0, _), _): return h0 |> .Nil
+  default: return .Nil
+  }
+}
+
+public func interdig<T>(s0: LazyList<T>, _ s1: LazyList<T>) -> LazyList<T> {
+  switch (s0, s1) {
+  case let (.Cons(h0, t0), .Cons(h1, t1)): return h0 |> h1 |> interdig(t0(), t1())
+  case let(.Cons(h0, _), _): return h0 |> .Nil
+  default: return .Nil
+  }
+}

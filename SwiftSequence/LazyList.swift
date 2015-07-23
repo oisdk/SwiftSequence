@@ -109,9 +109,9 @@ extension LazyList {
 }
 
 public extension LazyList {
-  public func appended(with: Element) -> LazyList<Element> {
+  public func appended(@autoclosure(escaping) with: () -> Element) -> LazyList<Element> {
     switch self {
-    case .Nil: return with |> .Nil
+    case .Nil: return with() |> .Nil
     case let .Cons(head, tail): return head |> tail().appended(with)
     }
   }
@@ -126,4 +126,8 @@ public extension LazyList {
     >(with: S) -> LazyList<Element> {
       return extended(LazyList(with))
   }
+}
+
+public func + <T>(lhs: LazyList<T>, rhs: LazyList<T>) -> LazyList<T> {
+  return lhs.extended(rhs)
 }

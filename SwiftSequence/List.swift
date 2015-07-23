@@ -92,6 +92,10 @@ public extension List {
   }
 }
 
+public func + <T>(lhs: List<T>, rhs: List<T>) -> List<T> {
+  return lhs.extended(rhs)
+}
+
 extension List : Indexable {
   public var startIndex: Int { return 0 }
   public var endIndex: Int {

@@ -1,7 +1,7 @@
 public struct Deque<Element> {
   private var front, back: List<Element>
   public init() {
-    (front, back)    = (.Nil, .Nil)
+    (front, back) = (.Nil, .Nil)
   }
 }
 

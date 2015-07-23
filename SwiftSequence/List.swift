@@ -72,6 +72,18 @@ public extension List {
   }
 }
 
+extension List {
+  private func rev(other: List<Element>) -> List<Element> {
+    switch self {
+    case .Nil: return other
+    case let .Cons(head, tail): return tail.rev(head |> other)
+    }
+  }
+  internal func reverse() -> List<Element> {
+    return self.rev(.Nil)
+  }
+}
+
 extension List : ArrayLiteralConvertible {
   public init(arrayLiteral: Element...) {
     self = List(arrayLiteral.generate())

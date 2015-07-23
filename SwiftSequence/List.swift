@@ -65,7 +65,7 @@ public extension Optional {
 
 public extension List {
   public init<G : GeneratorType where G.Element == Element>(var _ gen: G) {
-    self = gen.next().flatMap(|>List(gen))
+    self = gen.next().flatMap{ $0 |> List(gen)}
   }
   public init<S : SequenceType where S.Generator.Element == Element>(seq: S) {
     self = List(seq.generate())

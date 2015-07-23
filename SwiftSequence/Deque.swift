@@ -1,36 +1,27 @@
 public struct Deque<Element> {
-  private var front: List<Element> { didSet { check() } }
-  private var back : List<Element> { didSet { check() } }
-  private var fCount, bCount: Int
-  
+  private var front, back: List<Element>
   public init() {
     (front, back)    = (.Nil, .Nil)
-    (fCount, bCount) = (0, 0)
   }
 }
 
 extension Deque {
-  private init(front: List<Element>, back: List<Element>, fCount: Int, bCount: Int) {
-    (self.front, self.back)    = (front, back)
-    (self.fCount, self.bCount) = (fCount, bCount)
+  private init(front: List<Element>, back: List<Element>) {
+    (self.front, self.back) = (front, back)
   }
   private init(front: [Element], noReverseBack: [Element]) {
     (self.front, back) = (List(seq: front), List(seq: noReverseBack))
-    (fCount, bCount)   = (front.count, noReverseBack.count)
     check()
   }
 }
 
 extension Deque {
   private mutating func check() {
-    if fCount == 1 || bCount == 1 { return }
     switch (front, back) {
-    case (.Nil, let .Cons(head, tail)):
-      (front, back)    = (tail.reverse(), [head])
-      (fCount, bCount) = (bCount - 1, 1)
-    case (let .Cons(head, tail), .Nil):
-      (back, front)    = (tail.reverse(), [head])
-      (bCount, fCount) = (fCount - 1, 1)
+    case (.Nil, let .Cons(head, tail)) where !tail.isEmpty:
+      (front, back) = (tail.reverse(), [head])
+    case (let .Cons(head, tail), .Nil) where !tail.isEmpty:
+      (back, front) = (tail.reverse(), [head])
     default:
       return
     }
@@ -39,11 +30,9 @@ extension Deque {
 
 extension Deque {
   public mutating func prepend(with: Element) {
-    ++fCount
     front = with |> front
   }
   public mutating func append(with: Element) {
-    ++bCount
     back = with |> front
   }
 }
@@ -79,7 +68,7 @@ extension Deque : SequenceType {
 extension Deque : CustomDebugStringConvertible {
   public var debugDescription: String {
     
-    return "[\(fCount), \(bCount)]: " +
+    return
       ", ".join(front.map { String(reflecting: $0) }) + " | " +
       ", ".join(back.reverse().map { String(reflecting: $0) })
   }
@@ -87,10 +76,9 @@ extension Deque : CustomDebugStringConvertible {
 
 extension Deque {
   public init(ar: [Element]) {
-    fCount = ar.endIndex / 2
-    front = List(seq: ar[0..<fCount])
-    bCount = ar.endIndex - fCount
-    back  = List(seq: ar[fCount..<ar.endIndex].reverse())
+    let half = ar.endIndex / 2
+    front = List(seq: ar[0..<half])
+    back  = List(seq: ar[half..<ar.endIndex].reverse())
   }
 }
 
@@ -105,7 +93,6 @@ extension Deque {
     switch back {
     case .Nil: return nil
     case let .Cons(head, tail):
-      --bCount
       back = tail
       return head
     }
@@ -114,7 +101,6 @@ extension Deque {
     switch front {
     case .Nil: return nil
     case let .Cons(head, tail):
-      --fCount
       front = tail
       return head
     }
@@ -141,7 +127,7 @@ extension Deque {
     switch front {
     case .Nil: return Deque()
     case .Cons(_, let tail):
-      var ret = Deque(front: tail, back: back, fCount: fCount - 1, bCount: bCount)
+      var ret = Deque(front: tail, back: back)
       ret.check()
       return ret
     }
@@ -150,20 +136,10 @@ extension Deque {
     switch back {
     case .Nil: return Deque()
     case .Cons(_, let tail):
-      var ret = Deque(front: front, back: tail, fCount: fCount, bCount: bCount - 1)
+      var ret = Deque(front: front, back: tail)
       ret.check()
       return ret
     }
-  }
-}
-
-extension Deque : Indexable {
-  public var startIndex: Int { return 0 }
-  public var count     : Int { return fCount + bCount }
-  public var endIndex  : Int { return count }
-  public subscript(n: Int) -> Element {
-    get { return n < fCount ? front[n] : back[bCount - (n - fCount) - 1] }
-    set(v) { n < fCount ? (front[n] = v) : (back[bCount - (n - fCount) - 1] = v) }
   }
 }
 
@@ -171,24 +147,20 @@ extension Deque {
   public func map<T>(@noescape transform: Element -> T) -> Deque<T> {
     return Deque<T>(
       front: front.map(transform),
-      back: back.map(transform),
-      fCount: fCount, bCount: bCount
+      back: back.map(transform)
     )
   }
 }
 
 extension Deque {
   public func reverse() -> Deque<Element> {
-    return Deque(front: back, back: front, fCount: bCount, bCount: fCount)
+    return Deque(front: back, back: front)
   }
 }
 
 extension Deque {
   public func filter(@noescape includeElement: Element -> Bool) -> Deque<Element> {
-    var (nFCount, nBCount) = (0, 0)
-    let nFront = front.filter { includeElement($0) ? {++nFCount; return true}() : false }
-    let nBack  = back .filter { includeElement($0) ? {++nBCount; return true}() : false }
-    var ret = Deque(front: nFront, back: nBack, fCount: nFCount, bCount: nBCount)
+    var ret = Deque(front: front.filter(includeElement), back: back.filter(includeElement))
     ret.check()
     return ret
   }

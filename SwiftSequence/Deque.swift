@@ -188,7 +188,6 @@ extension Deque {
     var (nFCount, nBCount) = (0, 0)
     let nFront = front.filter { includeElement($0) ? {++nFCount; return true}() : false }
     let nBack  = back .filter { includeElement($0) ? {++nBCount; return true}() : false }
-    
     var ret = Deque(front: nFront, back: nBack, fCount: nFCount, bCount: nBCount)
     ret.check()
     return ret

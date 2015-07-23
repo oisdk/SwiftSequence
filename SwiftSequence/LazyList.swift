@@ -85,13 +85,7 @@ extension LazyList : Indexable {
     case .Cons(_, let tail): return tail().endIndex.successor()
     }
   }
-  public func with(val: Element, atIndex n: Int) -> LazyList<Element> {
-    switch (n, self) {
-    case (0, .Cons(_, let tail)): return val |> tail
-    case (_, let .Cons(head, tail)): return head |> tail().with(val, atIndex: n - 1)
-    case (_, .Nil): fatalError("Index out of range")
-    }
-  }
+
   public subscript(n: Int) -> Element {
     get {
       switch (n, self) {
@@ -100,7 +94,7 @@ extension LazyList : Indexable {
       case (_, .Nil): fatalError("Index out of range")
       }
     } set {
-      self = with(newValue, atIndex: n)
+      self = replacedWith(newValue, atIndex: n)
     }
   }
 }
@@ -111,6 +105,29 @@ extension LazyList {
     case .Nil:  return true
     case .Cons: return false
     }
+  }
+}
+
+public extension LazyList {
+  public func replacedWith(val: Element, atIndex n: Int) -> LazyList<Element> {
+    switch (n, self) {
+    case (0, .Cons(_, let tail)): return val |> tail
+    case (_, let .Cons(head, tail)): return head |> tail().replacedWith(val, atIndex: n - 1)
+    case (_, .Nil): fatalError("Index out of range")
+    }
+  }
+  public func inserted(val: Element, atIndex n: Int) -> LazyList<Element> {
+    switch (n, self) {
+    case (0, _): return val |> self
+    case (_, let .Cons(head, tail)): return head |> tail().replacedWith(val, atIndex: n - 1)
+    case (_, .Nil): fatalError("Index out of range")
+    }
+  }
+}
+
+public extension LazyList {
+  public mutating func insert(val: Element, atIndex n: Int) {
+    self = inserted(val, atIndex: n)
   }
 }
 
@@ -125,8 +142,10 @@ extension LazyList {
     }
   }
 }
-
 public extension LazyList {
+  public func prepended(with: Element) -> LazyList<Element> {
+    return with |> self
+  }
   public func appended(@autoclosure(escaping) with: () -> Element) -> LazyList<Element> {
     switch self {
     case .Nil: return with() |> .Nil
@@ -143,6 +162,21 @@ public extension LazyList {
     S : SequenceType where S.Generator.Element == Element
     >(with: S) -> LazyList<Element> {
       return extended(LazyList(with))
+  }
+  private func prextended<
+    G : GeneratorType where
+    G.Element == Element
+    >(var with: G) -> LazyList<Element> {
+      return with.next().map(|>self.prextended(with)) ?? self
+  }
+  public func prextended<
+    S : SequenceType where
+    S.Generator.Element == Element
+    >(seq: S) -> LazyList<Element> {
+      return prextended(seq.generate())
+  }
+  public func prextended(with: LazyList<Element>) -> LazyList<Element> {
+    return with.extended(self)
   }
 }
 

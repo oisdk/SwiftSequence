@@ -97,6 +97,9 @@ public extension List {
     case let .Cons(head, tail): return head |> tail.appended(with)
     }
   }
+  public func prepended(with: Element) -> List<Element> {
+    return with |> self
+  }
   public func extended(with: List<Element>) -> List<Element> {
     switch self {
     case .Nil: return with
@@ -107,6 +110,21 @@ public extension List {
     S : SequenceType where S.Generator.Element == Element
     >(with: S) -> List<Element> {
       return extended(List(seq: with))
+  }
+  private func prextended<
+    G : GeneratorType where
+    G.Element == Element
+    >(var with: G) -> List<Element> {
+      return with.next().map{ $0 |> prextended(with)} ?? self
+  }
+  public func prextended<
+    S : SequenceType where
+    S.Generator.Element == Element
+    >(seq: S) -> List<Element> {
+      return prextended(seq.generate())
+  }
+  public func prextended(with: List<Element>) -> List<Element> {
+    return with.extended(self)
   }
 }
 
@@ -126,6 +144,29 @@ extension List {
   }
 }
 
+extension List {
+  public func replacedWith(val: Element, atIndex n: Int) -> List<Element> {
+    switch (n, self) {
+    case (0, .Cons(_, let tail)): return val |> tail
+    case (_, let .Cons(head, tail)): return head |> tail.replacedWith(val, atIndex: n - 1)
+    case (_, .Nil): fatalError("Index out of range")
+    }
+  }
+  public func inserted(val: Element, atIndex n: Int) -> List<Element> {
+    switch (n, self) {
+    case (0, _): return val |> self
+    case (_, let .Cons(head, tail)): return head |> tail.replacedWith(val, atIndex: n - 1)
+    case (_, .Nil): fatalError("Index out of range")
+    }
+  }
+}
+
+extension List {
+  public mutating func insert(val: Element, atIndex n: Int) {
+    self = inserted(val, atIndex: n)
+  }
+}
+
 extension List : Indexable {
   public var startIndex: Int { return 0 }
   public var endIndex: Int {
@@ -134,14 +175,7 @@ extension List : Indexable {
     case .Cons(_, let tail): return tail.endIndex.successor()
     }
   }
-  
-  public func with(val: Element, atIndex n: Int) -> List<Element> {
-    switch (n, self) {
-    case (0, .Cons(_, let tail)): return val |> tail
-    case (_, let .Cons(head, tail)): return head |> tail.with(val, atIndex: n - 1)
-    case (_, .Nil): fatalError("Index out of range")
-    }
-  }
+
   public subscript(n: Int) -> Element {
    get {
       switch (n, self) {
@@ -150,7 +184,7 @@ extension List : Indexable {
       case (_, .Nil): fatalError("Index out of range")
       }
     } set {
-      self = with(newValue, atIndex: n)
+      self = replacedWith(newValue, atIndex: n)
     }
   }
 }

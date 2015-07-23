@@ -4,25 +4,19 @@ public struct Deque<Element> {
   private var fCount, bCount: Int
   
   public init() {
-    front = .Nil
-    back  = .Nil
-    fCount = 0
-    bCount = 0
+    (front, back)    = (.Nil, .Nil)
+    (fCount, bCount) = (0, 0)
   }
 }
 
 extension Deque {
   private init(front: List<Element>, back: List<Element>, fCount: Int, bCount: Int) {
-    self.front = front
-    self.back  = back
-    self.fCount = fCount
-    self.bCount = bCount
+    (self.front, self.back)    = (front, back)
+    (self.fCount, self.bCount) = (fCount, bCount)
   }
   private init(front: [Element], noReverseBack: [Element]) {
-    self.front = List(seq: front)
-    self.back = List(seq: noReverseBack)
-    fCount = front.count
-    bCount = noReverseBack.count
+    (self.front, back) = (List(seq: front), List(seq: noReverseBack))
+    (fCount, bCount)   = (front.count, noReverseBack.count)
     check()
   }
 }
@@ -32,12 +26,10 @@ extension Deque {
     if fCount == 1 || bCount == 1 { return }
     switch (front, back) {
     case (.Nil, let .Cons(head, tail)):
-      front = tail.reverse()
-      back = [head]
+      (front, back)    = (tail.reverse(), [head])
       (fCount, bCount) = (bCount - 1, 1)
     case (let .Cons(head, tail), .Nil):
-      back = tail.reverse()
-      front = [head]
+      (back, front)    = (tail.reverse(), [head])
       (bCount, fCount) = (fCount - 1, 1)
     default:
       return

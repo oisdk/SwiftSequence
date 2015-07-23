@@ -15,7 +15,7 @@ public extension SequenceType {
   func reduce
     (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element)
     -> Generator.Element? {
-      var g = self.generate()
+      var g = generate()
       return g.next().map {
         (var accu) in
         while let next = g.next() { accu = combine(accumulator: accu, element: next) }
@@ -34,7 +34,7 @@ public extension SequenceType {
   /// ```
   
   func scan<T>(var initial: T, @noescape combine: (accumulator: T, element: Generator.Element) -> T) -> [T] {
-    return self.map {
+    return map {
       initial = combine(accumulator: initial, element: $0)
       return initial
     }
@@ -52,7 +52,7 @@ public extension SequenceType {
   
   func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element) -> [Generator.Element] {
     var initial: Generator.Element?
-    return self.map {
+    return map {
       element in
       initial = initial.map{combine(accumulator: $0, element: element)} ?? element
       return initial!

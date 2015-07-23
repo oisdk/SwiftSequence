@@ -10,8 +10,8 @@ public struct SpecEnumerateGen<Base : CollectionType> : GeneratorType {
   }
   
   private init(g: Base.Generator, i: Base.Index) {
-    self.eG = g
-    self.sI = i
+    eG = g
+    sI = i
     self.i = nil
   }
 }

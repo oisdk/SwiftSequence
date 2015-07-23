@@ -26,8 +26,8 @@ public struct CycleNGen<C: CollectionType> : GeneratorType, LazySequenceType {
   private var n: Int
   
   private init(col: C, n: Int) {
-    self.inner = col
-    self.innerGen = col.generate()
+    inner = col
+    innerGen = col.generate()
     self.n = n
   }
   
@@ -67,8 +67,8 @@ public struct CycleGen<C: CollectionType> : GeneratorType, LazySequenceType {
   private var innerGen: C.Generator
   
   private init(col: C) {
-    self.inner = col
-    self.innerGen = col.generate()
+    inner = col
+    innerGen = col.generate()
   }
   
   public func generate() -> CycleGen<C> {

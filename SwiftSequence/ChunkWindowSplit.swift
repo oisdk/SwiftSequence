@@ -14,7 +14,7 @@ public extension SequenceType {
   /// ```
   
   func chunk(n : Int) -> [[Generator.Element]] {
-    var g = self.generate()
+    var g = generate()
     var ret: [[Generator.Element]] = [[]]
     while let next = g.next() {
       if ret.last!.count < n {
@@ -41,7 +41,7 @@ public extension SequenceType {
   ///   ```
   
   func window(n : Int) -> [[Generator.Element]] {
-    var g = self.generate()
+    var g = generate()
     
     var window: [Generator.Element] = []
     
@@ -76,7 +76,7 @@ public extension SequenceType {
   /// ```
   
   func splitAt(@noescape isSplit : Generator.Element -> Bool) -> [[Generator.Element]] {
-    var g = self.generate()
+    var g = generate()
     var ret: [[Generator.Element]] = [[]]
     while let next = g.next() {
       ret[ret.endIndex.predecessor()].append(next)
@@ -109,8 +109,8 @@ public struct ChunkGen<G : GeneratorType> : GeneratorType {
   private init(g: G, n: Int) {
     self.g = g
     self.n = n
-    self.c = []
-    self.c.reserveCapacity(n)
+    c = []
+    c.reserveCapacity(n)
   }
 }
 
@@ -168,7 +168,7 @@ public struct WindowGen<G : GeneratorType> : GeneratorType {
   private init(g: G, n: Int) {
     self.g = g
     self.n = n
-    self.window = nil
+    window = nil
   }
 }
 
@@ -252,7 +252,7 @@ extension List {
   public func chunk(n: Int) -> List<List<Element>> {
     switch self {
     case .Nil: return .Nil
-    case .Cons: return {$0.0 |> $0.1.chunk(n)}(self.split(n))
+    case .Cons: return {$0.0 |> $0.1.chunk(n)}(split(n))
     }
   }
 }
@@ -267,7 +267,7 @@ extension LazyList {
   public func chunk(n: Int) -> LazyList<LazyList<Element>> {
     switch self {
     case .Nil: return .Nil
-    case .Cons: return {$0.0 |> $0.1.chunk(n)}(self.split(n))
+    case .Cons: return {$0.0 |> $0.1.chunk(n)}(split(n))
     }
   }
 }
@@ -276,7 +276,7 @@ extension List {
   public func window(n: Int) -> List<List<Element>> {
     switch self {
     case .Nil: return .Nil
-    case let .Cons(_, tail): return self.take(n) |> tail.window(n)
+    case let .Cons(_, tail): return take(n) |> tail.window(n)
     }
   }
 }
@@ -285,7 +285,7 @@ extension LazyList {
   public func window(n: Int) -> LazyList<LazyList<Element>> {
     switch self {
     case .Nil: return .Nil
-    case let .Cons(_, tail): return self.take(n) |> tail().window(n)
+    case let .Cons(_, tail): return take(n) |> tail().window(n)
     }
   }
 }
@@ -302,7 +302,7 @@ extension List {
   public func splitAt(@noescape isSplit: Element -> Bool) -> List<List<Element>> {
     switch self {
     case .Nil:  return .Nil
-    case .Cons: return { $0.0 |> $0.1.splitAt(isSplit) }(self.split(isSplit))
+    case .Cons: return { $0.0 |> $0.1.splitAt(isSplit) }(split(isSplit))
     }
   }
 }
@@ -319,7 +319,7 @@ extension LazyList {
   public func splitAt(isSplit: Element -> Bool) -> LazyList<LazyList<Element>> {
     switch self {
     case .Nil:  return .Nil
-    case .Cons: return { $0.0 |> $0.1.splitAt(isSplit) }(self.split(isSplit))
+    case .Cons: return { $0.0 |> $0.1.splitAt(isSplit) }(split(isSplit))
     }
   }
 }

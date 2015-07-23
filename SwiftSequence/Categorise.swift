@@ -35,7 +35,7 @@ public extension SequenceType where Generator.Element : Hashable {
   
   func uniques() -> [Generator.Element] {
     var prevs: Set<Generator.Element> = []
-    return self.filter {
+    return filter {
       el in
       defer { prevs.insert(el) }
       return !prevs.contains(el)
@@ -47,7 +47,7 @@ public extension SequenceType where Generator.Element : Hashable {
   /// Returns self with all of the keys in reps replaced by their values
   
   func replace(reps: [Generator.Element:Generator.Element]) -> [Generator.Element] {
-    return self.map{reps[$0] ?? $0}
+    return map{reps[$0] ?? $0}
   }
 }
 
@@ -96,7 +96,7 @@ public extension LazySequenceType where Generator.Element : Hashable {
   
   /// Returns a lzy sequence of self with all of the keys in reps replaced by their values
   
-  func replace(reps: [Generator.Element:Generator.Element]) -> LazySequence<MapSequence<Self, Self.Generator.Element>> {
+  func replace(reps: [Generator.Element:Generator.Element]) -> LazySequence<MapSequence<Self, Generator.Element>> {
     return lazy(self).map { reps[$0] ?? $0 }
   }
   
@@ -123,7 +123,7 @@ public struct GroupGen<G : GeneratorType where G.Element : Equatable> : Generato
   }
   
   private init(var g : G) {
-    self.last = g.next().map{[$0]}
+    last = g.next().map{[$0]}
     self.g = g
   }
 }
@@ -148,7 +148,7 @@ public struct GroupByGen<G : GeneratorType> : GeneratorType {
   }
   
   private init(var g : G, isEquivalent: (G.Element, G.Element) -> Bool) {
-    self.last = g.next().map{[$0]}
+    last = g.next().map{[$0]}
     self.g = g
     self.isEquivalent = isEquivalent
   }

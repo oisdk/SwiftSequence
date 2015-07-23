@@ -14,7 +14,7 @@ public extension SequenceType {
   
   func hop(n: Int) -> [Generator.Element] {
     var i = n - 1
-    return self.filter {
+    return filter {
       _ -> Bool in
       if ++i == n {
         i = 0

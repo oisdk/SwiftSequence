@@ -133,7 +133,7 @@ public struct ComboSeq<C : MutableCollectionType> : LazySequenceType {
   private init(n: Int, col: C) {
     self.col = col
     var i = col.startIndex
-    self.start = (0..<n).map{ (_: Int) in col[i++] }
+    start = (0..<n).map{ (_: Int) in col[i++] }
     i = col.startIndex
     guard n != 0 else {self.inds = []; return}
     var inds = (1..<n).map{ (_: Int) in i++ }
@@ -215,17 +215,17 @@ public struct ComboRepSeq<
   
   private init(n: Int, col: C) {
     self.col = col
-    self.start = Array(Repeat(count: n, repeatedValue: col.first!))
+    start = Array(Repeat(count: n, repeatedValue: col.first!))
     var inds = Array(Repeat(count: n, repeatedValue: col.startIndex))
     --inds[n-1]
     self.inds = inds
-    self.max = col.endIndex.predecessor()
+    max = col.endIndex.predecessor()
   }
 }
 
 
 
-public extension MutableCollectionType where Self.Index : BidirectionalIndexType {
+public extension MutableCollectionType where Index : BidirectionalIndexType {
   
   /// Returns lazily-generated combinations with repetitions of self of length `n`
   /// - Note: Combinations are returned in lexicographical order, according to the order of `self`

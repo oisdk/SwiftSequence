@@ -7,7 +7,7 @@ public extension SequenceType {
   /// Returns an array of the first n elements of self
   
   func take(var n: Int) -> [Generator.Element] {
-    var g = self.generate()
+    var g = generate()
     var ret: [Generator.Element] = []
     while --n >= 0, let next = g.next() { ret.append(next) }
     return ret
@@ -21,7 +21,7 @@ public extension SequenceType {
   /// Returns an array of self with the first n elements dropped
   
   func drop(n: Int) -> [Generator.Element] {
-    var g = self.generate()
+    var g = generate()
     for _ in 0..<n { guard let _ = g.next() else { return [] } }
     return Array(GeneratorSequence(g))
 
@@ -41,7 +41,7 @@ public extension SequenceType {
   
   func takeWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
     var ret : [Generator.Element] = []
-    var g = self.generate()
+    var g = generate()
     while let next = g.next() where condition(next) { ret.append(next) }
     return ret
   }
@@ -60,7 +60,7 @@ public extension SequenceType {
   /// ```
   
   func dropWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
-    var g = self.generate()
+    var g = generate()
     while let next = g.next() {
       if !condition(next) {
         return [next] + GeneratorSequence(g)
@@ -184,8 +184,8 @@ public struct DropWhileGen<G : GeneratorType> : GeneratorType {
   private var oG: G
   
   init(g: G, predicate: G.Element -> Bool) {
-    self.nG = nil
-    self.oG = g
+    nG = nil
+    oG = g
     self.predicate = predicate
   }
   

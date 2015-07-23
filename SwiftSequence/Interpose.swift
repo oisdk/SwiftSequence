@@ -12,7 +12,7 @@ public extension SequenceType {
   /// ```
   
   func interpose(element: Generator.Element) -> [Generator.Element] {
-    var g = self.generate()
+    var g = generate()
     
     return g.next().map {
       var ret = [$0]
@@ -35,7 +35,7 @@ public extension SequenceType {
   func interpose(element: Generator.Element, n: Int) -> [Generator.Element] {
     
     var ret: [Generator.Element] = []
-    var g = self.generate()
+    var g = generate()
     var i = n + 1
     
     while let next = g.next() {
@@ -63,7 +63,7 @@ public extension SequenceType {
   
   func interpose<C : CollectionType where C.Generator.Element == Generator.Element>
     (col: C) -> [Generator.Element] {
-      var g = self.generate()
+      var g = generate()
       return g.next().map {
         var ret = [$0]
         while let next = g.next() {
@@ -84,7 +84,7 @@ public extension SequenceType {
   
   func interpose<C : CollectionType where C.Generator.Element == Generator.Element>
     (col: C, n: Int) -> [Generator.Element] {
-      var g = self.generate()
+      var g = generate()
       return g.next().map {
         var i = n
         var ret = [$0]
@@ -241,10 +241,10 @@ public struct InterposeColGen<
   
   private init(col: C, g: G, n: Int) {
     self.n = n
-    self.count = n + 1
+    count = n + 1
     self.col = col
     self.g = g
-    self.colG = self.col.generate()
+    colG = self.col.generate()
   }
   
   public mutating func next() -> G.Element? {

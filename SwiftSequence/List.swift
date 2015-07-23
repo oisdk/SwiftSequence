@@ -80,7 +80,7 @@ extension List {
     }
   }
   internal func reverse() -> List<Element> {
-    return self.rev(.Nil)
+    return rev(.Nil)
   }
 }
 

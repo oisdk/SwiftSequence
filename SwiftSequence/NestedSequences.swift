@@ -4,8 +4,8 @@
 
 private extension GeneratorType where Element : CollectionType {
   mutating private func product() -> [[Element.Generator.Element]] {
-    return self.next().map {
-      let pProd = self.product()
+    return next().map {
+      let pProd = product()
       return $0.flatMap {
         el in pProd.map {
           [el] + $0
@@ -24,7 +24,7 @@ public extension SequenceType where Generator.Element : SequenceType, Generator.
   /// ```
   
   public func product() -> [[Generator.Element.Generator.Element]] {
-    var g = self.generate()
+    var g = generate()
     return g.product()
   }
 }
@@ -38,7 +38,7 @@ public extension SequenceType where Generator.Element : SequenceType {
   /// ```
   
   public func product() -> [[Generator.Element.Generator.Element]] {
-    return self.map(Array.init).product()
+    return map(Array.init).product()
   }
 }
 
@@ -75,7 +75,7 @@ public extension SequenceType where Generator.Element : SequenceType {
   
   func transpose() -> [[Generator.Element.Generator.Element]] {
     var ret: [[Generator.Element.Generator.Element]] = [[]]
-    for var gens = self.map{$0.generate()};; ret.append([]) {
+    for var gens = map{$0.generate()};; ret.append([]) {
       for i in gens.indices {
         if let next = gens[i].next() {
           ret[ret.endIndex.predecessor()].append(next)
@@ -116,7 +116,7 @@ public struct ProdGen<C : CollectionType> : GeneratorType {
   private init(cols: [C]) {
     var gens = cols.map{$0.generate()}
     self.cols = cols
-    self.curr = dropLast(gens).indices.map{gens[$0].next()!} + [self.cols.last!.first!]
+    curr = dropLast(gens).indices.map{gens[$0].next()!} + [self.cols.last!.first!]
     /**
     set curr to the first value of each of the generators, except the last: don't
     increment this generator, so that the first value returned contains it.
@@ -166,7 +166,7 @@ public extension SequenceType where Generator.Element : SequenceType {
   /// ```
   
   func lazyProduct() -> ProdSeq<[Generator.Element.Generator.Element]> {
-    return ProdSeq(cols: self.map(Array.init))
+    return ProdSeq(cols: map(Array.init))
   }
 }
 
@@ -201,7 +201,7 @@ public struct TransposeSeq<
   private let seq: S
   public func generate()
     -> TransposeGen<S.Generator.Element.Generator.Element, S.Generator.Element.Generator>{
-    return TransposeGen(gens: self.seq.map{ $0.generate() })
+    return TransposeGen(gens: seq.map{ $0.generate() })
   }
 }
 

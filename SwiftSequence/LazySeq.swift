@@ -2,12 +2,12 @@ public protocol LazySequenceType : SequenceType {}
 
 
 public extension LazySequenceType {
-  func map<T>(transform: (Self.Generator.Element) -> T)
+  func map<T>(transform: (Generator.Element) -> T)
     -> LazySequence<MapSequence<Self, T>>  {
       return lazy(self).map(transform)
   }
   
-  func filter(includeElement: (Self.Generator.Element) -> Bool)
+  func filter(includeElement: (Generator.Element) -> Bool)
     -> LazySequence<FilterSequence<Self>> {
       return lazy(self).filter(includeElement)
   }

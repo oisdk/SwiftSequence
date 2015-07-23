@@ -25,7 +25,7 @@ public struct FlatMapGen<G : GeneratorType, S : SequenceType> : GeneratorType {
   }
   private init(transform: G.Element -> S, var g: G) {
     self.transform = transform
-    self.innerGen = g.next().map(transform)?.generate()
+    innerGen = g.next().map(transform)?.generate()
     self.g = g
   }
 
@@ -100,7 +100,7 @@ public extension LazySequenceType {
   /// Lazy `flatMap()`
   /// - SeeAlso: `flatMap()`
   
-  func flatMap<T>(transform: (Self.Generator.Element) -> T?) -> FlatMapOptSeq<Self, T> {
+  func flatMap<T>(transform: (Generator.Element) -> T?) -> FlatMapOptSeq<Self, T> {
     return FlatMapOptSeq(seq: self, transform: transform)
   }
 }

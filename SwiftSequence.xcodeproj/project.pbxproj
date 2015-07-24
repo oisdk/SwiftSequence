@@ -50,6 +50,8 @@
 		7074F13D1B5FAA9800E046B2 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13B1B5F025400E046B2 /* List.swift */; };
 		7074F13F1B5FC12700E046B2 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13E1B5FC12700E046B2 /* LazyList.swift */; };
 		7074F1401B5FC2FE00E046B2 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13E1B5FC12700E046B2 /* LazyList.swift */; };
+		70D9B8AC1B62A1F100AFC6D4 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */; };
+		70D9B8AD1B62A1F100AFC6D4 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,7 @@
 		7063A6E01B612C7F004B137F /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		7074F13B1B5F025400E046B2 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		7074F13E1B5FC12700E046B2 /* LazyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyList.swift; sourceTree = "<group>"; };
+		70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,7 @@
 				7063A6E01B612C7F004B137F /* Deque.swift */,
 				7074F13B1B5F025400E046B2 /* List.swift */,
 				7074F13E1B5FC12700E046B2 /* LazyList.swift */,
+				70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */,
 				702D2ED21B604C62007BDC93 /* EmptyCollection.swift */,
 				7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */,
 				7037D05D1B403AC800FA04C6 /* Combinations.swift */,
@@ -277,6 +281,7 @@
 				7037D0851B403AC800FA04C6 /* ScanReduce.swift in Sources */,
 				7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */,
 				7037D07D1B403AC800FA04C6 /* Interpose.swift in Sources */,
+				70D9B8AC1B62A1F100AFC6D4 /* Trie.swift in Sources */,
 				7037D0871B403AC800FA04C6 /* TakeDrop.swift in Sources */,
 				7074F13C1B5F025400E046B2 /* List.swift in Sources */,
 				702D2ED31B604C62007BDC93 /* EmptyCollection.swift in Sources */,
@@ -312,6 +317,7 @@
 				7063A6E21B612C7F004B137F /* Deque.swift in Sources */,
 				7037D07A1B403AC800FA04C6 /* GenericGenerators.swift in Sources */,
 				7037D0741B403AC800FA04C6 /* Enumerate.swift in Sources */,
+				70D9B8AD1B62A1F100AFC6D4 /* Trie.swift in Sources */,
 				7037D0781B403AC800FA04C6 /* FlatMap.swift in Sources */,
 				7037D0701B403AC800FA04C6 /* Combinations.swift in Sources */,
 				7037D0801B403AC800FA04C6 /* LazySeq.swift in Sources */,

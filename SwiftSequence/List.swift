@@ -167,24 +167,24 @@ extension List {
   }
 }
 
-extension List : Indexable {
-  public var startIndex: Int { return 0 }
-  public var endIndex: Int {
+extension List {
+  
+  /// BEWARE: THIS IS O(N)
+  
+  public var count: Int {
     switch self {
     case .Nil: return 0
-    case .Cons(_, let tail): return tail.endIndex.successor()
+    case .Cons(_, let tail): return tail.count.successor()
     }
   }
 
-  public subscript(n: Int) -> Element {
-   get {
-      switch (n, self) {
-      case (0, .Cons(let head, _)): return head
-      case (_, .Cons(_, let tail)): return tail[n - 1]
-      case (_, .Nil): fatalError("Index out of range")
-      }
-    } set {
-      self = replacedWith(newValue, atIndex: n)
+  /// BEWARE: THIS IS O(N)
+  
+  public func nth(n: Int) -> Element {
+    switch (n, self) {
+    case (0, .Cons(let head, _)): return head
+    case (_, .Cons(_, let tail)): return tail.nth(n - 1)
+    case (_, .Nil): fatalError("Index out of range")
     }
   }
 }

@@ -77,24 +77,25 @@ extension LazyList : CustomDebugStringConvertible {
   }
 }
 
-extension LazyList : Indexable {
+extension LazyList {
   public var startIndex: Int { return 0 }
-  public var endIndex: Int {
+  
+  /// BEWARE: O(N)
+  
+  public var count: Int {
     switch self {
     case .Nil: return 0
-    case .Cons(_, let tail): return tail().endIndex.successor()
+    case .Cons(_, let tail): return tail().count.successor()
     }
   }
 
+  /// BEWARE: O(N)
+  
   public subscript(n: Int) -> Element {
-    get {
-      switch (n, self) {
-      case (0, .Cons(let head, _)): return head
-      case (_, .Cons(_, let tail)): return tail()[n - 1]
-      case (_, .Nil): fatalError("Index out of range")
-      }
-    } set {
-      self = replacedWith(newValue, atIndex: n)
+    switch (n, self) {
+    case (0, .Cons(let head, _)): return head
+    case (_, .Cons(_, let tail)): return tail()[n - 1]
+    case (_, .Nil): fatalError("Index out of range")
     }
   }
 }
@@ -122,12 +123,6 @@ public extension LazyList {
     case (_, let .Cons(head, tail)): return head |> tail().replacedWith(val, atIndex: n - 1)
     case (_, .Nil): fatalError("Index out of range")
     }
-  }
-}
-
-public extension LazyList {
-  public mutating func insert(val: Element, atIndex n: Int) {
-    self = inserted(val, atIndex: n)
   }
 }
 

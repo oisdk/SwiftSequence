@@ -87,16 +87,31 @@ extension Trie {
     S.Generator.Element == IS,
     IS.Generator.Element == Element
     >(_ seq: S) {
-      self = seq.reduce(Trie()) {
-        (var prevs: Trie<Element>, next: IS) in
-        prevs.insert(next)
-        return prevs
-      }
+      var trie = Trie()
+      for word in seq { trie.insert(word) }
+      self = trie
   }
 }
 
 extension Trie: SequenceType {
   public func generate() -> IndexingGenerator<[[Element]]>  {
     return contents.generate()
+  }
+}
+
+extension Trie {
+  private func completions
+    <G : GeneratorType where G.Element == Element>
+    (var start: G) -> [[Element]] {
+      return start.next().map {
+        head in
+        children[head]?
+          .completions(start)
+          .map { [head] + $0 } ?? []
+        } ?? contents
+  }
+  
+  public func completions<S : SequenceType where S.Generator.Element == Element>(start: S) -> [[Element]] {
+    return completions(start.generate())
   }
 }

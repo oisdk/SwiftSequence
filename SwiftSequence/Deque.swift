@@ -9,10 +9,10 @@ extension Deque {
   private init(front: List<Element>, back: List<Element>) {
     (self.front, self.back) = (front, back)
   }
-  private init(front: [Element], noReverseBack: [Element]) {
-    (self.front, back) = (List(seq: front), List(seq: noReverseBack))
-    check()
-  }
+//  private init(front: [Element], noReverseBack: [Element]) {
+//    (self.front, back) = (List(seq: front), List(seq: noReverseBack))
+//    check()
+//  }
 }
 
 extension Deque {
@@ -160,7 +160,10 @@ extension Deque {
 
 extension Deque {
   public func filter(@noescape includeElement: Element -> Bool) -> Deque<Element> {
-    var ret = Deque(front: front.filter(includeElement), back: back.filter(includeElement))
+    var ret = Deque(
+      front: front.filter(includeElement),
+      back : back .filter(includeElement)
+    )
     ret.check()
     return ret
   }
@@ -168,13 +171,19 @@ extension Deque {
 
 extension Deque {
   public func flatMap<S : SequenceType>(@noescape transform: Element -> S) -> Deque<S.Generator.Element> {
-    let frontAr: [S.Generator.Element] = front.flatMap(transform)
-    let backAr : [S.Generator.Element] = back .flatMap(transform)
-    return Deque<S.Generator.Element>(front: frontAr, noReverseBack: backAr)
+    var ret = Deque<S.Generator.Element>(
+      front: front.flatMap(transform),
+      back : back .flatMap(transform)
+    )
+    ret.check()
+    return ret
   }
   public func flatMap<T>(@noescape transform: Element -> T?) -> Deque<T> {
-    let frontAr: [T] = front.flatMap(transform)
-    let backAr : [T] = back .flatMap(transform)
-    return Deque<T>(front: frontAr, noReverseBack: backAr)
+    var ret = Deque<T>(
+      front: front.flatMap(transform),
+      back : back .flatMap(transform)
+    )
+    ret.check()
+    return ret
   }
 }

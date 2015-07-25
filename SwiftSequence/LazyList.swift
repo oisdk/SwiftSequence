@@ -17,6 +17,8 @@ public func |> <T>(lhs: T, @autoclosure(escaping) rhs: () -> LazyList<T>) -> Laz
   return LazyList.Cons(head: lhs, tail: rhs)
 }
 
+postfix operator |> {}
+
 public prefix func |> <T>(rhs: () -> LazyList<T>)(lhs: T) -> LazyList<T> {
   return LazyList.Cons(head: lhs, tail: rhs)
 }
@@ -24,6 +26,14 @@ public prefix func |> <T>(rhs: () -> LazyList<T>)(lhs: T) -> LazyList<T> {
 public prefix func |> <T>(@autoclosure(escaping) rhs: () -> LazyList<T>)(lhs: T) -> LazyList<T> {
   return LazyList.Cons(head: lhs, tail: rhs)
 }
+
+//public postfix func |> <T>(lhs: T)(rhs: () -> LazyList<T>) -> LazyList<T> {
+//  return LazyList.Cons(head: lhs, tail: rhs)
+//}
+//
+//public postfix func |> <T>(lhs: T)(@autoclosure(escaping) rhs: () -> LazyList<T>) -> LazyList<T> {
+//  return LazyList.Cons(head: lhs, tail: rhs)
+//}
 
 public extension LazyList {
   public init<G : GeneratorType where G.Element == Element>(var _ gen: G) {

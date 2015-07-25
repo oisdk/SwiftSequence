@@ -93,6 +93,16 @@ extension Trie {
   }
 }
 
+//extension Trie {
+//  public var lazyContents: LazyList<LazyList<Element>> {
+//    return LazyList(children).flatMap {
+//      (head: Element, child: Trie<Element>) -> LazyList<LazyList<Element>> in
+//      let below = child.lazyContents.map { head |> $0 }
+//      return child.endHere ? below.appended([head]) : below
+//    }
+//  }
+//}
+
 extension Trie: SequenceType {
   public func generate() -> IndexingGenerator<[[Element]]>  {
     return contents.generate()

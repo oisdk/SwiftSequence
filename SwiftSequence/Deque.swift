@@ -105,9 +105,11 @@ extension Deque {
 
 extension Deque {
   public mutating func removeFirst() -> Element {
+    defer { check() }
     return front.removeFirst()
   }
   public mutating func removeLast() -> Element {
+    defer { check() }
     return back.removeFirst()
   }
 }

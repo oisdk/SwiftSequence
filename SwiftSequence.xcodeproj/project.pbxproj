@@ -44,14 +44,22 @@
 		7037D08A1B403AC800FA04C6 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D06A1B403AC800FA04C6 /* Zip.swift */; };
 		7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
 		7037D08E1B40437F00FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
-		7063A6E11B612C7F004B137F /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063A6E01B612C7F004B137F /* Deque.swift */; };
-		7063A6E21B612C7F004B137F /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063A6E01B612C7F004B137F /* Deque.swift */; };
-		7074F13C1B5F025400E046B2 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13B1B5F025400E046B2 /* List.swift */; };
-		7074F13D1B5FAA9800E046B2 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13B1B5F025400E046B2 /* List.swift */; };
-		7074F13F1B5FC12700E046B2 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13E1B5FC12700E046B2 /* LazyList.swift */; };
-		7074F1401B5FC2FE00E046B2 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074F13E1B5FC12700E046B2 /* LazyList.swift */; };
-		70D9B8AC1B62A1F100AFC6D4 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */; };
-		70D9B8AD1B62A1F100AFC6D4 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */; };
+		70D5158E1B67B74E0093E3F5 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D5158D1B67B74E0093E3F5 /* List.swift */; };
+		70D5158F1B67B7510093E3F5 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D5158D1B67B74E0093E3F5 /* List.swift */; };
+		70D515911B67C71D0093E3F5 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515901B67C71D0093E3F5 /* LazyList.swift */; };
+		70D515921B67C71D0093E3F5 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515901B67C71D0093E3F5 /* LazyList.swift */; };
+		70D515941B67D0BA0093E3F5 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515931B67D0BA0093E3F5 /* Deque.swift */; };
+		70D515951B67D0BA0093E3F5 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515931B67D0BA0093E3F5 /* Deque.swift */; };
+		70D515971B67D6F80093E3F5 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515961B67D6F80093E3F5 /* Trie.swift */; };
+		70D515981B67D6F80093E3F5 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515961B67D6F80093E3F5 /* Trie.swift */; };
+		70D5159A1B67D8420093E3F5 /* ListExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515991B67D8420093E3F5 /* ListExtensions.swift */; };
+		70D5159B1B67D8420093E3F5 /* ListExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515991B67D8420093E3F5 /* ListExtensions.swift */; };
+		70D5159D1B67D8560093E3F5 /* LazyListExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D5159C1B67D8560093E3F5 /* LazyListExtensions.swift */; };
+		70D5159E1B67D8560093E3F5 /* LazyListExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D5159C1B67D8560093E3F5 /* LazyListExtensions.swift */; };
+		70D515A01B67D8640093E3F5 /* DequeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D5159F1B67D8640093E3F5 /* DequeExtensions.swift */; };
+		70D515A11B67D8640093E3F5 /* DequeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D5159F1B67D8640093E3F5 /* DequeExtensions.swift */; };
+		70D515A31B67D8710093E3F5 /* TrieExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515A21B67D8710093E3F5 /* TrieExtensions.swift */; };
+		70D515A41B67D8710093E3F5 /* TrieExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D515A21B67D8710093E3F5 /* TrieExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,10 +96,14 @@
 		7037D0691B403AC800FA04C6 /* TakeDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeDrop.swift; sourceTree = "<group>"; };
 		7037D06A1B403AC800FA04C6 /* Zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zip.swift; sourceTree = "<group>"; };
 		7037D08C1B40437100FA04C6 /* Categorise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categorise.swift; sourceTree = "<group>"; };
-		7063A6E01B612C7F004B137F /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
-		7074F13B1B5F025400E046B2 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
-		7074F13E1B5FC12700E046B2 /* LazyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyList.swift; sourceTree = "<group>"; };
-		70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		70D5158D1B67B74E0093E3F5 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		70D515901B67C71D0093E3F5 /* LazyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyList.swift; sourceTree = "<group>"; };
+		70D515931B67D0BA0093E3F5 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
+		70D515961B67D6F80093E3F5 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		70D515991B67D8420093E3F5 /* ListExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListExtensions.swift; sourceTree = "<group>"; };
+		70D5159C1B67D8560093E3F5 /* LazyListExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListExtensions.swift; sourceTree = "<group>"; };
+		70D5159F1B67D8640093E3F5 /* DequeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeExtensions.swift; sourceTree = "<group>"; };
+		70D515A21B67D8710093E3F5 /* TrieExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,10 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				7037D08C1B40437100FA04C6 /* Categorise.swift */,
-				7063A6E01B612C7F004B137F /* Deque.swift */,
-				7074F13B1B5F025400E046B2 /* List.swift */,
-				7074F13E1B5FC12700E046B2 /* LazyList.swift */,
-				70D9B8AB1B62A1F100AFC6D4 /* Trie.swift */,
 				702D2ED21B604C62007BDC93 /* EmptyCollection.swift */,
 				7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */,
 				7037D05D1B403AC800FA04C6 /* Combinations.swift */,
@@ -157,6 +165,14 @@
 				7037D06A1B403AC800FA04C6 /* Zip.swift */,
 				7037D0441B403AB500FA04C6 /* SwiftSequence.h */,
 				7037D0461B403AB500FA04C6 /* Info.plist */,
+				70D5158D1B67B74E0093E3F5 /* List.swift */,
+				70D515991B67D8420093E3F5 /* ListExtensions.swift */,
+				70D515901B67C71D0093E3F5 /* LazyList.swift */,
+				70D5159C1B67D8560093E3F5 /* LazyListExtensions.swift */,
+				70D515931B67D0BA0093E3F5 /* Deque.swift */,
+				70D5159F1B67D8640093E3F5 /* DequeExtensions.swift */,
+				70D515961B67D6F80093E3F5 /* Trie.swift */,
+				70D515A21B67D8710093E3F5 /* TrieExtensions.swift */,
 			);
 			path = SwiftSequence;
 			sourceTree = "<group>";
@@ -281,24 +297,28 @@
 				7037D0851B403AC800FA04C6 /* ScanReduce.swift in Sources */,
 				7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */,
 				7037D07D1B403AC800FA04C6 /* Interpose.swift in Sources */,
-				70D9B8AC1B62A1F100AFC6D4 /* Trie.swift in Sources */,
+				70D515971B67D6F80093E3F5 /* Trie.swift in Sources */,
 				7037D0871B403AC800FA04C6 /* TakeDrop.swift in Sources */,
-				7074F13C1B5F025400E046B2 /* List.swift in Sources */,
+				70D5159A1B67D8420093E3F5 /* ListExtensions.swift in Sources */,
 				702D2ED31B604C62007BDC93 /* EmptyCollection.swift in Sources */,
 				7037D0831B403AC800FA04C6 /* Permutations.swift in Sources */,
 				7037D0791B403AC800FA04C6 /* GenericGenerators.swift in Sources */,
 				7037D0811B403AC800FA04C6 /* NestedSequences.swift in Sources */,
 				7037D0891B403AC800FA04C6 /* Zip.swift in Sources */,
-				7074F13F1B5FC12700E046B2 /* LazyList.swift in Sources */,
 				7037D0771B403AC800FA04C6 /* FlatMap.swift in Sources */,
+				70D515A01B67D8640093E3F5 /* DequeExtensions.swift in Sources */,
 				7037D07F1B403AC800FA04C6 /* LazySeq.swift in Sources */,
 				7037D0751B403AC800FA04C6 /* Finding.swift in Sources */,
 				7037D07B1B403AC800FA04C6 /* HopJump.swift in Sources */,
+				70D515A31B67D8710093E3F5 /* TrieExtensions.swift in Sources */,
 				7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */,
+				70D515911B67C71D0093E3F5 /* LazyList.swift in Sources */,
 				7037D0711B403AC800FA04C6 /* Cycle.swift in Sources */,
 				7037D0731B403AC800FA04C6 /* Enumerate.swift in Sources */,
-				7063A6E11B612C7F004B137F /* Deque.swift in Sources */,
 				7037D06F1B403AC800FA04C6 /* Combinations.swift in Sources */,
+				70D515941B67D0BA0093E3F5 /* Deque.swift in Sources */,
+				70D5159D1B67D8560093E3F5 /* LazyListExtensions.swift in Sources */,
+				70D5158E1B67B74E0093E3F5 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,27 +327,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				7037D0511B403AB500FA04C6 /* SwiftSequenceTests.swift in Sources */,
+				70D515921B67C71D0093E3F5 /* LazyList.swift in Sources */,
 				7037D07C1B403AC800FA04C6 /* HopJump.swift in Sources */,
 				7037D0721B403AC800FA04C6 /* Cycle.swift in Sources */,
 				702D2ED41B604C62007BDC93 /* EmptyCollection.swift in Sources */,
 				7037D0881B403AC800FA04C6 /* TakeDrop.swift in Sources */,
+				70D5159B1B67D8420093E3F5 /* ListExtensions.swift in Sources */,
 				7037D06E1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */,
 				7037D0861B403AC800FA04C6 /* ScanReduce.swift in Sources */,
+				70D515951B67D0BA0093E3F5 /* Deque.swift in Sources */,
 				7037D0821B403AC800FA04C6 /* NestedSequences.swift in Sources */,
-				7063A6E21B612C7F004B137F /* Deque.swift in Sources */,
 				7037D07A1B403AC800FA04C6 /* GenericGenerators.swift in Sources */,
+				70D515981B67D6F80093E3F5 /* Trie.swift in Sources */,
+				70D515A41B67D8710093E3F5 /* TrieExtensions.swift in Sources */,
 				7037D0741B403AC800FA04C6 /* Enumerate.swift in Sources */,
-				70D9B8AD1B62A1F100AFC6D4 /* Trie.swift in Sources */,
 				7037D0781B403AC800FA04C6 /* FlatMap.swift in Sources */,
+				70D5159E1B67D8560093E3F5 /* LazyListExtensions.swift in Sources */,
+				70D515A11B67D8640093E3F5 /* DequeExtensions.swift in Sources */,
 				7037D0701B403AC800FA04C6 /* Combinations.swift in Sources */,
 				7037D0801B403AC800FA04C6 /* LazySeq.swift in Sources */,
 				7037D08E1B40437F00FA04C6 /* Categorise.swift in Sources */,
 				7037D07E1B403AC800FA04C6 /* Interpose.swift in Sources */,
-				7074F1401B5FC2FE00E046B2 /* LazyList.swift in Sources */,
 				7037D0841B403AC800FA04C6 /* Permutations.swift in Sources */,
 				7037D0761B403AC800FA04C6 /* Finding.swift in Sources */,
+				70D5158F1B67B7510093E3F5 /* List.swift in Sources */,
 				7037D08A1B403AC800FA04C6 /* Zip.swift in Sources */,
-				7074F13D1B5FAA9800E046B2 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

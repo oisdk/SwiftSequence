@@ -1,7 +1,17 @@
+// MARK: Definition
+
 public enum List<Element> {
   case Nil
   indirect case Cons(head: Element, tail: List<Element>)
 }
+
+extension List : CustomDebugStringConvertible {
+  public var debugDescription: String {
+    return ", ".join(map{String(reflecting: $0)})
+  }
+}
+
+// MARK: Init
 
 infix operator |> {
   associativity right
@@ -12,13 +22,28 @@ public func |> <T>(lhs: T, rhs: List<T>) -> List<T> {
   return .Cons(head: lhs, tail: rhs)
 }
 
-prefix operator |> {}
-
-public prefix func |> <T>(rhs: List<T>)(lhs: T) -> List<T> {
-  return lhs |> rhs
+public extension List {
+  private init<G : GeneratorType where G.Element == Element>(var gen: G) {
+    if let head = gen.next() {
+      self = head |> List(gen: gen)
+    } else {
+      self = .Nil
+    }
+  }
+  public init<S : SequenceType where S.Generator.Element == Element>(_ seq: S) {
+    self = List(gen: seq.generate())
+  }
 }
 
-public struct ListGenerator<Element> : GeneratorType {
+extension List : ArrayLiteralConvertible {
+  public init(arrayLiteral: Element...) {
+    self = List(arrayLiteral.generate())
+  }
+}
+
+// MARK: SequenceType
+
+public struct ListGenerator<Element> : GeneratorType, SequenceType {
   private var list: List<Element>
   public mutating func next() -> Element? {
     switch list {
@@ -28,12 +53,7 @@ public struct ListGenerator<Element> : GeneratorType {
       return head
     }
   }
-}
-
-extension ListGenerator : SequenceType {
-  public func generate() -> ListGenerator {
-    return self
-  }
+  public func generate() -> ListGenerator { return self }
 }
 
 extension List : SequenceType {
@@ -42,9 +62,83 @@ extension List : SequenceType {
   }
 }
 
-extension List : CustomDebugStringConvertible {
-  public var debugDescription: String {
-    return ", ".join(map{String(reflecting: $0)})
+// MARK: Indexable
+
+extension List {
+  public func replacedWith(val: Element, atIndex n: Int) -> List<Element> {
+    switch (n, self) {
+    case (0, .Cons(_, let tail)): return val |> tail
+    case (_, let .Cons(head, tail)): return head |> tail.replacedWith(val, atIndex: n - 1)
+    case (_, .Nil): fatalError("Index out of range")
+    }
+  }
+}
+
+// Crashes if made conform to CollectionType for some reason
+
+extension List : Indexable {
+  public var startIndex: Int { return 0 }
+  public var count: Int {
+    switch self {
+    case .Nil: return 0
+    case .Cons(_, let tail): return tail.count.successor()
+    }
+  }
+  public var endIndex: Int { return count }
+  public subscript(n: Int) -> Element {
+    get {
+      switch (n, self) {
+      case (0, .Cons(let head, _)): return head
+      case (_, .Cons(_, let tail)): return tail[n - 1]
+      case (_, .Nil): fatalError("Index out of range")
+      }
+    } set {
+      self = replacedWith(newValue, atIndex: n)
+    }
+  }
+}
+
+// MARK: More effecient implementations
+
+extension List {
+  public func prepended(with: Element) -> List<Element> {
+    return with |> self
+  }
+  public func appended(with: Element) -> List<Element> {
+    switch self {
+    case .Nil: return [with]
+    case let .Cons(head, tail): return head |> tail.appended(with)
+    }
+  }
+  public func extended(with: List<Element>) -> List<Element> {
+    switch self {
+    case .Nil: return with
+    case let .Cons(head, tail): return head |> tail.extended(with)
+    }
+  }
+  public func extended<
+    S : SequenceType where
+    S.Generator.Element == Element
+    >(with: S) -> List<Element> {
+      return extended(List(with))
+  }
+}
+
+extension List {
+  public func drop(n: Int) -> List<Element> {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return self
+    case let (_, .Cons(_, tail)): return tail.drop(n - 1)
+    }
+  }
+  public func take(n: Int) -> List<Element> {
+    switch (n, self) {
+    case (0, _), (_, .Nil): return .Nil
+    case let (_, .Cons(head, tail)): return head |> tail.take(n - 1)
+    }
+  }
+  public subscript (idxs: Range<Int>) -> List<Element> {
+    return drop(idxs.startIndex).take(idxs.endIndex - idxs.startIndex)
   }
 }
 
@@ -55,85 +149,67 @@ public extension List {
     case .Cons: return false
     }
   }
-}
-
-public extension Optional {
-  public func flatMap<U>(@noescape transform: T -> List<U>) -> List<U> {
-    return map(transform) ?? .Nil
+  public var first: Element? {
+    switch self {
+    case .Nil: return nil
+    case let .Cons(head, _): return head
+    }
   }
-}
-
-public extension List {
-  public init<G : GeneratorType where G.Element == Element>(var _ gen: G) {
-    self = gen.next().flatMap{ $0 |> List(gen)}
-  }
-  public init<S : SequenceType where S.Generator.Element == Element>(seq: S) {
-    self = List(seq.generate())
+  public var last: Element? {
+    switch self {
+    case .Nil: return nil
+    case let .Cons(head, tail): return tail.isEmpty ? head : tail.last
+    }
   }
 }
 
 extension List {
-  private func rev(other: List<Element>) -> List<Element> {
+  public func map<T>(@noescape transform: Element -> T) -> List<T> {
     switch self {
-    case .Nil: return other
-    case let .Cons(head, tail): return tail.rev(head |> other)
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return transform(head) |> tail.map(transform)
     }
   }
-  internal func reverse() -> List<Element> {
-    return rev(.Nil)
-  }
-}
-
-extension List : ArrayLiteralConvertible {
-  public init(arrayLiteral: Element...) {
-    self = List(arrayLiteral.generate())
-  }
-}
-
-public extension List {
-  public func appended(with: Element) -> List<Element> {
+  public func flatMap<T>(@noescape transform: Element -> List<T>) -> List<T> {
     switch self {
-    case .Nil: return [with]
-    case let .Cons(head, tail): return head |> tail.appended(with)
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return transform(head).extended(tail.flatMap(transform))
     }
   }
-  public func prepended(with: Element) -> List<Element> {
-    return with |> self
-  }
-  public func extended(with: List<Element>) -> List<Element> {
+  public func flatMap<S : SequenceType>(@noescape transform: Element -> S) -> List<S.Generator.Element> {
     switch self {
-    case .Nil: return with
-    case let .Cons(head, tail): return head |> tail.extended(with)
+    case .Nil: return .Nil
+    case let .Cons(head, tail): return List<S.Generator.Element>(transform(head)).extended(tail.flatMap(transform))
     }
   }
-  public func extended<
-    S : SequenceType where S.Generator.Element == Element
-    >(with: S) -> List<Element> {
-      return extended(List(seq: with))
+  public func flatMap<T>(@noescape transform: Element -> T?) -> List<T> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(head, tail):
+      return transform(head).map { $0 |> tail.flatMap(transform) } ?? tail.flatMap(transform)
+    }
   }
-  private func prextended<
-    G : GeneratorType where
-    G.Element == Element
-    >(var with: G) -> List<Element> {
-      return with.next().map{ $0 |> prextended(with)} ?? self
-  }
-  public func prextended<
-    S : SequenceType where
-    S.Generator.Element == Element
-    >(seq: S) -> List<Element> {
-      return prextended(seq.generate())
-  }
-  public func prextended(with: List<Element>) -> List<Element> {
-    return with.extended(self)
-  }
-}
-
-public func + <T>(lhs: List<T>, rhs: List<T>) -> List<T> {
-  return lhs.extended(rhs)
 }
 
 extension List {
-  func filter(@noescape includeElement: Element -> Bool) -> List<Element> {
+  public var tail: List<Element> {
+    switch self {
+    case .Nil: fatalError("Cannot call tail on an empty list")
+    case let .Cons(_, t): return t
+    }
+  }
+  public mutating func removeFirst() -> Element {
+    switch self {
+    case .Nil: fatalError("Cannot call removeFirst() on an empty list")
+    case let .Cons(head, tail):
+      self = tail
+      return head
+    }
+  }
+}
+
+extension List {
+  public func filter(@noescape includeElement: Element -> Bool) -> List<Element> {
     switch self {
     case .Nil: return .Nil
     case let .Cons(head, tail):
@@ -145,46 +221,13 @@ extension List {
 }
 
 extension List {
-  public func replacedWith(val: Element, atIndex n: Int) -> List<Element> {
-    switch (n, self) {
-    case (0, .Cons(_, let tail)): return val |> tail
-    case (_, let .Cons(head, tail)): return head |> tail.replacedWith(val, atIndex: n - 1)
-    case (_, .Nil): fatalError("Index out of range")
-    }
-  }
-  public func inserted(val: Element, atIndex n: Int) -> List<Element> {
-    switch (n, self) {
-    case (0, _): return val |> self
-    case (_, let .Cons(head, tail)): return head |> tail.replacedWith(val, atIndex: n - 1)
-    case (_, .Nil): fatalError("Index out of range")
-    }
-  }
-}
-
-extension List {
-  public mutating func insert(val: Element, atIndex n: Int) {
-    self = inserted(val, atIndex: n)
-  }
-}
-
-extension List {
-  
-  /// BEWARE: THIS IS O(N)
-  
-  public var count: Int {
+  private func reverse(other: List<Element>) -> List<Element> {
     switch self {
-    case .Nil: return 0
-    case .Cons(_, let tail): return tail.count.successor()
+    case .Nil: return other
+    case let .Cons(head, tail): return tail.reverse(head |> other)
     }
   }
-
-  /// BEWARE: THIS IS O(N)
-  
-  public func nth(n: Int) -> Element {
-    switch (n, self) {
-    case (0, .Cons(let head, _)): return head
-    case (_, .Cons(_, let tail)): return tail.nth(n - 1)
-    case (_, .Nil): fatalError("Index out of range")
-    }
+  public func reverse() -> List<Element> {
+    return reverse(.Nil)
   }
 }

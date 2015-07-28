@@ -14,13 +14,10 @@ extension Deque {
   private mutating func check() {
     switch (front, back) {
     case (.Nil, let .Cons(head, tail)) where !tail.isEmpty:
-      front = tail.reverse()
-      back = List<Element>.Cons(head: head, tail: .Nil)
+      (front, back) = (tail.reverse(), [head])
     case (let .Cons(head, tail), .Nil) where !tail.isEmpty:
-      back = tail.reverse()
-      front = List<Element>.Cons(head: head, tail: .Nil)
-    default:
-      return
+      (back, front) = (tail.reverse(), [head])
+    default: return
     }
   }
 }

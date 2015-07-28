@@ -1,5 +1,11 @@
 // MARK: Definition
 
+/**
+A Trie is a set-like data structure. It stores *sequences* of hashable elements, though.
+Lookup, insertion, and deletion are all *O(n)*, where *n* is the length of the sequence.
+
+*/
+
 public struct Trie<Element : Hashable> {
   private var children: [Element:Trie<Element>]
   private var endHere : Bool
@@ -139,11 +145,41 @@ extension Trie {
 }
 
 extension Trie {
-  public mutating func merge(with: Trie<Element>) {
+  public mutating func unionInPlace(with: Trie<Element>) {
     for (head, child) in with.children {
-      children[head]?.merge(child) ?? {children[head] = child}()
+      children[head]?.unionInPlace(child) ?? {children[head] = child}()
     }
   }
+}
+
+extension Trie {
+  public mutating func exclusiveOrInPlace<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) {
+      for toRemove in sequence { remove(toRemove) }
+  }
+}
+
+extension Trie {
+  public func intersect<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) -> Trie<Element> {
+      var ret = Trie()
+      for element in sequence where contains(element) { ret.insert(element) }
+      return ret
+  }
+}
+
+extension Trie {
+  public func isDisjointWith<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) -> Bool { return !sequence.contains(self.contains) }
 }
 
 extension Trie {
@@ -154,7 +190,7 @@ extension Trie {
   }
   public func flatMap<T>(@noescape transform: [Element] -> Trie<T>) -> Trie<T> {
     var ret = Trie<T>()
-    for trie in contents.map(transform) { ret.merge(trie) }
+    for trie in contents.map(transform) { ret.unionInPlace(trie) }
     return ret
   }
 }

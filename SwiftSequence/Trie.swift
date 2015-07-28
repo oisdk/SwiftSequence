@@ -89,36 +89,6 @@ extension Trie: SequenceType {
 
 // MARK: Methods
 
-public extension Trie {
-  private func contains
-    <G : GeneratorType where G.Element == Element>
-    (var gen: G) -> Bool {
-      return gen.next().map{self.children[$0]?.contains(gen) ?? false} ?? endHere
-  }
-  public func contains
-    <S : SequenceType where S.Generator.Element == Element>
-    (seq: S) -> Bool {
-      return contains(seq.generate())
-  }
-}
-
-public extension Trie {
-  private mutating func remove
-    <G : GeneratorType where G.Element == Element>
-    (var gen: G) {
-      if let head = gen.next() {
-        children[head]?.remove(gen)
-      } else {
-        endHere = false
-      }
-  }
-  public mutating func remove
-    <S : SequenceType where S.Generator.Element == Element>
-    (seq: S) {
-      remove(seq.generate())
-  }
-}
-
 extension Trie {
   private func completions
     <G : GeneratorType where G.Element == Element>
@@ -136,23 +106,41 @@ extension Trie {
   }
 }
 
-// MARK: More effecient implementations
+// MARK: Set Methods
 
-extension Trie {
-  public func map<S : SequenceType>(@noescape transform: [Element] -> S) -> Trie<S.Generator.Element> {
-    return Trie<S.Generator.Element>(contents.map(transform))
+public extension Trie {
+  private func contains
+    <G : GeneratorType where G.Element == Element>
+    (var gen: G) -> Bool {
+      return gen.next().map{self.children[$0]?.contains(gen) ?? false} ?? endHere
   }
-}
+  public func contains
+    <S : SequenceType where S.Generator.Element == Element>
+    (seq: S) -> Bool {
+      return contains(seq.generate())
+  }
 
-extension Trie {
+  private mutating func remove
+    <G : GeneratorType where G.Element == Element>
+    (var gen: G) {
+      if let head = gen.next() {
+        children[head]?.remove(gen)
+      } else {
+        endHere = false
+      }
+  }
+  public mutating func remove
+    <S : SequenceType where S.Generator.Element == Element>
+    (seq: S) {
+      remove(seq.generate())
+  }
+
   public mutating func unionInPlace(with: Trie<Element>) {
     for (head, child) in with.children {
       children[head]?.unionInPlace(child) ?? {children[head] = child}()
     }
   }
-}
 
-extension Trie {
   public mutating func exclusiveOrInPlace<
     S : SequenceType where
     S.Generator.Element : SequenceType,
@@ -160,9 +148,7 @@ extension Trie {
     >(sequence: S) {
       for toRemove in sequence { remove(toRemove) }
   }
-}
 
-extension Trie {
   public func intersect<
     S : SequenceType where
     S.Generator.Element : SequenceType,
@@ -172,14 +158,20 @@ extension Trie {
       for element in sequence where contains(element) { ret.insert(element) }
       return ret
   }
-}
 
-extension Trie {
   public func isDisjointWith<
     S : SequenceType where
     S.Generator.Element : SequenceType,
     S.Generator.Element.Generator.Element == Element
     >(sequence: S) -> Bool { return !sequence.contains(self.contains) }
+}
+
+// MARK: More effecient implementations
+
+extension Trie {
+  public func map<S : SequenceType>(@noescape transform: [Element] -> S) -> Trie<S.Generator.Element> {
+    return Trie<S.Generator.Element>(contents.map(transform))
+  }
 }
 
 extension Trie {

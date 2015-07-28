@@ -105,22 +105,10 @@ extension Deque {
 
 extension Deque {
   public mutating func removeFirst() -> Element {
-    switch front {
-    case .Nil: return back.last!
-    case let .Cons(head, tail):
-      front = tail
-      check()
-      return head
-    }
+    return front.removeFirst()
   }
   public mutating func removeLast() -> Element {
-    switch back {
-    case .Nil: return front.last!
-    case let .Cons(head, tail):
-      back = tail
-      check()
-      return head
-    }
+    return back.removeFirst()
   }
 }
 

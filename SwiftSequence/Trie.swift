@@ -169,6 +169,6 @@ extension Trie {
 
 extension Trie {
   public var count: Int {
-    return children.values.reduce(0) { $0 + $1.count } + (endHere ? 1 : 0)
+    return children.values.reduce(endHere ? 1 : 0) { $0 + $1.count }
   }
 }

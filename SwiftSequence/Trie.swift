@@ -21,6 +21,12 @@ extension Trie : CustomDebugStringConvertible {
   }
 }
 
+public func ==<T>(lhs: Trie<T>, rhs: Trie<T>) -> Bool {
+  return lhs.endHere == rhs.endHere && lhs.children == rhs.children
+}
+
+extension Trie : Equatable {}
+
 // MARK: Init
 
 extension Trie {
@@ -106,20 +112,7 @@ extension Trie {
   }
 }
 
-// MARK: Set Methods
-
-public extension Trie {
-  private func contains
-    <G : GeneratorType where G.Element == Element>
-    (var gen: G) -> Bool {
-      return gen.next().map{self.children[$0]?.contains(gen) ?? false} ?? endHere
-  }
-  public func contains
-    <S : SequenceType where S.Generator.Element == Element>
-    (seq: S) -> Bool {
-      return contains(seq.generate())
-  }
-
+extension Trie {
   private mutating func remove
     <G : GeneratorType where G.Element == Element>
     (var gen: G) {
@@ -134,13 +127,53 @@ public extension Trie {
     (seq: S) {
       remove(seq.generate())
   }
+}
 
-  public mutating func unionInPlace(with: Trie<Element>) {
-    for (head, child) in with.children {
-      children[head]?.unionInPlace(child) ?? {children[head] = child}()
-    }
+// MARK: Set Methods
+
+/**
+contains(_:)
+exclusiveOr(_:)
+exclusiveOrInPlace(_:)
+intersect(_:)
+intersectInPlace(_:)
+isDisjointWith(_:)
+isStrictSubsetOf(_:)
+isStrictSupersetOf(_:)
+isSubsetOf(_:)
+isSupersetOf(_:)
+remove(_:)
+removeAll(keepCapacity:)
+removeAtIndex(_:)
+removeFirst()
+subtract(_:)
+subtractInPlace(_:)
+union(_:)
+unionInPlace(_:)
+*/
+
+public extension Trie {
+  private func contains
+    <G : GeneratorType where G.Element == Element>
+    (var gen: G) -> Bool {
+      return gen.next().map{self.children[$0]?.contains(gen) ?? false} ?? endHere
   }
-
+  public func contains
+    <S : SequenceType where S.Generator.Element == Element>
+    (seq: S) -> Bool {
+      return contains(seq.generate())
+  }
+  
+  public func exclusiveOr<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    > (sequence: S) -> Trie<Element> {
+      var ret = self
+      ret.exclusiveOrInPlace(sequence)
+      return ret
+  }
+  
   public mutating func exclusiveOrInPlace<
     S : SequenceType where
     S.Generator.Element : SequenceType,
@@ -148,22 +181,34 @@ public extension Trie {
     >(sequence: S) {
       for toRemove in sequence { remove(toRemove) }
   }
-
+  
   public func intersect<
     S : SequenceType where
     S.Generator.Element : SequenceType,
     S.Generator.Element.Generator.Element == Element
     >(sequence: S) -> Trie<Element> {
-      var ret = Trie()
-      for element in sequence where contains(element) { ret.insert(element) }
-      return ret
+      return Trie(sequence.filter(contains))
   }
-
+  
+  public mutating func intersectInPlace<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) {
+      self = intersect(sequence)
+  }
+  
   public func isDisjointWith<
     S : SequenceType where
     S.Generator.Element : SequenceType,
     S.Generator.Element.Generator.Element == Element
     >(sequence: S) -> Bool { return !sequence.contains(self.contains) }
+
+  public mutating func unionInPlace(with: Trie<Element>) {
+    for (head, child) in with.children {
+      children[head]?.unionInPlace(child) ?? {children[head] = child}()
+    }
+  }
 }
 
 // MARK: More effecient implementations

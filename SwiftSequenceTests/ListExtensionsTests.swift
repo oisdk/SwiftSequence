@@ -131,4 +131,24 @@ class ListExtensionsTests: XCTestCase {
     XCTAssert(expectation.elementsEqual(reality))
     
   }
+  
+  func testZip() {
+    
+    let expectation = [(1, 1), (2, 2), (3, 3)]
+    
+    let reality = zip(List(1...3), List(1...10))
+
+    XCTAssert(expectation.elementsEqual(reality) { $0.0 == $1.0 && $0.1 == $1.1 })
+    
+  }
+  
+  func testZipWithPadding() {
+    
+    let expectation = [(1, 1), (2, 2), (3, 3), (4, 0), (5, 0)]
+    
+    let reality = zip(List(1...5), List(1...3), pad0: 0, pad1: 0)
+    
+    XCTAssert(expectation.elementsEqual(reality) { $0.0 == $1.0 && $0.1 == $1.1 })
+    
+  }
 }

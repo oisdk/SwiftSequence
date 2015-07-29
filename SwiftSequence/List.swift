@@ -7,7 +7,7 @@ public enum List<Element> {
 
 extension List : CustomDebugStringConvertible {
   public var debugDescription: String {
-    return ", ".join(map{String(reflecting: $0)})
+    return "[:" + ", ".join(map{String(reflecting: $0)}) + ":]"
   }
 }
 

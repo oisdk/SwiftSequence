@@ -6,7 +6,7 @@ public struct Deque<Element> {
 
 extension Deque : CustomDebugStringConvertible {
   public var debugDescription: String {
-    return front.debugDescription + " | " + back.reverse().debugDescription
+    return ", ".join(front.map{String(reflecting: $0)}) + " | " + ", ".join(back.reverse().map{String(reflecting: $0)})
   }
 }
 

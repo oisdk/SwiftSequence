@@ -1,9 +1,10 @@
 import XCTest
 
 class LazyListTests: XCTestCase {
+  
   func testDebugDescription() {
     
-    let expectation = "1, 2, 3"
+    let expectation = "[:1, 2, 3:]"
     
     let reality =
     LazyList.Cons(head: 1, tail: {LazyList.Cons(head: 2, tail: {LazyList.Cons(head: 3, tail: {LazyList.Nil})})})

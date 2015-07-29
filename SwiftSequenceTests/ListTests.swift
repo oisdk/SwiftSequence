@@ -4,7 +4,7 @@ class ListTests: XCTestCase {
   
   func testDebugDescription() {
     
-    let expectation = "1, 2, 3"
+    let expectation = "[:1, 2, 3:]"
     
     let reality =
     List.Cons(head: 1, tail: List.Cons(head: 2, tail: List.Cons(head: 3, tail: .Nil)))

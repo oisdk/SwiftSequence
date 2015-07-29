@@ -1,43 +1,33 @@
 // MARK: - Common
 
-public extension MutableCollectionType where Generator.Element : Comparable {
-  
-  /// [Algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order)
-  
-  mutating func nextLexPerm() -> Self? {
-    for k in dropFirst(indices.reverse()) where self[k] < self[k.successor()] {
-      for l in indices.reverse() where self[k] < self[l] {
-        swap(&self[k], &self[l])
-        let r = (k.successor()..<endIndex)
-        for (x, y) in zip(r, r.reverse()) {
-          if x == y || x == y.successor() { return self }
-          swap(&self[x], &self[y])
-        }
-      }
-    }
-    return nil
-  }
-}
-
 public extension MutableCollectionType {
   
   /// [Algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order)
   
-  mutating func nextLexPerm
+  public mutating func nextLexPerm
     (isOrderedBefore: (Generator.Element, Generator.Element) -> Bool) -> Self? {
       for k in dropFirst(indices.reverse())
         where isOrderedBefore(self[k], self[k.successor()]) {
-        for l in indices.reverse() where isOrderedBefore(self[k], self[l]) {
-          swap(&self[k], &self[l])
-          let r = (k.successor()..<endIndex)
-          for (x, y) in zip(r, r.reverse()) {
-            if x == y || x == y.successor() { return self }
-            swap(&self[x], &self[y])
+          for l in indices.reverse() where isOrderedBefore(self[k], self[l]) {
+            swap(&self[k], &self[l])
+            let r = (k.successor()..<endIndex)
+            for (x, y) in zip(r, r.reverse()) {
+              if x == y || x == y.successor() { return self }
+              swap(&self[x], &self[y])
+            }
           }
-        }
       }
       return nil
-    }
+  }
+}
+
+public extension MutableCollectionType where Generator.Element : Comparable {
+  
+  /// [Algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order)
+  
+  public mutating func nextLexPerm() -> Self? {
+    return nextLexPerm(<)
+  }
 }
 
 public struct LexPermGen<
@@ -46,7 +36,7 @@ public struct LexPermGen<
   > : GeneratorType  {
     private var col: C?
     mutating public func next() -> C? {
-      defer{ col = col?.nextLexPerm() }
+      defer { col = col?.nextLexPerm() }
       return col
     }
 }
@@ -55,7 +45,7 @@ public struct LexPermGenCustom<C : MutableCollectionType> : GeneratorType  {
   private var col: C?
   private let order: (C.Generator.Element, C.Generator.Element) -> Bool
   mutating public func next() -> C? {
-    defer{ col = col?.nextLexPerm(order) }
+    defer { col = col?.nextLexPerm(order) }
     return col
   }
 }
@@ -95,7 +85,7 @@ public extension MutableCollectionType {
   /// [[1, 2, 3]]
   /// ```
   
-  func lexPermutations
+  public func lexPermutations
     (isOrderedBefore: (Generator.Element, Generator.Element) -> Bool) -> [Self]{
       return LexPermSeqCustom(col: self, order: isOrderedBefore).array()
   }
@@ -119,7 +109,7 @@ public extension CollectionType where
   /// [[3, 2, 1]]
   /// ```
   
-    func lexPermutations() -> [Self] { return LexPermSeq(col: self).array() }
+    public func lexPermutations() -> [Self] { return LexPermSeq(col: self).array() }
 }
 
 public extension CollectionType where Index : Comparable {
@@ -132,7 +122,7 @@ public extension CollectionType where Index : Comparable {
   /// [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
   /// ```
   
-  func permutations() -> [[Generator.Element]] {
+  public func permutations() -> [[Generator.Element]] {
     return LexPermSeq(col: Array(indices)).map { inds in inds.map{self[$0]} }.array()
   }
 }
@@ -156,7 +146,7 @@ public extension MutableCollectionType {
   /// [1, 2, 3]
   /// ```
   
-  func lazyLexPermutations(isOrderedBefore: (Generator.Element, Generator.Element) -> Bool)
+  public func lazyLexPermutations(isOrderedBefore: (Generator.Element, Generator.Element) -> Bool)
     -> LexPermSeqCustom<Self> {
       return LexPermSeqCustom(col: self, order: isOrderedBefore)
   }
@@ -178,7 +168,7 @@ public extension MutableCollectionType where Generator.Element : Comparable {
   /// [3, 2, 1]
   /// ```
   
-    func lazyLexPermutations() -> LexPermSeq<Self> { return LexPermSeq(col: self) }
+    public func lazyLexPermutations() -> LexPermSeq<Self> { return LexPermSeq(col: self) }
 }
 
 public extension CollectionType where Index : Comparable {
@@ -196,7 +186,7 @@ public extension CollectionType where Index : Comparable {
   /// [3, 2, 1], [3, 1, 2], [2, 3, 1], [2, 1, 3], [1, 3, 2], [1, 2, 3]
   /// ```
   
-  func lazyPermutations()
+  public func lazyPermutations()
     -> LazySequence<MapSequence<LexPermSeq<Array<Index>>, [Generator.Element]>> {
       return LexPermSeq(col: Array(indices)).map { inds in inds.map{self[$0]} }
   }

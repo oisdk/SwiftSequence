@@ -61,4 +61,34 @@ class ListExtensionsTests: XCTestCase {
     XCTAssert(expectation.elementsEqual(reality))
     
   }
+  
+  func testInterpose() {
+    
+    let expectation = [1, 0, 2, 0, 3, 0, 4, 0, 5]
+    
+    let reality = List(1...5).interpose(0)
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
+  
+  func testInterposeList()  {
+    
+    let expectation = [1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5]
+    
+    let reality = List(1...5).interpose(List([0, 0]))
+    
+    XCTAssert(expectation.elementsEqual(reality))
+
+  }
+  
+  func testInterDig() {
+    
+    let expectation: List = [1, 10, 2, 20, 3, 30, 4, 40, 5, 50]
+    
+    let reality = interdig(List(1...5), List(1...5).map { $0 * 10 })
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
 }

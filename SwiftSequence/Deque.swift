@@ -133,13 +133,19 @@ extension Deque {
 
 extension Deque {
   public func map<T>(@noescape transform: Element -> T) -> Deque<T> {
-    return Deque<T>(front: front.map(transform), back: back.map(transform))
+    return Deque<T>(
+      front: front.map(transform),
+      back : back .map(transform)
+    )
   }
 }
 
 extension Deque {
   public func filter(@noescape includeElement: Element -> Bool) -> Deque<Element> {
-    var ret = Deque(front: front.filter(includeElement), back: back.filter(includeElement))
+    var ret = Deque(
+      front: front.filter(includeElement),
+      back : back .filter(includeElement)
+    )
     ret.check()
     return ret
   }
@@ -147,12 +153,19 @@ extension Deque {
 
 extension Deque {
   public func flatMap<T>(@noescape transform: Element -> Deque<T>) -> Deque<T> {
-    var ret = Deque<T>(front: front.flatMap{List(transform($0))}, back: back.flatMap{List(transform($0).reverse())})
+    var ret = Deque<T>(
+      front: front.flatMap{List(transform($0))},
+      back : back .flatMap{List(transform($0).reverse())}
+    )
     ret.check()
     return ret
   }
+  
   public func flatMap<T>(@noescape transform: Element -> T?) -> Deque<T> {
-    var ret = Deque<T>(front: front.flatMap(transform), back: back.flatMap(transform))
+    var ret = Deque<T>(
+      front: front.flatMap(transform),
+      back : back .flatMap(transform)
+    )
     ret.check()
     return ret
   }

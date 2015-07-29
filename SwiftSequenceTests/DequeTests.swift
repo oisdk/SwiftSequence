@@ -25,6 +25,7 @@ class DequeTests: XCTestCase {
     XCTAssert("4, 5 | 6" == reality.debugDescription)
     XCTAssert(reality.removeFirst() == 4)
     XCTAssert("5 | 6" == reality.debugDescription)
+    XCTAssert(reality.isBalanced)
     
   }
   
@@ -36,6 +37,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+    
   }
   
   func testArrayLiteralConvertible() {
@@ -46,6 +49,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testSequenceType() {
@@ -55,6 +60,7 @@ class DequeTests: XCTestCase {
     let reality = Array(Deque([1, 2, 3]))
     
     XCTAssert(expectation.elementsEqual(reality))
+    
   }
   
   func testFirst() {
@@ -95,6 +101,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testInitial() {
@@ -105,6 +113,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testDropFirst() {
@@ -115,6 +125,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testDropLast() {
@@ -125,6 +137,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testRemoveFirst() {
@@ -137,6 +151,8 @@ class DequeTests: XCTestCase {
   
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testRemoveLast() {
@@ -149,6 +165,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testMap() {
@@ -159,6 +177,8 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testFlatMap() {
@@ -170,6 +190,9 @@ class DequeTests: XCTestCase {
     let reality = before.flatMap { Deque([$0 * 2, $0 * 2 + 1]) }
     
     XCTAssert(expectation.elementsEqual(reality))
+    
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testFlatMapOpt() {
@@ -181,6 +204,9 @@ class DequeTests: XCTestCase {
     let reality = before.flatMap { $0 % 2 == 0 ? nil : $0 * 2 }
     
     XCTAssert(expectation.elementsEqual(reality))
+    
+    XCTAssert(reality.isBalanced)
+
   }
   
   func testFilter() {
@@ -191,5 +217,7 @@ class DequeTests: XCTestCase {
     
     XCTAssert(expectation.elementsEqual(reality))
     
+    XCTAssert(reality.isBalanced)
+
   }
 }

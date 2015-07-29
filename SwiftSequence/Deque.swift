@@ -1,7 +1,8 @@
 // MARK: Definition
 
 public struct Deque<Element> {
-  private var front, back: List<Element>
+  private var front: List<Element> { didSet { check() } }
+  private var back : List<Element> { didSet { check() } }
 }
 
 extension Deque : CustomDebugStringConvertible {
@@ -21,6 +22,16 @@ extension Deque {
     case (let .Cons(head, tail), .Nil) where !tail.isEmpty:
       (back, front) = (tail.reverse(), [head])
     default: return
+    }
+  }
+}
+
+extension Deque {
+  public var isBalanced: Bool {
+    switch (front, back) {
+    case (.Nil, let .Cons(_, tail)) where !tail.isEmpty: return false
+    case (let .Cons(_, tail), .Nil) where !tail.isEmpty: return false
+    default: return true
     }
   }
 }
@@ -113,11 +124,9 @@ public func dropLast<T>(deque: Deque<T>) -> Deque<T> {
 
 extension Deque {
   public mutating func removeFirst() -> Element {
-    defer { check() }
     return front.removeFirst()
   }
   public mutating func removeLast() -> Element {
-    defer { check() }
     return back.removeFirst()
   }
 }

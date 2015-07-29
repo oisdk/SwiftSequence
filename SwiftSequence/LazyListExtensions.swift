@@ -14,20 +14,31 @@ extension LazyList {
     }
   }
 }
+
 extension LazyList {
+  
+  private func takeIfAvailable(n: Int) -> LazyList<Element>? {
+    switch (n, self) {
+    case (0, _): return .Nil
+    case (_, .Nil): return nil
+    case let (_, .Cons(h, t)): return t().takeIfAvailable(n - 1).map { h |> $0 }
+    }
+  }
+  
   public func window(n: Int) -> LazyList<LazyList<Element>> {
     switch self {
     case .Nil: return .Nil
-    case let .Cons(_, tail): return take(n) |> tail().window(n)
+    case let .Cons(_, tail): return takeIfAvailable(n).map { $0 |> tail().window(n) } ?? .Nil
     }
   }
 }
+
 extension LazyList {
-  private func split(@noescape isSplit: Element -> Bool) -> (LazyList<Element>, LazyList<Element>) {
+  private func split(isSplit: Element -> Bool) -> (LazyList<Element>, LazyList<Element>) {
     switch self {
-    case .Nil: return (.Nil, self)
+    case .Nil: return (.Nil, .Nil)
     case let .Cons(head, tail):
-      return isSplit(head) ? (.Nil, self) :
+      return isSplit(head) ? ([head], tail()) :
         {(head |> $0.0, $0.1)}(tail().split(isSplit))
     }
   }

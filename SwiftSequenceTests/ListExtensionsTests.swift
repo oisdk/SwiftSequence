@@ -51,4 +51,14 @@ class ListExtensionsTests: XCTestCase {
       XCTAssert(reality.next() == 2)
     }
   }
+  
+  func testHop() {
+    
+    let expectation: List = [1, 3, 5, 7, 9]
+    
+    let reality = List(1...9).hop(2)
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
 }

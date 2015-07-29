@@ -54,9 +54,9 @@ extension LazyList {
 // MARK: Finding
 // MARK: HopJump
 public extension LazyList {
-  public func hop(n: Int, i: Int = 0) -> LazyList<Element> {
+  public func hop(n: Int, i: Int = 1) -> LazyList<Element> {
     switch (i, self) {
-    case (0, let .Cons(head, tail)): return head |> tail().hop(n, i: n)
+    case (1, let .Cons(head, tail)): return head |> tail().hop(n, i: n)
     case (_, .Cons(_, let tail)): return tail().hop(n, i: i - 1)
     case (_, .Nil): return .Nil
     }

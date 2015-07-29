@@ -21,8 +21,7 @@ infix operator |> {
 public func |> <T>(lhs: T, rhs: List<T>) -> List<T> {
   return .Cons(head: lhs, tail: rhs)
 }
-
-public extension List {
+extension List {
   private init<G : GeneratorType where G.Element == Element>(var gen: G) {
     if let head = gen.next() {
       self = head |> List(gen: gen)

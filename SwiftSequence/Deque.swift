@@ -100,6 +100,14 @@ extension Deque {
   }
 }
 
+public func dropFirst<T>(deque: Deque<T>) -> Deque<T> {
+  return deque.tail
+}
+
+public func dropLast<T>(deque: Deque<T>) -> Deque<T> {
+  return deque.initial
+}
+
 extension Deque {
   public mutating func removeFirst() -> Element {
     defer { check() }
@@ -127,7 +135,7 @@ extension Deque {
 
 extension Deque {
   public func flatMap<T>(@noescape transform: Element -> Deque<T>) -> Deque<T> {
-    var ret = Deque<T>(front: front.flatMap{List(transform($0))}, back: back.flatMap{List(transform($0))})
+    var ret = Deque<T>(front: front.flatMap{List(transform($0))}, back: back.flatMap{List(transform($0).reverse())})
     ret.check()
     return ret
   }

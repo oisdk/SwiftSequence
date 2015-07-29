@@ -32,4 +32,23 @@ class ListExtensionsTests: XCTestCase {
     
   }
   
+  func textCycleN() {
+    
+    let expectation: List = [1, 2, 3, 1, 2, 3, 1, 2, 3]
+    
+    let reality = List(1...3).cycle(3)
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
+  
+  func testCycle() {
+    
+    var reality = List([1, 2]).cycle().generate()
+    
+    for _ in 0..<100 {
+      XCTAssert(reality.next() == 1)
+      XCTAssert(reality.next() == 2)
+    }
+  }
 }

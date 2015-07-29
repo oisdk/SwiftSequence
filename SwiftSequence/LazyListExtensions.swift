@@ -42,7 +42,7 @@ extension LazyList {
 // MARK: Cycle
 extension LazyList {
   public func cycle() -> LazyList<Element> {
-    return extended(self.cycle())
+    return self.extended(self.cycle())
   }
 }
 extension LazyList {

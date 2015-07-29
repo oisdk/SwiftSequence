@@ -99,23 +99,23 @@ extension LazyList {
   public func prepended(with: Element) -> LazyList<Element> {
     return with |> self
   }
-  public func appended(with: Element) -> LazyList<Element> {
+  public func appended(@autoclosure(escaping) with: () -> Element) -> LazyList<Element> {
     switch self {
-    case .Nil: return [with]
+    case .Nil: return .Cons(head: with(), tail: {.Nil})
     case let .Cons(head, tail): return head |> tail().appended(with)
     }
   }
-  public func extended(with: LazyList<Element>) -> LazyList<Element> {
+  public func extended(@autoclosure(escaping) with: () -> LazyList<Element>) -> LazyList<Element> {
     switch self {
-    case .Nil: return with
+    case .Nil: return with()
     case let .Cons(head, tail): return head |> tail().extended(with)
     }
   }
   public func extended<
     S : SequenceType where
     S.Generator.Element == Element
-    >(with: S) -> LazyList<Element> {
-      return extended(LazyList(with))
+    >(@autoclosure(escaping) with: () -> S) -> LazyList<Element> {
+      return extended(LazyList(with()))
   }
 }
 
@@ -177,7 +177,7 @@ extension LazyList {
     case let .Cons(head, tail): return LazyList<S.Generator.Element>(transform(head)).extended(tail().flatMap(transform))
     }
   }
-  public func flatMap<T>(@noescape transform: Element -> T?) -> List<T> {
+  public func flatMap<T>(transform: Element -> T?) -> LazyList<T> {
     switch self {
     case .Nil: return .Nil
     case let .Cons(head, tail):

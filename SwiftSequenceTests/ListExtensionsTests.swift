@@ -91,4 +91,44 @@ class ListExtensionsTests: XCTestCase {
     XCTAssert(expectation.elementsEqual(reality))
     
   }
+  
+  func testScan() {
+    
+    let expectation: List = [1, 3, 6, 10, 15]
+    
+    let reality = List(1...5).scan(0, combine: +)
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
+  
+  func testScan1() {
+    
+    let expectation: List = [3, 6, 10, 15]
+    
+    let reality = List(1...5).scan(+)
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
+  
+  func testTakeWhile() {
+    
+    let expectation = List([1, 2, 3, 4])
+    
+    let reality = List([1, 2, 3, 4, 5, 3, 2, 1]).takeWhile { $0 < 5 }
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
+  
+  func testDropWhile() {
+    
+    let expectation: List = [4, 5, 2]
+    
+    let reality = List([1, 2, 3, 4, 5, 2]).dropWhile { $0 < 4 }
+    
+    XCTAssert(expectation.elementsEqual(reality))
+    
+  }
 }

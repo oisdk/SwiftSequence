@@ -76,6 +76,7 @@
 		70F19A2A1B68C61C0078CF11 /* ScanReduceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A291B68C61C0078CF11 /* ScanReduceTests.swift */; };
 		70F19A2C1B68C6300078CF11 /* TakeDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A2B1B68C6300078CF11 /* TakeDropTests.swift */; };
 		70F19A2E1B68C6430078CF11 /* ZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A2D1B68C6430078CF11 /* ZipTests.swift */; };
+		70F19A301B68C7B50078CF11 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A2F1B68C7B50078CF11 /* ListTests.swift */; };
 		70F19A321B68C7E00078CF11 /* ListExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A311B68C7E00078CF11 /* ListExtensionsTests.swift */; };
 		70F19A341B68C7F30078CF11 /* LazyListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A331B68C7F30078CF11 /* LazyListTests.swift */; };
 		70F19A361B68C8090078CF11 /* LazyListExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A351B68C8080078CF11 /* LazyListExtensionsTests.swift */; };
@@ -83,7 +84,6 @@
 		70F19A3A1B68C8340078CF11 /* DequeExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A391B68C8330078CF11 /* DequeExtensionsTests.swift */; };
 		70F19A3C1B68C8480078CF11 /* TrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A3B1B68C8480078CF11 /* TrieTests.swift */; };
 		70F19A3E1B68C8620078CF11 /* TrieExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A3D1B68C8620078CF11 /* TrieExtensionsTests.swift */; };
-		70F19A401B68DB3B0078CF11 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A3F1B68DB3B0078CF11 /* ListTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +144,7 @@
 		70F19A291B68C61C0078CF11 /* ScanReduceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReduceTests.swift; sourceTree = "<group>"; };
 		70F19A2B1B68C6300078CF11 /* TakeDropTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeDropTests.swift; sourceTree = "<group>"; };
 		70F19A2D1B68C6430078CF11 /* ZipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipTests.swift; sourceTree = "<group>"; };
+		70F19A2F1B68C7B50078CF11 /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListTests.swift; path = ../ListTests.swift; sourceTree = "<group>"; };
 		70F19A311B68C7E00078CF11 /* ListExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListExtensionsTests.swift; sourceTree = "<group>"; };
 		70F19A331B68C7F30078CF11 /* LazyListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListTests.swift; sourceTree = "<group>"; };
 		70F19A351B68C8080078CF11 /* LazyListExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListExtensionsTests.swift; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		70F19A391B68C8330078CF11 /* DequeExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeExtensionsTests.swift; sourceTree = "<group>"; };
 		70F19A3B1B68C8480078CF11 /* TrieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieTests.swift; sourceTree = "<group>"; };
 		70F19A3D1B68C8620078CF11 /* TrieExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrieExtensionsTests.swift; sourceTree = "<group>"; };
-		70F19A3F1B68DB3B0078CF11 /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,7 +246,7 @@
 				70F19A291B68C61C0078CF11 /* ScanReduceTests.swift */,
 				70F19A2B1B68C6300078CF11 /* TakeDropTests.swift */,
 				70F19A2D1B68C6430078CF11 /* ZipTests.swift */,
-				70F19A3F1B68DB3B0078CF11 /* ListTests.swift */,
+				70F19A2F1B68C7B50078CF11 /* ListTests.swift */,
 				70F19A311B68C7E00078CF11 /* ListExtensionsTests.swift */,
 				70F19A331B68C7F30078CF11 /* LazyListTests.swift */,
 				70F19A351B68C8080078CF11 /* LazyListExtensionsTests.swift */,
@@ -441,7 +441,7 @@
 				70F19A2A1B68C61C0078CF11 /* ScanReduceTests.swift in Sources */,
 				70F19A341B68C7F30078CF11 /* LazyListTests.swift in Sources */,
 				7037D0761B403AC800FA04C6 /* Finding.swift in Sources */,
-				70F19A401B68DB3B0078CF11 /* ListTests.swift in Sources */,
+				70F19A301B68C7B50078CF11 /* ListTests.swift in Sources */,
 				70F19A241B68C5C20078CF11 /* LazySeqTests.swift in Sources */,
 				70D5158F1B67B7510093E3F5 /* List.swift in Sources */,
 				70F19A3A1B68C8340078CF11 /* DequeExtensionsTests.swift in Sources */,

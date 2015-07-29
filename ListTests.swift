@@ -7,7 +7,7 @@ class ListTests: XCTestCase {
     let expectation = "1, 2, 3"
     
     let reality =
-    List.Cons(head: 1, tail: List.Cons(head: 2, tail: List.Cons(head: 3, tail: .Nil)))
+      List.Cons(head: 1, tail: List.Cons(head: 2, tail: List.Cons(head: 3, tail: .Nil)))
       .debugDescription
     
     XCTAssert(expectation == reality)
@@ -223,7 +223,7 @@ class ListTests: XCTestCase {
     let reality = List([1, 2, 3]).last
     
     XCTAssert(expectation == reality)
-    
+  
   }
   
   func testMap() {
@@ -271,7 +271,7 @@ class ListTests: XCTestCase {
     let expectation = [2, 3]
     
     let reality = List([1, 2, 3]).tail
-    
+
     XCTAssert(expectation.elementsEqual(reality))
     
   }

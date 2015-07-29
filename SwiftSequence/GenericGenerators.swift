@@ -1,21 +1,8 @@
-public struct BuildGen<T> : GeneratorType {
-  private var cur: T
-  private let inc: T -> T
-  public mutating func next() -> T? {
-    defer { cur = inc(cur) }
-    return cur
-  }
-  public init(start: T, inc: T -> T) {
-    self.cur = start
-    self.inc = inc
-  }
-}
-
 public struct RollGen<T> : GeneratorType {
   private var cur: T
   private let inc: T -> T
   public mutating func next() -> T? {
-    cur = inc(cur)
+    defer { cur = inc(cur) }
     return cur
   }
 }

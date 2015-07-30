@@ -212,6 +212,7 @@ public extension Trie {
   }
 
   public mutating func unionInPlace(with: Trie<Element>) {
+    endHere = endHere || with.endHere
     for (head, child) in with.children {
       children[head]?.unionInPlace(child) ?? {children[head] = child}()
     }

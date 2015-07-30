@@ -278,8 +278,8 @@ extension Trie {
 
 extension Trie {
   public func filter(@noescape includeElement: [Element] -> Bool) -> Trie<Element> {
-    var ret = Trie()
-    for element in contents where includeElement(element) { ret.insert(element) }
+    var ret = self
+    for element in contents where !includeElement(element) { ret.remove(element) }
     return ret
   }
 }

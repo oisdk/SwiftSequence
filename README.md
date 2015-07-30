@@ -607,10 +607,66 @@ This is just a reimplementation of the standard library `flatMap()` that returns
 | `filter()` | `Array` | `FilterSequenceView` |
 | `flatMap()` | `Array` | `Array` |
 
+[There's a rather lengthy, rambling discussion of this here.](https://bigonotetaking.wordpress.com/2015/07/19/making-flatmap-lazy/)
+
 # Structs #
 
 ## List ##
 
+The `List` struct is an indirect enum, declared like this:
+
+```swift
+public enum List<Element> {
+  case Nil
+  indirect case Cons(head: Element, tail: List<Element>)
+}
+```
+Operations on the head of the list are all *O(1)*, however, accessing any element involves stepping over every element before it. So operations on the end of the list are all *O(n)*.
+
+Lists are `ArrayLiteralConvertible`, so they can be declared like so:
+
+```swift
+let jo: List = [1, 2, 3, 4]
+```
+
+However, there is also an infix operator `|>` for [cons](https://en.wikipedia.org/wiki/Cons) operations.
+
+```swift
+let jo: List = 1 |> 2 |> 3 |> 4 |> .Nil
+```
+
+This operator, combined with the `switch` statement, allows for a pattern commonly found in functional languages:
+
+```swift
+extension List {
+  public func map<T>(@noescape f: Element -> T) -> List<T> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(x, xs): return f(x) |> xs.map(f)
+    }
+  }
+}
+```
+There is also a `LazyList` struct, with all of the functions available on `List`. The `|>` operator on a `LazyList` operates lazily: what's to the right of the operator is not evaluated until required. For instance, in this expression:
+
+```swift
+let jo: LazyList = 1 |> 2 |> (3 * 4) |> .Nil
+```
+
+`3 * 4` *will not* be evaluated until that value in the list is called.
+
 ## Deque ##
 
+A [Deque](https://en.wikipedia.org/wiki/Double-ended_queue) is a doubly-ended list (or queue). Operations on either end are *O(1)*.
+
+(There is not yet a lazy implementation of Deques)
+
+[There's a fuller explanation of lists and deques here](https://bigonotetaking.wordpress.com/2015/07/29/deques-queues-and-lists-in-swift-with-indirect/)
+
 ## Trie ##
+
+A [Trie](https://en.wikipedia.org/wiki/Trie) is a set-like data structure that stores sequences of hashable elements. (It should be noted that Sets themselves are hashable, so stick to those if you just need to store groups of groups. However, if order is important in the subsequences, a Trie is applicable)
+
+As well as all of the Set methods, Tries can return the completions for a given suffix.
+
+Insertion, deletion, and searching are all *O(n)* where *n* is the length of the sequence being searched for.

@@ -65,10 +65,7 @@ public extension RangeReplaceableCollectionType where
       let element: Generator.Element = self[ind]
       return self[ind..<endIndex]
         .combinationsWithRep(n)
-        .map {
-          (rest: [Generator.Element]) -> [Generator.Element] in
-          [element] + rest
-      }
+        .map { [element] + $0 }
     }
   }
 }
@@ -96,7 +93,6 @@ public struct ComboGen<C : MutableCollectionType> : GeneratorType {
   
   private let coll: C
   private var curr: [C.Generator.Element]
-  
   private var inds: [C.Index]
   
   mutating public func next() -> [C.Generator.Element]? {
@@ -181,9 +177,7 @@ public struct ComboRepGen<
   
   private let coll: C
   private var curr: [C.Generator.Element]
-  
   private var inds: [C.Index]
-  
   private let max : C.Index
   
   mutating public func next() -> [C.Generator.Element]? {

@@ -87,10 +87,6 @@ public extension LazySequenceType {
   }
 }
 
-
-
-
-
 // MARK: Random Access Hop:
 
 //public struct LazyHopCollection<

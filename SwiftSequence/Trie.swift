@@ -115,11 +115,17 @@ extension Trie {
 extension Trie {
   private mutating func remove
     <G : GeneratorType where G.Element == Element>
-    (var gen: G) {
-      if let head = gen.next() {
-        children[head]?.remove(gen)
+    (var g: G) -> Bool { // Return value signifies whether or not it can be removed
+      if let head = g.next() {
+        if children[head]?.remove(g) == true {
+          children.removeValueForKey(head)
+          return !endHere && children.isEmpty
+        } else {
+          return false
+        }
       } else {
         endHere = false
+        return children.isEmpty
       }
   }
   public mutating func remove
@@ -170,7 +176,9 @@ public extension Trie {
     S.Generator.Element.Generator.Element == Element
     > (sequence: S) -> Trie<Element> {
       var ret = self
-      ret.exclusiveOrInPlace(sequence)
+      for element in sequence {
+        ret.contains(element) ? ret.remove(element) : ret.insert(element)
+      }
       return ret
   }
   
@@ -179,7 +187,7 @@ public extension Trie {
     S.Generator.Element : SequenceType,
     S.Generator.Element.Generator.Element == Element
     >(sequence: S) {
-      for toRemove in sequence { remove(toRemove) }
+      for element in sequence { contains(element) ? remove(element) : insert(element) }
   }
   
   public func intersect<
@@ -208,6 +216,10 @@ public extension Trie {
     for (head, child) in with.children {
       children[head]?.unionInPlace(child) ?? {children[head] = child}()
     }
+  }
+  public func union(var with: Trie<Element>) -> Trie<Element> {
+    with.unionInPlace(self)
+    return with
   }
 }
 

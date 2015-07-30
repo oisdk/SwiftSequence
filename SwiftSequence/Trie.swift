@@ -3,7 +3,6 @@
 /**
 A Trie is a set-like data structure. It stores *sequences* of hashable elements, though.
 Lookup, insertion, and deletion are all *O(n)*, where *n* is the length of the sequence.
-
 */
 
 public struct Trie<Element : Hashable> {

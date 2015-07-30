@@ -137,24 +137,10 @@ extension Trie {
 // MARK: Set Methods
 
 /**
-contains(_:)
-exclusiveOr(_:)
-exclusiveOrInPlace(_:)
-intersect(_:)
-intersectInPlace(_:)
-isDisjointWith(_:)
 isStrictSubsetOf(_:)
 isStrictSupersetOf(_:)
-isSubsetOf(_:)
-isSupersetOf(_:)
-remove(_:)
-removeAll(keepCapacity:)
-removeAtIndex(_:)
-removeFirst()
 subtract(_:)
 subtractInPlace(_:)
-union(_:)
-unionInPlace(_:)
 */
 
 public extension Trie {
@@ -210,15 +196,64 @@ public extension Trie {
     S.Generator.Element : SequenceType,
     S.Generator.Element.Generator.Element == Element
     >(sequence: S) -> Bool { return !sequence.contains(self.contains) }
+  
+  public func isSupersetOf<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) -> Bool {
+      return !sequence.contains { !self.contains($0) }
+  }
+  
+  public func isSubsetOf<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) -> Bool {
+      return Trie(sequence).isSupersetOf(self)
+  }
 
   public mutating func unionInPlace(with: Trie<Element>) {
     for (head, child) in with.children {
       children[head]?.unionInPlace(child) ?? {children[head] = child}()
     }
   }
+  
+  public func subtract<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) -> Trie<Element> {
+      var result = self
+      for element in sequence { result.remove(element) }
+      return result
+  }
+  
+  public mutating func subtractInPlace<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) {
+      for element in sequence { remove(element) }
+  }
+  
+  public mutating func unionInPlace<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S) { unionInPlace(Trie(sequence)) }
+  
   public func union(var with: Trie<Element>) -> Trie<Element> {
     with.unionInPlace(self)
     return with
+  }
+  
+  public func union<
+    S : SequenceType where
+    S.Generator.Element : SequenceType,
+    S.Generator.Element.Generator.Element == Element
+    >(sequence: S)  -> Trie<Element> {
+      return union(Trie(sequence))
   }
 }
 

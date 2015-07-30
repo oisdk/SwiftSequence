@@ -1,9 +1,10 @@
 # SwiftSequence
-SwiftSequence is a framework of extensions to `SequenceType`, that provides functional, lightweight methods, similar to Python's itertools. Every function and method, unless otherwise specified, has both a lazy and eager version. SwiftSequence has no dependancies beyond the Swift standard library. To use, drag and drop into your project. To contribute, fork, write, and pull.
+
+SwiftSequence is a lightweight framework of extensions to `SequenceType` and structs that conform to `SequenceType`. It has no requirements beyond the Swift standard library. Every function, struct, and method has both a strict and a lazy version, unless otherwise specified.
 
 SwiftSequence adds one new protocol: `LazySequenceType`. This protocol has all of the same requirements as `SequenceType`, but anything that conforms to it is assumed to be lazily evaluated.
 
-When using a method, if the underlying sequence conforms to `LazySequenceType`, the method used will be the lazy version. If the sequence is eager, the eager method will be used.
+When using a method, if the underlying sequence conforms to `LazySequenceType`, the method used will be the lazy version. If the sequence is strict, the strict method will be used.
 
 All sequences returned by lazy methods conform to `LazySequenceType`, and these standard library structs have been made to conform, also:
 
@@ -12,10 +13,10 @@ extension LazySequence                : LazySequenceType {}
 extension LazyForwardCollection       : LazySequenceType {}
 extension LazyBidirectionalCollection : LazySequenceType {}
 extension LazyRandomAccessCollection  : LazySequenceType {}
-extension FilterSequenceView          : LazySequenceType {}
-extension FilterCollectionView        : LazySequenceType {}
-extension MapSequenceView             : LazySequenceType {}
-extension MapCollectionView           : LazySequenceType {}
+extension FilterSequence              : LazySequenceType {}
+extension FilterCollection            : LazySequenceType {}
+extension MapSequence                 : LazySequenceType {}
+extension MapCollection               : LazySequenceType {}
 extension Zip2                        : LazySequenceType {}
 extension EnumerateSequence           : LazySequenceType {}
 ```
@@ -41,21 +42,28 @@ lazy([1, 2, 3])
 
 ## Contents ##
 
-- [ScanReduce] (#scanreduce)
-- [TakeDrop] (#takedrop)
-- [HopJump] (#hopjump)
-- [Interpose] (#interpose)
-- [Combinations] (#combinations)
-- [Permutations] (#permutations)
-- [GenericGenerators] (#genericgenerators)
-- [Cycle] (#cycle)
-- [Categorise] (#categorise)
-- [ChunkWindowSplit] (#chunkwindowsplit)
-- [Enumerate] (#enumerate)
-- [Finding] (#finding)
-- [NestedSequences] (#nestedsequences)
-- [Zip] (#zip)
-- [FlatMap] (#flatmap)
+- [Extensions] (#extensions)
+  - [ScanReduce] (#scanreduce)
+  - [TakeDrop] (#takedrop)
+  - [HopJump] (#hopjump)
+  - [Interpose] (#interpose)
+  - [Combinations] (#combinations)
+  - [Permutations] (#permutations)
+  - [GenericGenerators] (#genericgenerators)
+  - [Cycle] (#cycle)
+  - [Categorise] (#categorise)
+  - [ChunkWindowSplit] (#chunkwindowsplit)
+  - [Enumerate] (#enumerate)
+  - [Finding] (#finding)
+  - [NestedSequences] (#nestedsequences)
+  - [Zip] (#zip)
+  - [FlatMap] (#flatmap)
+- [Structs] (#structs)
+  - [List] (#list)
+  - [Deque] (#deque)
+  - [Trie] (#trie)
+
+# Extensions #
 
 ## ScanReduce ##
 
@@ -598,3 +606,11 @@ This is just a reimplementation of the standard library `flatMap()` that returns
 | `map()` | `Array` | `MapSequenceView` |
 | `filter()` | `Array` | `FilterSequenceView` |
 | `flatMap()` | `Array` | `Array` |
+
+# Structs #
+
+## List ##
+
+## Deque ##
+
+## Trie ##

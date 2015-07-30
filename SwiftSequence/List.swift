@@ -80,7 +80,7 @@ extension List : Indexable {
   public var count: Int {
     switch self {
     case .Nil: return 0
-    case .Cons(_, let tail): return tail.count.successor()
+    case .Cons(_, let tail): return 1 + tail.count
     }
   }
   public var endIndex: Int { return count }

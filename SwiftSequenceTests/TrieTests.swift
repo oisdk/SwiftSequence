@@ -115,6 +115,27 @@ class TrieTests: XCTestCase {
     
   }
   
+  func testIsSupersetOf() {
+    
+    let under = Trie([[1, 2, 3], [3, 4, 5]])
+    
+    let isSuper = Trie([[1, 2, 3], [3, 4, 5], [4, 5, 6]])
+    let isNotSuper = Trie([[1, 2, 3], [4, 5, 6]])
+    
+    XCTAssert(isSuper.isSupersetOf(under))
+    XCTAssert(!isNotSuper.isSupersetOf(under))
+    
+  }
+  
+  func testIsSubsetOf() {
+    
+    let over = Trie([[1, 2, 3], [3, 4, 5]])
+    
+    XCTAssert(over.isSubsetOf([[1, 2, 3], [3, 4, 5], [4, 5, 6]]))
+    XCTAssert(!over.isSubsetOf([[1, 4, 3], [3, 4, 5], [4, 5, 6]]))
+    
+  }
+  
   func testUnion() {
     
     let frst = Trie([[1, 2, 3], [3, 4, 5], [2, 3, 4]])
@@ -123,6 +144,16 @@ class TrieTests: XCTestCase {
     let expectation = Trie([[1, 2, 3], [2, 3, 4], [3, 4, 5], [3, 4, 6]])
     
     XCTAssert(frst.union(scnd) == expectation)
+    
+  }
+  
+  func testSubtract() {
+    
+    let expectation = Trie([[1, 2, 3], [3, 4, 5]])
+    
+    let reality = Trie([[1, 2, 3], [2, 3, 4], [3, 4, 5], [3, 4, 6]]).subtract([[2, 3, 4], [3, 4, 6]])
+    
+    XCTAssert(expectation == reality)
     
   }
   

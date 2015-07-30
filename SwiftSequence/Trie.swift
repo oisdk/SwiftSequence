@@ -139,8 +139,6 @@ extension Trie {
 /**
 isStrictSubsetOf(_:)
 isStrictSupersetOf(_:)
-subtract(_:)
-subtractInPlace(_:)
 */
 
 public extension Trie {

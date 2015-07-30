@@ -47,7 +47,7 @@ public extension SequenceType {
   /// ```swift
   /// [1, 2, 3].scan(+)
   ///
-  /// [1, 3, 6]
+  /// [3, 6]
   /// ```
   
   func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element) -> [Generator.Element] {
@@ -92,7 +92,7 @@ public extension LazySequenceType {
   /// ```swift
   /// lazy([1, 2, 3]).scan(0, combine: +)
   ///
-  /// 3, 6
+  /// 1, 3, 6
   /// ```
   
   func scan<T>(initial: T, combine: (accumulator: T, element: Generator.Element) -> T) -> LazyScanSeq<Self, T> {

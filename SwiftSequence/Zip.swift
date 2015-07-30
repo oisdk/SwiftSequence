@@ -79,9 +79,3 @@ public func zipWithPadding<
   -> PaddedZip<S0, S1> {
     return PaddedZip(s0: s0, s1: s1, p0: pad0, p1: pad1)
 }
-
-// MARK: List
-
-
-
-

@@ -225,8 +225,3 @@ public extension LazySequenceType {
     return DropWhileSeq(predicate: predicate, seq: self)
   }
 }
-
-// MARK: List
-
-
-

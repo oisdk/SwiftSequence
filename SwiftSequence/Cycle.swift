@@ -71,9 +71,7 @@ public struct CycleGen<C: CollectionType> : GeneratorType, LazySequenceType {
     innerGen = col.generate()
   }
   
-  public func generate() -> CycleGen<C> {
-    return self
-  }
+  public func generate() -> CycleGen<C> { return self }
   
   public mutating func next() -> C.Generator.Element? {
     for ;;innerGen = inner.generate() {

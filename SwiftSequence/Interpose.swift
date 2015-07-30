@@ -22,7 +22,6 @@ public extension SequenceType {
       }
       return ret
     } ?? []
-    
   }
   
   /// Returns an array that alternates between n successive elements of self and element
@@ -97,7 +96,6 @@ public extension SequenceType {
         }
         return ret
       } ?? []
-      
   }
 }
 

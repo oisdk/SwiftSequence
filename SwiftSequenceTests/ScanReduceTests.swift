@@ -32,7 +32,7 @@ class ScanReduceTests: XCTestCase {
     
     let scanSum = nums.scan(+)
     
-    let expectation = [1, 3, 6, 10, 15]
+    let expectation = [3, 6, 10, 15]
     
     XCTAssert(scanSum == expectation)
     
@@ -60,7 +60,7 @@ class ScanReduceTests: XCTestCase {
     
     let scanSum = nums.scan(+)
     
-    let expectation = [1, 3, 6, 10, 15]
+    let expectation = [3, 6, 10, 15]
     
     XCTAssert(scanSum.elementsEqual(expectation, isEquivalent: ==))
     

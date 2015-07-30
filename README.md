@@ -87,7 +87,7 @@ There is also, like reduce, a version that takes the first element of the sequen
 ```swift
 [1, 2, 3, 4, 5].scan(+)
 
-[1, 3, 6, 10, 15]
+[3, 6, 10, 15]
 ```
 
 This also is evaluated lazily if the sequence it is called on is lazy.

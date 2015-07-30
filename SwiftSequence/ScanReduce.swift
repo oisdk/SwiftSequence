@@ -51,12 +51,8 @@ public extension SequenceType {
   /// ```
   
   func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element) -> [Generator.Element] {
-    var initial: Generator.Element?
-    return map {
-      element in
-      initial = initial.map{combine(accumulator: $0, element: element)} ?? element
-      return initial!
-    }
+    var g = generate()
+    return g.next().map { GeneratorSequence(g).scan($0, combine: combine) } ?? []
   }
 }
 
@@ -96,7 +92,7 @@ public extension LazySequenceType {
   /// ```swift
   /// lazy([1, 2, 3]).scan(0, combine: +)
   ///
-  /// 1, 3, 6
+  /// 3, 6
   /// ```
   
   func scan<T>(initial: T, combine: (accumulator: T, element: Generator.Element) -> T) -> LazyScanSeq<Self, T> {
@@ -109,14 +105,21 @@ public extension LazySequenceType {
 public struct Scan1Gen<G : GeneratorType> : GeneratorType {
   
   private let combine: (G.Element, G.Element) -> G.Element
-  private var accu: G.Element?
-  private var g: G
+  private var accu: G.Element!
+  private var g: G?
   
   public mutating func next() -> G.Element? {
-    return g.next().map {
-      element in
-      accu = accu.map{ combine($0, element) } ?? element
-      return accu!
+    return g?.next().map {
+      accu = combine(accu, $0)
+      return accu
+    }
+  }
+  
+  private init(combine: (G.Element, G.Element) -> G.Element, var generator: G) {
+    self.combine = combine
+    if let initial = generator.next() {
+      accu = initial
+      g = generator
     }
   }
 }
@@ -127,7 +130,7 @@ public struct LazyScan1Seq<S : SequenceType> : LazySequenceType {
   private let combine: (S.Generator.Element, S.Generator.Element) -> S.Generator.Element
   
   public func generate() -> Scan1Gen<S.Generator> {
-    return Scan1Gen(combine: combine, accu: nil, g: seq.generate())
+    return Scan1Gen(combine: combine, generator: seq.generate())
   }
 }
 
@@ -138,7 +141,7 @@ public extension LazySequenceType {
   /// ```swift
   /// lazy([1, 2, 3]).scan(+)
   ///
-  /// 1, 3, 6
+  /// 3, 6
   /// ```
   
   func scan(combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element)

@@ -661,7 +661,7 @@ A [Deque](https://en.wikipedia.org/wiki/Double-ended_queue) is a doubly-ended li
 
 (There is not yet a lazy implementation of Deques)
 
-[There's a fuller explanation of lists and deques here](https://bigonotetaking.wordpress.com/2015/07/29/deques-queues-and-lists-in-swift-with-indirect/)
+[There's a fuller explanation of lists and deques here.](https://bigonotetaking.wordpress.com/2015/07/29/deques-queues-and-lists-in-swift-with-indirect/)
 
 ## Trie ##
 

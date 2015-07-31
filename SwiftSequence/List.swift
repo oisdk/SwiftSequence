@@ -167,12 +167,22 @@ extension List {
 }
 
 extension List {
+  
+  /**
+  Returns `self` with the first `n` elements dropped
+  */
+  
   public func drop(n: Int) -> List<Element> {
     switch (n, self) {
     case (0, _), (_, .Nil): return self
     case let (_, .Cons(_, tail)): return tail.drop(n - 1)
     }
   }
+  
+  /**
+  Returns a `List` of the first `n` elements of `self`
+  */
+  
   public func take(n: Int) -> List<Element> {
     switch (n, self) {
     case (0, _), (_, .Nil): return .Nil
@@ -191,12 +201,20 @@ public extension List {
     case .Cons: return false
     }
   }
+  /**
+  Returns the first element of `self`, or `nil` if `self` is empty.
+  - complexity: O(1)
+  */
   public var first: Element? {
     switch self {
     case .Nil: return nil
     case let .Cons(head, _): return head
     }
   }
+  /**
+  Returns the last element of `self`, or `nil` if `self` is empty.
+  - complexity: O(`count`)
+  */
   public var last: Element? {
     switch self {
     case .Nil: return nil
@@ -206,24 +224,37 @@ public extension List {
 }
 
 extension List {
+  /**
+  Return a `List` containing the results of mapping `transform` over `self`.
+  - Complexity: O(N)
+  */
   public func map<T>(@noescape transform: Element -> T) -> List<T> {
     switch self {
     case .Nil: return .Nil
     case let .Cons(head, tail): return transform(head) |> tail.map(transform)
     }
   }
+  /**
+  Return a `List` containing concatenated results of mapping `transform` over `self`.
+  */
   public func flatMap<T>(@noescape transform: Element -> List<T>) -> List<T> {
     switch self {
     case .Nil: return .Nil
     case let .Cons(head, tail): return transform(head).extended(tail.flatMap(transform))
     }
   }
+  /**
+  Return a `List` containing concatenated results of mapping `transform` over `self`.
+  */
   public func flatMap<S : SequenceType>(@noescape transform: Element -> S) -> List<S.Generator.Element> {
     switch self {
     case .Nil: return .Nil
     case let .Cons(head, tail): return List<S.Generator.Element>(transform(head)).extended(tail.flatMap(transform))
     }
   }
+  /**
+  Return a `List` containing the non-nil results of mapping `transform` over `self`.
+  */
   public func flatMap<T>(@noescape transform: Element -> T?) -> List<T> {
     switch self {
     case .Nil: return .Nil

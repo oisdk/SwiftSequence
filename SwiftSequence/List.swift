@@ -1,5 +1,23 @@
 // MARK: Definition
 
+/**
+A singly-linked, recursive list. Head-tail decomposition can be accomplished with a
+`switch` statement:
+```swift
+extension List {
+  public func map<T>(@noescape f: Element -> T) -> List<T> {
+    switch self {
+    case .Nil: return .Nil
+    case let .Cons(x, xs): return f(x) |> xs.map(f)
+    }
+  }
+}
+```
+Where `|>` is the [cons](https://en.wikipedia.org/wiki/Cons) operator.
+
+Operations on the beginning of the list are *O(1)*, whereas other operations are *O(n)*.
+*/
+
 public enum List<Element> {
   case Nil
   indirect case Cons(head: Element, tail: List<Element>)
@@ -64,6 +82,11 @@ extension List : SequenceType {
 // MARK: Indexable
 
 extension List {
+  
+  /**
+  Returns `self` with `val` at the index `atIndex`
+  */
+  
   public func replacedWith(val: Element, atIndex n: Int) -> List<Element> {
     switch (n, self) {
     case (0, .Cons(_, let tail)): return val |> tail
@@ -100,21 +123,41 @@ extension List : Indexable {
 // MARK: More effecient implementations
 
 extension List {
+  
+  /**
+  returns `self` prepended with `with`
+  */
+  
   public func prepended(with: Element) -> List<Element> {
     return with |> self
   }
+  
+  /**
+  returns `self` appended with `with`
+  */
+  
   public func appended(with: Element) -> List<Element> {
     switch self {
     case .Nil: return [with]
     case let .Cons(head, tail): return head |> tail.appended(with)
     }
   }
+  
+  /**
+  returns `self` extended with `with`
+  */
+  
   public func extended(with: List<Element>) -> List<Element> {
     switch self {
     case .Nil: return with
     case let .Cons(head, tail): return head |> tail.extended(with)
     }
   }
+  
+  /**
+  returns `self` extended with `with`
+  */
+  
   public func extended<
     S : SequenceType where
     S.Generator.Element == Element
@@ -191,12 +234,28 @@ extension List {
 }
 
 extension List {
+  
+  /**
+  Returns `self` with the first element removed
+  
+  - precondition: `self` cannot be empty
+  - complexity: *O(1)*
+  */
+  
   public var tail: List<Element> {
     switch self {
     case .Nil: fatalError("Cannot call tail on an empty list")
     case let .Cons(_, t): return t
     }
   }
+  
+  /**
+  Removes the first element of `self` and returns it
+  
+  - precondition: `self` cannot be empty
+  - complexity: O(*1*)
+  */
+  
   public mutating func removeFirst() -> Element {
     switch self {
     case .Nil: fatalError("Cannot call removeFirst() on an empty list")

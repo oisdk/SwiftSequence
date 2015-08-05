@@ -18,7 +18,7 @@ extension ContiguousDeque {
 
 extension ContiguousDeque {
   private mutating func check() {
-    if front.isEmpty && back.endIndex > 1 {
+    if front.isEmpty && back.count > 1 {
       front = ContiguousArray(dropFirst(back).reverse())
       back = [back[0]]
     } else if back.isEmpty && front.count > 1 {
@@ -98,7 +98,7 @@ extension ContiguousDeque : CustomDebugStringConvertible {
 extension ContiguousArray {
   public func filter(@noescape includeElement: (Generator.Element) -> Bool) -> ContiguousArray<Element> {
     var result: ContiguousArray = []
-    result.reserveCapacity(capacity)
+    result.reserveCapacity(count)
     for element in self where includeElement(element) { result.append(element) }
     return result
   }
@@ -116,7 +116,7 @@ extension ContiguousDeque {
 extension ContiguousArray {
   public func flatMap<T>(@noescape transform: (Generator.Element) -> T?) -> ContiguousArray<T> {
     var result: ContiguousArray<T> = []
-    result.reserveCapacity(capacity)
+    result.reserveCapacity(count)
     for element in self {
       if let tansformed = transform(element) {
         result.append(tansformed)
@@ -144,7 +144,7 @@ extension ContiguousDeque {
 extension ContiguousArray {
   public func map<T>(@noescape transform: Element -> T) -> ContiguousArray<T> {
     var result: ContiguousArray<T> = []
-    result.reserveCapacity(capacity)
+    result.reserveCapacity(count)
     for element in self { result.append(transform(element)) }
     return result
   }

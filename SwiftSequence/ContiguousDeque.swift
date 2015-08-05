@@ -180,7 +180,7 @@ extension ContiguousDeque {
   }
 }
 
-extension ContiguousDeque : MutableSliceable {
+extension ContiguousDeque {
   public subscript(idxs: Range<Int>) -> ContiguousArray<Element> {
     get {
       switch (idxs.startIndex < front.endIndex, idxs.endIndex < front.endIndex) {
@@ -266,8 +266,10 @@ public func dropLast<T>(var from: ContiguousDeque<T>) -> ContiguousDeque<T> {
   return from
 }
 
-extension ContiguousDeque : CollectionType, RangeReplaceableCollectionType {
-  mutating public func replaceRange<C : CollectionType where C.Generator.Element == Element>(subRange: Range<Int>, with newElements: C) {
+extension ContiguousDeque {
+  mutating public func replaceRange<
+    C : CollectionType where C.Generator.Element == Element
+    >(subRange: Range<Int>, with newElements: C) {
     switch (subRange.startIndex < front.endIndex, subRange.endIndex < front.endIndex) {
     case (true, true):
       front.replaceRange(

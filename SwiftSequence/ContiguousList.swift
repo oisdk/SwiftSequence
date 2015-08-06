@@ -59,6 +59,12 @@ extension ContiguousList : SequenceType {
   }
 }
 
+extension ContiguousList : CustomDebugStringConvertible {
+  public var debugDescription: String {
+    return "[" + ", ".join(map {String(reflecting: $0)}) + "]"
+  }
+}
+
 extension ContiguousList : ArrayLiteralConvertible {
   public init(arrayLiteral: Element...) {
     contents = ContiguousArray(arrayLiteral.reverse())
@@ -66,13 +72,13 @@ extension ContiguousList : ArrayLiteralConvertible {
 }
 
 extension ContiguousList {
-  mutating func removeFirst() -> Element {
+  public mutating func removeFirst() -> Element {
     return contents.removeLast()
   }
   public var first: Element? {
     return contents.last
   }
-  var last: Element? {
+  public var last: Element? {
     return contents.first
   }
   public var isEmpty: Bool {
@@ -106,6 +112,12 @@ extension ContiguousListSlice : SequenceType {
   }
 }
 
+extension ContiguousListSlice : CustomDebugStringConvertible {
+  public var debugDescription: String {
+    return "[" + ", ".join(map {String(reflecting: $0)}) + "]"
+  }
+}
+
 extension ContiguousListSlice : ArrayLiteralConvertible {
   public init(arrayLiteral: Element...) {
     contents = ArraySlice(arrayLiteral.reverse())
@@ -130,12 +142,13 @@ extension ContiguousListSlice {
 extension ContiguousList {
   public subscript(idxs: Range<ContiguousListIndex>) -> ContiguousListSlice<Element> {
     get {
-      return ContiguousListSlice(contents:
-        contents[idxs.endIndex.val.successor()..<idxs.startIndex.val.successor()]
-      )
+      let start = idxs.endIndex.val.successor()
+      let end   = idxs.startIndex.val.successor()
+      return ContiguousListSlice(contents: contents[start..<end])
     } set {
-      contents[idxs.endIndex.val.successor()..<idxs.startIndex.val.successor()] =
-        newValue.contents
+      let start = idxs.endIndex.val.successor()
+      let end   = idxs.startIndex.val.successor()
+      contents[start..<end] = newValue.contents
     }
   }
 }
@@ -143,24 +156,25 @@ extension ContiguousList {
 extension ContiguousListSlice {
   public subscript(idxs: Range<ContiguousListIndex>) -> ContiguousListSlice<Element> {
     get {
-      return ContiguousListSlice(contents:
-        contents[idxs.endIndex.val.successor()..<idxs.startIndex.val.successor()]
-      )
+      let start = idxs.endIndex.val.successor()
+      let end   = idxs.startIndex.val.successor()
+      return ContiguousListSlice(contents: contents[start..<end] )
     } set {
-      contents[idxs.endIndex.val.successor()..<idxs.startIndex.val.successor()] =
-        newValue.contents
+      let start = idxs.endIndex.val.successor()
+      let end   = idxs.startIndex.val.successor()
+      contents[start..<end] = newValue.contents
     }
   }
 }
 
 extension ContiguousList {
-  init() {
+  public init() {
     contents = []
   }
 }
 
 extension ContiguousListSlice {
-  init() {
+  public init() {
     contents = []
   }
 }
@@ -178,38 +192,38 @@ extension ContiguousListSlice {
 }
 
 extension ContiguousList {
-  mutating func prepend(with: Element) {
+  public mutating func prepend(with: Element) {
     contents.append(with)
   }
 }
 
 extension ContiguousListSlice {
-  mutating func prepend(with: Element) {
+  public mutating func prepend(with: Element) {
     contents.append(with)
   }
 }
 
 extension ContiguousList {
-  mutating func reserveCapacity(n: Int) {
+  mutating public func reserveCapacity(n: Int) {
     contents.reserveCapacity(n)
   }
 }
 
 extension ContiguousListSlice {
-  mutating func reserveCapacity(n: Int) {
+  mutating public func reserveCapacity(n: Int) {
     contents.reserveCapacity(n)
   }
 }
 
 extension ContiguousList {
-  subscript(idx: Int) -> Element {
+  public subscript(idx: Int) -> Element {
     get { return contents[contents.endIndex.predecessor() - idx] }
     set { contents[contents.endIndex.predecessor() - idx] = newValue }
   }
 }
 
 extension ContiguousList {
-  subscript(idxs: Range<Int>) -> ContiguousListSlice<Element> {
+  public subscript(idxs: Range<Int>) -> ContiguousListSlice<Element> {
     get {
       let str = contents.endIndex - idxs.endIndex
       let end = contents.endIndex - idxs.startIndex
@@ -223,35 +237,54 @@ extension ContiguousList {
 }
 
 extension ContiguousListSlice {
-  subscript(idx: Int) -> Element {
+  public subscript(idx: Int) -> Element {
     get { return contents[contents.endIndex.predecessor() - idx] }
     set { contents[contents.endIndex.predecessor() - idx] = newValue }
   }
 }
 
 extension ContiguousListSlice {
-  subscript(idxs: Range<Int>) -> ContiguousListSlice<Element> {
+  public subscript(idxs: Range<Int>) -> ContiguousListSlice<Element> {
     get {
-      let str = contents.endIndex - idxs.endIndex
+      let start = contents.endIndex - idxs.endIndex
       let end = contents.endIndex - idxs.startIndex
-      return ContiguousListSlice(contents: contents[str..<end] )
+      return ContiguousListSlice(contents: contents[start..<end] )
     } set {
-      let str = contents.endIndex - idxs.endIndex
+      let start = contents.endIndex - idxs.endIndex
       let end = contents.endIndex - idxs.startIndex
-      contents[str..<end] = newValue.contents
+      contents[start..<end] = newValue.contents
     }
   }
 }
 
 extension ContiguousList {
-  func reverse() -> ContiguousArray<Element> {
+  public func reverse() -> ContiguousArray<Element> {
     return contents
   }
 }
 
 extension ContiguousListSlice {
-  func reverse() -> ArraySlice<Element> {
+  public func reverse() -> ArraySlice<Element> {
     return contents
   }
 }
 
+extension ContiguousList {
+  public mutating func replaceRange<
+    C : CollectionType where C.Generator.Element == Element
+    >(subRange: Range<ContiguousListIndex>, with newElements: C) {
+      let start = subRange.endIndex.val.successor()
+      let end   = subRange.startIndex.val.successor()
+      contents.replaceRange((start..<end), with: newElements)
+  }
+}
+
+extension ContiguousListSlice {
+  public mutating func replaceRange<
+    C : CollectionType where C.Generator.Element == Element
+    >(subRange: Range<ContiguousListIndex>, with newElements: C) {
+      let start = subRange.endIndex.val.successor()
+      let end   = subRange.startIndex.val.successor()
+      contents.replaceRange((start..<end), with: newElements)
+  }
+}

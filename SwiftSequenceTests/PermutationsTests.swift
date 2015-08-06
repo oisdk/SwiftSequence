@@ -1,4 +1,5 @@
 import XCTest
+@testable import SwiftSequence
 
 class PermutationsTests: XCTestCase {
   // MARK: Eager

@@ -37,7 +37,7 @@ extension Deque {
 }
 
 extension Deque {
-  public var isBalanced: Bool {
+  internal var isBalanced: Bool {
     switch (front, back) {
     case (.Nil, let .Cons(_, tail)) where !tail.isEmpty: return false
     case (let .Cons(_, tail), .Nil) where !tail.isEmpty: return false

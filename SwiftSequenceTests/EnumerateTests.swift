@@ -1,4 +1,5 @@
 import XCTest
+@testable import SwiftSequence
 
 class EnumerateTests: XCTestCase {
   func testEnumerate() {

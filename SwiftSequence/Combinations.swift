@@ -21,7 +21,7 @@ public extension RangeReplaceableCollectionType where
     return indices.flatMap {
       ind -> [[Generator.Element]] in
       let element: Generator.Element = self[ind]
-      return self[ind.successor()..<endIndex]
+      return self[ind.successor()..<self.endIndex]
         .combinations(n)
         .map { [element] + $0 }
     }
@@ -63,7 +63,7 @@ public extension RangeReplaceableCollectionType where
     return indices.flatMap {
       ind -> [[Generator.Element]] in
       let element: Generator.Element = self[ind]
-      return self[ind..<endIndex]
+      return self[ind..<self.endIndex]
         .combinationsWithRep(n)
         .map { [element] + $0 }
     }

@@ -72,10 +72,7 @@ public struct ContiguousDequeGenerator<Element> : GeneratorType, SequenceType {
     return fGen!.next() ?? {
       fGen = nil
       return sGen.next()
-      }()
-  }
-  public func generate() -> ContiguousDequeGenerator {
-    return self
+    }()
   }
 }
 
@@ -170,10 +167,16 @@ extension ContiguousDeque {
     )
   }
   public func flatMap<T>(@noescape transform: Element -> ContiguousDeque<T>) -> ContiguousDeque<T> {
-    return ContiguousDeque<T>(
-      ContiguousArray(front.flatMap{transform($0).reverse()}),
-      ContiguousArray(back .flatMap{transform($0)})
-    )
+    var f: ContiguousArray<T> = []
+    for el in front {
+      let toAp = transform(el).reverse()
+      f.extend(toAp)
+    }
+    var b: ContiguousArray<T> = []
+    for el in back {
+      b.extend(transform(el))
+    }
+    return ContiguousDeque<T>(f, b)
   }
 }
 
@@ -461,10 +464,16 @@ extension ContiguousDequeSlice {
     )
   }
   public func flatMap<T>(@noescape transform: Element -> ContiguousDequeSlice<T>) -> ContiguousDequeSlice<T> {
-    return ContiguousDequeSlice<T>(
-      ArraySlice(front.flatMap{transform($0).reverse()}),
-      ArraySlice(back .flatMap{transform($0)})
-    )
+    var f: ArraySlice<T> = []
+    for el in front {
+      let toAp = transform(el).reverse()
+      f.extend(toAp)
+    }
+    var b: ArraySlice<T> = []
+    for el in back {
+      b.extend(transform(el))
+    }
+    return ContiguousDequeSlice<T>(f, b)
   }
 }
 
@@ -591,14 +600,14 @@ extension ContiguousDequeSlice {
   }
 }
 
-public func dropFirst<T>(var from: ContiguousDequeSlice<T>) -> ContiguousDequeSlice<T> {
-  let _ = from.removeFirst()
-  return from
-}
-
-public func dropLast<T>(var from: ContiguousDequeSlice<T>) -> ContiguousDequeSlice<T> {
-  let _ = from.removeLast()
-  return from
+extension ContiguousDequeSlice {
+  public func dropFirst() -> ContiguousDequeSlice {
+    return ContiguousDequeSlice(front.dropLast(), back)
+  }
+  
+  public func dropLast() -> ContiguousDequeSlice {
+    return ContiguousDequeSlice(front, back.dropLast())
+  }
 }
 
 extension ContiguousDequeSlice {

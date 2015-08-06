@@ -6,7 +6,7 @@ public extension MutableCollectionType {
   
   public mutating func nextLexPerm
     (isOrderedBefore: (Generator.Element, Generator.Element) -> Bool) -> Self? {
-      for k in dropFirst(indices.reverse())
+      for k in indices.reverse().dropFirst()
         where isOrderedBefore(self[k], self[k.successor()]) {
           for l in indices.reverse() where isOrderedBefore(self[k], self[l]) {
             swap(&self[k], &self[l])

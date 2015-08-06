@@ -116,7 +116,7 @@ public struct ProdGen<C : CollectionType> : GeneratorType {
   private init(cols: [C]) {
     var gens = cols.map{$0.generate()}
     self.cols = cols
-    curr = dropLast(gens).indices.map{gens[$0].next()!} + [self.cols.last!.first!]
+    curr = gens.dropLast().indices.map{gens[$0].next()!} + [self.cols.last!.first!]
     /**
     set curr to the first value of each of the generators, except the last: don't
     increment this generator, so that the first value returned contains it.

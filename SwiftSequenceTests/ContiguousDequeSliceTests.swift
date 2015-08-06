@@ -245,7 +245,7 @@ class ContiguousDequeSliceTests: XCTestCase {
     
     let expectation = [2, 3, 4, 5]
     
-    let reality = dropFirst(ContiguousDequeSlice(1...5))
+    let reality = ContiguousDequeSlice(1...5).dropFirst()
     
     XCTAssert(expectation.elementsEqual(reality))
     
@@ -257,7 +257,7 @@ class ContiguousDequeSliceTests: XCTestCase {
     
     let expectation = [1, 2, 3, 4]
     
-    let reality = dropLast(ContiguousDequeSlice(1...5))
+    let reality = ContiguousDequeSlice(1...5).dropLast()
     
     XCTAssert(expectation.elementsEqual(reality))
     

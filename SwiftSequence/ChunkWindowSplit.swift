@@ -45,6 +45,8 @@ public extension SequenceType {
     
     var window: [Generator.Element] = []
     
+    window.reserveCapacity(n)
+    
     while window.count < n {
       if let next = g.next() {
         window.append(next)

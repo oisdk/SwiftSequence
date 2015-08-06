@@ -9,6 +9,7 @@ public extension SequenceType {
   func take(var n: Int) -> [Generator.Element] {
     var g = generate()
     var ret: [Generator.Element] = []
+    ret.reserveCapacity(n)
     while --n >= 0, let next = g.next() { ret.append(next) }
     return ret
   }

@@ -4,11 +4,12 @@ public struct ContiguousList<Element> {
 
 public struct ContiguousListIndex {
   private let val: Int
+  internal init(_ val: Int) { self.val = val }
 }
 
 extension ContiguousListIndex : Equatable, ForwardIndexType {
   public func successor() -> ContiguousListIndex {
-    return ContiguousListIndex(val: val.predecessor())
+    return ContiguousListIndex(val.predecessor())
   }
 }
 
@@ -24,7 +25,7 @@ public func > (lhs: ContiguousListIndex, rhs: ContiguousListIndex) -> Bool {
 
 extension ContiguousListIndex : BidirectionalIndexType {
   public func predecessor() -> ContiguousListIndex {
-    return ContiguousListIndex(val: val.successor())
+    return ContiguousListIndex(val.successor())
   }
 }
 
@@ -33,16 +34,20 @@ extension ContiguousListIndex : RandomAccessIndexType {
     return val - other.val
   }
   public func advancedBy(n: Int) -> ContiguousListIndex {
-    return ContiguousListIndex(val: val - n)
+    return ContiguousListIndex(val - n)
   }
 }
 
 extension ContiguousList : Indexable {
+  
   public var endIndex: ContiguousListIndex {
-    return ContiguousListIndex(val: contents.startIndex.predecessor())
+    return ContiguousListIndex(contents.startIndex.predecessor())
   }
   public var startIndex: ContiguousListIndex {
-    return ContiguousListIndex(val: contents.endIndex.predecessor())
+    return ContiguousListIndex(contents.endIndex.predecessor())
+  }
+  public var indices: Range<ContiguousListIndex> {
+    return startIndex..<endIndex
   }
   public var count: Int {
     return contents.count
@@ -72,6 +77,15 @@ extension ContiguousList : ArrayLiteralConvertible {
 }
 
 extension ContiguousList {
+  public init(_ array: [Element]) {
+    contents = ContiguousArray(array.reverse())
+  }
+  public init<S: SequenceType where S.Generator.Element == Element>(_ seq: S) {
+    contents = ContiguousArray(seq.reverse())
+  }
+}
+
+extension ContiguousList {
   public mutating func removeFirst() -> Element {
     return contents.removeLast()
   }
@@ -92,10 +106,10 @@ public struct ContiguousListSlice<Element> {
 
 extension ContiguousListSlice : Indexable {
   public var endIndex: ContiguousListIndex {
-    return ContiguousListIndex(val: contents.startIndex.predecessor())
+    return ContiguousListIndex(contents.startIndex.predecessor())
   }
   public var startIndex: ContiguousListIndex {
-    return ContiguousListIndex(val: contents.endIndex.predecessor())
+    return ContiguousListIndex(contents.endIndex.predecessor())
   }
   public var count: Int {
     return contents.count

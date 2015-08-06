@@ -111,6 +111,9 @@ extension ContiguousListSlice : Indexable {
   public var startIndex: ContiguousListIndex {
     return ContiguousListIndex(contents.endIndex.predecessor())
   }
+  public var indices: Range<ContiguousListIndex> {
+    return startIndex..<endIndex
+  }
   public var count: Int {
     return contents.count
   }
@@ -135,6 +138,15 @@ extension ContiguousListSlice : CustomDebugStringConvertible {
 extension ContiguousListSlice : ArrayLiteralConvertible {
   public init(arrayLiteral: Element...) {
     contents = ArraySlice(arrayLiteral.reverse())
+  }
+}
+
+extension ContiguousListSlice {
+  public init(_ array: [Element]) {
+    contents = ArraySlice(array.reverse())
+  }
+  public init<S: SequenceType where S.Generator.Element == Element>(_ seq: S) {
+    contents = ArraySlice(seq.reverse())
   }
 }
 
@@ -190,18 +202,6 @@ extension ContiguousList {
 extension ContiguousListSlice {
   public init() {
     contents = []
-  }
-}
-
-extension ContiguousList {
-  init<S : SequenceType where S.Generator.Element == Element>(seq: S) {
-    contents = ContiguousArray(seq.reverse())
-  }
-}
-
-extension ContiguousListSlice {
-  init<S : SequenceType where S.Generator.Element == Element>(seq: S) {
-    contents = ArraySlice(seq.reverse())
   }
 }
 
@@ -289,7 +289,7 @@ extension ContiguousList {
     >(subRange: Range<ContiguousListIndex>, with newElements: C) {
       let start = subRange.endIndex.val.successor()
       let end   = subRange.startIndex.val.successor()
-      contents.replaceRange((start..<end), with: newElements)
+      contents.replaceRange((start..<end), with: newElements.reverse())
   }
 }
 
@@ -299,6 +299,6 @@ extension ContiguousListSlice {
     >(subRange: Range<ContiguousListIndex>, with newElements: C) {
       let start = subRange.endIndex.val.successor()
       let end   = subRange.startIndex.val.successor()
-      contents.replaceRange((start..<end), with: newElements)
+      contents.replaceRange((start..<end), with: newElements.reverse())
   }
 }

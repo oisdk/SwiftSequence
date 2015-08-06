@@ -68,6 +68,7 @@
 		70F8A59F1B736A940034C40C /* ContiguousListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F8A59E1B736A940034C40C /* ContiguousListTests.swift */; };
 		70F8A5A11B736AA40034C40C /* ContiguousListExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F8A5A01B736AA40034C40C /* ContiguousListExtensionsTests.swift */; };
 		70F8A5A31B73777B0034C40C /* ContiguousDequeSliceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F8A5A21B73777B0034C40C /* ContiguousDequeSliceTests.swift */; };
+		70F8A5A51B7383F00034C40C /* ContiguousListSliceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F8A5A41B7383F00034C40C /* ContiguousListSliceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		70F8A59E1B736A940034C40C /* ContiguousListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContiguousListTests.swift; sourceTree = "<group>"; };
 		70F8A5A01B736AA40034C40C /* ContiguousListExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContiguousListExtensionsTests.swift; sourceTree = "<group>"; };
 		70F8A5A21B73777B0034C40C /* ContiguousDequeSliceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContiguousDequeSliceTests.swift; sourceTree = "<group>"; };
+		70F8A5A41B7383F00034C40C /* ContiguousListSliceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContiguousListSliceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 				70F8A5A21B73777B0034C40C /* ContiguousDequeSliceTests.swift */,
 				70F8A59C1B736A840034C40C /* ContiguousDequeExtensionsTests.swift */,
 				70F8A59E1B736A940034C40C /* ContiguousListTests.swift */,
+				70F8A5A41B7383F00034C40C /* ContiguousListSliceTests.swift */,
 				70F8A5A01B736AA40034C40C /* ContiguousListExtensionsTests.swift */,
 			);
 			path = SwiftSequenceTests;
@@ -423,6 +426,7 @@
 				70F19A1E1B68C5630078CF11 /* GenericGeneratorsTests.swift in Sources */,
 				70F8A5A11B736AA40034C40C /* ContiguousListExtensionsTests.swift in Sources */,
 				70F19A221B68C5A30078CF11 /* InterposeTests.swift in Sources */,
+				70F8A5A51B7383F00034C40C /* ContiguousListSliceTests.swift in Sources */,
 				70F19A121B68C4660078CF11 /* ChunkWindowSplitTests.swift in Sources */,
 				70F19A141B68C4910078CF11 /* CombinationsTests.swift in Sources */,
 				70F19A381B68C81D0078CF11 /* DequeTests.swift in Sources */,

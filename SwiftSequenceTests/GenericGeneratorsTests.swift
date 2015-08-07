@@ -7,7 +7,7 @@ class GenericGeneratorsTests: XCTestCase {
     
     let expectation = 1...100
     
-    let reality = (1...).take(100)
+    let reality = (1...).prefix(100)
     
     XCTAssert(expectation.elementsEqual(reality))
     

@@ -1,34 +1,5 @@
 // MARK: - Eager
 
-// MARK: Take
-
-public extension SequenceType {
-  
-  /// Returns an array of the first n elements of self
-  
-  func take(var n: Int) -> [Generator.Element] {
-    var g = generate()
-    var ret: [Generator.Element] = []
-    ret.reserveCapacity(n)
-    while --n >= 0, let next = g.next() { ret.append(next) }
-    return ret
-  }
-}
-
-// MARK: Drop
-
-public extension SequenceType {
-  
-  /// Returns an array of self with the first n elements dropped
-  
-  func drop(n: Int) -> [Generator.Element] {
-    var g = generate()
-    for _ in 0..<n { guard let _ = g.next() else { return [] } }
-    return Array(GeneratorSequence(g))
-
-  }
-}
-
 // MARK: TakeWhile
 
 public extension SequenceType {
@@ -72,70 +43,6 @@ public extension SequenceType {
 }
 
 // MARK: - Lazy
-
-// MARK: Take
-
-public struct TakeGen<G : GeneratorType> : GeneratorType {
-  
-  private var g: G
-  private var n: Int
-  
-  mutating public func next() -> G.Element? {
-    return --n < 0 ? nil : g.next()
-  }
-  
-  private init(g: G, n: Int) {
-    self.g = g
-    self.n = n
-  }
-}
-
-public struct TakeSeq<S : SequenceType> : LazySequenceType {
-  
-  private let seq: S
-  private let n: Int
-  
-  public func generate() -> TakeGen<S.Generator> {
-    return TakeGen(g: seq.generate(), n: n)
-  }
-}
-
-public extension LazySequenceType {
-  
-  /// Returns a lazy sequence of the first n elements of self
-  
-  func take(n: Int) -> TakeSeq<Self> {
-    return TakeSeq(seq: self, n: n)
-  }
-}
-
-// MARK: Drop
-
-public struct DropSeq<S : SequenceType> : LazySequenceType {
-  
-  private let seq: S
-  private let n: Int
-  
-  public func generate() -> S.Generator {
-    var g = seq.generate()
-    for _ in 0..<n { guard let _ = g.next() else {
-      g = seq.generate()
-      for _ in 0..<(n - 1) { g.next() }
-      return g
-      }
-    }
-    return g
-  }
-}
-
-public extension LazySequenceType {
-  
-  /// Returns a lazy sequence of self with the first n elements dropped
-  
-  func drop(n: Int) -> DropSeq<Self> {
-    return DropSeq(seq: self, n: n)
-  }
-}
 
 // MARK: TakeWhile
 

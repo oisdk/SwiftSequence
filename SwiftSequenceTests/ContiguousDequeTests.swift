@@ -1,4 +1,5 @@
 import XCTest
+import Foundation
 @testable import SwiftSequence
 
 class ContiguousDequeTests: XCTestCase {
@@ -245,7 +246,7 @@ class ContiguousDequeTests: XCTestCase {
     
     let expectation = [2, 3, 4, 5]
     
-    let reality = dropFirst(ContiguousDeque(1...5))
+    let reality = ContiguousDeque(1...5).dropFirst()
     
     XCTAssert(expectation.elementsEqual(reality))
     
@@ -253,11 +254,26 @@ class ContiguousDequeTests: XCTestCase {
     
   }
   
+  func testDropFirstN() {
+    
+    let array = [Int](3...30)
+    let deque = ContiguousDeque(array)
+    
+    for _ in 0...20 {
+      
+      let n = Int(arc4random_uniform(UInt32(array.count)))
+      
+      XCTAssert(array.dropFirst(n).elementsEqual(deque.dropFirst(n)))
+      
+    }
+    
+  }
+  
   func testDropLast() {
     
     let expectation = [1, 2, 3, 4]
     
-    let reality = dropLast(ContiguousDeque(1...5))
+    let reality = ContiguousDeque(1...5).dropLast()
     
     XCTAssert(expectation.elementsEqual(reality))
     

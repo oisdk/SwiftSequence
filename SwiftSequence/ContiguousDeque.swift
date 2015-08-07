@@ -303,14 +303,13 @@ extension ContiguousDeque {
   }
 }
 
-public func dropFirst<T>(var from: ContiguousDeque<T>) -> ContiguousDeque<T> {
-  let _ = from.removeFirst()
-  return from
-}
-
-public func dropLast<T>(var from: ContiguousDeque<T>) -> ContiguousDeque<T> {
-  let _ = from.removeLast()
-  return from
+extension ContiguousDeque {
+  public func dropFirst() -> ContiguousDequeSlice<Element> {
+    return ContiguousDequeSlice(front.dropLast(), ArraySlice(back))
+  }
+  public func dropLast() -> ContiguousDequeSlice<Element> {
+    return ContiguousDequeSlice(ArraySlice(front), back.dropLast())
+  }
 }
 
 extension ContiguousDeque {

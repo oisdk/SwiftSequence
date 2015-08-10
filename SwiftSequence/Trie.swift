@@ -16,7 +16,7 @@ public struct Trie<Element : Hashable> {
 
 extension Trie : CustomDebugStringConvertible {
   public var debugDescription: String {
-    return ", ".join(contents.map {"".join($0.map { String(reflecting: $0) })})
+    return ", ".join(map {"".join($0.map { String(reflecting: $0) })})
   }
 }
 
@@ -77,18 +77,41 @@ public extension Trie {
 
 // MARK: SequenceType
 
-extension Trie {
-  public var contents: [[Element]] {
-    return children.flatMap {
-      (head: Element, child: Trie<Element>) -> [[Element]] in
-      child.contents.map { [head] + $0 } + (child.endHere ? [[head]] : [])
+public struct TrieGenerator<Element : Hashable> : GeneratorType {
+  private var children: DictionaryGenerator<Element, Trie<Element>>
+  private var curHead : Element?
+  private var curEnd  : Bool = false
+  private var innerGen: (() -> [Element]?)?
+  private mutating func update() {
+    if let (head, child) = children.next() {
+      curHead = head
+      var g = child.generate()
+      innerGen = {g.next()}
+      curEnd = child.endHere
+    } else {
+      innerGen = nil
     }
+  }
+  public mutating func next() -> [Element]? {
+    for ; innerGen != nil; update() {
+      if let next = innerGen!() {
+        return [curHead!] + next
+      } else if curEnd {
+        curEnd = false
+        return [curHead!]
+      }
+    }
+    return nil
+  }
+  private init(_ from: Trie<Element>) {
+    children = from.children.generate()
+    update()
   }
 }
 
 extension Trie: SequenceType {
-  public func generate() -> IndexingGenerator<[[Element]]>  {
-    return contents.generate()
+  public func generate() -> TrieGenerator<Element>  {
+    return TrieGenerator(self)
   }
 }
 
@@ -97,15 +120,15 @@ extension Trie: SequenceType {
 extension Trie {
   private func completions
     <G : GeneratorType where G.Element == Element>
-    (var start: G) -> [[Element]] {
-      guard let head = start.next() else  { return contents }
-      guard let child = children[head] else { return [] }
+    (var start: G) -> Trie<Element> {
+      guard let head = start.next() else  { return self }
+      guard let child = children[head] else { return Trie() }
       return child
         .completions(start)
         .map { [head] + $0 }
   }
   
-  public func completions<S : SequenceType where S.Generator.Element == Element>(start: S) -> [[Element]] {
+  public func completions<S : SequenceType where S.Generator.Element == Element>(start: S) -> Trie<Element> {
     return completions(start.generate())
   }
 }
@@ -260,17 +283,29 @@ public extension Trie {
 
 extension Trie {
   public func map<S : SequenceType>(@noescape transform: [Element] -> S) -> Trie<S.Generator.Element> {
-    return Trie<S.Generator.Element>(contents.map(transform))
+    var result = Trie<S.Generator.Element>()
+    for seq in self {
+      result.insert(transform(seq))
+    }
+    return result
   }
 }
 
 extension Trie {
   public func flatMap<S : SequenceType>(@noescape transform: [Element] -> S?) -> Trie<S.Generator.Element> {
-    return Trie<S.Generator.Element>(lazy(contents).flatMap(transform))
+    var result = Trie<S.Generator.Element>()
+    for seq in self {
+      if let transformed = transform(seq) {
+        result.insert(transformed)
+      }
+    }
+    return result
   }
   public func flatMap<T>(@noescape transform: [Element] -> Trie<T>) -> Trie<T> {
     var ret = Trie<T>()
-    for trie in contents.map(transform) { ret.unionInPlace(trie) }
+    for seq in self {
+      ret.unionInPlace(transform(seq))
+    }
     return ret
   }
 }
@@ -278,7 +313,7 @@ extension Trie {
 extension Trie {
   public func filter(@noescape includeElement: [Element] -> Bool) -> Trie<Element> {
     var ret = self
-    for element in contents where !includeElement(element) { ret.remove(element) }
+    for element in self where !includeElement(element) { ret.remove(element) }
     return ret
   }
 }

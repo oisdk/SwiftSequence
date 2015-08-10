@@ -42,16 +42,6 @@ class TrieTests: XCTestCase {
     
   }
   
-  func testContents() {
-    
-    let expectation = [[1, 2, 3], [3, 4, 5], [2, 3, 4]].sort { $0.first < $1.first }
-    
-    let reality = Trie([[1, 2, 3], [3, 4, 5], [2, 3, 4]]).contents.sort { $0.first < $1.first }
-    
-    XCTAssert(expectation == reality)
-    
-  }
-  
   func testCompletions() {
     
     let trie = Trie([[1, 2, 3], [1, 2, 3, 4], [1, 2, 5, 6], [3, 4, 5]])

@@ -83,14 +83,11 @@ public struct TrieGenerator<Element : Hashable> : GeneratorType {
   private var curEnd  : Bool = false
   private var innerGen: (() -> [Element]?)?
   private mutating func update() {
-    if let (head, child) = children.next() {
-      curHead = head
-      var g = child.generate()
-      innerGen = {g.next()}
-      curEnd = child.endHere
-    } else {
-      innerGen = nil
-    }
+    guard let (head, child) = children.next() else { innerGen = nil; return }
+    curHead = head
+    var g = child.generate()
+    innerGen = {g.next()}
+    curEnd = child.endHere
   }
   public mutating func next() -> [Element]? {
     for ; innerGen != nil; update() {
@@ -134,24 +131,20 @@ extension Trie {
 }
 
 extension Trie {
-  private mutating func remove
-    <G : GeneratorType where G.Element == Element>
-    (var g: G) -> Bool { // Return value signifies whether or not it can be removed
+  private mutating func remove<
+    G : GeneratorType where G.Element == Element
+    >(var g: G) -> Bool { // Return value signifies whether or not it can be removed
       if let head = g.next() {
-        if children[head]?.remove(g) == true {
-          children.removeValueForKey(head)
-          return !endHere && children.isEmpty
-        } else {
-          return false
-        }
-      } else {
-        endHere = false
-        return children.isEmpty
+        guard children[head]?.remove(g) == true else { return false }
+        children.removeValueForKey(head)
+        return !endHere && children.isEmpty
       }
+      endHere = false
+      return children.isEmpty
   }
-  public mutating func remove
-    <S : SequenceType where S.Generator.Element == Element>
-    (seq: S) {
+  public mutating func remove<
+    S : SequenceType where S.Generator.Element == Element
+    >(seq: S) {
       remove(seq.generate())
   }
 }
@@ -164,9 +157,9 @@ isStrictSupersetOf(_:)
 */
 
 public extension Trie {
-  private func contains
-    <G : GeneratorType where G.Element == Element>
-    (var gen: G) -> Bool {
+  private func contains<
+    G : GeneratorType where G.Element == Element
+    >(var gen: G) -> Bool {
       guard let head = gen.next() else { return endHere }
       return children[head]?.contains(gen) ?? false
   }

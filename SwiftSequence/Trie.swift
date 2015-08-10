@@ -81,7 +81,7 @@ extension Trie {
   public var contents: [[Element]] {
     return children.flatMap {
       (head: Element, child: Trie<Element>) -> [[Element]] in
-      return child.contents.map { [head] + $0 } + (child.endHere ? [[head]] : [])
+      child.contents.map { [head] + $0 } + (child.endHere ? [[head]] : [])
     }
   }
 }
@@ -98,12 +98,11 @@ extension Trie {
   private func completions
     <G : GeneratorType where G.Element == Element>
     (var start: G) -> [[Element]] {
-      return start.next().map {
-        head in
-        children[head]?
-          .completions(start)
-          .map { [head] + $0 } ?? []
-        } ?? contents
+      guard let head = start.next() else  { return contents }
+      guard let child = children[head] else { return [] }
+      return child
+        .completions(start)
+        .map { [head] + $0 }
   }
   
   public func completions<S : SequenceType where S.Generator.Element == Element>(start: S) -> [[Element]] {
@@ -145,7 +144,8 @@ public extension Trie {
   private func contains
     <G : GeneratorType where G.Element == Element>
     (var gen: G) -> Bool {
-      return gen.next().map{self.children[$0]?.contains(gen) ?? false} ?? endHere
+      guard let head = gen.next() else { return endHere }
+      return children[head]?.contains(gen) ?? false
   }
   public func contains
     <S : SequenceType where S.Generator.Element == Element>
@@ -210,7 +210,7 @@ public extension Trie {
     >(sequence: S) -> Bool {
       return Trie(sequence).isSupersetOf(self)
   }
-
+  
   public mutating func unionInPlace(with: Trie<Element>) {
     endHere = endHere || with.endHere
     for (head, child) in with.children {
@@ -266,9 +266,7 @@ extension Trie {
 
 extension Trie {
   public func flatMap<S : SequenceType>(@noescape transform: [Element] -> S?) -> Trie<S.Generator.Element> {
-    var ret = Trie<S.Generator.Element>()
-    for case let seq? in contents.map(transform) { ret.insert(seq) }
-    return ret
+    return Trie<S.Generator.Element>(lazy(contents).flatMap(transform))
   }
   public func flatMap<T>(@noescape transform: [Element] -> Trie<T>) -> Trie<T> {
     var ret = Trie<T>()

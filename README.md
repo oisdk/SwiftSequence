@@ -1,5 +1,7 @@
 # SwiftSequence
 
+(If you're looking for data structures in Swift, those have been moved to [here](https://github.com/oisdk/SwiftDataStructures))
+
 SwiftSequence is a lightweight framework of extensions to `SequenceType`. It has no requirements beyond the Swift standard library. Every function and method has both a strict and a lazy version, unless otherwise specified.
 
 SwiftSequence adds one new protocol: `LazySequenceType`. This protocol has all of the same requirements as `SequenceType`, but anything that conforms to it is assumed to be lazily evaluated.

@@ -1,17 +1,17 @@
 // MARK: - Eager
 
-// MARK: TakeWhile
+// MARK: prefixWhile
 
 public extension SequenceType {
   
   /// Returns an array of self up until the first element that returns false for condition
   /// ```swift
-  /// [1, 2, 3, 4, 5, 2].takeWhile { $0 < 4 }
+  /// [1, 2, 3, 4, 5, 2].prefixWhile { $0 < 4 }
   ///
   /// [1, 2, 3]
   /// ```
   
-  func takeWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
+  func prefixWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
     var ret : [Generator.Element] = []
     var g = generate()
     while let next = g.next() where condition(next) { ret.append(next) }
@@ -78,7 +78,7 @@ public extension LazySequenceType {
   /// 1, 2, 3
   /// ```
   
-  func takeWhile(condition: Generator.Element -> Bool) -> WhileSeq<Self> {
+  func prefixWhile(condition: Generator.Element -> Bool) -> WhileSeq<Self> {
     return WhileSeq(seq: self, condition: condition)
   }
 }

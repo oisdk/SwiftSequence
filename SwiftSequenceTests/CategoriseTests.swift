@@ -36,16 +36,6 @@ class CategoriseTests: XCTestCase {
     
   }
   
-  func testReplace() {
-    
-    let replaced = [1, 2, 3, 4].replace([2:20, 3:30])
-    
-    let expectation = [1, 20, 30, 4]
-    
-    XCTAssert(replaced == expectation)
-    
-  }
-  
   // MARK: Lazy
   
   func testLazyUniques() {
@@ -57,18 +47,6 @@ class CategoriseTests: XCTestCase {
     XCTAssert(uniqueSeq.elementsEqual(expectation))
     
     let _ = uniqueSeq.array()
-    
-  }
-  
-  func testLazyReplace() {
-    
-    let replaceSeq = lazy([1, 2, 3, 4]).replace([2:20, 3:30])
-    
-    let expectation = lazy([1, 20, 30, 4])
-    
-    XCTAssert(replaceSeq.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = replaceSeq.array()
     
   }
   
@@ -94,23 +72,6 @@ class CategoriseTests: XCTestCase {
     let groupSeq = lazy([1, 3, 5, 20, 22, 18, 6, 7]).group { abs($0 - $1) < 5 }
     
     let expectation = lazy([[1, 3, 5], [20, 22, 18], [6, 7]])
-    
-    XCTAssert(
-      !zip(groupSeq, expectation).contains {
-        a, b in
-        a != b
-      }
-    )
-    
-    let _ = groupSeq.array()
-    
-  }
-  
-  func testLazyKeyGroupBy() {
-    
-    let groupSeq = lazy([1, 3, 5, 2, 4, 6, 6, 7, 1, 1]).groupBy { $0 % 2 }
-    
-    let expectation = lazy([[1, 3, 5], [2, 4, 6, 6], [7, 1, 1]])
     
     XCTAssert(
       !zip(groupSeq, expectation).contains {

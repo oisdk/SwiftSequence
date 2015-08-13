@@ -7,7 +7,7 @@ class TakeDropTests: XCTestCase {
   
   func testTakeWhile() {
     
-    let taken = [1, 2, 3, 4, 5, 1, 2, 3].takeWhile { $0 < 5 }
+    let taken = [1, 2, 3, 4, 5, 1, 2, 3].prefixWhile { $0 < 5 }
     
     let expectation = [1, 2, 3, 4]
     
@@ -29,7 +29,7 @@ class TakeDropTests: XCTestCase {
   
   func testLazyTakeWhile() {
     
-    let taken = lazy([1, 2, 3, 4, 5, 1, 2, 3]).takeWhile { $0 < 5 }
+    let taken = lazy([1, 2, 3, 4, 5, 1, 2, 3]).prefixWhile { $0 < 5 }
     
     let expectation = [1, 2, 3, 4]
     

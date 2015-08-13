@@ -1,6 +1,6 @@
 # SwiftSequence
 
-SwiftSequence is a lightweight framework of extensions to `SequenceType` and structs that conform to `SequenceType`. It has no requirements beyond the Swift standard library. Every function, struct, and method has both a strict and a lazy version, unless otherwise specified.
+SwiftSequence is a lightweight framework of extensions to `SequenceType`. It has no requirements beyond the Swift standard library. Every function and method has both a strict and a lazy version, unless otherwise specified.
 
 SwiftSequence adds one new protocol: `LazySequenceType`. This protocol has all of the same requirements as `SequenceType`, but anything that conforms to it is assumed to be lazily evaluated.
 
@@ -42,10 +42,6 @@ lazy([1, 2, 3])
 
 ## Contents ##
 
-- [Structs] (#structs)
-  - [List] (#list)
-  - [Deque] (#deque)
-  - [Trie] (#trie)
 - [Extensions] (#extensions)
   - [ScanReduce] (#scanreduce)
   - [TakeDrop] (#takedrop)
@@ -53,7 +49,6 @@ lazy([1, 2, 3])
   - [Interpose] (#interpose)
   - [Combinations] (#combinations)
   - [Permutations] (#permutations)
-  - [GenericGenerators] (#genericgenerators)
   - [Cycle] (#cycle)
   - [Categorise] (#categorise)
   - [ChunkWindowSplit] (#chunkwindowsplit)
@@ -62,68 +57,6 @@ lazy([1, 2, 3])
   - [NestedSequences] (#nestedsequences)
   - [Zip] (#zip)
   - [FlatMap] (#flatmap)
-
-# Structs #
-
-## List ##
-
-The `List` struct is an indirect enum, declared like this:
-
-```swift
-public enum List<Element> {
-  case Nil
-  indirect case Cons(head: Element, tail: List<Element>)
-}
-```
-Operations on the head of the list are all *O(1)*, however, accessing any element involves stepping over every element before it. So operations on the end of the list are all *O(n)*.
-
-Lists are `ArrayLiteralConvertible`, so they can be declared like so:
-
-```swift
-let jo: List = [1, 2, 3, 4]
-```
-
-However, there is also an infix operator `|>` for [cons](https://en.wikipedia.org/wiki/Cons) operations.
-
-```swift
-let jo: List = 1 |> 2 |> 3 |> 4 |> .Nil
-```
-
-This operator, combined with the `switch` statement, allows for a pattern commonly found in functional languages:
-
-```swift
-extension List {
-  public func map<T>(@noescape f: Element -> T) -> List<T> {
-    switch self {
-    case .Nil: return .Nil
-    case let .Cons(x, xs): return f(x) |> xs.map(f)
-    }
-  }
-}
-```
-There is also a `LazyList` struct, with all of the functions available on `List`. The `|>` operator on a `LazyList` operates lazily: what's to the right of the operator is not evaluated until required. For instance, in this expression:
-
-```swift
-let jo: LazyList = 1 |> 2 |> (3 * 4) |> .Nil
-```
-
-`3 * 4` *will not* be evaluated until that value in the list is called.
-
-## Deque ##
-
-A [Deque](https://en.wikipedia.org/wiki/Double-ended_queue) is a doubly-ended list (or queue). Operations on either end are *O(1)*.
-
-(There is not yet a lazy implementation of Deques)
-
-[There's a fuller explanation of lists and deques in Swift here.](https://bigonotetaking.wordpress.com/2015/07/29/deques-queues-and-lists-in-swift-with-indirect/)
-
-## Trie ##
-
-A [Trie](https://en.wikipedia.org/wiki/Trie) is a set-like data structure that stores sequences of hashable elements. (It should be noted that Sets themselves are hashable, so stick to those if you just need to store groups of groups. However, if order is important in the subsequences, a Trie is applicable)
-
-As well as all of the Set methods, Tries can return the completions for a given suffix.
-
-Insertion, deletion, and searching are all *O(n)* where *n* is the length of the sequence being searched for.
 
 # Extensions #
 
@@ -164,43 +97,12 @@ This also is evaluated lazily if the sequence it is called on is lazy.
 
 ## TakeDrop ##
 
-### Take ###
-
-This function returns the first `n` elements of self:
-
-```swift
-[1, 2, 3, 4, 5].take(3)
-
-[1, 2, 3]
-```
-
-### Drop ###
-
-This function returns self with the first `n` elements dropped:
-
-```swift
-[1, 2, 3, 4, 5].drop(3)
-
-[4, 5]
-```
-
-It is *not* analogous to slicing: the function walks over `n` elements of self in order to return the rest, so it is far less efficient than `ArraySlice` (*O(n)* vs *O(1)*). However, it has the advantage of being capable of lazy evaluation. Combined with `take`, it can allow easy manipulation of infinite sequences:
-
-```swift
-(1...)
-  .drop(10)
-  .take(10)
-  .array()
-
-[11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-```
-
-### TakeWhile ###
+### prefixWhile ###
 
 This function returns all of the elements of `self` up until an element returns false for `predicate`:
 
 ```swift
-[1, 2, 3, 4, 5, 2].takeWhile { $0 < 4 }
+[1, 2, 3, 4, 5, 2].prefixWhile { $0 < 4 }
 
 [1, 2, 3]
 ```
@@ -209,7 +111,7 @@ Note that it's not the same as filter: if any elements return true for the predi
 
 ### DropWhile ###
 
-Similar in behaviour to `TakeWhile`, this function drops the first elements of `self` that return true for a predicate:
+Similar in behaviour to `prefixWhile`, this function drops the first elements of `self` that return true for a predicate:
 
 ```swift
 lazy([1, 2, 3, 4, 5, 2]).dropWhile { $0 < 4 }
@@ -226,25 +128,6 @@ over the underlying sequence with hops of length `n`
 [1, 2, 3, 4, 5, 6, 7, 8].hop(3)
 
 [1, 4, 7]
-```
-
-When combined with `take` and `drop`, it's easy to fully emulate Python's islice, for lazy, on-demand slicing:
-
-```swift
-extension LazySequenceType {
-  func islice(from from: Int, to: Int, by: Int) -> HopSeq<TakeSeq<DropSeq<Self>>>  {
-    return self
-      .drop(from)
-      .take(to - from + 1)
-      .hop(by)
-  }
-}
-
-lazy([1, 2, 3, 4, 5, 6, 7, 8, 9])
-  .islice(from: 1, to: 5, by: 2)
-  .array()
-
-[2, 4, 6]
 ```
 
 ## Interpose ##
@@ -411,25 +294,6 @@ lazy([3, 2, 1]).lazyPermutations()
 [3, 2, 1], [3, 1, 2], [2, 3, 1], [2, 1, 3], [1, 3, 2], [1, 2, 3]
 ```
 
-## GenericGenerators ##
-
-These are some helper generators and sequences, like a `Stride` sequence that is infinite, and a `count` sequence:
-
-```swift
-(1...)
-
-1, 2, 3, 4, 5, 6, 7, 8...
-```
-```swift
-stride(1, by: 2)
-
-1, 3, 5, 7...
-```
-```swift
-iterate(2) { $0 * 2 }
-
-2, 4, 8, 16, 32, 64...
-```
 
 ## Cycle ##
 
@@ -501,18 +365,6 @@ Returns `self` with duplicates removed:
 [1, 2, 3, 4, 5, 6]
 ```
 
-### Replace ###
-
-Returns `self` with all of the keys in `reps` replaced by their values:
-
-```swift
-
-[1, 2, 3, 4].replace( [1:10, 2:20] )
-
-[10, 20, 3, 4]
-
-```
-
 ### Grouping ###
 
 Since `categorise()` and `freqs()` can't have lazy versions, these grouping functions give similar behaviour. Instead of categorising based on the whole sequence, they categories based on *adjacent* values.
@@ -562,15 +414,6 @@ This function returns `self`, broken up into overlapping arrays of length `n`:
 [1, 2, 3, 4, 5].window(3)
 
 [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
-```
-
-### Split ###
-
-Returns an array of arrays that end with elements that return true for `isSplit`
-```swift
-[1, 3, 4, 4, 5, 6].splitAt {$0 % 2 == 0}
-
-[[1, 3, 4], [4], [5, 6]]
 ```
 
 ## Enumerate ##

@@ -1,18 +1,15 @@
 public struct SpecEnumerateGen<Base : CollectionType> : GeneratorType {
   
-  private var eG: Base.Generator
-  private let sI: Base.Index
-  private var i : Base.Index?
+  private let base: Base
+  private var i : Base.Index
   
   public mutating func next() -> (Base.Index, Base.Generator.Element)? {
-    i?._successorInPlace() ?? {self.i = self.sI}()
-    return eG.next().map { (i!, $0) }
+    return i == base.endIndex ? nil : (i, base[i++])
   }
   
-  private init(g: Base.Generator, i: Base.Index) {
-    eG = g
-    sI = i
-    self.i = nil
+  private init(b: Base, i: Base.Index) {
+    base = b
+    self.i = i
   }
 }
 
@@ -20,7 +17,7 @@ public struct SpecEnumerateSeq<Base : CollectionType> : LazySequenceType {
   
   private let col: Base
   public func generate() -> SpecEnumerateGen<Base> {
-    return SpecEnumerateGen(g: col.generate(), i: col.startIndex)
+    return SpecEnumerateGen(b: col, i: col.startIndex)
   }
 }
 

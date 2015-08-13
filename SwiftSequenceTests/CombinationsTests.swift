@@ -6,7 +6,7 @@ class CombinationsTests: XCTestCase {
   
   func testCombosWithoutRep() {
     
-    let comboed = [1, 2, 3].combinations(2)
+    let comboed = [1, 2, 3].combos(2)
     
     let expectation = [[1, 2], [1, 3], [2, 3]]
     
@@ -16,7 +16,7 @@ class CombinationsTests: XCTestCase {
   
   func testCombosWithRep() {
     
-    let comboed = [1, 2, 3].combinationsWithRep(2)
+    let comboed = [1, 2, 3].combosWithRep(2)
     
     let expectation = [[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]]
     
@@ -28,7 +28,7 @@ class CombinationsTests: XCTestCase {
   
   func testLazyCombosWithoutRep() {
     
-    let comboed = [1, 2, 3].lazyCombinations(2)
+    let comboed = [1, 2, 3].lazyCombos(2)
     
     let expectation = lazy([[1, 2], [1, 3], [2, 3]])
     
@@ -40,7 +40,7 @@ class CombinationsTests: XCTestCase {
   
   func testLazyCombosWithRep() {
     
-    let comboed = [1, 2, 3].lazyCombinationsWithRep(2)
+    let comboed = [1, 2, 3].lazyCombosWithRep(2)
     
     let expectation = lazy([[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]])
     

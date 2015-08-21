@@ -25,7 +25,7 @@ public extension SequenceType {
   
   /// Returns the number of elements in `self` that satisfy `predicate`
   
-  func count(predicate: Generator.Element -> Bool) -> Int {
+  func count(@noescape predicate: Generator.Element -> Bool) -> Int {
     var i = 0
     for el in self where predicate(el) { ++i }
     return i

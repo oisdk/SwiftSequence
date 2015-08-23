@@ -88,11 +88,6 @@ public struct ChunkGen<G : GeneratorType> : GeneratorType {
       return c
     }
   }
-  
-  private init(g: G, n: Int) {
-    self.g = g
-    self.n = n
-  }
 }
 
 public struct ChunkSeq<S : SequenceType> : LazySequenceType {
@@ -154,10 +149,6 @@ public struct WindowSeq<S : SequenceType> : SequenceType {
       window.append(next)
     }
     return WindowGen(g: {g.next()}, window: window)
-  }
-  internal init(seq: S, n: Int) {
-    self.seq = seq
-    self.n = n
   }
 }
 

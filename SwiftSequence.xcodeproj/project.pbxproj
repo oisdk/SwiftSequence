@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		702D2ED31B604C62007BDC93 /* EmptyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D2ED21B604C62007BDC93 /* EmptyCollection.swift */; };
 		7037D0451B403AB500FA04C6 /* SwiftSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 7037D0441B403AB500FA04C6 /* SwiftSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7037D04C1B403AB500FA04C6 /* SwiftSequence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7037D0411B403AB500FA04C6 /* SwiftSequence.framework */; };
 		7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */; };
@@ -26,7 +25,6 @@
 		7037D0891B403AC800FA04C6 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D06A1B403AC800FA04C6 /* Zip.swift */; };
 		7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D08C1B40437100FA04C6 /* Categorise.swift */; };
 		70F19A0E1B68C3EB0078CF11 /* CategoriseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A0D1B68C3EB0078CF11 /* CategoriseTests.swift */; };
-		70F19A101B68C43F0078CF11 /* EmptyCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A0F1B68C43F0078CF11 /* EmptyCollectionTests.swift */; };
 		70F19A121B68C4660078CF11 /* ChunkWindowSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A111B68C4660078CF11 /* ChunkWindowSplitTests.swift */; };
 		70F19A141B68C4910078CF11 /* CombinationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A131B68C4910078CF11 /* CombinationsTests.swift */; };
 		70F19A161B68C5080078CF11 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F19A151B68C5080078CF11 /* CycleTests.swift */; };
@@ -54,7 +52,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		702D2ED21B604C62007BDC93 /* EmptyCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyCollection.swift; sourceTree = "<group>"; };
 		7037D0411B403AB500FA04C6 /* SwiftSequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7037D0441B403AB500FA04C6 /* SwiftSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftSequence.h; sourceTree = "<group>"; };
 		7037D0461B403AB500FA04C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,7 +73,6 @@
 		7037D06A1B403AC800FA04C6 /* Zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zip.swift; sourceTree = "<group>"; };
 		7037D08C1B40437100FA04C6 /* Categorise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categorise.swift; sourceTree = "<group>"; };
 		70F19A0D1B68C3EB0078CF11 /* CategoriseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriseTests.swift; sourceTree = "<group>"; };
-		70F19A0F1B68C43F0078CF11 /* EmptyCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyCollectionTests.swift; sourceTree = "<group>"; };
 		70F19A111B68C4660078CF11 /* ChunkWindowSplitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkWindowSplitTests.swift; sourceTree = "<group>"; };
 		70F19A131B68C4910078CF11 /* CombinationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinationsTests.swift; sourceTree = "<group>"; };
 		70F19A151B68C5080078CF11 /* CycleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleTests.swift; sourceTree = "<group>"; };
@@ -134,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				7037D08C1B40437100FA04C6 /* Categorise.swift */,
-				702D2ED21B604C62007BDC93 /* EmptyCollection.swift */,
 				7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */,
 				7037D05D1B403AC800FA04C6 /* Combinations.swift */,
 				7037D05E1B403AC800FA04C6 /* Cycle.swift */,
@@ -160,7 +155,6 @@
 			children = (
 				7037D0521B403AB500FA04C6 /* Info.plist */,
 				70F19A0D1B68C3EB0078CF11 /* CategoriseTests.swift */,
-				70F19A0F1B68C43F0078CF11 /* EmptyCollectionTests.swift */,
 				70F19A111B68C4660078CF11 /* ChunkWindowSplitTests.swift */,
 				70F19A131B68C4910078CF11 /* CombinationsTests.swift */,
 				70F19A151B68C5080078CF11 /* CycleTests.swift */,
@@ -291,7 +285,6 @@
 				7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */,
 				7037D07D1B403AC800FA04C6 /* Interpose.swift in Sources */,
 				7037D0871B403AC800FA04C6 /* TakeDrop.swift in Sources */,
-				702D2ED31B604C62007BDC93 /* EmptyCollection.swift in Sources */,
 				7037D0831B403AC800FA04C6 /* Permutations.swift in Sources */,
 				7037D0811B403AC800FA04C6 /* NestedSequences.swift in Sources */,
 				7037D0891B403AC800FA04C6 /* Zip.swift in Sources */,
@@ -311,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				70F19A0E1B68C3EB0078CF11 /* CategoriseTests.swift in Sources */,
-				70F19A101B68C43F0078CF11 /* EmptyCollectionTests.swift in Sources */,
 				70F19A2E1B68C6430078CF11 /* ZipTests.swift in Sources */,
 				70F19A181B68C51C0078CF11 /* EnumerateTests.swift in Sources */,
 				70F19A201B68C5890078CF11 /* HopJumpTests.swift in Sources */,

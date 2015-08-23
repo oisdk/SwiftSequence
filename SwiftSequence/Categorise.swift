@@ -133,10 +133,6 @@ public struct GroupBySeq<S : SequenceType> : LazySequenceType {
   public func generate() -> GroupByGen<S.Generator> {
     return GroupByGen(g: seq.generate(), isEquivalent: isEquivalent)
   }
-  internal init(seq: S, isEquivalent: (S.Generator.Element, S.Generator.Element) -> Bool) {
-    self.seq = seq
-    self.isEquivalent = isEquivalent
-  }
 }
 
 public extension LazySequenceType where Generator.Element : Equatable {

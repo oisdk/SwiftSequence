@@ -167,19 +167,12 @@ public func interdig<
 // MARK: Interpose with single element
 
 public struct InterposeElGen<G : GeneratorType> : GeneratorType {
-  
-  private let element: G.Element
-  private var g: G
+
   private let n: Int
   private var count: Int
-  
-  init(n: Int, g: G, element: G.Element) {
-    self.n = n
-    self.count = n
-    self.element = element
-    self.g = g
-  }
-  
+  private var g: G
+  private let element: G.Element
+
   public mutating func next() -> G.Element? {
     return --count < 0 ? {count = n; return element}() : g.next()
   }
@@ -192,7 +185,7 @@ public struct InterposeElSeq<S : SequenceType> : LazySequenceType {
   private let seq: S
   
   public func generate() -> InterposeElGen<S.Generator> {
-    return InterposeElGen(n: n, g: seq.generate(), element: element)
+    return InterposeElGen(n: n, count: n, g: seq.generate(), element: element)
   }
 }
 
@@ -237,14 +230,6 @@ public struct InterposeColGen<
   private var count: Int
   private var colG: C.Generator
   
-  private init(col: C, g: G, n: Int) {
-    self.n = n
-    count = n + 1
-    self.col = col
-    self.g = g
-    colG = self.col.generate()
-  }
-  
   public mutating func next() -> G.Element? {
     return --count <= 0 ? {
       colG.next() ?? {
@@ -266,7 +251,7 @@ public struct InterposeColSeq<
   private let seq: S
   
   public func generate() -> InterposeColGen<S.Generator, C> {
-    return InterposeColGen(col: col, g: seq.generate(), n: n)
+    return InterposeColGen(col: col, g: seq.generate(), n: n, count: n + 1, colG: col.generate())
   }
 }
 

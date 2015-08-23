@@ -17,12 +17,6 @@ extension LazySequence                : LazySequenceType {}
 extension LazyForwardCollection       : LazySequenceType {}
 extension LazyBidirectionalCollection : LazySequenceType {}
 extension LazyRandomAccessCollection  : LazySequenceType {}
-extension FilterSequence              : LazySequenceType {}
-extension FilterCollection            : LazySequenceType {}
-extension MapSequence                 : LazySequenceType {}
-extension MapCollection               : LazySequenceType {}
-extension Zip2Sequence                : LazySequenceType {}
-extension EnumerateSequence           : LazySequenceType {}
 
 public extension LazySequenceType {
   func array() -> [Generator.Element] {

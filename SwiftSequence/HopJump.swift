@@ -68,11 +68,6 @@ public struct HopSeq<S : SequenceType> : LazySequenceType {
   public func generate() -> HopGen<S.Generator> {
     return HopGen(n: n, g: seq.generate(), i: 1)
   }
-
-  internal init(seq: S, n: Int) {
-    self.seq = seq
-    self.n = n
-  }
 }
 
 public extension LazySequenceType {
@@ -92,35 +87,46 @@ public extension LazySequenceType {
 
 // MARK: Random Access Hop:
 
-//public struct RandomAccessHopGen<
-//  Base : CollectionType where
-//  Base.Index : RandomAccessIndexType
-//  > : GeneratorType {
-//
-//  private var g: StrideToGenerator<Base.Index>
-//  private let b: Base
-//
-//  public mutating func next() -> Base.Generator.Element? {
-//    return g.next().map{ b[$0] }
-//  }
-//}
-//
-//public struct RandomAccessHopSeq<
-//  Base : CollectionType where
-//  Base.Index : RandomAccessIndexType
-//  > : SequenceType {
-//
-//  private let base: Base
-//  private let by  : Base.Index.Stride
-//
-//  public func generate() -> RandomAccessHopGen<Base> {
-//    return RandomAccessHopGen(
-//      g: stride(from: base.startIndex, to: base.endIndex, by: by).generate(),
-//      b: base
-//    )
-//  }
-//  internal init(base: Base, by: Base.Index.Stride) {
-//    self.base = base
-//    self.by = by
-//  }
-//}
+public struct RandomAccessHopGen<
+  Base : CollectionType where
+  Base.Index : RandomAccessIndexType
+  > : GeneratorType {
+
+  private var g: StrideToGenerator<Base.Index>
+  private let b: Base
+
+  public mutating func next() -> Base.Generator.Element? {
+    return g.next().map{ b[$0] }
+  }
+}
+
+public struct RandomAccessHopSeq<
+  Base : CollectionType where
+  Base.Index : RandomAccessIndexType
+  > : SequenceType {
+
+  private let base: Base
+  private let by  : Base.Index.Stride
+
+  public func generate() -> RandomAccessHopGen<Base> {
+    return RandomAccessHopGen(
+      g: stride(from: base.startIndex, to: base.endIndex, by: by).generate(),
+      b: base
+    )
+  }
+}
+
+extension LazySequenceType where Self : CollectionType, Self.Index : RandomAccessIndexType {
+  
+  /// Returns a lazy sequence with `n` elements of self hopped over. The sequence includes
+  /// the first element of self.
+  /// ```swift
+  /// lazy([1, 2, 3, 4, 5, 6, 7, 8]).hop(2)
+  ///
+  /// 1, 3, 5, 7
+  /// ```
+  
+  public func hop(n: Index.Stride) -> RandomAccessHopSeq<Self> {
+    return RandomAccessHopSeq(base: self, by: n)
+  }
+}

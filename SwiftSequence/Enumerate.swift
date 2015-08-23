@@ -1,15 +1,10 @@
 public struct SpecEnumerateGen<Base : CollectionType> : GeneratorType {
   
   private let base: Base
-  private var i : Base.Index
+  private var i: Base.Index
   
   public mutating func next() -> (Base.Index, Base.Generator.Element)? {
     return i == base.endIndex ? nil : (i, base[i++])
-  }
-  
-  private init(b: Base, i: Base.Index) {
-    base = b
-    self.i = i
   }
 }
 
@@ -17,7 +12,7 @@ public struct SpecEnumerateSeq<Base : CollectionType> : LazySequenceType {
   
   private let col: Base
   public func generate() -> SpecEnumerateGen<Base> {
-    return SpecEnumerateGen(b: col, i: col.startIndex)
+    return SpecEnumerateGen(base: col, i: col.startIndex)
   }
 }
 

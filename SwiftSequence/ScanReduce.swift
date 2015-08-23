@@ -15,12 +15,11 @@ public extension SequenceType {
   func reduce
     (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element)
     -> Generator.Element? {
-      var g = generate()
-      return g.next().map {
-        (var accu) in
-        while let next = g.next() { accu = combine(accumulator: accu, element: next) }
-        return accu
-      }
+    var g = generate()
+    return g.next().map { (var accu) in
+      while let next = g.next() { accu = combine(accumulator: accu, element: next) }
+      return accu
+    }
   }
   
   // MARK: Scan

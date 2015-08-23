@@ -25,16 +25,6 @@ public struct CycleNGen<C: CollectionType> : GeneratorType, LazySequenceType {
   private var innerGen: C.Generator
   private var n: Int
   
-  private init(col: C, n: Int) {
-    inner = col
-    innerGen = col.generate()
-    self.n = n
-  }
-  
-  public func generate() -> CycleNGen<C> {
-    return self
-  }
-  
   public mutating func next() -> C.Generator.Element? {
     for ;n > 0;innerGen = inner.generate(), --n {
       if let next = innerGen.next() {
@@ -55,7 +45,7 @@ public extension LazySequenceType where Self : CollectionType {
   /// ```
   
   func cycle(n: Int) -> CycleNGen<Self> {
-    return CycleNGen(col: self, n: n)
+    return CycleNGen(inner: self, innerGen: generate(), n: n)
   }
 }
 
@@ -65,13 +55,6 @@ public struct CycleGen<C: CollectionType> : GeneratorType, LazySequenceType {
   
   private let inner: C
   private var innerGen: C.Generator
-  
-  private init(col: C) {
-    inner = col
-    innerGen = col.generate()
-  }
-  
-  public func generate() -> CycleGen<C> { return self }
   
   public mutating func next() -> C.Generator.Element? {
     for ;;innerGen = inner.generate() {
@@ -92,6 +75,6 @@ public extension CollectionType {
   /// ```
   
   func cycle() -> CycleGen<Self> {
-    return CycleGen(col: self)
+    return CycleGen(inner: self, innerGen: generate())
   }
 }

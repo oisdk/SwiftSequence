@@ -7,6 +7,14 @@ public extension SequenceType {
     for el in self where predicate(el) { return el }
     return nil
   }
+  
+  /// Returns the number of elements in `self` that satisfy `predicate`
+  
+  func count(@noescape predicate: Generator.Element -> Bool) -> Int {
+    var i = 0
+    for el in self where predicate(el) { ++i }
+    return i
+  }
 }
   
 public extension CollectionType where Index : BidirectionalIndexType {
@@ -21,13 +29,12 @@ public extension CollectionType where Index : BidirectionalIndexType {
   }
 }
 
-public extension SequenceType {
+extension CollectionType {
+  /**
+  Returns the indices of elements of `self` that satisfy the predicate `isElement`
+  */
   
-  /// Returns the number of elements in `self` that satisfy `predicate`
-  
-  func count(@noescape predicate: Generator.Element -> Bool) -> Int {
-    var i = 0
-    for el in self where predicate(el) { ++i }
-    return i
+  func indicesOf(@noescape isElement: Generator.Element -> Bool) -> [Index] {
+    return indices.filter { i in isElement(self[i]) }
   }
 }

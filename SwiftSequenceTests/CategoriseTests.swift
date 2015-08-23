@@ -1,4 +1,5 @@
 import XCTest
+import Foundation
 @testable import SwiftSequence
 
 class CategoriseTests: XCTestCase {
@@ -81,6 +82,22 @@ class CategoriseTests: XCTestCase {
     )
     
     let _ = groupSeq.array()
+    
+  }
+  
+  func testMostFrequent() {
+    
+    
+    let nums = (1...100).map { _ in Int(arc4random_uniform(10)) }
+    
+    let mostFreq = nums.mostFrequent()!
+    
+    let freqs = nums.freqs()
+    
+    let occurances = freqs[mostFreq]
+    
+    XCTAssert(!freqs.values.contains { $0 > occurances})
+    
     
   }
 }

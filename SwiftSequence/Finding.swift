@@ -9,14 +9,14 @@ public extension SequenceType {
   }
 }
   
-public extension CollectionType {
+public extension CollectionType where Index : BidirectionalIndexType {
 
   
   /// Returns the last element in self that satisfies a predicate, or nil if it doesn't
   /// exist
   
   func last(@noescape predicate: Generator.Element -> Bool) -> Generator.Element? {
-    for el in lazy(self).reverse() where predicate(el) { return el }
+    for el in reverse() where predicate(el) { return el }
     return nil
   }
 }

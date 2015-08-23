@@ -41,6 +41,17 @@ public extension SequenceType where Generator.Element : Hashable {
       return true
     }
   }
+  
+  /// Returns the element which occurs most frequently in `self`
+  
+  public func mostFrequent() -> Generator.Element? {
+    
+    var freqs: [Generator.Element:Int] = [:]
+    
+    return maxElement { (be, ce) in
+      freqs[ce]?++ ?? freqs.updateValue(1, forKey: ce) >= freqs[be]
+    }
+  }
 }
 
 // MARK: - Lazy

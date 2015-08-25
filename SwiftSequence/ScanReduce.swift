@@ -13,11 +13,11 @@ public extension SequenceType {
   /// ```
   
   func reduce
-    (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element)
-    -> Generator.Element? {
+    (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element)
+    rethrows -> Generator.Element? {
     var g = generate()
-    return g.next().map { (var accu) in
-      while let next = g.next() { accu = combine(accumulator: accu, element: next) }
+    return try g.next().map { (var accu) in
+      while let next = g.next() { accu = try combine(accumulator: accu, element: next) }
       return accu
     }
   }
@@ -32,9 +32,9 @@ public extension SequenceType {
   /// [1, 3, 6]
   /// ```
   
-  func scan<T>(var initial: T, @noescape combine: (accumulator: T, element: Generator.Element) -> T) -> [T] {
-    return map {
-      initial = combine(accumulator: initial, element: $0)
+  func scan<T>(var initial: T, @noescape combine: (accumulator: T, element: Generator.Element) throws -> T) rethrows -> [T] {
+    return try map {
+      initial = try combine(accumulator: initial, element: $0)
       return initial
     }
   }
@@ -49,9 +49,9 @@ public extension SequenceType {
   /// [3, 6]
   /// ```
   
-  func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element) -> [Generator.Element] {
+  func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element) rethrows -> [Generator.Element] {
     var g = generate()
-    return g.next().map { GeneratorSequence(g).scan($0, combine: combine) } ?? []
+    return try g.next().map { try GeneratorSequence(g).scan($0, combine: combine) } ?? []
   }
 }
 

@@ -11,10 +11,11 @@ public extension SequenceType {
   /// [1, 2, 3]
   /// ```
   
-  func prefixWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
+  func prefixWhile(@noescape condition: Generator.Element throws -> Bool) rethrows -> [Generator.Element] {
     var ret : [Generator.Element] = []
     var g = generate()
-    while let next = g.next() where condition(next) { ret.append(next) }
+
+    while let next = g.next() where try condition(next) { ret.append(next) }
     return ret
   }
 }
@@ -31,10 +32,10 @@ public extension SequenceType {
   /// [4, 5, 2]
   /// ```
   
-  func dropWhile(@noescape condition: Generator.Element -> Bool) -> [Generator.Element] {
+  func dropWhile(@noescape condition: Generator.Element throws -> Bool) rethrows -> [Generator.Element] {
     var g = generate()
     while let next = g.next() {
-      if !condition(next) {
+      if try !condition(next) {
         return [next] + GeneratorSequence(g)
       }
     }

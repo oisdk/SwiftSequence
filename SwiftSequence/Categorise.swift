@@ -6,10 +6,10 @@ public extension SequenceType {
   
   /// Categorises elements of self into a dictionary, with the keys given by keyFunc
   
-  func categorise<U : Hashable>(@noescape keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
+  func categorise<U : Hashable>(@noescape keyFunc: Generator.Element throws -> U) rethrows -> [U:[Generator.Element]] {
     var dict: [U:[Generator.Element]] = [:]
     for el in self {
-      let key = keyFunc(el)
+      let key = try keyFunc(el)
       dict[key]?.append(el) ?? {dict[key] = [el]}()
     }
     return dict
@@ -48,9 +48,11 @@ public extension SequenceType where Generator.Element : Hashable {
     
     var freqs: [Generator.Element:Int] = [:]
     
-    return maxElement { (be, ce) in
-      freqs[ce]?++ ?? freqs.updateValue(1, forKey: ce) >= freqs[be]
-    }
+    return reduce(nil) { (b: (Generator.Element, Int)?, e) in
+      let c = (freqs[e]?.successor() ?? 1)
+      freqs[e] = c
+      return c > b?.1 ? (e, c) : b
+    }?.0
   }
 }
 

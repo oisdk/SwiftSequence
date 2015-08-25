@@ -41,21 +41,19 @@ class CategoriseTests: XCTestCase {
   
   func testLazyUniques() {
     
-    let uniqueSeq = lazy([1, 1, 1, 3, 3, 2, 4, 3]).uniques()
+    let uniqueSeq = [1, 1, 1, 3, 3, 2, 4, 3].lazy.uniques()
     
-    let expectation = lazy([1, 3, 2, 4])
+    let expectation = [1, 3, 2, 4].lazy
     
     XCTAssert(uniqueSeq.elementsEqual(expectation))
-    
-    let _ = uniqueSeq.array()
     
   }
   
   func testLazyGroup() {
     
-    let groupSeq = lazy([1, 2, 2, 3, 1, 1, 3, 4, 2]).group()
+    let groupSeq = [1, 2, 2, 3, 1, 1, 3, 4, 2].lazy.group()
     
-    let expectation = lazy([[1], [2, 2], [3], [1, 1], [3], [4], [2]])
+    let expectation = [[1], [2, 2], [3], [1, 1], [3], [4], [2]].lazy
     
     XCTAssert(
       !zip(groupSeq, expectation).contains {
@@ -63,16 +61,13 @@ class CategoriseTests: XCTestCase {
         a != b
       }
     )
-    
-    let _ = groupSeq.array()
-    
   }
   
   func testLazyGroupClos() {
     
-    let groupSeq = lazy([1, 3, 5, 20, 22, 18, 6, 7]).group { abs($0 - $1) < 5 }
+    let groupSeq = [1, 3, 5, 20, 22, 18, 6, 7].lazy.group { abs($0 - $1) < 5 }
     
-    let expectation = lazy([[1, 3, 5], [20, 22, 18], [6, 7]])
+    let expectation = [[1, 3, 5], [20, 22, 18], [6, 7]].lazy
     
     XCTAssert(
       !zip(groupSeq, expectation).contains {
@@ -80,9 +75,6 @@ class CategoriseTests: XCTestCase {
         a != b
       }
     )
-    
-    let _ = groupSeq.array()
-    
   }
   
   func testMostFrequent() {

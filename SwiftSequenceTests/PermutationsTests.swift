@@ -61,9 +61,7 @@ class PermutationsTests: XCTestCase {
     let bExpectation = [[1, 2, 3]]
     
     XCTAssert(backward.elementsEqual(bExpectation, isEquivalent: ==))
-    
-    let _ = forward.array()
-    let _ = backward.array()
+
     
   }
   
@@ -80,9 +78,7 @@ class PermutationsTests: XCTestCase {
     let bExpectation = [[3, 2, 1]]
     
     XCTAssert(backward.elementsEqual(bExpectation, isEquivalent: ==))
-    
-    let _ = forward.array()
-    let _ = backward.array()
+
     
   }
   
@@ -93,8 +89,7 @@ class PermutationsTests: XCTestCase {
     let expectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
     XCTAssert(perms.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = perms.array()
+
     
   }
 }

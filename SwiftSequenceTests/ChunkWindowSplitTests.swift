@@ -28,13 +28,11 @@ class ChunkWindowSplitTests: XCTestCase {
   
   func testLazyChunk() {
     
-    let chunkd = lazy([1, 2, 3, 4, 5]).chunk(2)
+    let chunkd = [1, 2, 3, 4, 5].lazy.chunk(2)
     
-    let expectation = lazy([[1, 2], [3, 4], [5]])
+    let expectation = [[1, 2], [3, 4], [5]].lazy
     
     XCTAssert(chunkd.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = chunkd.array()
     
   }
 

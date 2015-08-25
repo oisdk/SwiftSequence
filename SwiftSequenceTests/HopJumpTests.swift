@@ -19,13 +19,13 @@ class HopJumpTests: XCTestCase {
   
   func testLazyHop() {
     
-    let toHop = lazy([1, 2, 3, 4, 5, 6])
+    let toHop = [1, 2, 3, 4, 5, 6].lazy
     
     XCTAssert(toHop.hop(3).elementsEqual([1, 4]))
     XCTAssert(toHop.hop(2).elementsEqual([1, 3, 5]))
     XCTAssert(toHop.hop(1).elementsEqual(toHop))
     
-    let _ = toHop.hop(1).array()
+    let _ = Array(toHop.hop(1))
     
   }
 }

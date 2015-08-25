@@ -15,8 +15,6 @@ class ZipTests: XCTestCase {
       )
     )
     
-    let _ = zipped.array()
-    
   }
   
   func testZipWithCustomPadding() {
@@ -30,8 +28,6 @@ class ZipTests: XCTestCase {
       isEquivalent: { $0.0 == $1.0 && $0.1 == $1.1 }
       )
     )
-    
-    let _ = zipped.array()
     
   }
 }

@@ -29,25 +29,21 @@ class TakeDropTests: XCTestCase {
   
   func testLazyTakeWhile() {
     
-    let taken = lazy([1, 2, 3, 4, 5, 1, 2, 3]).prefixWhile { $0 < 5 }
+    let taken = [1, 2, 3, 4, 5, 1, 2, 3].lazy.prefixWhile { $0 < 5 }
     
     let expectation = [1, 2, 3, 4]
     
     XCTAssert(taken.elementsEqual(expectation))
     
-    let _ = taken.array()
-    
   }
   
   func testLazyDropwhile() {
     
-    let dropped = lazy([1, 2, 3, 4, 5, 1, 2, 3]).dropWhile { $0 < 5 }
+    let dropped = [1, 2, 3, 4, 5, 1, 2, 3].lazy.dropWhile { $0 < 5 }
     
     let expectation = [5, 1, 2, 3]
     
     XCTAssert(dropped.elementsEqual(expectation))
-    
-    let _ = dropped.array()
     
   }
 }

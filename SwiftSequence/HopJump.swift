@@ -35,7 +35,7 @@ public extension CollectionType where Index : RandomAccessIndexType {
   /// ```
   
   func hop(n: Index.Stride) -> [Generator.Element] {
-    return stride(from: startIndex, to: endIndex, by: n).map{self[$0]}
+    return startIndex.stride(to: endIndex, by: n).map{self[$0]}
   }
 }
 
@@ -110,7 +110,7 @@ public struct RandomAccessHopSeq<
 
   public func generate() -> RandomAccessHopGen<Base> {
     return RandomAccessHopGen(
-      g: stride(from: base.startIndex, to: base.endIndex, by: by).generate(),
+      g: base.startIndex.stride(to: base.endIndex, by: by).generate(),
       b: base
     )
   }

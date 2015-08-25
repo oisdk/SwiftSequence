@@ -68,7 +68,7 @@ public extension SequenceType {
   
   public func lexPermutations
     (isOrderedBefore: (Generator.Element, Generator.Element) -> Bool) -> [[Generator.Element]] {
-      return LexPermSeq(col: Array(self), order: isOrderedBefore).array()
+      return Array(LexPermSeq(col: Array(self), order: isOrderedBefore))
   }
 }
 
@@ -89,7 +89,7 @@ public extension MutableCollectionType where Generator.Element : Comparable {
   /// ```
   
   public func lexPermutations() -> [[Generator.Element]] {
-      return LexPermSeq(col: Array(self), order: <).array()
+      return Array(LexPermSeq(col: Array(self), order: <))
   }
 }
 
@@ -105,7 +105,7 @@ public extension SequenceType {
   
   public func permutations() -> [[Generator.Element]] {
     var col = Array(self)
-    return LexPermSeq(col: Array(col.indices), order: <).map { inds in inds.map{col[$0]} }.array()
+    return Array(LexPermSeq(col: Array(col.indices), order: <).map { inds in inds.map{col[$0]} })
   }
 }
 
@@ -169,8 +169,7 @@ public extension SequenceType {
   /// [3, 2, 1], [3, 1, 2], [2, 3, 1], [2, 1, 3], [1, 3, 2], [1, 2, 3]
   /// ```
   
-  public func lazyPermutations()
-    -> LazySequence<MapSequence<LexPermSeq<[Int]>, [Self.Generator.Element]>> {
+  public func lazyPermutations() -> LazyMapSequence<LexPermSeq<[Int]>, [Self.Generator.Element]> {
       let col = Array(self)
       return col.indices.lazyLexPermutations().map { $0.map { col[$0] } }
   }

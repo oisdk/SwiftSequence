@@ -66,7 +66,7 @@ public extension SequenceType {
       return g.next().map {
         var ret = [$0]
         while let next = g.next() {
-          ret.extend(col)
+          ret.appendContentsOf(col)
           ret.append(next)
         }
         return ret
@@ -89,7 +89,7 @@ public extension SequenceType {
         var ret = [$0]
         while let next = g.next() {
           if --i == 0 {
-            ret.extend(col)
+            ret.appendContentsOf(col)
             i = n
           }
           ret.append(next)

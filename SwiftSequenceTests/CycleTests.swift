@@ -19,13 +19,11 @@ class CycleTests: XCTestCase {
   
   func testLazyCycleN() {
     
-    let cycled = lazy([1, 2, 3]).cycle(2)
+    let cycled = [1, 2, 3].lazy.cycle(2)
     
-    let expectation = lazy([1, 2, 3, 1, 2, 3])
+    let expectation = [1, 2, 3, 1, 2, 3].lazy
     
     XCTAssert(cycled.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = cycled.array()
     
   }
   

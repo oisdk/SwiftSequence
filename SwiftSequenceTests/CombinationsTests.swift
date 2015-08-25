@@ -30,11 +30,9 @@ class CombinationsTests: XCTestCase {
     
     let comboed = [1, 2, 3].lazyCombos(2)
     
-    let expectation = lazy([[1, 2], [1, 3], [2, 3]])
+    let expectation = [[1, 2], [1, 3], [2, 3]].lazy
     
     XCTAssert(comboed.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = comboed.array()
     
   }
   
@@ -42,11 +40,9 @@ class CombinationsTests: XCTestCase {
     
     let comboed = [1, 2, 3].lazyCombosWithRep(2)
     
-    let expectation = lazy([[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]])
+    let expectation = [[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]].lazy
     
     XCTAssert(comboed.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = comboed.array()
     
   }
 }

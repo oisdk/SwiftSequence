@@ -53,8 +53,6 @@ class NestedSequencesTests: XCTestCase {
     
     XCTAssert(prod.elementsEqual(expectation, isEquivalent: ==))
     
-    let _ = prod.array()
-    
   }
   
   func testLazyProdFunc() {
@@ -65,17 +63,16 @@ class NestedSequencesTests: XCTestCase {
     
     XCTAssert(prod.elementsEqual(expectation, isEquivalent: ==))
     
-    let _ = prod.array()
     
   }
   
   func testLazyTranspose() {
     
-    let transposed = lazy([
+    let transposed = [
       [1, 2, 3],
       [1, 2, 3],
       [1, 2, 3]
-      ]).transpose()
+      ].lazy.transpose()
     
     let expectation = [
       [1, 1, 1],
@@ -84,8 +81,6 @@ class NestedSequencesTests: XCTestCase {
     ]
     
     XCTAssert(transposed.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = transposed.array()
     
   }
 }

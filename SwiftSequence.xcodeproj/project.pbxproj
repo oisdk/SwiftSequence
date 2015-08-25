@@ -14,10 +14,8 @@
 		7037D0711B403AC800FA04C6 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05E1B403AC800FA04C6 /* Cycle.swift */; };
 		7037D0731B403AC800FA04C6 /* Enumerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05F1B403AC800FA04C6 /* Enumerate.swift */; };
 		7037D0751B403AC800FA04C6 /* Finding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0601B403AC800FA04C6 /* Finding.swift */; };
-		7037D0771B403AC800FA04C6 /* FlatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0611B403AC800FA04C6 /* FlatMap.swift */; };
 		7037D07B1B403AC800FA04C6 /* HopJump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0631B403AC800FA04C6 /* HopJump.swift */; };
 		7037D07D1B403AC800FA04C6 /* Interpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0641B403AC800FA04C6 /* Interpose.swift */; };
-		7037D07F1B403AC800FA04C6 /* LazySeq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0651B403AC800FA04C6 /* LazySeq.swift */; };
 		7037D0811B403AC800FA04C6 /* NestedSequences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0661B403AC800FA04C6 /* NestedSequences.swift */; };
 		7037D0831B403AC800FA04C6 /* Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0671B403AC800FA04C6 /* Permutations.swift */; };
 		7037D0851B403AC800FA04C6 /* ScanReduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D0681B403AC800FA04C6 /* ScanReduce.swift */; };
@@ -62,10 +60,8 @@
 		7037D05E1B403AC800FA04C6 /* Cycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cycle.swift; sourceTree = "<group>"; };
 		7037D05F1B403AC800FA04C6 /* Enumerate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enumerate.swift; sourceTree = "<group>"; };
 		7037D0601B403AC800FA04C6 /* Finding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Finding.swift; sourceTree = "<group>"; };
-		7037D0611B403AC800FA04C6 /* FlatMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatMap.swift; sourceTree = "<group>"; };
 		7037D0631B403AC800FA04C6 /* HopJump.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HopJump.swift; sourceTree = "<group>"; };
 		7037D0641B403AC800FA04C6 /* Interpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpose.swift; sourceTree = "<group>"; };
-		7037D0651B403AC800FA04C6 /* LazySeq.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazySeq.swift; sourceTree = "<group>"; };
 		7037D0661B403AC800FA04C6 /* NestedSequences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedSequences.swift; sourceTree = "<group>"; };
 		7037D0671B403AC800FA04C6 /* Permutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permutations.swift; sourceTree = "<group>"; };
 		7037D0681B403AC800FA04C6 /* ScanReduce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReduce.swift; sourceTree = "<group>"; };
@@ -135,10 +131,8 @@
 				7037D05E1B403AC800FA04C6 /* Cycle.swift */,
 				7037D05F1B403AC800FA04C6 /* Enumerate.swift */,
 				7037D0601B403AC800FA04C6 /* Finding.swift */,
-				7037D0611B403AC800FA04C6 /* FlatMap.swift */,
 				7037D0631B403AC800FA04C6 /* HopJump.swift */,
 				7037D0641B403AC800FA04C6 /* Interpose.swift */,
-				7037D0651B403AC800FA04C6 /* LazySeq.swift */,
 				7037D0661B403AC800FA04C6 /* NestedSequences.swift */,
 				7037D0671B403AC800FA04C6 /* Permutations.swift */,
 				7037D0681B403AC800FA04C6 /* ScanReduce.swift */,
@@ -288,8 +282,6 @@
 				7037D0831B403AC800FA04C6 /* Permutations.swift in Sources */,
 				7037D0811B403AC800FA04C6 /* NestedSequences.swift in Sources */,
 				7037D0891B403AC800FA04C6 /* Zip.swift in Sources */,
-				7037D0771B403AC800FA04C6 /* FlatMap.swift in Sources */,
-				7037D07F1B403AC800FA04C6 /* LazySeq.swift in Sources */,
 				7037D0751B403AC800FA04C6 /* Finding.swift in Sources */,
 				7037D07B1B403AC800FA04C6 /* HopJump.swift in Sources */,
 				7037D08D1B40437100FA04C6 /* Categorise.swift in Sources */,

@@ -43,7 +43,7 @@ class ScanReduceTests: XCTestCase {
   
   func testLazyScan() {
     
-    let nums = lazy([1, 2, 3, 4, 5])
+    let nums = [1, 2, 3, 4, 5].lazy
     
     let scanSum = nums.scan(0, combine: +)
     
@@ -51,21 +51,17 @@ class ScanReduceTests: XCTestCase {
     
     XCTAssert(scanSum.elementsEqual(expectation, isEquivalent: ==))
     
-    let _ = scanSum.array()
-    
   }
   
   func testLazyScan1() {
     
-    let nums = lazy([1, 2, 3, 4, 5])
+    let nums = [1, 2, 3, 4, 5].lazy
     
     let scanSum = nums.scan(+)
     
     let expectation = [3, 6, 10, 15]
     
     XCTAssert(scanSum.elementsEqual(expectation, isEquivalent: ==))
-    
-    let _ = scanSum.array()
     
   }
 }

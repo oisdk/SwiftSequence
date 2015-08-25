@@ -135,7 +135,7 @@ public struct WindowGen<Element> : GeneratorType {
 
 /// :nodoc:
 
-public struct WindowSeq<S : SequenceType> : SequenceType {
+public struct WindowSeq<S : SequenceType> : LazySequenceType {
   
   private let seq: S
   private let n: Int

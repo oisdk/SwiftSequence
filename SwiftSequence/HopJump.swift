@@ -87,46 +87,33 @@ public extension LazySequenceType {
 
 // MARK: Random Access Hop:
 
-public struct RandomAccessHopGen<
+public struct RandomAccessHopCollection<
   Base : CollectionType where
-  Base.Index : RandomAccessIndexType
-  > : GeneratorType {
-
-  private var g: StrideToGenerator<Base.Index>
-  private let b: Base
-
-  public mutating func next() -> Base.Generator.Element? {
-    return g.next().map{ b[$0] }
-  }
-}
-
-public struct RandomAccessHopSeq<
-  Base : CollectionType where
-  Base.Index : RandomAccessIndexType
-  > : SequenceType {
-
+  Base.Index : RandomAccessIndexType,
+  Base.Index.Distance : ForwardIndexType
+  > : LazyCollectionType {
+  
   private let base: Base
   private let by  : Base.Index.Stride
-
-  public func generate() -> RandomAccessHopGen<Base> {
-    return RandomAccessHopGen(
-      g: base.startIndex.stride(to: base.endIndex, by: by).generate(),
-      b: base
-    )
+  private let fac : Base.Index.Distance
+  
+  public var startIndex: Base.Index.Distance { return 0 }
+  public let endIndex: Base.Index.Distance
+  public subscript(i: Base.Index.Distance) -> Base.Generator.Element {
+    return base[base.startIndex.advancedBy(fac * i)]
+  }
+  
+  private init(_ b: Base, _ by: Base.Index.Stride) {
+    base = b
+    self.by = by
+    fac = base.startIndex.distanceTo(base.startIndex.advancedBy(by))
+    endIndex = (base.startIndex.distanceTo(base.endIndex.predecessor()) / fac).successor()
   }
 }
 
-extension LazySequenceType where Self : CollectionType, Self.Index : RandomAccessIndexType {
+extension LazyCollectionType where Index : RandomAccessIndexType, Index.Distance : ForwardIndexType {
   
-  /// Returns a lazy sequence with `n` elements of self hopped over. The sequence includes
-  /// the first element of self.
-  /// ```swift
-  /// lazy([1, 2, 3, 4, 5, 6, 7, 8]).hop(2)
-  ///
-  /// 1, 3, 5, 7
-  /// ```
-  
-  public func hop(n: Index.Stride) -> RandomAccessHopSeq<Self> {
-    return RandomAccessHopSeq(base: self, by: n)
+  public func hop(n: Index.Stride) -> RandomAccessHopCollection<Self> {
+    return RandomAccessHopCollection(self, n)
   }
 }

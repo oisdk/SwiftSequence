@@ -8,7 +8,7 @@ public struct SpecEnumerateGen<Base : CollectionType> : GeneratorType {
   }
 }
 
-public struct SpecEnumerateSeq<Base : CollectionType> : LazySequenceType {
+public struct SpecEnumerateSeq<Base : CollectionType> : SequenceType {
   
   private let col: Base
   public func generate() -> SpecEnumerateGen<Base> {

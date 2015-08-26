@@ -10,7 +10,7 @@ public extension SequenceType {
     var dict: [U:[Generator.Element]] = [:]
     for el in self {
       let key = try keyFunc(el)
-      dict[key]?.append(el) ?? {dict[key] = [el]}()
+      if case nil = dict[key]?.append(el) { dict[key] = [el] }
     }
     return dict
   }
@@ -25,7 +25,9 @@ public extension SequenceType where Generator.Element : Hashable {
   
   func freqs() -> [Generator.Element:Int] {
     var freqs: [Generator.Element:Int] = [:]
-    for el in self {freqs[el]?._successorInPlace() ?? {freqs[el] = 1}()}
+    for el in self where nil == (freqs[el]?._successorInPlace()) {
+      freqs[el] = 1
+    }
     return freqs
   }
   

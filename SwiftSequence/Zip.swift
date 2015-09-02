@@ -47,7 +47,9 @@ public struct PaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : Generat
   public mutating func next() -> (E0, E1)? {
     let e0: E0? = g0?.next() ?? {g0 = nil; return nil}()
     let e1: E1? = g1?.next() ?? {g1 = nil; return nil}()
-    return (e0 != nil || e1 != nil) ? (e0 ?? p0, e1 ?? p1) : nil
+    if let e = e0 { return (e, e1 ?? p1) }
+    if let e = e1 { return (p0, e) }
+    return nil
   }
 }
 

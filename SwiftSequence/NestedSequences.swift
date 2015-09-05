@@ -4,14 +4,9 @@
 
 private extension GeneratorType where Element : CollectionType {
   mutating private func product() -> [[Element.Generator.Element]] {
-    return next().map {
-      let pProd = product()
-      return $0.flatMap {
-        el in pProd.map {
-          [el] + $0
-        }
-      }
-    } ?? [[]]
+    guard let x = next() else { return [[]] }
+    let xs = product()
+    return x.flatMap { h in xs.map { [h] + $0 } }
   }
 }
 

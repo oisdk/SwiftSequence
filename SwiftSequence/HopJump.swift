@@ -12,7 +12,7 @@ public extension SequenceType {
   /// [1, 3, 5, 7]
   /// ```
   
-  public func hop(n: Int) -> [Generator.Element] {
+  func hop(n: Int) -> [Generator.Element] {
     var result: [Generator.Element] = []
     result.reserveCapacity((underestimateCount() / n).successor())
     var i = 1
@@ -24,7 +24,7 @@ public extension SequenceType {
   }
 }
 
-public extension CollectionType where Index : RandomAccessIndexType {
+extension CollectionType where Index : RandomAccessIndexType {
   
   /// Returns an array with `n` elements of self hopped over. The sequence includes the
   /// first element of self.
@@ -34,7 +34,22 @@ public extension CollectionType where Index : RandomAccessIndexType {
   /// [1, 3, 5, 7]
   /// ```
   
-  func hop(n: Index.Stride) -> [Generator.Element] {
+  public func hop(n: Index.Stride) -> [Generator.Element] {
+    return startIndex.stride(to: endIndex, by: n).map{self[$0]}
+  }
+}
+
+extension CollectionType where Index == Int {
+  
+  /// Returns an array with `n` elements of self hopped over. The sequence includes the
+  /// first element of self.
+  /// ```swift
+  /// [1, 2, 3, 4, 5, 6, 7, 8].hop(2)
+  ///
+  /// [1, 3, 5, 7]
+  /// ```
+  
+  public func hop(n: Int) -> [Generator.Element] {
     return startIndex.stride(to: endIndex, by: n).map{self[$0]}
   }
 }

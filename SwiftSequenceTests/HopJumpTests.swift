@@ -7,11 +7,22 @@ class HopJumpTests: XCTestCase {
   
   func testHop() {
     
-    let toHop = [1, 2, 3, 4, 5, 6]
-    
-    XCTAssert(toHop.hop(3) == [1, 4])
-    XCTAssert(toHop.hop(2) == [1, 3, 5])
-    XCTAssert(toHop.hop(1) == toHop)
+    for randAr in (1..<10).map(Array<Int>.init) {
+      
+      let hop = Int.randLim(randAr.count - 1) + 1
+      
+      let expectation = randAr
+        .indices
+        .filter { n in n % hop == 0 }
+        .map { i in randAr[i] }
+      
+      let reality = AnySequence(randAr).hop(hop)
+      let intReality = randAr.hop(hop)
+      
+      XCTAssert(expectation == reality)
+      XCTAssert(expectation == intReality)
+      
+    }
     
   }
   
@@ -19,13 +30,19 @@ class HopJumpTests: XCTestCase {
   
   func testLazyHop() {
     
-    let toHop = [1, 2, 3, 4, 5, 6].lazy
-    
-    XCTAssert(toHop.hop(3).elementsEqual([1, 4]))
-    XCTAssert(toHop.hop(2).elementsEqual([1, 3, 5]))
-    XCTAssert(toHop.hop(1).elementsEqual(toHop))
-    
-    let _ = Array(toHop.hop(1))
+    for randAr in (1..<10).map(Array<Int>.init) {
+      
+      let hop = Int.randLim(randAr.count - 1) + 1
+      
+      let expectation = randAr.hop(hop)
+      
+      let randReality = randAr.lazy.hop(hop)
+      let reality = AnySequence(randAr).lazy.hop(hop)
+      
+      XCTAssert(expectation.elementsEqual(reality))
+      XCTAssert(expectation.elementsEqual(randReality))
+      
+    }
     
   }
 }

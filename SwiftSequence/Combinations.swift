@@ -81,9 +81,9 @@ public struct ComboRepSeq<Element> : LazySequenceType {
   
   internal init(n: Int, col: [Element]) {
     self.col = col
-    start = Array(Repeat(count: n, repeatedValue: col.first!))
-    var inds = Array(Repeat(count: n, repeatedValue: col.startIndex))
-    --inds[n-1]
+    start = col.first.map { x in Array(count: n, repeatedValue: x) } ?? []
+    var inds = Array(count: n, repeatedValue: col.startIndex)
+    if !inds.isEmpty { --inds[n-1] }
     self.inds = inds
     max = col.endIndex.predecessor()
   }

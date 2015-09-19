@@ -1,5 +1,10 @@
 import XCTest
 @testable import SwiftSequence
+import Foundation
+
+func randArray(length: Int = 10) -> [Int] {
+  return (0..<length).map { _ in Int(arc4random_uniform(UInt32.max)) }
+}
 
 class CombinationsTests: XCTestCase {
   // MARK: Eager
@@ -28,21 +33,31 @@ class CombinationsTests: XCTestCase {
   
   func testLazyCombosWithoutRep() {
     
-    let comboed = [1, 2, 3].lazyCombos(2)
-    
-    let expectation = [[1, 2], [1, 3], [2, 3]].lazy
-    
-    XCTAssert(comboed.elementsEqual(expectation, isEquivalent: ==))
+    for randAr in (0..<10).map(randArray) {
+      
+      let eager = randAr.combos(min(randAr.count, 3))
+      
+      let lazy = randAr.lazyCombos(min(randAr.count, 3))
+      
+      XCTAssert(eager.elementsEqual(lazy, isEquivalent: ==))
+      
+    }
     
   }
   
   func testLazyCombosWithRep() {
     
-    let comboed = [1, 2, 3].lazyCombosWithRep(2)
-    
-    let expectation = [[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]].lazy
-    
-    XCTAssert(comboed.elementsEqual(expectation, isEquivalent: ==))
+    for randAr in (0..<10).map(randArray) {
+      
+      let eager = randAr.combosWithRep(min(randAr.count, 3))
+      
+      let lazy = randAr.lazyCombosWithRep(min(randAr.count, 3))
+      
+      XCTAssert(eager.elementsEqual(lazy, isEquivalent: ==))
+      
+    }
     
   }
+  
+  
 }

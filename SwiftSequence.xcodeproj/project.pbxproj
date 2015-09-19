@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701E174A1BAD842100E23449 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E17491BAD842100E23449 /* TestHelpers.swift */; settings = {ASSET_TAGS = (); }; };
 		7037D0451B403AB500FA04C6 /* SwiftSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 7037D0441B403AB500FA04C6 /* SwiftSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7037D04C1B403AB500FA04C6 /* SwiftSequence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7037D0411B403AB500FA04C6 /* SwiftSequence.framework */; };
 		7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		701E17491BAD842100E23449 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		7037D0411B403AB500FA04C6 /* SwiftSequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7037D0441B403AB500FA04C6 /* SwiftSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftSequence.h; sourceTree = "<group>"; };
 		7037D0461B403AB500FA04C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				7037D0521B403AB500FA04C6 /* Info.plist */,
+				701E17491BAD842100E23449 /* TestHelpers.swift */,
 				70F19A0D1B68C3EB0078CF11 /* CategoriseTests.swift */,
 				70F19A111B68C4660078CF11 /* ChunkWindowSplitTests.swift */,
 				70F19A131B68C4910078CF11 /* CombinationsTests.swift */,
@@ -310,6 +313,7 @@
 				70F19A241B68C5C20078CF11 /* LazySeqTests.swift in Sources */,
 				70F19A2C1B68C6300078CF11 /* TakeDropTests.swift in Sources */,
 				70F19A261B68C5EC0078CF11 /* NestedSequencesTests.swift in Sources */,
+				701E174A1BAD842100E23449 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

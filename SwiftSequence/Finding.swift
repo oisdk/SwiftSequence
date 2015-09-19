@@ -31,6 +31,18 @@ public extension CollectionType where Index : BidirectionalIndexType {
     }
     return nil
   }
+  
+  /**
+  Returns the index of the final element in `self` which satisfies 
+  `isElement`, or `nil` if it doesn't exist.
+  */
+  
+  func lastIndexOf(@noescape isElement: Generator.Element throws -> Bool) rethrows -> Index? {
+    for i in indices.reverse() where try isElement(self[i]) {
+      return i
+    }
+    return nil
+  }
 }
 
 extension CollectionType {

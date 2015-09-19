@@ -124,10 +124,10 @@ public struct WindowGen<Element> : GeneratorType {
   
   mutating public func next() -> [Element]? {
     return window.map { result in
-      g().map { element in
+      if let element = g() {
         window!.append(element)
         window!.removeFirst()
-      } ?? { window = nil }()
+      } else { window = nil }
       return result
     }
   }

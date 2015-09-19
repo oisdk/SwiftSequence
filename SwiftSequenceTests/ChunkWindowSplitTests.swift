@@ -35,5 +35,15 @@ class ChunkWindowSplitTests: XCTestCase {
     XCTAssert(chunkd.elementsEqual(expectation, isEquivalent: ==))
     
   }
+  
+  func testLazyWindow() {
+    
+    let expectation = [Int](1...10).window(3)
+    
+    let reality = [Int](1...10).lazy.window(3)
+    
+    XCTAssert(expectation.elementsEqual(reality, isEquivalent: ==))
+    
+  }
 
 }

@@ -26,9 +26,7 @@ public extension SequenceType where Generator.Element : Hashable {
   
   func freqs() -> [Generator.Element:Int] {
     var freqs: [Generator.Element:Int] = [:]
-    for el in self where nil == (freqs[el]?._successorInPlace()) {
-      freqs[el] = 1
-    }
+    for el in self { freqs[el] = freqs[el]?.successor() ?? 1 }
     return freqs
   }
   

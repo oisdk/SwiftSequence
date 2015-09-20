@@ -17,6 +17,7 @@ public extension SequenceType {
     var result: [[Generator.Element]] = []
     var crChnk:  [Generator.Element]  = []
     crChnk.reserveCapacity(n)
+    result.reserveCapacity(underestimateCount() / n)
     var i = n
     for element in self {
       crChnk.append(element)

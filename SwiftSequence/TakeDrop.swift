@@ -43,6 +43,54 @@ public extension SequenceType {
   }
 }
 
+public extension SequenceType {
+  public func breakAt(n: Int) -> ([Generator.Element],[Generator.Element]) {
+    let r = max(0, underestimateCount() - n)
+    var f,b : [Generator.Element]
+    (f,b) = ([],[])
+    f.reserveCapacity(n)
+    b.reserveCapacity(r)
+    var g = generate()
+    for _ in 0..<n {
+      if let e = g.next() { f.append(e) } else { return (f,b) }
+    }
+    while let e = g.next() { b.append(e) }
+    return (f,b)
+  }
+}
+
+public extension CollectionType {
+  public func breakAt(n: Index) -> (SubSequence, SubSequence) {
+    return (prefixUpTo(n),suffixFrom(n))
+  }
+}
+public extension CollectionType where Index == Int {
+  public func breakAt(n: Int) -> (SubSequence, SubSequence) {
+    return (prefixUpTo(n),suffixFrom(n))
+  }
+}
+public extension SequenceType {
+  public func breakAt(@noescape isBreak: Generator.Element throws -> Bool) rethrows -> ([Generator.Element],[Generator.Element]) {
+    var f,b : [Generator.Element]
+    (f,b) = ([],[])
+    var g = generate()
+    while let e = g.next() {
+      if try isBreak(e) {
+        b.append(e)
+        while let be = g.next() { b.append(be) }
+        return (f,b)
+      } else {
+        f.append(e)
+      }
+    }
+    return (f,b)
+  }
+}
+public extension CollectionType {
+  public func breakAt(@noescape isBreak: Generator.Element throws -> Bool) rethrows -> (SubSequence, SubSequence) {
+    return try indexOf(isBreak).map(breakAt) ?? (suffixFrom(startIndex),prefixUpTo(startIndex))
+  }
+}
 // MARK: - Lazy
 
 // MARK: TakeWhile
@@ -89,7 +137,7 @@ public extension LazySequenceType {
 public struct DropWhileGen<G : GeneratorType> : GeneratorType {
   
   private let predicate: G.Element -> Bool
-  private var nG: G!
+  private var nG: G?
   private var oG: G
   
   init(g: G, predicate: G.Element -> Bool) {
@@ -99,7 +147,7 @@ public struct DropWhileGen<G : GeneratorType> : GeneratorType {
   }
   
   public mutating func next() -> G.Element? {
-    guard nG == nil else { return nG.next() }
+    guard nG == nil else { return nG!.next() }
     while let next = oG.next() {
       if !predicate(next) {
         nG = oG

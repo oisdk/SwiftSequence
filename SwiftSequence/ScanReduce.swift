@@ -17,7 +17,9 @@ public extension SequenceType {
     rethrows -> Generator.Element? {
     var g = generate()
     return try g.next().map { (var accu) in
-      while let next = g.next() { accu = try combine(accumulator: accu, element: next) }
+      while let next = g.next() {
+        accu = try combine(accumulator: accu, element: next)
+      }
       return accu
     }
   }
@@ -33,8 +35,8 @@ public extension SequenceType {
   /// ```
   
   func scan<T>(var initial: T, @noescape combine: (accumulator: T, element: Generator.Element) throws -> T) rethrows -> [T] {
-    return try map {
-      initial = try combine(accumulator: initial, element: $0)
+    return try map { e in
+      initial = try combine(accumulator: initial, element: e)
       return initial
     }
   }
@@ -51,7 +53,8 @@ public extension SequenceType {
   
   func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element) rethrows -> [Generator.Element] {
     var g = generate()
-    return try g.next().map { try GeneratorSequence(g).scan($0, combine: combine) } ?? []
+    guard let i = g.next() else { return [] }
+    return try GeneratorSequence(g).scan(i, combine: combine)
   }
 }
 
@@ -66,8 +69,8 @@ public struct ScanGen<G : GeneratorType, T> : GeneratorType {
   private var g: G
   
   public mutating func next() -> T? {
-    return g.next().map {
-      initial = combine(initial, $0)
+    return g.next().map { e in
+      initial = combine(initial, e)
       return initial
     }
   }

@@ -1,4 +1,5 @@
 import Foundation
+import XCTest
 
 internal protocol Randable {
   static var rand: Self { get }
@@ -22,4 +23,8 @@ extension Array where Element : Randable {
 func randPred() -> (Int -> Bool) {
   let d = Int.randLim(20) + 1
   return { n in n % d == 0 }
+}
+
+func XCTAssertEqual<T : Equatable>(lhs: T)(rhs: T) {
+  XCTAssertEqual(lhs, rhs)
 }

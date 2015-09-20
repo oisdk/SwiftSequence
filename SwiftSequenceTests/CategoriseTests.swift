@@ -8,32 +8,40 @@ class CategoriseTests: XCTestCase {
   
   func testCat() {
     
-    let result = [1, 2, 3, 4, 5, 6].categorise {(i: Int) -> Int in i % 2 }
-    
-    let expectation = [0:[2, 4, 6], 1:[1, 3, 5]]
-    
-    for key in result.keys {
-      XCTAssert(result[key]!.elementsEqual(expectation[key]!))
+    for randAr in (1...10).map(Array<Int>.init) {
+      let n = Int.randLim(10) + 1
+      let keyFunc = { i in i % n + 1 }
+      let reality = randAr.categorise(keyFunc)
+      for (k,v) in reality {
+        v.map(keyFunc).forEach(XCTAssertEqual(k))
+      }
     }
   }
   
   func testFreqs() {
     
-    let result = [1, 1, 1, 2, 2, 3].freqs()
-    
-    let expectation = [1:3, 2:2, 3:1]
-    
-    XCTAssert(result == expectation)
+    for _ in 0...10 {
+      
+      let randAr = (1...100).map { _ in Int.randLim(20) }
+      
+      for (k,v) in randAr.freqs() {
+        
+        XCTAssertEqual(randAr.count { e in e == k }, v)
+        
+      }
+      
+    }
     
   }
   
   func testUniques() {
     
-    let result = [1, 1, 1, 3, 3, 2, 4, 3].uniques()
-    
-    let expectation = [1, 3, 2, 4]
-    
-    XCTAssert(result == expectation)
+    for _ in 0...10 {
+      
+      let randAr = (1...100).map { _ in Int.randLim(20) }
+      
+      XCTAssertEqual(randAr.uniques().count, Set(randAr).count)
+    }
     
   }
   
@@ -41,29 +49,57 @@ class CategoriseTests: XCTestCase {
   
   func testLazyUniques() {
     
-    let uniqueSeq = [1, 1, 1, 3, 3, 2, 4, 3].lazy.uniques()
-    
-    let expectation = [1, 3, 2, 4].lazy
-    
-    XCTAssert(uniqueSeq.elementsEqual(expectation))
+    for _ in 1...10 {
+      
+      let randAr = (1...100).map { _ in Int.randLim(20) }
+      
+      XCTAssert(randAr.lazy.uniques().elementsEqual(randAr.uniques()))
+      
+    }
     
   }
   
   func testLazyGroup() {
     
-    let groupSeq = [1, 2, 2, 3, 1, 1, 3, 4, 2].lazy.group()
-    
-    let expectation = [[1], [2, 2], [3], [1, 1], [3], [4], [2]].lazy
-    
-    XCTAssert(
-      !zip(groupSeq, expectation).contains {
-        a, b in
-        a != b
-      }
-    )
+    for _ in 1...10 {
+      
+      let randAr = (1...100).map { _ in Int.randLim(20) }
+      
+      let lazyGroup = randAr.lazy.group()
+      
+      XCTAssertFalse(lazyGroup.map(Set.init).contains { s in s.count != 1 })
+      
+      let ar = Array(lazyGroup)
+      
+      XCTAssertFalse(ar.dropFirst().enumerate().contains { (i,v) in ar[i].last == v.first })
+      
+    }
   }
   
   func testLazyGroupClos() {
+    
+    for _ in 1...10 {
+      
+      let randAr = (1...100).map { _ in Int.randLim(20) }
+    
+      let n = Int.randLim(10)
+    
+      let isEq = { (a,b) in abs(a - b) < n }
+      
+      let lGroup = randAr.lazy.group(isEq)
+      
+      for a in lGroup {
+      
+        
+        XCTAssertFalse(a.dropFirst().enumerate().contains { (i,v) in !isEq(a[i],v) }, "\n" + Array(lGroup).description + "\n" + n.description + "\n")
+        
+      }
+      
+      let ar = Array(lGroup)
+      
+      XCTAssertFalse(ar.dropFirst().enumerate().contains { (i,v) in isEq(ar[i].last!, v.first!) })
+      
+    }
     
     let groupSeq = [1, 3, 5, 20, 22, 18, 6, 7].lazy.group { abs($0 - $1) < 5 }
     

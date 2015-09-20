@@ -111,7 +111,7 @@ public struct GroupByGen<G : GeneratorType> : GeneratorType {
       var group = [comp]
       last = nil
       while let next = genr.next() {
-        guard isEq(comp, next) else {
+        guard isEq(group.last!, next) else {
           last = next
           return group
         }

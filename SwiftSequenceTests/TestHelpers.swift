@@ -28,3 +28,23 @@ func randPred() -> (Int -> Bool) {
 func XCTAssertEqual<T : Equatable>(lhs: T)(rhs: T) {
   XCTAssertEqual(lhs, rhs)
 }
+
+struct WatcherSequence<S : SequenceType> : SequenceType {
+  private let seq: S
+  func generate() -> AnyGenerator<S.Generator.Element> {
+    var g = seq.generate()
+    var calledNil = false
+    return anyGenerator {
+      XCTAssertFalse(calledNil, "Called a generator after it had already returned nil")
+      if let e = g.next() { return e }
+      calledNil = true
+      return nil
+    }
+  }
+  internal init(_ s: S) {
+    seq = s
+  }
+}
+
+func fst<A,B>(t: (A,B)) -> A { return t.0 }
+func snd<A,B>(t: (A,B)) -> B { return t.1 }

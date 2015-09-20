@@ -11,7 +11,7 @@ class CycleTests: XCTestCase {
     
     let expectation = [1, 2, 3, 1, 2, 3]
     
-    XCTAssert(cycled.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(cycled)(expectation)
     
   }
   
@@ -21,9 +21,9 @@ class CycleTests: XCTestCase {
     
     let cycled = [1, 2, 3].lazy.cycle(2)
     
-    let expectation = [1, 2, 3, 1, 2, 3].lazy
+    let expectation = [1, 2, 3, 1, 2, 3]
     
-    XCTAssert(cycled.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(cycled)(expectation)
     
   }
   

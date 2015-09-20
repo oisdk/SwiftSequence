@@ -9,9 +9,9 @@ class FlatMapTests: XCTestCase {
     
     let flattened = seq.flatMap { [$0, 10] }
     
-    let expectation = [1, 10, 2, 10, 3, 10, 4, 10, 5, 10].lazy
+    let expectation = [1, 10, 2, 10, 3, 10, 4, 10, 5, 10]
     
-    XCTAssert(flattened.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(flattened)(expectation)
     
   }
   
@@ -23,7 +23,7 @@ class FlatMapTests: XCTestCase {
     
     let expectation = [1, 2]
     
-    XCTAssert(flattened.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(flattened)(expectation)
     
   }
 

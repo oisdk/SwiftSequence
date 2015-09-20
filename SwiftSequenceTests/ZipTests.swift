@@ -5,8 +5,6 @@ class ZipTests: XCTestCase {
   
   func testWithNilPadding() {
     
-    
-    
     for (a,b) in zip((0...10).map(Array<Int>.init), (0...10).reverse().map(Array<Int>.init)) {
       
       let wa = WatcherSequence(a)
@@ -16,8 +14,8 @@ class ZipTests: XCTestCase {
       XCTAssertEqual(Array(zipped).count, max(a.count,b.count))
       let ta = zipped.map(fst).prefixWhile { e in e != nil }.flatMap { id in id }
       let tb = zipped.map(snd).prefixWhile { e in e != nil }.flatMap { id in id }
-      XCTAssert(a == ta)
-      XCTAssert(b == tb)
+      XCTAssertEqual(a,ta)
+      XCTAssertEqual(b,tb)
       
     }
     
@@ -40,9 +38,11 @@ class ZipTests: XCTestCase {
       let wb = WatcherSequence(b)
       
       let zipped = zipWithPadding(wa,wb,pad0: an,pad1: bn)
+      
       XCTAssertEqual(Array(zipped).count, max(a.count,b.count))
-      XCTAssert(zipped.map(fst).prefixWhile(aPred).elementsEqual(a))
-      XCTAssert(zipped.map(snd).prefixWhile(bPred).elementsEqual(b))
+      
+      XCTAssertEqual(zipped.map(fst).prefixWhile(aPred),a)
+      XCTAssertEqual(zipped.map(snd).prefixWhile(bPred),b)
       
     }
     

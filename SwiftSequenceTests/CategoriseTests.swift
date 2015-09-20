@@ -53,7 +53,7 @@ class CategoriseTests: XCTestCase {
       
       let randAr = (1...100).map { _ in Int.randLim(20) }
       
-      XCTAssert(randAr.lazy.uniques().elementsEqual(randAr.uniques()))
+      XCTAssertEqual(randAr.lazy.uniques(),randAr.uniques())
       
     }
     
@@ -114,7 +114,7 @@ class CategoriseTests: XCTestCase {
       
       let occurances = freqs[mostFreq]
       
-      XCTAssert(!freqs.values.contains { $0 > occurances}, "\n" + mostFreq.description + " " + freqs.debugDescription)
+      XCTAssertFalse(freqs.values.contains { $0 > occurances}, "\n" + mostFreq.description + " " + freqs.debugDescription)
     }
   }
 }

@@ -19,8 +19,8 @@ class HopJumpTests: XCTestCase {
       let reality = AnySequence(randAr).hop(hop)
       let intReality = randAr.hop(hop)
       
-      XCTAssert(expectation == reality)
-      XCTAssert(expectation == intReality)
+      XCTAssertEqual(expectation)(reality)
+      XCTAssertEqual(expectation)(intReality)
       
     }
     
@@ -39,8 +39,8 @@ class HopJumpTests: XCTestCase {
       let randReality = randAr.lazy.hop(hop)
       let reality = AnySequence(randAr).lazy.hop(hop)
       
-      XCTAssert(expectation.elementsEqual(reality))
-      XCTAssert(expectation.elementsEqual(randReality))
+      XCTAssertEqual(expectation)(reality)
+      XCTAssertEqual(expectation)(randReality)
       
     }
     

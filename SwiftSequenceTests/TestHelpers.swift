@@ -25,8 +25,16 @@ func randPred() -> (Int -> Bool) {
   return { n in n % d == 0 }
 }
 
-func XCTAssertEqual<T : Equatable>(lhs: T)(rhs: T) {
+func XCTAssertEqual<T : Equatable>(lhs: T)(_ rhs: T) {
   XCTAssertEqual(lhs, rhs)
+}
+
+func XCTAssertEqual<
+  S0 : SequenceType, S1 : SequenceType where
+  S0.Generator.Element == S1.Generator.Element,
+  S0.Generator.Element : Equatable>(lhs: S0)(_ rhs:S1) {
+  XCTAssert(lhs.elementsEqual(rhs),
+    String(reflecting: lhs) + " does not equal " + String(reflecting: rhs))
 }
 
 struct WatcherSequence<S : SequenceType> : SequenceType {

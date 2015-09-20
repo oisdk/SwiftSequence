@@ -101,22 +101,12 @@ class CategoriseTests: XCTestCase {
       
     }
     
-    let groupSeq = [1, 3, 5, 20, 22, 18, 6, 7].lazy.group { abs($0 - $1) < 5 }
-    
-    let expectation = [[1, 3, 5], [20, 22, 18], [6, 7]].lazy
-    
-    XCTAssert(
-      !zip(groupSeq, expectation).contains {
-        a, b in
-        a != b
-      }
-    )
   }
   
   func testMostFrequent() {
     
     for _ in 0...1000 {
-      let nums = (1...10).map { _ in Int(arc4random_uniform(10)) }
+      let nums = (1...10).map { _ in Int.randLim(20) }
       
       let mostFreq = nums.mostFrequent()!
       
@@ -126,7 +116,5 @@ class CategoriseTests: XCTestCase {
       
       XCTAssert(!freqs.values.contains { $0 > occurances}, "\n" + mostFreq.description + " " + freqs.debugDescription)
     }
-    
-    
   }
 }

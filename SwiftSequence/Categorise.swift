@@ -4,7 +4,8 @@
 
 public extension SequenceType {
   
-  /// Categorises elements of self into a dictionary, with the keys given by keyFunc
+  /// Categorises elements of self into a dictionary, with the keys given
+  /// by `keyFunc`
   
   func categorise<U : Hashable>(@noescape keyFunc: Generator.Element throws -> U)
     rethrows -> [U:[Generator.Element]] {
@@ -21,8 +22,8 @@ public extension SequenceType where Generator.Element : Hashable {
   
   // MARK: Frequencies
   
-  /// Returns a dictionary where the keys are the elements of self, and the values
-  /// are their respective frequencies
+  /// Returns a dictionary where the keys are the elements of self, and
+  /// the values are their respective frequencies
   
   func freqs() -> [Generator.Element:Int] {
     var freqs: [Generator.Element:Int] = [:]
@@ -32,7 +33,8 @@ public extension SequenceType where Generator.Element : Hashable {
   
   // MARK: Uniques
   
-  /// Returns an array of self with duplicates removed
+  /// Returns an array of the elements of `self`, in order, with
+  /// duplicates removed
   
   public func uniques() -> [Generator.Element] {
     var prevs: Set<Generator.Element> = []
@@ -89,7 +91,8 @@ public struct UniquesSeq<
 
 public extension LazySequenceType where Generator.Element : Hashable {
   
-  /// returns a lazy sequence of self with duplicates removed
+  /// returns a lazy sequence of the elements of `self`, in order, with
+  /// duplicates removed
   
   func uniques() -> UniquesSeq<Self> {
     return UniquesSeq(seq: self)

@@ -11,7 +11,7 @@ class TakeDropTests: XCTestCase {
     
     let expectation = [1, 2, 3, 4]
     
-    XCTAssert(taken == expectation)
+    XCTAssertEqual(taken)(expectation)
     
   }
   
@@ -21,7 +21,7 @@ class TakeDropTests: XCTestCase {
     
     let expectation = [5, 1, 2, 3]
     
-    XCTAssert(dropped == expectation)
+    XCTAssertEqual(dropped)(expectation)
     
   }
   
@@ -33,7 +33,7 @@ class TakeDropTests: XCTestCase {
     
     let expectation = [1, 2, 3, 4]
     
-    XCTAssert(taken.elementsEqual(expectation))
+    XCTAssertEqual(taken)(expectation)
     
   }
   
@@ -43,7 +43,7 @@ class TakeDropTests: XCTestCase {
     
     let expectation = [5, 1, 2, 3]
     
-    XCTAssert(dropped.elementsEqual(expectation))
+    XCTAssertEqual(dropped)(expectation)
     
   }
   
@@ -57,11 +57,11 @@ class TakeDropTests: XCTestCase {
       
       XCTAssertEqual(f.count, n)
       XCTAssertEqual(b.count, randAr.count - n)
-      XCTAssert((f + b).elementsEqual(randAr))
+      XCTAssertEqual(f + b)(randAr)
       
       let (af,ab) = AnySequence(randAr).breakAt(n)
-      XCTAssert(af.elementsEqual(f))
-      XCTAssert(ab.elementsEqual(b))
+      XCTAssertEqual(af)(f)
+      XCTAssertEqual(ab)(b)
       
       
     }
@@ -76,12 +76,12 @@ class TakeDropTests: XCTestCase {
       
       XCTAssertFalse(f.contains(p))
       XCTAssert(b.first.map(p) ?? true)
-      XCTAssert((f+b).elementsEqual(randAr))
+      XCTAssertEqual(f + b)(randAr)
       
       let (af,ab) = AnySequence(randAr).breakAt(p)
       
-      XCTAssert(af.elementsEqual(f))
-      XCTAssert(ab.elementsEqual(b))
+      XCTAssertEqual(af)(f)
+      XCTAssertEqual(ab)(b)
       
     }
   }

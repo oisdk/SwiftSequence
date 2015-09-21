@@ -32,6 +32,19 @@ public extension SequenceType {
   }
 }
 
+public extension CollectionType {
+  public func chunk(n: Index.Distance) -> [SubSequence] {
+    var result: [SubSequence] = []
+    var i = startIndex
+    while i != endIndex {
+      let j = i.advancedBy(n, limit: endIndex)
+      result.append(self[i..<j])
+      i = j
+    }
+    return result
+  }
+}
+
 // MARK: Window
 
 public extension SequenceType {

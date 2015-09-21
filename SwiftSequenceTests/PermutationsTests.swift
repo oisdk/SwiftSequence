@@ -16,7 +16,7 @@ class PermutationsTests: XCTestCase {
     
     let bExpectation = [[1, 2, 3]]
     
-    XCTAssert(backward == bExpectation)
+    XCTAssertEqual(backward)(bExpectation)
     
   }
   
@@ -32,7 +32,7 @@ class PermutationsTests: XCTestCase {
     
     let bExpectation = [[3, 2, 1]]
     
-    XCTAssert(backward == bExpectation)
+    XCTAssertEqual(backward)(bExpectation)
     
   }
   
@@ -42,7 +42,7 @@ class PermutationsTests: XCTestCase {
     
     let expectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssert(perms == expectation)
+    XCTAssertEqual(perms)(expectation)
     
   }
   
@@ -54,13 +54,13 @@ class PermutationsTests: XCTestCase {
     
     let fExpectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssert(forward.elementsEqual(fExpectation, isEquivalent: ==))
+    XCTAssertEqual(forward)(fExpectation)
     
     let backward = [1, 2, 3].lazyLexPermutations(>)
     
     let bExpectation = [[1, 2, 3]]
     
-    XCTAssert(backward.elementsEqual(bExpectation, isEquivalent: ==))
+    XCTAssertEqual(backward)(bExpectation)
 
     
   }
@@ -71,13 +71,13 @@ class PermutationsTests: XCTestCase {
     
     let fExpectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssert(forward.elementsEqual(fExpectation, isEquivalent: ==))
+    XCTAssertEqual(forward)(fExpectation)
     
     let backward = [3, 2, 1].lazyLexPermutations()
     
     let bExpectation = [[3, 2, 1]]
     
-    XCTAssert(backward.elementsEqual(bExpectation, isEquivalent: ==))
+    XCTAssertEqual(backward)(bExpectation)
 
     
   }
@@ -88,7 +88,7 @@ class PermutationsTests: XCTestCase {
     
     let expectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssert(perms.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(perms)(expectation)
 
     
   }

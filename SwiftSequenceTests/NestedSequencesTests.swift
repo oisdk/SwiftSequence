@@ -11,7 +11,7 @@ class NestedSequencesTests: XCTestCase {
     
     let expectation = [[1, 3], [1, 4], [2, 3], [2, 4]]
     
-    XCTAssert(prod == expectation)
+    XCTAssertEqual(prod)(expectation)
     
   }
   
@@ -21,7 +21,7 @@ class NestedSequencesTests: XCTestCase {
     
     let expectation = [[1, 3], [1, 4], [2, 3], [2, 4]]
     
-    XCTAssert(prod == expectation)
+    XCTAssertEqual(prod)(expectation)
     
   }
   
@@ -39,7 +39,7 @@ class NestedSequencesTests: XCTestCase {
       [3, 3, 3]
     ]
     
-    XCTAssert(transposed == expectation)
+    XCTAssertEqual(transposed)(expectation)
     
   }
   
@@ -51,7 +51,7 @@ class NestedSequencesTests: XCTestCase {
     
     let expectation = [[1, 3], [1, 4], [2, 3], [2, 4]]
     
-    XCTAssert(prod.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(prod)(expectation)
     
   }
   
@@ -61,7 +61,7 @@ class NestedSequencesTests: XCTestCase {
     
     let expectation = [[1, 3], [1, 4], [2, 3], [2, 4]]
     
-    XCTAssert(prod.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(prod)(expectation)
     
     
   }
@@ -80,7 +80,7 @@ class NestedSequencesTests: XCTestCase {
       [3, 3, 3]
     ]
     
-    XCTAssert(transposed.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(transposed)(expectation)
     
   }
 }

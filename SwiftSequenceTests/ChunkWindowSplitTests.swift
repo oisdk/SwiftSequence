@@ -10,7 +10,7 @@ class ChunkWindowSplitTests: XCTestCase {
     
     let expectation = [[1, 2], [3, 4], [5]]
     
-    XCTAssert(chunkd == expectation)
+    XCTAssertEqual(chunkd)(expectation)
     
   }
   
@@ -20,7 +20,7 @@ class ChunkWindowSplitTests: XCTestCase {
     
     let expectation = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
     
-    XCTAssert(windowed == expectation)
+    XCTAssertEqual(windowed)(expectation)
     
   }
   
@@ -32,7 +32,7 @@ class ChunkWindowSplitTests: XCTestCase {
     
     let expectation = [[1, 2], [3, 4], [5]].lazy
     
-    XCTAssert(chunkd.elementsEqual(expectation, isEquivalent: ==))
+    XCTAssertEqual(chunkd)(expectation)
     
   }
   
@@ -42,7 +42,7 @@ class ChunkWindowSplitTests: XCTestCase {
     
     let reality = [Int](1...10).lazy.window(3)
     
-    XCTAssert(expectation.elementsEqual(reality, isEquivalent: ==))
+    XCTAssertEqual(expectation)(reality)
     
   }
 

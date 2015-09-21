@@ -11,7 +11,7 @@ class CombinationsTests: XCTestCase {
     
     let expectation = [[1, 2], [1, 3], [2, 3]]
     
-    XCTAssert(comboed == expectation)
+    XCTAssertEqual(comboed)(expectation)
     
   }
   
@@ -21,7 +21,7 @@ class CombinationsTests: XCTestCase {
     
     let expectation = [[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]]
     
-    XCTAssert(comboed == expectation)
+    XCTAssertEqual(comboed)(expectation)
     
   }
   
@@ -35,7 +35,7 @@ class CombinationsTests: XCTestCase {
       
       let lazy = randAr.lazyCombos(min(randAr.count, 3))
       
-      XCTAssert(eager.elementsEqual(lazy, isEquivalent: ==))
+      XCTAssertEqual(eager)(lazy)
       
     }
     
@@ -49,7 +49,7 @@ class CombinationsTests: XCTestCase {
       
       let lazy = randAr.lazyCombosWithRep(min(randAr.count, 3))
       
-      XCTAssert(eager.elementsEqual(lazy, isEquivalent: ==))
+      XCTAssertEqual(eager)(lazy)
       
     }
     

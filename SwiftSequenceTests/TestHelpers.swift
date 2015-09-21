@@ -33,8 +33,41 @@ func XCTAssertEqual<
   S0 : SequenceType, S1 : SequenceType where
   S0.Generator.Element == S1.Generator.Element,
   S0.Generator.Element : Equatable>(lhs: S0)(_ rhs:S1) {
-  XCTAssert(lhs.elementsEqual(rhs),
-    String(reflecting: lhs) + " does not equal " + String(reflecting: rhs))
+    var (g0,g1) = (lhs.generate(),rhs.generate())
+    while true {
+      let (e0,e1) = (g0.next(),g1.next())
+      if e0 == nil {
+        if e1 == nil { break }
+        XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
+      } else if e1 == nil {
+        if e0 == nil { break }
+        XCTFail(String(reflecting: rhs) + " is shorter than " + String(reflecting: lhs))
+      }
+      XCTAssert(e0! == e1!,
+        String(reflecting: e0!) + " does not equal " +
+        String(reflecting: e1!) + "\n" + "In the sequences: " +
+        String(reflecting: lhs) + " and " + String(reflecting: rhs)
+      )
+    }
+}
+func XCTAssertEqual<
+  S0 : SequenceType, S1 : SequenceType where
+  S0.Generator.Element : SequenceType,
+  S1.Generator.Element : SequenceType,
+  S0.Generator.Element.Generator.Element == S1.Generator.Element.Generator.Element,
+  S0.Generator.Element.Generator.Element : Equatable>(lhs: S0)(_ rhs:S1) {
+  var (g0,g1) = (lhs.generate(),rhs.generate())
+  while true {
+    let (e0,e1) = (g0.next(),g1.next())
+    if e0 == nil {
+      if e1 == nil { break }
+      XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
+    } else if e1 == nil {
+      if e0 == nil { break }
+      XCTFail(String(reflecting: rhs) + " is shorter than " + String(reflecting: lhs))
+    }
+    XCTAssertEqual(e0!)(e1!)
+  }
 }
 
 struct WatcherSequence<S : SequenceType> : SequenceType {

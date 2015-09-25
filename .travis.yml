@@ -2,5 +2,5 @@ language: objective-c
 osx_image: xcode7
 script:
   - set -o pipefail
-  - xcodebuild -version
+  - xcodebuild
   - xcodebuild test -scheme SwiftSequence -target SwiftSequenceTests

@@ -4,8 +4,31 @@
 
 public extension SequenceType {
   
-  /// Categorises elements of self into a dictionary, with the keys given
-  /// by `keyFunc`
+  /**
+  Categorises elements of `self` into a dictionary, with the keys
+  given by `keyFunc`
+  ```swift
+  struct Person : CustomStringConvertible {
+    let name: String
+    let age : Int
+    init(_ name: String, _ age: Int) {
+      self.name = name
+      self.age  = age
+    }
+    var description: String { return name }
+  }
+  
+  let people = [ 
+    Person("Jo", 20),
+    Person("An", 20),
+    Person("Cthulu", 4000)
+  ]
+  
+  people.categorise { p in p.age }
+  
+  //[20: [Jo, An], 4000: [Cthulu]]
+  ```
+  */
   
   func categorise<U : Hashable>(@noescape keyFunc: Generator.Element throws -> U)
     rethrows -> [U:[Generator.Element]] {
@@ -22,8 +45,14 @@ public extension SequenceType where Generator.Element : Hashable {
   
   // MARK: Frequencies
   
-  /// Returns a dictionary where the keys are the elements of self, and
-  /// the values are their respective frequencies
+  /** 
+  Returns a dictionary where the keys are the elements of self, and
+  the values are their respective frequencies 
+  ```swift
+  [0, 3, 0, 1, 1, 3, 2, 3, 1, 0].freqs()
+  // [2: 1, 0: 3, 3: 3, 1: 3]
+  ```
+  */
   
   func freqs() -> [Generator.Element:Int] {
     var freqs: [Generator.Element:Int] = [:]
@@ -33,8 +62,14 @@ public extension SequenceType where Generator.Element : Hashable {
   
   // MARK: Uniques
   
-  /// Returns an array of the elements of `self`, in order, with
-  /// duplicates removed
+  /** 
+  Returns an array of the elements of `self`, in order, with
+  duplicates removed
+  ```swift
+  [3, 1, 2, 3, 2, 1, 1, 2, 3, 3].uniques()
+  // [3, 1, 2]
+  ```
+  */
   
   public func uniques() -> [Generator.Element] {
     var prevs: Set<Generator.Element> = []
@@ -91,7 +126,7 @@ public struct UniquesSeq<
 
 public extension LazySequenceType where Generator.Element : Hashable {
   
-  /// returns a lazy sequence of the elements of `self`, in order, with
+  /// returns a `LazySequence` of the elements of `self`, in order, with
   /// duplicates removed
   
   func uniques() -> UniquesSeq<Self> {
@@ -144,10 +179,10 @@ public struct GroupBySeq<S : SequenceType> : LazySequenceType {
 public extension LazySequenceType where Generator.Element : Equatable {
   
   /// Returns a lazy sequence of self, chunked into arrays of adjacent equal values
-  /// ``` swift
-  ///   lazy([1, 2, 2, 3, 1, 1, 3, 4, 2]).group()
+  /// ```swift
+  /// [1, 2, 2, 3, 1, 1, 3, 4, 2].lazy.group()
   ///
-  ///   [1], [2, 2], [3], [1, 1], [3], [4], [2]
+  /// [1], [2, 2], [3], [1, 1], [3], [4], [2]
   /// ```
   
   func group() -> GroupBySeq<Self> {
@@ -159,10 +194,10 @@ public extension LazySequenceType {
   
   /// Returns a lazy sequence of self, chunked into arrays of adjacent equal values
   /// - Parameter isEquivalent: a function that returns true if its two parameters are equal
-  ///  ```
-  ///  lazy([1, 3, 5, 20, 22, 18, 6, 7]).groupBy { abs($0 - $1) < 5 }
+  /// ```swift
+  /// [1, 3, 5, 20, 22, 18, 6, 7].lazy.groupBy { (a,b) in abs(a - b) < 5 }
   ///
-  ///  [1, 3, 5], [20, 22, 18], [6, 7]
+  /// [1, 3, 5], [20, 22, 18], [6, 7]
   /// ```
   
   func group(isEquivalent: (Generator.Element, Generator.Element) -> Bool)

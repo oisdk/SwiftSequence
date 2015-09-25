@@ -44,6 +44,10 @@ public extension SequenceType {
 }
 
 public extension SequenceType {
+  /**
+  Returns a tuple of the prefix and suffix of `self`, the first element
+  being the prefix up to `n`.
+  */
   public func breakAt(n: Int) -> ([Generator.Element],[Generator.Element]) {
     let r = max(0, underestimateCount() - n)
     var f,b : [Generator.Element]
@@ -60,17 +64,32 @@ public extension SequenceType {
 }
 
 public extension CollectionType {
+  /**
+  Returns a tuple of the prefix and suffix of `self`, the first element
+  being the prefix up to `n`.
+  */
   public func breakAt(n: Index) -> (SubSequence, SubSequence) {
     return (prefixUpTo(n),suffixFrom(n))
   }
 }
+
 public extension CollectionType where Index == Int {
+  /**
+  Returns a tuple of the prefix and suffix of `self`, the first element
+  being the prefix up to `n`.
+  */
   public func breakAt(n: Int) -> (SubSequence, SubSequence) {
     return (prefixUpTo(n),suffixFrom(n))
   }
 }
 public extension SequenceType {
-  public func breakAt(@noescape isBreak: Generator.Element throws -> Bool) rethrows -> ([Generator.Element],[Generator.Element]) {
+  /**
+  Returns a tuple of the prefix and suffix of `self`, the first element
+  being the prefix up to the first elements of `self` which returns
+  `true` for `isBreak`.
+  */
+  public func breakAt(@noescape isBreak: Generator.Element throws -> Bool)
+    rethrows -> ([Generator.Element],[Generator.Element]) {
     var f,b : [Generator.Element]
     (f,b) = ([],[])
     var g = generate()
@@ -87,6 +106,11 @@ public extension SequenceType {
   }
 }
 public extension CollectionType {
+  /**
+  Returns a tuple of the prefix and suffix of `self`, the first element
+  being the prefix up to the first elements of `self` which returns
+  `true` for `isBreak`.
+  */
   public func breakAt(@noescape isBreak: Generator.Element throws -> Bool) rethrows -> (SubSequence, SubSequence) {
     return try indexOf(isBreak).map(breakAt) ?? (suffixFrom(startIndex),prefixUpTo(startIndex))
   }
@@ -122,7 +146,7 @@ public extension LazySequenceType {
   /// Returns a lazy sequence of self up until the first element that returns false for
   /// condition
   /// ```swift
-  /// lazy([1, 2, 3, 4, 5, 2]).takeWhile { $0 < 4 }
+  /// [1, 2, 3, 4, 5, 2].lazy.takeWhile { $0 < 4 }
   ///
   /// 1, 2, 3
   /// ```
@@ -173,7 +197,7 @@ public extension LazySequenceType {
   /// Returns a lazy sequence of self with the first elements that return true for
   /// condition dropped
   /// ```swift
-  /// lazy([1, 2, 3, 4, 5, 2]).dropWhile { $0 < 4 }
+  /// [1, 2, 3, 4, 5, 2].lazy.dropWhile { $0 < 4 }
   ///
   /// 4, 5, 2
   /// ```

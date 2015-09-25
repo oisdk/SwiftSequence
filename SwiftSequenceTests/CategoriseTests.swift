@@ -53,7 +53,7 @@ class CategoriseTests: XCTestCase {
       
       let randAr = (1...100).map { _ in Int.randLim(20) }
       
-      XCTAssertEqual(randAr.lazy.uniques(),randAr.uniques())
+      XCTAssertEqual(randAr.lazy.uniques())(randAr.uniques())
       
     }
     

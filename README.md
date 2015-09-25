@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/oisdk/SwiftSequence.svg?branch=master)](https://travis-ci.org/oisdk/SwiftSequence)
+
 # SwiftSequence
 
 (If you're looking for data structures in Swift, those have been moved to [here](https://github.com/oisdk/SwiftDataStructures))

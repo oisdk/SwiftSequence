@@ -59,14 +59,19 @@ func XCTAssertEqual<
   var (g0,g1) = (lhs.generate(),rhs.generate())
   while true {
     let (e0,e1) = (g0.next(),g1.next())
-    if e0 == nil {
-      if e1 == nil { break }
-      XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
-    } else if e1 == nil {
-      if e0 == nil { break }
-      XCTFail(String(reflecting: rhs) + " is shorter than " + String(reflecting: lhs))
+    guard let e0U = e0 else {
+      if let _ = e1 {
+        XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
+      }
+      return
     }
-    XCTAssertEqual(e0!)(e1!)
+    guard let e1U = e1 else {
+      if let _ = e1 {
+        XCTFail(String(reflecting: rhs) + " is shorter than " + String(reflecting: lhs))
+      }
+      return
+    }
+    XCTAssertEqual(e0U)(e1U)
   }
 }
 

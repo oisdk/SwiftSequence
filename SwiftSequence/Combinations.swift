@@ -38,13 +38,10 @@ public struct ComboSeq<Element> : LazySequenceType {
   
   internal init(n: Int, col: [Element]) {
     self.col = col
-    var i = col.startIndex
-    start = (0..<n).map{ (_: Int) in col[i++] }
-    i = col.startIndex
-    guard n != 0 else {self.inds = []; return}
-    var inds = (1..<n).map{ (_: Int) in i++ }
-    inds.append(inds.last ?? col.startIndex)
-    self.inds = inds
+    start = Array(col.prefixUpTo(n))
+    let i = n.predecessor()
+    guard i > 0 else {self.inds = []; return}
+    inds = Array((col.startIndex..<i) + [n < col.count ? i.predecessor() : col.startIndex])
   }
 }
 /// :nodoc:

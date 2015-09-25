@@ -55,5 +55,28 @@ class CombinationsTests: XCTestCase {
     
   }
   
+  func testNoDuplicates() {
+    
+    var letters: Set<Character> = []
+    while letters.count < 10 {
+      letters.insert(
+        Character(
+          UnicodeScalar(arc4random_uniform(156) + 100)
+        )
+      )
+    }
+    
+    let sComboes    = letters.combos(5).map(String.init)
+    let lComboes    = Array(letters.lazyCombos(5).map(String.init))
+    let sRepComboed = letters.combosWithRep(5).map(String.init)
+    let lRepComboed = Array(letters.lazyCombosWithRep(5).map(String.init))
+    
+    XCTAssertEqual(sComboes.count, Set(sComboes).count)
+    XCTAssertEqual(lComboes.count, Set(lComboes).count)
+    XCTAssertEqual(sRepComboed.count, Set(sRepComboed).count)
+    XCTAssertEqual(lRepComboed.count, Set(lRepComboed).count)
+    
+  }
+  
   
 }

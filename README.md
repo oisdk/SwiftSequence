@@ -28,7 +28,6 @@ To make an eager sequence lazy, the `lazy` property can be used:
   - [Finding] (#finding)
   - [NestedSequences] (#nestedsequences)
   - [Zip] (#zip)
-  - [FlatMap] (#flatmap)
 
 # Extensions #
 
@@ -475,15 +474,3 @@ zipWithPadding([1, 2, 3], [1, 2])
 
 (1?, 1?), (2?, 2?), (3?, nil)
 ```
-
-## FlatMap ##
-
-This is just a reimplementation of the standard library `flatMap()` that returns a lazy sequence. It doesn't duplicate `flatMap()`'s functionality: it fills a gap that was in the standard library:
-
-|function|type returned when used on an eager sequence|type returned when used on a lazy sequence|
-|--:|--:|--:|---|---|
-| `map()` | `Array` | `MapSequenceView` |
-| `filter()` | `Array` | `FilterSequenceView` |
-| `flatMap()` | `Array` | `Array` |
-
-[There's a rather lengthy, rambling discussion of this here.](https://bigonotetaking.wordpress.com/2015/07/19/making-flatmap-lazy/)

@@ -4,42 +4,12 @@
 
 SwiftSequence is a lightweight framework of extensions to `SequenceType`. It has no requirements beyond the Swift standard library. Every function and method has both a strict and a lazy version, unless otherwise specified.
 
-SwiftSequence adds one new protocol: `LazySequenceType`. This protocol has all of the same requirements as `SequenceType`, but anything that conforms to it is assumed to be lazily evaluated.
-
-When using a method, if the underlying sequence conforms to `LazySequenceType`, the method used will be the lazy version. If the sequence is strict, the strict method will be used.
-
-All sequences returned by lazy methods conform to `LazySequenceType`, and these standard library structs have been made to conform, also:
+To make an eager sequence lazy, the `lazy` property can be used:
 
 ```swift
-extension LazySequence                : LazySequenceType {}
-extension LazyForwardCollection       : LazySequenceType {}
-extension LazyBidirectionalCollection : LazySequenceType {}
-extension LazyRandomAccessCollection  : LazySequenceType {}
-extension FilterSequence              : LazySequenceType {}
-extension FilterCollection            : LazySequenceType {}
-extension MapSequence                 : LazySequenceType {}
-extension MapCollection               : LazySequenceType {}
-extension Zip2                        : LazySequenceType {}
-extension EnumerateSequence           : LazySequenceType {}
-```
-
-To make an eager sequence lazy, the `lazy()` function can be used:
-
-```swift
-lazy([1, 2, 3])
-  .hop(2)
+[1, 2, 3].lazy.hop(2)
 
 // 1, 3
-```
-
-And to force evaluation of a lazy sequence, the `array()` method can be used:
-
-```swift
-lazy([1, 2, 3])
-  .hop(2)
-  .array()
-
-// [1, 3]
 ```
 
 ## Contents ##
@@ -67,7 +37,9 @@ lazy([1, 2, 3])
 ### Reduce ###
 
 ```swift
-func reduce (@noescape combine: (Generator.Element, Generator.Element) -> Generator.Element)
+func reduce
+    (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element)
+    rethrows -> Generator.Element?
 ```
  Return the result of repeatedly calling combine with an accumulated value
  initialised to the first element of self and each element of self, in turn, i.e.

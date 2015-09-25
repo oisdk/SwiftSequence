@@ -2,5 +2,6 @@ language: Swift
 osx_image: xcode7
 xcode_project: SwiftSequence.xcodeproj
 xcode_schene: SwiftSequence
+sudo: false
 script:
   - xcodebuild

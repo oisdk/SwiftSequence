@@ -16,7 +16,6 @@ To make an eager sequence lazy, the `lazy` property can be used:
 
 ## Contents ##
 
-- [Extensions] (#extensions)
   - [ScanReduce] (#scanreduce)
   - [TakeDrop] (#takedrop)
   - [HopJump] (#hopjump)

@@ -30,8 +30,6 @@ To make an eager sequence lazy, the `lazy` property can be used:
   - [NestedSequences] (#nestedsequences)
   - [Zip] (#zip)
 
-# Extensions #
-
 ## ScanReduce ##
 
 ### Reduce ###

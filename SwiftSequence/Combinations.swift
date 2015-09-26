@@ -22,8 +22,8 @@ public struct ComboGen<Element> : GeneratorType {
 public struct ComboSeq<Element> : LazySequenceType {
   
   private let start: [Element]
-  private let inds : [Int]
   private let col  : [Element]
+  private let inds : [Int]
   
   public func generate() -> ComboGen<Element> {
     return ComboGen(coll: col, curr: start, inds: inds)

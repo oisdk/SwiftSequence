@@ -78,4 +78,15 @@ class FindingTests: XCTestCase {
     XCTAssert(expectation == reality)
     
   }
+  
+  func testPartition() {
+    let ar = Array<Int>(randLength: 100)
+    
+    let pred = randPred()
+    
+    let (pass,fail) = ar.partition(pred)
+    
+    XCTAssertEqual(ar.filter(pred))(pass)
+    XCTAssertEqual(ar.filter { e in !pred(e) })(fail)
+  }
 }

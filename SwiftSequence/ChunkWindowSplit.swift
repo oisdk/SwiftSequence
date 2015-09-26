@@ -6,6 +6,7 @@ public extension SequenceType {
   
   /// Returns an array of arrays of n non-overlapping elements of self
   /// - Parameter n: The size of the chunk
+  /// - Precondition: `n > 0`
   /// - SeeAlso: `func window(n: Int) -> [[Self.Generator.Element]]`
   ///  ```swift
   ///  [1, 2, 3, 4, 5].chunk(2)
@@ -28,19 +29,6 @@ public extension SequenceType {
       }
     }
     if !crChnk.isEmpty { result.append(crChnk) }
-    return result
-  }
-}
-
-public extension CollectionType {
-  public func chunk(n: Index.Distance) -> [SubSequence] {
-    var result: [SubSequence] = []
-    var i = startIndex
-    while i != endIndex {
-      let j = i.advancedBy(n, limit: endIndex)
-      result.append(self[i..<j])
-      i = j
-    }
     return result
   }
 }

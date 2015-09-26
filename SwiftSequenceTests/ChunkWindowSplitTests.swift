@@ -6,21 +6,25 @@ class ChunkWindowSplitTests: XCTestCase {
   
   func testChunk() {
     
-    let chunkd = [1, 2, 3, 4, 5].chunk(2)
-    
-    let expectation = [[1, 2], [3, 4], [5]]
-    
-    XCTAssertEqual(chunkd)(expectation)
+    for randAr in (1...20).map(Array<Int>.init) {
+      let n = Int(arc4random()) % randAr.count + 1
+      let chunkd = randAr.chunk(n)
+      for a in chunkd {
+        XCTAssert( a.count <= n )
+      }
+      XCTAssertEqual(chunkd.flatten())(randAr)
+    }
     
   }
   
   func testWindow() {
     
-    let windowed = [1, 2, 3, 4, 5].window(3)
-    
-    let expectation = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
-    
-    XCTAssertEqual(windowed)(expectation)
+    for randAr in (1...20).map(Array<Int>.init) {
+      let n = Int(arc4random()) % randAr.count + 1
+      let windowed = randAr.window(n)
+      windowed.map { a in a.count }.forEach(XCTAssertEqual(n))
+      XCTAssertEqual(randAr)(windowed.first!.dropLast() + windowed.flatMap { a in a.last })
+    }
     
   }
   
@@ -28,22 +32,18 @@ class ChunkWindowSplitTests: XCTestCase {
   
   func testLazyChunk() {
     
-    let chunkd = [1, 2, 3, 4, 5].lazy.chunk(2)
-    
-    let expectation = [[1, 2], [3, 4], [5]].lazy
-    
-    XCTAssertEqual(chunkd)(expectation)
-    
+    for randAr in (1...20).map(Array<Int>.init) {
+      let n = Int(arc4random()) % randAr.count + 1
+      XCTAssertEqual(randAr.lazy.chunk(n))(randAr.chunk(n))
+    }
   }
   
   func testLazyWindow() {
     
-    let expectation = [Int](1...10).window(3)
-    
-    let reality = [Int](1...10).lazy.window(3)
-    
-    XCTAssertEqual(expectation)(reality)
-    
+    for randAr in (1...20).map(Array<Int>.init) {
+      let n = Int(arc4random()) % randAr.count + 1
+      XCTAssertEqual(randAr.lazy.window(n))(randAr.window(n))
+    }
   }
 
 }

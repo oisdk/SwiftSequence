@@ -14,6 +14,14 @@ extension Int: Randable {
   }
 }
 
+private let charLetters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters)
+
+extension Character: Randable {
+  internal static var rand: Character {
+    return charLetters[Int.randLim(charLetters.count)]
+  }
+}
+
 extension Array where Element : Randable {
   internal init(randLength: Int) {
     self = (0..<randLength).map { _ in Element.rand }
@@ -94,3 +102,20 @@ struct WatcherSequence<S : SequenceType> : SequenceType {
 
 func fst<A,B>(t: (A,B)) -> A { return t.0 }
 func snd<A,B>(t: (A,B)) -> B { return t.1 }
+
+private var facs = [1]
+
+extension Int {
+  var fac: Int {
+    if self >= facs.endIndex {
+      facs.append(predecessor().fac * self)
+    }
+    return facs[self]
+  }
+}
+
+func choose(n: Int, _ r: Int) -> Int {
+  let num = n.fac
+  let den = r.fac * (n - r).fac
+  return num / den
+}

@@ -6,17 +6,10 @@ public struct ComboGen<Element> : GeneratorType {
   private var inds: [Int]
   
   mutating public func next() -> [Element]? {
-    guard inds.count > 1 else {
-      if inds.isEmpty {
-        inds = [coll.endIndex]
-        return []
-      }
-      return { $0 == coll.endIndex ? nil : [coll[$0]] } (inds[0]++)
-    }
     for (max, curInd) in zip(coll.indices.reverse(), inds.indices.reverse())
       where max != inds[curInd] {
         curr[curInd] = coll[++inds[curInd]]
-        for j in (curInd+1)..<inds.count {
+        for j in inds.indices.suffixFrom(curInd+1) {
           inds[j] = inds[j-1].successor()
           curr[j] = coll[inds[j]]
         }
@@ -39,9 +32,9 @@ public struct ComboSeq<Element> : LazySequenceType {
   internal init(n: Int, col: [Element]) {
     self.col = col
     start = Array(col.prefixUpTo(n))
-    let i = n.predecessor()
-    guard i > 0 else {self.inds = []; return}
-    inds = Array((col.startIndex..<i) + [n < col.count ? i.predecessor() : col.startIndex])
+    var inds = Array(col.indices.prefixUpTo(n))
+    if !inds.isEmpty { --inds[n.predecessor()] }
+    self.inds = inds
   }
 }
 /// :nodoc:

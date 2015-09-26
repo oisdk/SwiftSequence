@@ -89,7 +89,21 @@ class PermutationsTests: XCTestCase {
     let expectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
     XCTAssertEqual(perms)(expectation)
-
     
+  }
+  
+  func nk(n: Int, _ k: Int) -> Int {
+    let num = n.fac
+    let den = (n - k).fac
+    return num / den
+  }
+  
+  func testCounts() {
+    
+    for randAr in (1...5).map(Array<Character>.init) {
+      XCTAssertEqual(randAr.permutations().count)(randAr.count.fac)
+      let i = Int.randLim(randAr.count) + 1
+      XCTAssertEqual(randAr.permutations(i).count)(nk(randAr.count, i))
+    }
   }
 }

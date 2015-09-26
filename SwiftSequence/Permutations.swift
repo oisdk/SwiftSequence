@@ -107,6 +107,9 @@ public extension SequenceType {
     var col = Array(self)
     return Array(LexPermSeq(col: Array(col.indices), order: <).map { inds in inds.map{col[$0]} })
   }
+  public func permutations(n: Int) -> [[Generator.Element]] {
+    return Array(lazyCombos(n).flatMap { a in a.permutations() })
+  }
 }
 
 // MARK: - Lazy

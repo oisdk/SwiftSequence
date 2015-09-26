@@ -107,13 +107,13 @@ public extension LazySequenceType {
 public struct Scan1Gen<G : GeneratorType> : GeneratorType {
   
   private let combine: (G.Element, G.Element) -> G.Element
-  private var accu: G.Element!
+  private var accu: G.Element?
   private var g: G?
   
   public mutating func next() -> G.Element? {
     return g?.next().map {
-      accu = combine(accu, $0)
-      return accu
+      accu = combine(accu!, $0)
+      return accu!
     }
   }
   

@@ -119,3 +119,9 @@ func choose(n: Int, _ r: Int) -> Int {
   let den = r.fac * (n - r).fac
   return num / den
 }
+
+func chooseRep(n: Int, _ r: Int) -> Int {
+  let num = (n + r - 1).fac
+  let den = r.fac * (n - 1).fac
+  return num / den
+}

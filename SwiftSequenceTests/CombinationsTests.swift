@@ -18,28 +18,34 @@ class CombinationsTests: XCTestCase {
       let failString: () -> String = { "\n" +
         "From array: " + randAr.description + "\n" +
         "To combinations: " + realSeq.description + "\n" +
-        "Of count: " + r.description + "\n"
+        "Of count: " + r.description
       }
       
       XCTAssertEqual(realSeq.count, expectedCount, failString())
       
     }
     
-    let comboed = [1, 2, 3].combos(2)
-    
-    let expectation = [[1, 2], [1, 3], [2, 3]]
-    
-    XCTAssertEqual(comboed)(expectation)
-    
   }
   
   func testCombosWithRep() {
     
-    let comboed = [1, 2, 3].combosWithRep(2)
-    
-    let expectation = [[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]]
-    
-    XCTAssertEqual(comboed)(expectation)
+    for randAr in (1...10).map(Array<Character>.init) {
+      
+      let n = randAr.count
+      let r = Int(arc4random()) % n + 1
+      
+      let expectedCount = chooseRep(n, r)
+      let realSeq = randAr.combosWithRep(r)
+      
+      let failString: () -> String = { "\n" +
+        "From array: " + randAr.description + "\n" +
+        "To combinations: " + realSeq.description + "\n" +
+        "Of count: " + r.description
+      }
+      
+      XCTAssertEqual(realSeq.count, expectedCount, failString())
+      
+    }
     
   }
   

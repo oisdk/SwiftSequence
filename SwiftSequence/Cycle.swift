@@ -39,7 +39,7 @@ public extension LazySequenceType where Self : CollectionType {
   
   /// Returns a generator of n cycles of self.
   /// ```swift
-  /// lazy([1, 2, 3]).cycle(2)
+  /// [1, 2, 3].lazy.cycle(2)
   ///
   /// 1, 2, 3, 1, 2, 3
   /// ```

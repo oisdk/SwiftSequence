@@ -90,7 +90,7 @@ public extension LazySequenceType {
   /// Returns a lazy sequence with `n` elements of self hopped over. The sequence includes
   /// the first element of self.
   /// ```swift
-  /// lazy([1, 2, 3, 4, 5, 6, 7, 8]).hop(2)
+  /// [1, 2, 3, 4, 5, 6, 7, 8].lazy.hop(2)
   ///
   /// 1, 3, 5, 7
   /// ```

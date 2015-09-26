@@ -194,7 +194,7 @@ public extension LazySequenceType {
   /// Returns a lazy sequence that alternates between successive elements of self and an
   /// element
   /// ```swift
-  /// lazy([1, 2, 3]).interpose(10)
+  /// [1, 2, 3].lazy.interpose(10)
   ///
   /// 1, 10, 2, 10, 3, 10
   /// ```
@@ -206,7 +206,7 @@ public extension LazySequenceType {
   /// Returns a lazy sequence that alternates between n successive elements of self and an
   /// element
   /// ```swift
-  /// lazy([1, 2, 3, 4, 5]).interpose(10, n: 2)
+  /// [1, 2, 3, 4, 5].lazy.interpose(10, n: 2)
   ///
   /// 1, 2, 10, 3, 4, 10, 5
   /// ```
@@ -260,7 +260,7 @@ public extension LazySequenceType {
   /// Returns a lazy sequence that alternates between successive elements of self and
   /// elements of a colletion
   /// ```swift
-  /// lazy([1, 2, 3]).interpose([10, 20])
+  /// [1, 2, 3].lazy.interpose([10, 20])
   ///
   /// 1, 10, 20, 2, 10, 20, 3, 10, 20
   /// ```
@@ -275,7 +275,7 @@ public extension LazySequenceType {
   /// Returns a lazy sequence that alternates between n successive elements of self and
   /// elements of a colletion
   /// ```swift
-  /// lazy([1, 2, 3, 4, 5]).interpose([10, 20], n: 2)
+  /// [1, 2, 3, 4, 5].lazy.interpose([10, 20], n: 2)
   ///
   /// 1, 2, 10, 20, 3, 4, 10, 20, 5
   /// ```
@@ -336,7 +336,7 @@ public struct InterDigSeq<
 
 /// Returns a lazy sequence of two sequences interdigitated
 /// ```swift
-/// interdig(lazy([1, 2, 3]), lazy([10, 20, 30]))
+/// interdig([1, 2, 3].lazy, [10, 20, 30].lazy)
 ///
 /// 1, 10, 2, 20, 3, 30
 /// ```
@@ -353,7 +353,7 @@ public func interdig<
 /// - Parameter s0Len: The length of the first sequence's interdigitations
 /// - Parameter s1Len: The length of the second sequence's interdigitations
 /// ```swift
-/// interdig(lazy([1, 2, 3, 4, 5]), lazy([10, 20, 30, 40, 50, 60]), s0Len: 2, s1Len: 3)
+/// interdig([1, 2, 3, 4, 5].lazy, [10, 20, 30, 40, 50, 60].lazy, s0Len: 2, s1Len: 3)
 ///
 /// 1, 2, 10, 20, 30, 3, 4, 40, 50, 60, 5
 /// ```

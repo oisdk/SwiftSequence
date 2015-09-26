@@ -47,6 +47,13 @@ class NestedSequencesTests: XCTestCase {
   
   func testLazyProdMethod() {
     
+    
+    let randAr = (0...10).map({ _ in Int.randLim(5) + 1 }).map(Array<Character>.init)
+    
+    let prodToCount = randAr.lazyProduct()
+    
+    XCTAssertEqual(prodToCount.underestimateCount(), Array(prodToCount).count)
+    
     let prod = [[1, 2], [3, 4]].lazyProduct()
     
     let expectation = [[1, 3], [1, 4], [2, 3], [2, 4]]

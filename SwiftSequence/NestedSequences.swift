@@ -59,6 +59,17 @@ public func product<S : SequenceType>(cols: S...) -> [[S.Generator.Element]] {
 
 // MARK: Transposition
 
+private extension SequenceType {
+  private func mMap<U>(@noescape transform: Generator.Element -> U?) -> [U]? {
+    var result: [U] = []
+    result.reserveCapacity(underestimateCount())
+    for e in self {
+      if let r = transform(e) { result.append(r) } else { return nil }
+    }
+    return result
+  }
+}
+
 public extension SequenceType where Generator.Element : SequenceType {
   
   /// Returns a transposed self
@@ -69,17 +80,7 @@ public extension SequenceType where Generator.Element : SequenceType {
   /// ```
   
   func transpose() -> [[Generator.Element.Generator.Element]] {
-    var ret: [[Generator.Element.Generator.Element]] = [[]]
-    for var gens = map{$0.generate()};; ret.append([]) {
-      for i in gens.indices {
-        if let next = gens[i].next() {
-          ret[ret.endIndex.predecessor()].append(next)
-        } else {
-          ret.removeLast()
-          return ret
-        }
-      }
-    }
+    return Array(TransposeSeq(seq: self))
   }
 }
 
@@ -124,6 +125,9 @@ public struct ProdSeq<C : CollectionType> : LazySequenceType {
   private let cols: [C]
   public func generate() -> ProdGen<C> {
     return ProdGen( cols: cols )
+  }
+  public func underestimateCount() -> Int {
+    return cols.reduce(1) { (n,c) in n * c.underestimateCount() }
   }
 }
 
@@ -184,8 +188,7 @@ public extension SequenceType where Generator.Element : CollectionType {
 public struct TransposeGen<T, G : GeneratorType where G.Element == T> : GeneratorType {
   private var gens: [G]
   mutating public func next() -> [T]? {
-    let row = gens.indices.flatMap {gens[$0].next()}
-    return row.count == gens.count ? row : nil
+    return gens.indices.mMap { i in gens[i].next() }
   }
 }
 
@@ -196,7 +199,13 @@ public struct TransposeSeq<
   private let seq: S
   public func generate()
     -> TransposeGen<S.Generator.Element.Generator.Element, S.Generator.Element.Generator>{
-    return TransposeGen(gens: seq.map{ $0.generate() })
+    return TransposeGen(gens: seq.map { g in g.generate() })
+  }
+}
+
+public extension TransposeSeq where S: CollectionType {
+  public func underestimateCount() -> Int {
+    return seq.first?.underestimateCount() ?? 0
   }
 }
 

@@ -39,23 +39,23 @@ func reduce
     (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element)
     rethrows -> Generator.Element?
 ```
- Return the result of repeatedly calling combine with an accumulated value
- initialised to the first element of self and each element of self, in turn, i.e.
-
- ```swift
- [1, 2, 3].reduce(+) // 6
- ```
 
 This function works the same as the standard library reduce, except it takes the initial value to be the first element of `self`. It returns an optional, which is `nil` if `self` is empty.
 
+```swift
+[1, 2, 3, 4].reduce(+) // 10
+```
+
 ### Scan ###
-Return an array where every value is equal to combine called on the previous element, and the current element. The first element is taken to be initial.
+Returns an array of the intermediate results of calling `combine` on successive elements of self and an accumulator: 
 
 ```swift
 [1, 2, 3].scan(0, combine: +)
  
 [1, 3, 6]
 ```
+
+The last element of this array will be equal to the result of calling `reduce` with the same arguments.
 
 There is also, like reduce, a version that takes the first element of the sequence to be `initial`:
 
@@ -81,7 +81,7 @@ This function returns all of the elements of `self` up until an element returns 
 
 Note that it's not the same as filter: if any elements return true for the predicate *after* the first element that returns false, they're still not returned.
 
-### DropWhile ###
+### dropWhile ###
 
 Similar in behaviour to `prefixWhile`, this function drops the first elements of `self` that return true for a predicate:
 
@@ -89,6 +89,14 @@ Similar in behaviour to `prefixWhile`, this function drops the first elements of
 lazy([1, 2, 3, 4, 5, 2]).dropWhile { $0 < 4 }
 
 4, 5, 2
+```
+
+### breakAt ###
+
+Returns a tuple, the first element being the prefix of `self` of maximum length `n`, the second being the remaining elements of `self`.
+
+```swift
+[1, 2, 3, 4].breakAt(3) // ([1, 2, 3], [4])
 ```
 
 ## Hop ##

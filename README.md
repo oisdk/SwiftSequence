@@ -99,6 +99,8 @@ Returns a tuple, the first element being the prefix of `self` of maximum length 
 [1, 2, 3, 4].breakAt(3) // ([1, 2, 3], [4])
 ```
 
+This also has a version which takes a predicate, which returns a tuple where the first element is the prefix of `self` up until the first element that returns `true` for `isBreak`.
+
 ## Hop ##
 
 Similar to Python's slicing, this returns a sequence made by walking
@@ -172,7 +174,7 @@ These functions return combinations with or without repetition, lazily or eagerl
 
 ```swift
 
-let lazySequence = lazy([1, 2, 3])
+let lazySequence = [1, 2, 3].lazy
 
 let lazyCombos = lazySequence.lazyCombinations(2)
 
@@ -408,23 +410,33 @@ Would return a sequence of `(String.Index, Character)` (rather than `(Int, Chara
 
 ## Finding ##
 
-There are two functions here, `first()` and `last()`. These return the first and the last element that satisfies the supplied predicate. (or nil if it doesn't exist)
+The methods here are intended to replace patterns like this:
 
 ```swift
-
-[1, 2, 3, 4, 5].first { $0 > 3 }
-
-4
-
+[1, 2, 3, 4, 5, 6].filter { n in n > 4 }.first
+[1, 2, 3, 4, 5, 6].filter { n in n % 2 == 0 }.count
 ```
+
+Where filter is used in a chain with one of the `CollectionType` properties, like `first` or `count`.
+
+These chains are needlessly inefficient: they allocate and fill an array unnecessarily. Even if the `lazy` property is used, the actual operations are unexpected. The code below, for instance:
 
 ```swift
+var i = 0
 
-[1, 2, 3, 4, 5].last { $0 < 5 }
-
-4
-
+[1, 2, 3, 4, 5, 6]
+  .lazy
+  .filter { n in
+    print(++i)
+    return n > 4
+}.first
 ```
+Will print one through ten.
+
+`first`, `last`, and `count` methods are all provided, which take predicates, as well as `indicesOf` and `lastIndexOf`.
+
+A `partition` method is also available, which splits `self` into a tuple of arrays which satisfy and do not satisfy `predicate`, respectively.
+
 
 ## NestedSequences ##
 

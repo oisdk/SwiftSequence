@@ -4,7 +4,7 @@ public struct ComboGen<SubElement> : GeneratorType {
   private let coll: [SubElement]
   private var curr: [SubElement]
   private var inds: [Int]
-  
+  /// :nodoc:
   mutating public func next() -> [SubElement]? {
     for (max, curInd) in zip(coll.indices.reverse(), inds.indices.reverse())
       where max != inds[curInd] {
@@ -24,7 +24,7 @@ public struct ComboSeq<Element> : LazySequenceType {
   private let start: [Element]
   private let col  : [Element]
   private let inds : [Int]
-  
+  /// :nodoc:
   public func generate() -> ComboGen<Element> {
     return ComboGen<Element>(coll: col, curr: start, inds: inds)
   }
@@ -44,7 +44,7 @@ public struct ComboRepGen<Element> : GeneratorType {
   private var curr: [Element]
   private var inds: [Int]
   private let max : Int
-  
+  /// :nodoc:
   mutating public func next() -> [Element]? {
     for curInd in inds.indices.reverse() where max != inds[curInd] {
       curr[curInd] = coll[++inds[curInd]]
@@ -64,7 +64,7 @@ public struct ComboRepSeq<Element> : LazySequenceType {
   private let inds : [Int]
   private let col  : [Element]
   private let max  : Int
-  
+  /// :nodoc:
   public func generate() -> ComboRepGen<Element> {
     return ComboRepGen(coll: col, curr: start, inds: inds, max: max)
   }

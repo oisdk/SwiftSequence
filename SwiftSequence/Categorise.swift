@@ -97,12 +97,12 @@ public extension SequenceType where Generator.Element : Hashable {
 // MARK: - Lazy
 
 // MARK: Uniques
-
+/// :nodoc:
 public struct UniquesGen<G : GeneratorType where G.Element : Hashable> : GeneratorType {
   
   private var prevs: Set<G.Element>
   private var g: G
-  
+  /// :nodoc:
   public mutating func next() -> G.Element? {
     while let next = g.next() {
       if !prevs.contains(next) {
@@ -113,12 +113,13 @@ public struct UniquesGen<G : GeneratorType where G.Element : Hashable> : Generat
     return nil
   }
 }
-
+/// :nodoc:
 public struct UniquesSeq<
   S : SequenceType where
   S.Generator.Element : Hashable
   > : LazySequenceType {
   private let seq: S
+  /// :nodoc:
   public func generate() -> UniquesGen<S.Generator> {
     return UniquesGen(prevs: [], g: seq.generate())
   }
@@ -143,7 +144,7 @@ public struct GroupByGen<G : GeneratorType> : GeneratorType {
   private var genr: G
   private var last: G.Element?
   private let isEq: (G.Element, G.Element) -> Bool
-  
+  /// :nodoc:
   mutating public func next() -> [G.Element]? {
     return last.map { comp in
       var group = [comp]
@@ -171,6 +172,7 @@ public struct GroupByGen<G : GeneratorType> : GeneratorType {
 public struct GroupBySeq<S : SequenceType> : LazySequenceType {
   private let seq: S
   private let isEquivalent: (S.Generator.Element, S.Generator.Element) -> Bool
+  /// :nodoc:
   public func generate() -> GroupByGen<S.Generator> {
     return GroupByGen(g: seq.generate(), isEquivalent: isEquivalent)
   }

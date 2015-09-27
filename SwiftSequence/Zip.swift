@@ -1,3 +1,4 @@
+/// :nodoc:
 public struct NilPaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : GeneratorType {
   
   typealias E0 = G0.Element
@@ -11,11 +12,11 @@ public struct NilPaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : Gene
     return (e0 != nil || e1 != nil) ? (e0, e1) : nil
   }
 }
-
+/// :nodoc:
 public struct NilPaddedZip<S0: SequenceType, S1: SequenceType> : LazySequenceType {
   
   private let (s0, s1): (S0, S1)
-  
+  /// :nodoc:
   public func generate() -> NilPaddedZipGenerator<S0.Generator, S1.Generator> {
     return NilPaddedZipGenerator(g0: s0.generate(), g1: s1.generate())
   }
@@ -35,7 +36,7 @@ public func zipWithPadding<S0: SequenceType, S1: SequenceType>(s0: S0, _ s1: S1)
   -> NilPaddedZip<S0, S1> {
     return NilPaddedZip(s0: s0, s1: s1)
 }
-
+/// :nodoc:
 public struct PaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : GeneratorType {
   
   typealias E0 = G0.Element
@@ -43,7 +44,7 @@ public struct PaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : Generat
   
   private var (g0, g1): (G0?, G1?)
   private let (p0, p1): (E0, E1)
-  
+  /// :nodoc:
   public mutating func next() -> (E0, E1)? {
     let e0: E0? = g0?.next() ?? {g0 = nil; return nil}()
     let e1: E1? = g1?.next() ?? {g1 = nil; return nil}()
@@ -52,12 +53,12 @@ public struct PaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : Generat
     return nil
   }
 }
-
+/// :nodoc:
 public struct PaddedZip<S0: SequenceType, S1: SequenceType> : LazySequenceType {
   
   private let (s0, s1): (S0, S1)
   private let (p0, p1): (S0.Generator.Element, S1.Generator.Element)
-  
+  /// :nodoc:
   public func generate() -> PaddedZipGenerator<S0.Generator, S1.Generator> {
     return PaddedZipGenerator(g0: s0.generate(), g1: s1.generate(), p0: p0, p1: p1)
   }

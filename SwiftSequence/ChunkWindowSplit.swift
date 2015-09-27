@@ -75,7 +75,7 @@ public extension SequenceType {
 // MARK: - Lazy
 
 // MARK: Chunk
-
+/// :nodoc:
 public struct ChunkGen<G : GeneratorType> : GeneratorType {
   
   private var g: G
@@ -91,12 +91,12 @@ public struct ChunkGen<G : GeneratorType> : GeneratorType {
     }
   }
 }
-
+/// :nodoc:
 public struct ChunkSeq<S : SequenceType> : LazySequenceType {
   
   private let seq: S
   private let n: Int
-  
+  /// :nodoc:
   public func generate() -> ChunkGen<S.Generator> {
     return ChunkGen(g: seq.generate(), n: n)
   }
@@ -118,12 +118,12 @@ public extension LazySequenceType {
 }
 
 // MARK: Window
-
+/// :nodoc:
 public struct WindowGen<Element> : GeneratorType {
   
   private let g: () -> Element?
   private var window: [Element]?
-  
+  /// :nodoc:
   mutating public func next() -> [Element]? {
     return window.map { result in
       if let element = g() {
@@ -141,7 +141,7 @@ public struct WindowSeq<S : SequenceType> : LazySequenceType {
   
   private let seq: S
   private let n: Int
-  
+  /// :nodoc:
   public func generate() -> WindowGen<S.Generator.Element> {
     var window: [S.Generator.Element] = []
     window.reserveCapacity(n + 1)

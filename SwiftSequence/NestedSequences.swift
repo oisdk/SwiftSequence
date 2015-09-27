@@ -87,14 +87,14 @@ public extension SequenceType where Generator.Element : SequenceType {
 // MARK: - Lazy
 
 // MARK: Cartesian Product
-
+/// :nodoc:
 public struct ProdGen<C : CollectionType> : GeneratorType {
   
   private let cols: [C] // Must be collections, not sequences, in order to be multi-pass
   
   private var gens: [C.Generator]
   private var curr: [C.Generator.Element]
-  
+  /// :nodoc:
   public mutating func next() -> [C.Generator.Element]? {
     
     for i in gens.indices.reverse() { // Loop through generators in reverse order, rolling over
@@ -120,12 +120,14 @@ public struct ProdGen<C : CollectionType> : GeneratorType {
     self.gens = gens
   }
 }
-
+/// :nodoc:
 public struct ProdSeq<C : CollectionType> : LazySequenceType {
   private let cols: [C]
+  /// :nodoc:
   public func generate() -> ProdGen<C> {
     return ProdGen( cols: cols )
   }
+  /// :nodoc:
   public func underestimateCount() -> Int {
     return cols.reduce(1) { (n,c) in n * c.underestimateCount() }
   }
@@ -184,19 +186,21 @@ public extension SequenceType where Generator.Element : CollectionType {
 }
 
 // MARK: Transposition
-
+/// :nodoc:
 public struct TransposeGen<T, G : GeneratorType where G.Element == T> : GeneratorType {
   private var gens: [G]
+  /// :nodoc:
   mutating public func next() -> [T]? {
     return gens.indices.mMap { i in gens[i].next() }
   }
 }
-
+/// :nodoc:
 public struct TransposeSeq<
   S : SequenceType where
   S.Generator.Element : SequenceType
   > : LazySequenceType {
   private let seq: S
+  /// :nodoc:
   public func generate()
     -> TransposeGen<S.Generator.Element.Generator.Element, S.Generator.Element.Generator>{
     return TransposeGen(gens: seq.map { g in g.generate() })

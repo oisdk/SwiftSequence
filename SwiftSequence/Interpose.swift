@@ -165,25 +165,25 @@ public func interdig<
 // MARK: - Lazy
 
 // MARK: Interpose with single element
-
+/// :nodoc:
 public struct InterposeElGen<G : GeneratorType> : GeneratorType {
 
   private let n: Int
   private var count: Int
   private var g: G
   private let element: G.Element
-
+  /// :nodoc:
   public mutating func next() -> G.Element? {
     return --count < 0 ? {count = n; return element}() : g.next()
   }
 }
-
+/// :nodoc:
 public struct InterposeElSeq<S : SequenceType> : LazySequenceType {
   
   private let element: InterposeElGen<S.Generator>.Element
   private let n: Int
   private let seq: S
-  
+  /// :nodoc:
   public func generate() -> InterposeElGen<S.Generator> {
     return InterposeElGen(n: n, count: n, g: seq.generate(), element: element)
   }
@@ -217,7 +217,7 @@ public extension LazySequenceType {
 }
 
 // MARK: Interpose with collection
-
+/// :nodoc:
 public struct InterposeColGen<
   G : GeneratorType,
   C: CollectionType where
@@ -229,7 +229,7 @@ public struct InterposeColGen<
   private let n: Int
   private var count: Int
   private var colG: C.Generator
-  
+  /// :nodoc:
   public mutating func next() -> G.Element? {
     return --count <= 0 ? {
       colG.next() ?? {
@@ -239,7 +239,7 @@ public struct InterposeColGen<
       }()}() : g.next()
   }
 }
-
+/// :nodoc:
 public struct InterposeColSeq<
   S : SequenceType,
   C: CollectionType where
@@ -249,7 +249,7 @@ public struct InterposeColSeq<
   private let col: C
   private let n: Int
   private let seq: S
-  
+  /// :nodoc:
   public func generate() -> InterposeColGen<S.Generator, C> {
     return InterposeColGen(col: col, g: seq.generate(), n: n, count: n + 1, colG: col.generate())
   }
@@ -289,7 +289,7 @@ public extension LazySequenceType {
 }
 
 // MARK: Interdigitate
-
+/// :nodoc:
 public struct InterDigGen<
   G0 : GeneratorType,
   G1 : GeneratorType where
@@ -303,14 +303,14 @@ public struct InterDigGen<
   private let bN: Int
   
   private var count: Int
-  
+  /// :nodoc:
   public mutating func next() -> G0.Element? {
     for (--count;;count = aN) {
       if count >= bN { return count < 0 ? g1.next() : g0.next() }
     }
   }
 }
-
+/// :nodoc:
 public struct InterDigSeq<
   S0 : LazySequenceType,
   S1 : LazySequenceType where
@@ -322,7 +322,7 @@ public struct InterDigSeq<
   
   private let aN: Int
   private let bN: Int
-  
+  /// :nodoc:
   public func generate() -> InterDigGen<S0.Generator, S1.Generator> {
     return InterDigGen(
       g0: s0.generate(),

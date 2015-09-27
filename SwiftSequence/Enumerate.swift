@@ -1,16 +1,18 @@
+/// :nodoc:
 public struct SpecEnumerateGen<Base : CollectionType> : GeneratorType {
   
   private let base: Base
   private var i: Base.Index
-  
+  /// :nodoc:
   public mutating func next() -> (Base.Index, Base.Generator.Element)? {
     return i == base.endIndex ? nil : (i, base[i++])
   }
 }
-
+/// :nodoc:
 public struct SpecEnumerateSeq<Base : CollectionType> : SequenceType {
   
   private let col: Base
+  /// :nodoc:
   public func generate() -> SpecEnumerateGen<Base> {
     return SpecEnumerateGen(base: col, i: col.startIndex)
   }

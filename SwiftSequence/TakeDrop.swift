@@ -118,24 +118,24 @@ public extension CollectionType {
 // MARK: - Lazy
 
 // MARK: TakeWhile
-
+/// :nodoc:
 public struct WhileGen<G : GeneratorType> : GeneratorType {
   
   private var g: G
   private let condition : G.Element -> Bool
-  
+  /// :nodoc:
   mutating public func next() -> G.Element? {
     return g.next().flatMap {
       condition($0) ? $0 : nil
     }
   }
 }
-
+/// :nodoc:
 public struct WhileSeq<S : SequenceType> : LazySequenceType {
   
   private let seq: S
   private let condition: S.Generator.Element -> Bool
-  
+  /// :nodoc:
   public func generate() -> WhileGen<S.Generator> {
     return WhileGen(g: seq.generate(), condition: condition)
   }
@@ -157,19 +157,19 @@ public extension LazySequenceType {
 }
 
 // MARK: DropWhile
-
+/// :nodoc:
 public struct DropWhileGen<G : GeneratorType> : GeneratorType {
   
   private let predicate: G.Element -> Bool
   private var nG: G?
   private var oG: G
   
-  init(g: G, predicate: G.Element -> Bool) {
+  private init(g: G, predicate: G.Element -> Bool) {
     nG = nil
     oG = g
     self.predicate = predicate
   }
-  
+  /// :nodoc:
   public mutating func next() -> G.Element? {
     guard nG == nil else { return nG!.next() }
     while let next = oG.next() {
@@ -181,12 +181,12 @@ public struct DropWhileGen<G : GeneratorType> : GeneratorType {
     return nil
   }
 }
-
+/// :nodoc:
 public struct DropWhileSeq<S : SequenceType> : LazySequenceType {
   
   private let predicate: S.Generator.Element -> Bool
   private let seq: S
-  
+  /// :nodoc:
   public func generate() -> DropWhileGen<S.Generator> {
     return DropWhileGen(g: seq.generate(), predicate: predicate)
   }

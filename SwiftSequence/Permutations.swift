@@ -29,19 +29,21 @@ public extension MutableCollectionType where Generator.Element : Comparable {
     return nextLexPerm(<)
   }
 }
-
+/// :nodoc:
 public struct LexPermGen<C : MutableCollectionType> : GeneratorType  {
   private var col: C?
   private let order: (C.Generator.Element, C.Generator.Element) -> Bool
+  /// :nodoc:
   mutating public func next() -> C? {
     defer { col = col?.nextLexPerm(order) }
     return col
   }
 }
-
+/// :nodoc:
 public struct LexPermSeq<C : MutableCollectionType> : LazySequenceType {
   private let col: C
   private let order: (C.Generator.Element, C.Generator.Element) -> Bool
+  /// :nodoc:
   public func generate() -> LexPermGen<C> {
     return LexPermGen(col: col, order: order)
   }
@@ -96,7 +98,6 @@ public extension MutableCollectionType where Generator.Element : Comparable {
 public extension SequenceType {
   
   /// Returns an array of the permutations of self.
-  /// - Note: The permutations are lexicographically ordered, based on the indices of self
   /// ```swift
   /// [1, 2, 3].permutations()
   /// 
@@ -107,6 +108,12 @@ public extension SequenceType {
     var col = Array(self)
     return Array(LexPermSeq(col: Array(col.indices), order: <).map { inds in inds.map{col[$0]} })
   }
+  /// Returns an array of the permutations of length `n` of self.
+  /// ```swift
+  /// [1, 2, 3].permutations()
+  ///
+  /// [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+  /// ```
   public func permutations(n: Int) -> [[Generator.Element]] {
     return Array(lazyCombos(n).flatMap { a in a.permutations() })
   }

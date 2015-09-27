@@ -57,13 +57,13 @@ extension CollectionType where Index == Int {
 // MARK: - Lazy
 
 // MARK: Hop
-
+/// :nodoc:
 public struct HopGen<G: GeneratorType> : GeneratorType {
 
   private let n: Int
   private var g: G
   private var i: Int
-
+  /// :nodoc:
   mutating public func next() -> G.Element? {
 
     while let next = g.next() {
@@ -75,11 +75,11 @@ public struct HopGen<G: GeneratorType> : GeneratorType {
     return nil
   }
 }
-
+/// :nodoc:
 public struct HopSeq<S : SequenceType> : LazySequenceType {
 
   private let (seq, n): (S, Int)
-
+  /// :nodoc:
   public func generate() -> HopGen<S.Generator> {
     return HopGen(n: n, g: seq.generate(), i: 1)
   }
@@ -101,7 +101,7 @@ public extension LazySequenceType {
 }
 
 // MARK: Random Access Hop:
-
+/// :nodoc:
 public struct RandomAccessHopCollection<
   Base : CollectionType where
   Base.Index : RandomAccessIndexType,
@@ -111,9 +111,11 @@ public struct RandomAccessHopCollection<
   private let base: Base
   private let by  : Base.Index.Stride
   private let fac : Base.Index.Distance
-  
+  /// :nodoc:
   public var startIndex: Base.Index.Distance { return 0 }
+  /// :nodoc:
   public let endIndex: Base.Index.Distance
+  /// :nodoc:
   public subscript(i: Base.Index.Distance) -> Base.Generator.Element {
     return base[base.startIndex.advancedBy(fac * i)]
   }
@@ -127,7 +129,13 @@ public struct RandomAccessHopCollection<
 }
 
 extension LazyCollectionType where Index : RandomAccessIndexType, Index.Distance : ForwardIndexType {
-  
+  /// Returns a lazy sequence with `n` elements of self hopped over. The sequence includes
+  /// the first element of self.
+  /// ```swift
+  /// [1, 2, 3, 4, 5, 6, 7, 8].lazy.hop(2)
+  ///
+  /// 1, 3, 5, 7
+  /// ```
   public func hop(n: Index.Stride) -> RandomAccessHopCollection<Self> {
     return RandomAccessHopCollection(self, n)
   }

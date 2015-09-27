@@ -62,12 +62,13 @@ public extension SequenceType {
 
 // MARK: Scan
 
+/// :nodoc:
 public struct ScanGen<G : GeneratorType, T> : GeneratorType {
   
   private let combine: (T, G.Element) -> T
   private var initial: T
   private var g: G
-  
+  /// :nodoc:
   public mutating func next() -> T? {
     return g.next().map { e in
       initial = combine(initial, e)
@@ -76,12 +77,13 @@ public struct ScanGen<G : GeneratorType, T> : GeneratorType {
   }
 }
 
+/// :nodoc:
 public struct LazyScanSeq<S : SequenceType, T> : LazySequenceType {
   
   private let seq    : S
   private let combine: (T, S.Generator.Element) -> T
   private let initial: T
-  
+  /// :nodoc:
   public func generate() -> ScanGen<S.Generator, T> {
     return ScanGen(combine: combine, initial: initial, g: seq.generate())
   }
@@ -103,7 +105,7 @@ public extension LazySequenceType {
 }
 
 // MARK: Scan1
-
+/// :nodoc:
 public struct Scan1Gen<G : GeneratorType> : GeneratorType {
   
   private let combine: (G.Element, G.Element) -> G.Element
@@ -125,12 +127,12 @@ public struct Scan1Gen<G : GeneratorType> : GeneratorType {
     }
   }
 }
-
+/// :nodoc:
 public struct LazyScan1Seq<S : SequenceType> : LazySequenceType {
   
   private let seq: S
   private let combine: (S.Generator.Element, S.Generator.Element) -> S.Generator.Element
-  
+  /// :nodoc:
   public func generate() -> Scan1Gen<S.Generator> {
     return Scan1Gen(combine: combine, generator: seq.generate())
   }

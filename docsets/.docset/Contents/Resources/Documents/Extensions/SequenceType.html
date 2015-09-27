@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SequenceType Extension Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Extension/SequenceType" class="dashAnchor"></a>
+    <a title="SequenceType Extension Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SequenceType Extension Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/CollectionType.html">CollectionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/LazySequenceType.html">LazySequenceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MutableCollectionType.html">MutableCollectionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/SequenceType.html">SequenceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence8interdigu0_Rq_Ss12SequenceTypeq0_S0_zqqq_S0_9GeneratorSs13GeneratorType7Elementqqq0_S0_9GeneratorS1_7Element_FTq_q0__GSaqqq_S0_9GeneratorS1_7Element_">interdig(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence8interdigu0_Rq_Ss16LazySequenceTypeq0_S0_zqqq_Ss12SequenceType9GeneratorSs13GeneratorType7Elementqqq0_S1_9GeneratorS2_7Element_FTq_q0__GVS_11InterDigSeqq_q0__">interdig(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence8interdigu0_Rq_Ss12SequenceTypeq0_S0_zqqq_S0_9GeneratorSs13GeneratorType7Elementqqq0_S0_9GeneratorS1_7Element_FTq_q0_5s0LenSi5s1LenSi_GSaqqq_S0_9GeneratorS1_7Element_">interdig(_:_:s0Len:s1Len:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence8interdigu0_Rq_Ss16LazySequenceTypeq0_S0_zqqq_Ss12SequenceType9GeneratorSs13GeneratorType7Elementqqq0_S1_9GeneratorS2_7Element_FTq_q0_5s0LenSi5s1LenSi_GVS_11InterDigSeqq_q0__">interdig(_:_:s0Len:s1Len:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence11lazyProductuRq_Ss14CollectionType_FtGSaq___GVS_7ProdSeqq__">lazyProduct(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence11lazyProductuRq_Ss12SequenceType_FtGSaq___GVS_7ProdSeqGSaqqq_S0_9GeneratorSs13GeneratorType7Element__">lazyProduct(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence7productuRq_Ss14CollectionType_FtGSaq___GSaGSaqqq_S0_9GeneratorSs13GeneratorType7Element__">product(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence7productuRq_Ss12SequenceType_FtGSaq___GSaGSaqqq_S0_9GeneratorSs13GeneratorType7Element__">product(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence14zipWithPaddingu0_Rq_Ss12SequenceTypeq0_S0__FTq_q0__GVS_12NilPaddedZipq_q0__">zipWithPadding(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13SwiftSequence14zipWithPaddingu0_Rq_Ss12SequenceTypeq0_S0__FTq_q0_4pad0qqq_S0_9GeneratorSs13GeneratorType7Element4pad1qqq0_S0_9GeneratorS1_7Element_GVS_9PaddedZipq_q0__">zipWithPadding(_:_:pad0:pad1:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SequenceType</h1>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">SequenceType</span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Reduce1"></a>
+                  <a name="//apple_ref/swift/Section/Reduce1" class="dashAnchor"></a>
+                  <a href="#/Reduce1">
+                    <h3 class="section-name">Reduce1</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_6reduceuRq_S__Fq_FzFzT11accumulatorqqq_S_9GeneratorSs13GeneratorType7Element7elementqqq_S_9GeneratorS1_7Element_qqq_S_9GeneratorS1_7ElementGSqqqq_S_9GeneratorS1_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/reduce(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_6reduceuRq_S__Fq_FzFzT11accumulatorqqq_S_9GeneratorSs13GeneratorType7Element7elementqqq_S_9GeneratorS1_7Element_qqq_S_9GeneratorS1_7ElementGSqqqq_S_9GeneratorS1_7Element_">reduce(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return the result of repeatedly calling combine with an accumulated value
+initialized to the first element of self and each element of self, in turn, i.e.
+return combine(combine(&hellip;combine(combine(self[0], self[1]),
+self[2]),&hellip;self[count-2]), self[count-1]).
+<code>swift
+[1, 2, 3].reduce(+) // 6
+</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">reduce</span>
+    <span class="p">(</span><span class="k">@noescape</span> <span class="nv">combine</span><span class="p">:</span> <span class="p">(</span><span class="nv">accumulator</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">,</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span>
+    <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Scan"></a>
+                  <a name="//apple_ref/swift/Section/Scan" class="dashAnchor"></a>
+                  <a href="#/Scan">
+                    <h3 class="section-name">Scan</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_4scanu__Rq_S__Fq_FzTqd__7combineFzT11accumulatorqd__7elementqqq_S_9GeneratorSs13GeneratorType7Element_qd___GSaqd___"></a>
+                    <a name="//apple_ref/swift/Method/scan(_:combine:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_4scanu__Rq_S__Fq_FzTqd__7combineFzT11accumulatorqd__7elementqqq_S_9GeneratorSs13GeneratorType7Element_qd___GSaqd___">scan(_:combine:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return an array where every value is equal to combine called on the previous
+element, and the current element. The first element is taken to be initial.
+&ldquo;`swift
+[1, 2, 3].scan(0, combine: +)</p>
+
+<p>[1, 3, 6]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="n">scan</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="k">var</span> <span class="nv">initial</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="k">@noescape</span> <span class="nv">combine</span><span class="p">:</span> <span class="p">(</span><span class="nv">accumulator</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Scan1"></a>
+                  <a name="//apple_ref/swift/Section/Scan1" class="dashAnchor"></a>
+                  <a href="#/Scan1">
+                    <h3 class="section-name">Scan1</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_4scanuRq_S__Fq_FzFzT11accumulatorqqq_S_9GeneratorSs13GeneratorType7Element7elementqqq_S_9GeneratorS1_7Element_qqq_S_9GeneratorS1_7ElementGSaqqq_S_9GeneratorS1_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/scan(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_4scanuRq_S__Fq_FzFzT11accumulatorqqq_S_9GeneratorSs13GeneratorType7Element7elementqqq_S_9GeneratorS1_7Element_qqq_S_9GeneratorS1_7ElementGSaqqq_S_9GeneratorS1_7Element_">scan(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return an array where every value is equal to combine called on the previous
+element, and the current element.
+&ldquo;`swift
+[1, 2, 3].scan(+)</p>
+
+<p>[3, 6]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">scan</span><span class="p">(</span><span class="k">@noescape</span> <span class="nv">combine</span><span class="p">:</span> <span class="p">(</span><span class="nv">accumulator</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">,</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_5chunkuRq_S__Fq_FSiGSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__"></a>
+                    <a name="//apple_ref/swift/Method/chunk(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_5chunkuRq_S__Fq_FSiGSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__">chunk(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of arrays of n non-overlapping elements of self
+- Parameter n: The size of the chunk
+- Precondition: <code>n &gt; 0</code>
+- SeeAlso: <code>func window(n: Int) -&gt; [[Self.Generator.Element]]</code>
+ &ldquo;`swift
+ [1, 2, 3, 4, 5].chunk(2)</p>
+
+<p>[[1, 2], [3, 4], [5]]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">chunk</span><span class="p">(</span><span class="nv">n</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>n</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the chunk</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_6windowuRq_S__Fq_FSiGSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__"></a>
+                    <a name="//apple_ref/swift/Method/window(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_6windowuRq_S__Fq_FSiGSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__">window(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of arrays of n overlapping elements of self
+- Parameter n: The size of the window
+- SeeAlso: <code>func chunk(n: Int) -&gt; [[Self.Generator.Element]]</code>
+ &ldquo;`swift
+ [1, 2, 3, 4].window(2)</p>
+
+<p>[[1, 2], [2, 3], [3, 4]]
+  &rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">window</span><span class="p">(</span><span class="nv">n</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>n</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the window</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeuRq_S__Fq_Fqqq_S_9GeneratorSs13GeneratorType7ElementGSaqqq_S_9GeneratorS1_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/interpose(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeuRq_S__Fq_Fqqq_S_9GeneratorSs13GeneratorType7ElementGSaqqq_S_9GeneratorS1_7Element_">interpose(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array that alternates between successive elements of self and element
+&ldquo;`swift
+[1, 2, 3].interpose(10)</p>
+
+<p>[1, 10, 2, 10, 3]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">interpose</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeuRq_S__Fq_FTqqq_S_9GeneratorSs13GeneratorType7Element1nSi_GSaqqq_S_9GeneratorS1_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/interpose(_:n:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeuRq_S__Fq_FTqqq_S_9GeneratorSs13GeneratorType7Element1nSi_GSaqqq_S_9GeneratorS1_7Element_">interpose(_:n:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array that alternates between n successive elements of self and element
+&ldquo;`swift
+[1, 2, 3, 4, 5].interpose(10, n: 2)</p>
+
+<p>[1, 2, 10, 3, 4, 10, 5]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">interpose</span><span class="p">(</span><span class="nv">element</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">,</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeu__Rq_S_qd__Ss14CollectionTypezqqq_S_9GeneratorSs13GeneratorType7Elementqqqd__S1_9GeneratorS2_7Element_Fq_Fqd__GSaqqq_S_9GeneratorS2_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/interpose(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeu__Rq_S_qd__Ss14CollectionTypezqqq_S_9GeneratorSs13GeneratorType7Elementqqqd__S1_9GeneratorS2_7Element_Fq_Fqd__GSaqqq_S_9GeneratorS2_7Element_">interpose(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array that alternates between successive elements of self and elements of
+a colletion
+&ldquo;`swift
+[1, 2, 3].interpose([10, 20])</p>
+
+<p>[1, 10, 20, 2, 10, 20, 3]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="n">interpose</span><span class="o">&lt;</span><span class="kt">C</span> <span class="p">:</span> <span class="kt">CollectionType</span> <span class="k">where</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="o">&gt;</span>
+    <span class="p">(</span><span class="nv">col</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeu__Rq_S_qd__Ss14CollectionTypezqqq_S_9GeneratorSs13GeneratorType7Elementqqqd__S1_9GeneratorS2_7Element_Fq_FTqd__1nSi_GSaqqq_S_9GeneratorS2_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/interpose(_:n:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9interposeu__Rq_S_qd__Ss14CollectionTypezqqq_S_9GeneratorSs13GeneratorType7Elementqqqd__S1_9GeneratorS2_7Element_Fq_FTqd__1nSi_GSaqqq_S_9GeneratorS2_7Element_">interpose(_:n:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array that alternates between n successive elements of self and elements
+of a colletion
+&ldquo;`swift
+[1, 2, 3, 4, 5].interpose([10, 20], n: 2)</p>
+
+<p>[1, 2, 10, 20, 3, 4, 10, 20, 5]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="n">interpose</span><span class="o">&lt;</span><span class="kt">C</span> <span class="p">:</span> <span class="kt">CollectionType</span> <span class="k">where</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="o">&gt;</span>
+    <span class="p">(</span><span class="nv">col</span><span class="p">:</span> <span class="kt">C</span><span class="p">,</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_11prefixWhileuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbGSaqqq_S_9GeneratorS1_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/prefixWhile(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_11prefixWhileuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbGSaqqq_S_9GeneratorS1_7Element_">prefixWhile(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of self up until the first element that returns false for condition
+&ldquo;`swift
+[1, 2, 3, 4, 5, 2].prefixWhile { $0 &lt; 4 }</p>
+
+<p>[1, 2, 3]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">prefixWhile</span><span class="p">(</span><span class="k">@noescape</span> <span class="nv">condition</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9dropWhileuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbGSaqqq_S_9GeneratorS1_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/dropWhile(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_9dropWhileuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbGSaqqq_S_9GeneratorS1_7Element_">dropWhile(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of self with the first elements that return true for condition
+dropped
+&ldquo;`swift
+[1, 2, 3, 4, 5, 2].dropWhile { $0 &lt; 4 }</p>
+
+<p>[4, 5, 2]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">dropWhile</span><span class="p">(</span><span class="k">@noescape</span> <span class="nv">condition</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_7breakAtuRq_S__Fq_FSiTGSaqqq_S_9GeneratorSs13GeneratorType7Element_GSaqqq_S_9GeneratorS1_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/breakAt(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_7breakAtuRq_S__Fq_FSiTGSaqqq_S_9GeneratorSs13GeneratorType7Element_GSaqqq_S_9GeneratorS1_7Element__">breakAt(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a tuple of the prefix and suffix of <code>self</code>, the first element
+being the prefix up to <code>n</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">breakAt</span><span class="p">(</span><span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">([</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">],[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_7breakAtuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbTGSaqqq_S_9GeneratorS1_7Element_GSaqqq_S_9GeneratorS1_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/breakAt(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_7breakAtuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbTGSaqqq_S_9GeneratorS1_7Element_GSaqqq_S_9GeneratorS1_7Element__">breakAt(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a tuple of the prefix and suffix of <code>self</code>, the first element
+being the prefix up to the first elements of <code>self</code> which returns
+<code>true</code> for <code>isBreak</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">breakAt</span><span class="p">(</span><span class="k">@noescape</span> <span class="nv">isBreak</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span>
+    <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="p">([</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">],[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_15lexPermutationsuRq_S__Fq_FFTqqq_S_9GeneratorSs13GeneratorType7Elementqqq_S_9GeneratorS1_7Element_SbGSaGSaqqq_S_9GeneratorS1_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/lexPermutations(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_15lexPermutationsuRq_S__Fq_FFTqqq_S_9GeneratorSs13GeneratorType7Elementqqq_S_9GeneratorS1_7Element_SbGSaGSaqqq_S_9GeneratorS1_7Element__">lexPermutations(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of the permutations of self, ordered lexicographically, according
+to the closure <code>isOrderedBefore</code>.
+- Note: The permutations returned follow self, so if self is not the first
+lexicographically ordered permutation, not all permutations will be returned.
+&ldquo;`swift
+[1, 2, 3].lexPermutations(&lt;)</p>
+
+<p>[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+<code>
+</code>swift
+[1, 2, 3].lexPermutations(&gt;)</p>
+
+<p>[[1, 2, 3]]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lexPermutations</span>
+    <span class="p">(</span><span class="nv">isOrderedBefore</span><span class="p">:</span> <span class="p">(</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">,</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_12permutationsuRq_S__Fq_FT_GSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__"></a>
+                    <a name="//apple_ref/swift/Method/permutations()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_12permutationsuRq_S__Fq_FT_GSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__">permutations()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of the permutations of self.
+&ldquo;`swift
+[1, 2, 3].permutations()</p>
+
+<p>[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">permutations</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_12permutationsuRq_S__Fq_FSiGSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__"></a>
+                    <a name="//apple_ref/swift/Method/permutations(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_12permutationsuRq_S__Fq_FSiGSaGSaqqq_S_9GeneratorSs13GeneratorType7Element__">permutations(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of the permutations of length <code>n</code> of self.
+&ldquo;`swift
+[1, 2, 3].permutations()</p>
+
+<p>[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">permutations</span><span class="p">(</span><span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_19lazyLexPermutationsuRq_S__Fq_FFTqqq_S_9GeneratorSs13GeneratorType7Elementqqq_S_9GeneratorS1_7Element_SbGVS0_10LexPermSeqGSaqqq_S_9GeneratorS1_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/lazyLexPermutations(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_19lazyLexPermutationsuRq_S__Fq_FFTqqq_S_9GeneratorSs13GeneratorType7Elementqqq_S_9GeneratorS1_7Element_SbGVS0_10LexPermSeqGSaqqq_S_9GeneratorS1_7Element__">lazyLexPermutations(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a lazy sequence of the permutations of self, ordered lexicographically,
+according to the closure <code>isOrderedBefore</code>.
+- Note: The permutations returned follow self, so if self is not the first
+lexicographically ordered permutation, not all permutations will be returned.
+&ldquo;`swift
+lazy([1, 2, 3]).lazyLexPermutations(&lt;)</p>
+
+<p>[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
+<code>
+</code>swift
+lazy([1, 2, 3]).lazyLexPermutations(&gt;)</p>
+
+<p>[1, 2, 3]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lazyLexPermutations</span><span class="p">(</span><span class="nv">isOrderedBefore</span><span class="p">:</span> <span class="p">(</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">,</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="kt">LexPermSeq</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs10Comparable_13SwiftSequenceS_19lazyLexPermutationsuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GVS2_10LexPermSeqGSaqqq_S_9GeneratorS0_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/lazyLexPermutations()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs10Comparable_13SwiftSequenceS_19lazyLexPermutationsuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GVS2_10LexPermSeqGSaqqq_S_9GeneratorS0_7Element__">lazyLexPermutations()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a lazy sequence of the permutations of self, ordered lexicographically.
+- Note: The permutations returned follow self, so if self is not the first
+lexicographically ordered permutation, not all permutations will be returned.
+&ldquo;`swift
+lazy([1, 2, 3]).lazyLexPermutations()</p>
+
+<p>[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
+<code>
+</code>swift
+lazy([3, 2, 1]).lazyLexPermutations()</p>
+
+<p>[3, 2, 1]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lazyLexPermutations</span><span class="p">()</span>  <span class="o">-&gt;</span> <span class="kt">LexPermSeq</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_16lazyPermutationsuRq_S__Fq_FT_GVSs15LazyMapSequenceGVS0_10LexPermSeqGSaSi__GSaqqq_S_9GeneratorSs13GeneratorType7Element__"></a>
+                    <a name="//apple_ref/swift/Method/lazyPermutations()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_16lazyPermutationsuRq_S__Fq_FT_GVSs15LazyMapSequenceGVS0_10LexPermSeqGSaSi__GSaqqq_S_9GeneratorSs13GeneratorType7Element__">lazyPermutations()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a lazy sequence of the permutations of self.
+- Note: The permutations are lexicographically ordered, based on the indices of self
+&ldquo;`swift
+lazy([1, 2, 3]).lazyPermutations()</p>
+
+<p>[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
+<code>
+</code>swift
+lazy([3, 2, 1]).lazyPermutations()</p>
+
+<p>[3, 2, 1], [3, 1, 2], [2, 3, 1], [2, 1, 3], [1, 3, 2], [1, 2, 3]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lazyPermutations</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LazyMapSequence</span><span class="o">&lt;</span><span class="kt">LexPermSeq</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Int</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">[</span><span class="k">Self</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs14CollectionType_13SwiftSequenceS_7productuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GSaGSaqqqqq_S_9GeneratorS0_7ElementS1_9GeneratorS0_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/product()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs14CollectionType_13SwiftSequenceS_7productuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GSaGSaqqqqq_S_9GeneratorS0_7ElementS1_9GeneratorS0_7Element__">product()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a cartesian product of self
+<code>swift
+[[1, 2], [3, 4]].product()
+[[1, 3], [1, 4], [2, 3], [2, 4]]
+</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">product</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementS__13SwiftSequenceS_7productuRq_S_qqq_S_9GeneratorS0_7ElementS__Fq_FT_GSaGSaqqqqq_S_9GeneratorS0_7ElementS_9GeneratorS0_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/product()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementS__13SwiftSequenceS_7productuRq_S_qqq_S_9GeneratorS0_7ElementS__Fq_FT_GSaGSaqqqqq_S_9GeneratorS0_7ElementS_9GeneratorS0_7Element__">product()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a cartesian product of self
+<code>swift
+[[1, 2], [3, 4]].product()
+[[1, 3], [1, 4], [2, 3], [2, 4]]
+</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">product</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementS__13SwiftSequenceS_9transposeuRq_S_qqq_S_9GeneratorS0_7ElementS__Fq_FT_GSaGSaqqqqq_S_9GeneratorS0_7ElementS_9GeneratorS0_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/transpose()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementS__13SwiftSequenceS_9transposeuRq_S_qqq_S_9GeneratorS0_7ElementS__Fq_FT_GSaGSaqqqqq_S_9GeneratorS0_7ElementS_9GeneratorS0_7Element__">transpose()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a transposed self
+&ldquo;`swift
+[[1, 2, 3], [1, 2, 3], [1, 2, 3]].transpose()</p>
+
+<p>[[1, 1, 1], [2, 2, 2], [3, 3, 3]]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">transpose</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementS__13SwiftSequenceS_11lazyProductuRq_S_qqq_S_9GeneratorS0_7ElementS__Fq_FT_GVS1_7ProdSeqGSaqqqqq_S_9GeneratorS0_7ElementS_9GeneratorS0_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/lazyProduct()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementS__13SwiftSequenceS_11lazyProductuRq_S_qqq_S_9GeneratorS0_7ElementS__Fq_FT_GVS1_7ProdSeqGSaqqqqq_S_9GeneratorS0_7ElementS_9GeneratorS0_7Element__">lazyProduct()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Lazy Cartesian Product
+&ldquo;`swift
+[[1, 2], [3, 4]].lazyProduct()</p>
+
+<p>[1, 3], [1, 4], [2, 3], [2, 4]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">lazyProduct</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ProdSeq</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs14CollectionType_13SwiftSequenceS_11lazyProductuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GVS2_7ProdSeqqqq_S_9GeneratorS0_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/lazyProduct()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs14CollectionType_13SwiftSequenceS_11lazyProductuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GVS2_7ProdSeqqqq_S_9GeneratorS0_7Element_">lazyProduct()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Lazy Cartesian Product
+&ldquo;`swift
+[[1, 2], [3, 4]].lazyProduct()</p>
+
+<p>[1, 3], [1, 4], [2, 3], [2, 4]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">lazyProduct</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ProdSeq</span><span class="o">&lt;</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_5firstuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbGSqqqq_S_9GeneratorS1_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/first(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_5firstuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbGSqqqq_S_9GeneratorS1_7Element_">first(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the first element in self that satisfies a predicate, or nil if it doesn&rsquo;t
+exist</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">first</span><span class="p">(</span><span class="k">@noescape</span> <span class="nv">predicate</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_5countuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbSi"></a>
+                    <a name="//apple_ref/swift/Method/count(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_5countuRq_S__Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7ElementSbSi">count(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the number of elements in <code>self</code> that satisfy <code>predicate</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">count</span><span class="p">(</span><span class="k">@noescape</span> <span class="nv">predicate</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_3hopuRq_S__Fq_FSiGSaqqq_S_9GeneratorSs13GeneratorType7Element_"></a>
+                    <a name="//apple_ref/swift/Method/hop(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_3hopuRq_S__Fq_FSiGSaqqq_S_9GeneratorSs13GeneratorType7Element_">hop(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array with <code>n</code> elements of self hopped over. The sequence includes the
+first element of self.
+&ldquo;`swift
+[1, 2, 3, 4, 5, 6, 7, 8].hop(2)</p>
+
+<p>[1, 3, 5, 7]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">hop</span><span class="p">(</span><span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceType_13SwiftSequenceS_10categoriseu__Rq_S_qd__Ss8Hashable_Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7Elementqd__GVSs10Dictionaryqd__GSaqqq_S_9GeneratorS2_7Element__"></a>
+                    <a name="//apple_ref/swift/Method/categorise(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceType_13SwiftSequenceS_10categoriseu__Rq_S_qd__Ss8Hashable_Fq_FzFzqqq_S_9GeneratorSs13GeneratorType7Elementqd__GVSs10Dictionaryqd__GSaqqq_S_9GeneratorS2_7Element__">categorise(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Categorises elements of <code>self</code> into a dictionary, with the keys
+given by <code>keyFunc</code>
+&ldquo;`swift
+struct Person : CustomStringConvertible {
+  let name: String
+  let age : Int
+  init(_ name: String, _ age: Int) {
+    self.name = name
+    self.age  = age
+  }
+  var description: String { return name }
+}</p>
+
+<p>let people = [ 
+  Person(<q>Jo</q>, 20),
+  Person(<q>An</q>, 20),
+  Person(<q>Cthulu</q>, 4000)
+]</p>
+
+<p>people.categorise { p in p.age }</p>
+
+<p>//[20: [Jo, An], 4000: [Cthulu]]
+&rdquo;`</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="n">categorise</span><span class="o">&lt;</span><span class="kt">U</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="o">&gt;</span><span class="p">(</span><span class="k">@noescape</span> <span class="nv">keyFunc</span><span class="p">:</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span>
+    <span class="n">rethrows</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">U</span><span class="p">:[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Frequencies"></a>
+                  <a name="//apple_ref/swift/Section/Frequencies" class="dashAnchor"></a>
+                  <a href="#/Frequencies">
+                    <h3 class="section-name">Frequencies</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs8Hashable_13SwiftSequenceS_5freqsuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GVSs10Dictionaryqqq_S_9GeneratorS0_7ElementSi_"></a>
+                    <a name="//apple_ref/swift/Method/freqs()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs8Hashable_13SwiftSequenceS_5freqsuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GVSs10Dictionaryqqq_S_9GeneratorS0_7ElementSi_">freqs()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a dictionary where the keys are the elements of self, and
+the values are their respective frequencies 
+<code>swift
+[0, 3, 0, 1, 1, 3, 2, 3, 1, 0].freqs()
+// [2: 1, 0: 3, 3: 3, 1: 3]
+</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">freqs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">:</span><span class="kt">Int</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Uniques"></a>
+                  <a name="//apple_ref/swift/Section/Uniques" class="dashAnchor"></a>
+                  <a href="#/Uniques">
+                    <h3 class="section-name">Uniques</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs8Hashable_13SwiftSequenceS_7uniquesuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GSaqqq_S_9GeneratorS0_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/uniques()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs8Hashable_13SwiftSequenceS_7uniquesuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GSaqqq_S_9GeneratorS0_7Element_">uniques()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of the elements of <code>self</code>, in order, with
+duplicates removed
+<code>swift
+[3, 1, 2, 3, 2, 1, 1, 2, 3, 3].uniques()
+// [3, 1, 2]
+</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">uniques</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs8Hashable_13SwiftSequenceS_12mostFrequentuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GSqqqq_S_9GeneratorS0_7Element_"></a>
+                    <a name="//apple_ref/swift/Method/mostFrequent()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FeRq_Ss12SequenceTypeqqq_S_9GeneratorSs13GeneratorType7ElementSs8Hashable_13SwiftSequenceS_12mostFrequentuRq_S_qqq_S_9GeneratorS0_7ElementS1__Fq_FT_GSqqqq_S_9GeneratorS0_7Element_">mostFrequent()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the element which occurs most frequently in <code>self</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">mostFrequent</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Generator</span><span class="o">.</span><span class="kt">Element</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-09-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -15,13 +15,12 @@ public extension SequenceType {
   func reduce
     (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element)
     rethrows -> Generator.Element? {
-    var g = generate()
-    return try g.next().map { (var accu) in
+      var g = generate()
+      guard var accu = g.next() else { return nil }
       while let next = g.next() {
         accu = try combine(accumulator: accu, element: next)
       }
       return accu
-    }
   }
   
   // MARK: Scan
@@ -70,10 +69,9 @@ public struct ScanGen<G : GeneratorType, T> : GeneratorType {
   private var g: G
   /// :nodoc:
   public mutating func next() -> T? {
-    return g.next().map { e in
-      initial = combine(initial, e)
-      return initial
-    }
+    guard let e = g.next() else { return nil }
+    initial = combine(initial, e)
+    return initial
   }
 }
 
@@ -113,10 +111,9 @@ public struct Scan1Gen<G : GeneratorType> : GeneratorType {
   private var g: G?
   
   public mutating func next() -> G.Element? {
-    return g?.next().map {
-      accu = combine(accu!, $0)
-      return accu!
-    }
+    guard let head = g?.next() else { return nil }
+    accu = combine(accu!, head)
+    return accu!
   }
   
   private init(combine: (G.Element, G.Element) -> G.Element, var generator: G) {

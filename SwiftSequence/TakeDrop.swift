@@ -14,7 +14,6 @@ public extension SequenceType {
   func prefixWhile(@noescape condition: Generator.Element throws -> Bool) rethrows -> [Generator.Element] {
     var ret : [Generator.Element] = []
     var g = generate()
-
     while let next = g.next() where try condition(next) { ret.append(next) }
     return ret
   }

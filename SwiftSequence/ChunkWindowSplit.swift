@@ -62,6 +62,7 @@ public extension SequenceType {
     }
     
     var ret = [window]
+    
     while let next = g.next() {
       window.removeAtIndex(0)
       window.append(next)
@@ -83,12 +84,11 @@ public struct ChunkGen<G : GeneratorType> : GeneratorType {
   
   public mutating func next() -> [G.Element]? {
     var i = n
-    return g.next().map {
-      var c = [$0]
-      c.reserveCapacity(n)
-      while --i > 0, let next = g.next() { c.append(next) }
-      return c
-    }
+    guard let head = g.next() else { return nil }
+    var c = [head]
+    c.reserveCapacity(n)
+    while --i > 0, let next = g.next() { c.append(next) }
+    return c
   }
 }
 /// :nodoc:
@@ -125,13 +125,12 @@ public struct WindowGen<Element> : GeneratorType {
   private var window: [Element]?
   /// :nodoc:
   mutating public func next() -> [Element]? {
-    return window.map { result in
-      if let element = g() {
-        window!.append(element)
-        window!.removeFirst()
-      } else { window = nil }
-      return result
-    }
+    guard let result = window else { return nil }
+    if let element = g() {
+      window!.append(element)
+      window!.removeFirst()
+    } else { window = nil }
+    return result
   }
 }
 

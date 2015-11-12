@@ -27,11 +27,10 @@ public struct CycleNGen<C: CollectionType> : GeneratorType, LazySequenceType {
   private var n: Int
   /// :nodoc:
   public mutating func next() -> C.Generator.Element? {
-    for ;n > 0;innerGen = inner.generate(), --n {
-      if let next = innerGen.next() {
-        return next
-      }
-    }
+    repeat {
+      if let next = innerGen.next() { return next }
+      innerGen = inner.generate()
+    } while --n > 0
     return nil
   }
 }

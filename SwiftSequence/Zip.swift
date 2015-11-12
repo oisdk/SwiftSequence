@@ -7,9 +7,14 @@ public struct NilPaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : Gene
   private var (g0, g1): (G0?, G1?)
   
   public mutating func next() -> (E0?, E1?)? {
-    let e0: E0? = g0?.next() ?? {g0 = nil; return nil}()
-    let e1: E1? = g1?.next() ?? {g1 = nil; return nil}()
-    return (e0 != nil || e1 != nil) ? (e0, e1) : nil
+    let (e0,e1) = (g0?.next(),g1?.next())
+    switch (e0,e1) {
+    case (nil,nil): return nil
+    case (  _,nil): g1 = nil
+    case (nil,  _): g0 = nil
+    default: break
+    }
+    return (e0,e1)
   }
 }
 /// :nodoc:

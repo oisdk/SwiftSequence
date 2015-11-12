@@ -83,14 +83,16 @@ public extension SequenceType where Generator.Element : Hashable {
   /// Returns the element which occurs most frequently in `self`
   
   public func mostFrequent() -> Generator.Element? {
-    
+    var g = generate()
+    guard var be = g.next() else { return nil }
+    var bn = 1
     var freqs: [Generator.Element:Int] = [:]
-    
-    return reduce(nil) { (b: (Generator.Element, Int)?, e) in
-      let c = (freqs[e]?.successor() ?? 1)
-      freqs[e] = c
-      return c > b?.1 ? (e, c) : b
-    }?.0
+    for e in self {
+      let n = (freqs[e] ?? 0) + 1
+      if n > bn { (be,bn) = (e,n) }
+      freqs[e] = n
+    }
+    return be
   }
 }
 
@@ -146,20 +148,18 @@ public struct GroupByGen<G : GeneratorType> : GeneratorType {
   private let isEq: (G.Element, G.Element) -> Bool
   /// :nodoc:
   mutating public func next() -> [G.Element]? {
-    return last.map { comp in
-      var group = [comp]
-      last = nil
-      while let next = genr.next() {
-        guard isEq(group.last!, next) else {
-          last = next
-          return group
-        }
-        group.append(next)
+    guard let head = last else { return nil }
+    var group = [head]
+    last = nil
+    while let next = genr.next() {
+      guard isEq(group.last!, next) else {
+        last = next
+        return group
       }
-      return group
+      group.append(next)
     }
+    return group
   }
-  
   private init(var g : G, isEquivalent: (G.Element, G.Element) -> Bool) {
     last = g.next()
     genr = g

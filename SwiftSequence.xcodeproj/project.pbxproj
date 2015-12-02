@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		701E174A1BAD842100E23449 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E17491BAD842100E23449 /* TestHelpers.swift */; settings = {ASSET_TAGS = (); }; };
+		701E174A1BAD842100E23449 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E17491BAD842100E23449 /* TestHelpers.swift */; };
 		7037D0451B403AB500FA04C6 /* SwiftSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 7037D0441B403AB500FA04C6 /* SwiftSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7037D04C1B403AB500FA04C6 /* SwiftSequence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7037D0411B403AB500FA04C6 /* SwiftSequence.framework */; };
 		7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */; };

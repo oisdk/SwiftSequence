@@ -1,3 +1,8 @@
+prefix operator ! {}
+public prefix func !<A>(f: A -> Bool) -> A -> Bool {
+  return { x in !f(x) }
+}
+
 public extension SequenceType {
   
   /// Returns the first element in self that satisfies a predicate, or nil if it doesn't
@@ -14,6 +19,13 @@ public extension SequenceType {
     var i = 0
     for el in self where try predicate(el) { ++i}
     return i
+  }
+  
+  /// Returns true iff every element in `self` satisfies `predicate`
+  
+  func all(@noescape predicate: Generator.Element throws -> Bool) rethrows -> Bool {
+    for x in self { guard try predicate(x) else { return false } }
+    return true
   }
 }
   

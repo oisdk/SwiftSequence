@@ -2,7 +2,7 @@
 
 // MARK: Chunk
 
-public extension SequenceType {
+public extension CollectionType {
   
   /// Returns an array of arrays of n non-overlapping elements of self
   /// - Parameter n: The size of the chunk
@@ -14,28 +14,21 @@ public extension SequenceType {
   ///  [[1, 2], [3, 4], [5]]
   /// ```
   
-  public func chunk(n : Int) -> [[Generator.Element]] {
-    var result: [[Generator.Element]] = []
-    var crChnk:  [Generator.Element]  = []
-    crChnk.reserveCapacity(n)
-    result.reserveCapacity(underestimateCount() / n)
-    var i = n
-    for element in self {
-      crChnk.append(element)
-      if --i == 0 {
-        result.append(crChnk)
-        crChnk.removeAll(keepCapacity: true)
-        i = n
-      }
+  public func chunk(n: Index.Distance) -> [SubSequence] {
+    var res: [SubSequence] = []
+    for
+      var i = startIndex, j = i.advancedBy(n, limit: endIndex);
+      i != endIndex;
+      i = j, j = i.advancedBy(n, limit: endIndex) {
+        res.append(self[i..<j])
     }
-    if !crChnk.isEmpty { result.append(crChnk) }
-    return result
+    return res
   }
 }
 
 // MARK: Window
 
-public extension SequenceType {
+public extension CollectionType {
   
   /// Returns an array of arrays of n overlapping elements of self
   /// - Parameter n: The size of the window
@@ -46,29 +39,15 @@ public extension SequenceType {
   ///  [[1, 2], [2, 3], [3, 4]]
   ///   ```
   
-  func window(n : Int) -> [[Generator.Element]] {
-    var g = generate()
-    
-    var window: [Generator.Element] = []
-    
-    window.reserveCapacity(n)
-    
-    while window.count < n {
-      if let next = g.next() {
-        window.append(next)
-      } else {
-        return [window]
-      }
-    }
-    
-    var ret = [window]
-    
-    while let next = g.next() {
-      window.removeAtIndex(0)
-      window.append(next)
-      ret.append(window)
-    }
-    
+  func window(n: Index.Distance) -> [SubSequence] {
+    var ret: [SubSequence] = []
+    ret.reserveCapacity(underestimateCount() - numericCast(n))
+    var i = startIndex
+    var j = i.advancedBy(n, limit: endIndex)
+    repeat {
+      ret.append(self[i..<j])
+      ++i
+    } while j++ != endIndex
     return ret
   }
 }
@@ -77,32 +56,31 @@ public extension SequenceType {
 
 // MARK: Chunk
 /// :nodoc:
-public struct ChunkGen<G : GeneratorType> : GeneratorType {
+public struct ChunkGen<C: CollectionType> : GeneratorType {
   
-  private var g: G
-  private let n: Int
+  private var c: C
+  private let n: C.Index.Distance
+  private var i: C.Index
   
-  public mutating func next() -> [G.Element]? {
-    var i = n
-    guard let head = g.next() else { return nil }
-    var c = [head]
-    c.reserveCapacity(n)
-    while --i > 0, let next = g.next() { c.append(next) }
-    return c
+  public mutating func next() -> C.SubSequence? {
+    if i == c.endIndex { return nil }
+    let j = i.advancedBy(n, limit: c.endIndex)
+    defer { i = j }
+    return c[i..<j]
   }
 }
 /// :nodoc:
-public struct ChunkSeq<S : SequenceType> : LazySequenceType {
+public struct ChunkSeq<C: CollectionType> : LazySequenceType {
   
-  private let seq: S
-  private let n: Int
+  private let c: C
+  private let n: C.Index.Distance
   /// :nodoc:
-  public func generate() -> ChunkGen<S.Generator> {
-    return ChunkGen(g: seq.generate(), n: n)
+  public func generate() -> ChunkGen<C> {
+    return ChunkGen(c: c, n: n, i: c.startIndex)
   }
 }
 
-public extension LazySequenceType {
+public extension LazyCollectionType {
   
   /// Returns lazily-generated arrays of n non-overlapping elements of self
   /// - Parameter n: The size of the chunk
@@ -112,48 +90,42 @@ public extension LazySequenceType {
   ///
   ///  [1, 2], [3, 4], [5]
   /// ```
-  func chunk(n: Int) -> ChunkSeq<Self> {
-    return ChunkSeq(seq: self, n: n)
+  func chunk(n: Index.Distance) -> ChunkSeq<Self> {
+    return ChunkSeq(c: self, n: n)
   }
 }
 
 // MARK: Window
 /// :nodoc:
-public struct WindowGen<Element> : GeneratorType {
+public struct WindowGen<C: CollectionType> : GeneratorType {
   
-  private let g: () -> Element?
-  private var window: [Element]?
+  private let c: C
+  private var i, j: C.Index
+  private var s: Bool
   /// :nodoc:
-  mutating public func next() -> [Element]? {
-    guard let result = window else { return nil }
-    if let element = g() {
-      window!.append(element)
-      window!.removeFirst()
-    } else { window = nil }
-    return result
+  mutating public func next() -> C.SubSequence? {
+    if s { return nil }
+    if j == c.endIndex {
+      s = true
+      return c[i..<j]
+    }
+    return c[(i++)..<(j++)]
   }
 }
 
 /// :nodoc:
 
-public struct WindowSeq<S : SequenceType> : LazySequenceType {
+public struct WindowSeq<C: CollectionType> : LazySequenceType {
   
-  private let seq: S
-  private let n: Int
+  private let c: C
+  private let n: C.Index.Distance
   /// :nodoc:
-  public func generate() -> WindowGen<S.Generator.Element> {
-    var window: [S.Generator.Element] = []
-    window.reserveCapacity(n + 1)
-    var g = seq.generate()
-    for _ in 0..<n {
-      guard let next = g.next() else { return WindowGen(g: {nil}, window: window) }
-      window.append(next)
-    }
-    return WindowGen(g: {g.next()}, window: window)
+  public func generate() -> WindowGen<C> {
+    return WindowGen(c: c, i: c.startIndex, j: c.startIndex.advancedBy(n, limit: c.endIndex), s: false)
   }
 }
 
-public extension LazySequenceType {
+public extension LazyCollectionType {
   
   /// Returns lazily-generated arrays of n overlapping elements of self
   /// - Parameter n: The size of the window
@@ -164,7 +136,7 @@ public extension LazySequenceType {
   ///  [1, 2], [2, 3], [3, 4]
   ///   ```
   
-  func window(n: Int) -> WindowSeq<Self> {
-    return WindowSeq(seq: self, n: n)
+  func window(n: Index.Distance) -> WindowSeq<Self> {
+    return WindowSeq(c: self, n: n)
   }
 }

@@ -44,6 +44,7 @@ class ChunkWindowSplitTests: XCTestCase {
       let n = Int(arc4random()) % randAr.count + 1
       XCTAssertEqual(randAr.lazy.window(n))(randAr.window(n))
     }
-  }
 
+  }
+  
 }

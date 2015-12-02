@@ -2,11 +2,6 @@ import XCTest
 @testable import SwiftSequence
 
 class FindingTests: XCTestCase {
-
-//  func testFindFirst() {
-//    
-//  }
-
   
   func testFindFirst() {
     
@@ -88,5 +83,16 @@ class FindingTests: XCTestCase {
     
     XCTAssertEqual(ar.filter(pred))(pass)
     XCTAssertEqual(ar.filter { e in !pred(e) })(fail)
+  }
+  
+  func testAll() {
+    
+    for randAr in (0..<20).map(Array<Int>.init) {
+      
+      let p = randPred()
+      
+      XCTAssertEqual(randAr.all(p), !randAr.contains(!p))
+    
+    }
   }
 }

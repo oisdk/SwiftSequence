@@ -8,8 +8,8 @@ public extension SequenceType {
   /// Returns the first element in self that satisfies a predicate, or nil if it doesn't
   /// exist
   
-  func first(@noescape predicate: Generator.Element throws -> Bool) rethrows -> Generator.Element? {
-    for el in self where try predicate(el) { return el }
+  func first(@noescape thatSatisfies: Generator.Element throws -> Bool) rethrows -> Generator.Element? {
+    for el in self where try thatSatisfies(el) { return el }
     return nil
   }
   
@@ -17,7 +17,7 @@ public extension SequenceType {
   
   func count(@noescape predicate: Generator.Element throws -> Bool) rethrows -> Int {
     var i = 0
-    for el in self where try predicate(el) { ++i}
+    for el in self where try predicate(el) { i += 1 }
     return i
   }
   

@@ -124,9 +124,10 @@ public struct WhileGen<G : GeneratorType> : GeneratorType {
   private let condition : G.Element -> Bool
   /// :nodoc:
   mutating public func next() -> G.Element? {
-    return g.next().flatMap {
-      condition($0) ? $0 : nil
+    if let next = g.next() where condition(next) {
+      return next
     }
+    return nil
   }
 }
 /// :nodoc:

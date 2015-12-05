@@ -12,7 +12,12 @@ public extension CollectionType {
   /// ```
   
   func cycle(n: Int) -> [Generator.Element] {
-    return (0..<n).flatMap { (_: Int) in self }
+    var cycled: [Generator.Element] = []
+    cycled.reserveCapacity(underestimateCount() * n)
+    for _ in 0..<n {
+      cycled.appendContentsOf(self)
+    }
+    return cycled
   }
 }
 
@@ -27,11 +32,12 @@ public struct CycleNGen<C: CollectionType> : GeneratorType, LazySequenceType {
   private var n: Int
   /// :nodoc:
   public mutating func next() -> C.Generator.Element? {
-    repeat {
+    while true {
       if let next = innerGen.next() { return next }
-      innerGen = inner.generate()
-    } while --n > 0
-    return nil
+      n -= 1
+      if n > 0 { innerGen = inner.generate() }
+      else { return nil }
+    }
   }
 }
 

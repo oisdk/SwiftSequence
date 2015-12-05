@@ -73,11 +73,12 @@ public extension SequenceType where Generator.Element : Hashable {
   
   public func uniques() -> [Generator.Element] {
     var prevs: Set<Generator.Element> = []
-    return filter { el in
-      if prevs.contains(el) { return false }
+    var uniqs: [Generator.Element] = []
+    for el in self where !prevs.contains(el) {
       prevs.insert(el)
-      return true
+      uniqs.append(el)
     }
+    return uniqs
   }
   
   /// Returns the element which occurs most frequently in `self`

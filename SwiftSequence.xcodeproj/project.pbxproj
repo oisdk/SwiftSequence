@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		701E174A1BAD842100E23449 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E17491BAD842100E23449 /* TestHelpers.swift */; };
+		70336B331C0F184600DB2FED /* Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70336B321C0F184600DB2FED /* Iterate.swift */; };
 		7037D0451B403AB500FA04C6 /* SwiftSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 7037D0441B403AB500FA04C6 /* SwiftSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7037D04C1B403AB500FA04C6 /* SwiftSequence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7037D0411B403AB500FA04C6 /* SwiftSequence.framework */; };
 		7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		701E17491BAD842100E23449 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		70336B321C0F184600DB2FED /* Iterate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Iterate.swift; sourceTree = "<group>"; };
 		7037D0411B403AB500FA04C6 /* SwiftSequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7037D0441B403AB500FA04C6 /* SwiftSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftSequence.h; sourceTree = "<group>"; };
 		7037D0461B403AB500FA04C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				7037D08C1B40437100FA04C6 /* Categorise.swift */,
 				7037D05C1B403AC800FA04C6 /* ChunkWindowSplit.swift */,
 				7037D05D1B403AC800FA04C6 /* Combinations.swift */,
+				70336B321C0F184600DB2FED /* Iterate.swift */,
 				7037D05E1B403AC800FA04C6 /* Cycle.swift */,
 				7037D05F1B403AC800FA04C6 /* Enumerate.swift */,
 				7037D0601B403AC800FA04C6 /* Finding.swift */,
@@ -280,6 +283,7 @@
 			files = (
 				7037D0851B403AC800FA04C6 /* ScanReduce.swift in Sources */,
 				7037D06D1B403AC800FA04C6 /* ChunkWindowSplit.swift in Sources */,
+				70336B331C0F184600DB2FED /* Iterate.swift in Sources */,
 				7037D07D1B403AC800FA04C6 /* Interpose.swift in Sources */,
 				7037D0871B403AC800FA04C6 /* TakeDrop.swift in Sources */,
 				7037D0831B403AC800FA04C6 /* Permutations.swift in Sources */,

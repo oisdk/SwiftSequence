@@ -51,11 +51,14 @@ public struct PaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : Generat
   private let (p0, p1): (E0, E1)
   /// :nodoc:
   public mutating func next() -> (E0, E1)? {
-    let e0: E0? = g0?.next() ?? {g0 = nil; return nil}()
-    let e1: E1? = g1?.next() ?? {g1 = nil; return nil}()
-    if let e = e0 { return (e, e1 ?? p1) }
-    if let e = e1 { return (p0, e) }
-    return nil
+    let (e0,e1) = (g0?.next(),g1?.next())
+    switch (e0,e1) {
+    case (nil,nil): return nil
+    case (  _,nil): g1 = nil
+    case (nil,  _): g0 = nil
+    default: break
+    }
+    return (e0 ?? p0, e1 ?? p1)
   }
 }
 /// :nodoc:

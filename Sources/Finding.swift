@@ -67,7 +67,7 @@ extension CollectionType {
   }
 }
 
-extension SequenceType {
+public extension SequenceType {
   func partition(@noescape predicate: Generator.Element throws -> Bool) rethrows -> ([Generator.Element], [Generator.Element]) {
     var t,f: [Generator.Element]
     (t,f) = ([],[])

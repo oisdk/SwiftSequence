@@ -98,19 +98,19 @@ extension OpenStartedIntervalTypeThrough {
 
 // Pattern Matching
 
-func ~=<I: OpenIntervalType>(lhs: I, rhs: I.Value) -> Bool {
+public func ~=<I: OpenIntervalType>(lhs: I, rhs: I.Value) -> Bool {
   return lhs.contains(rhs)
 }
 
 // Indexing
 
-extension CollectionType where Index: Comparable {
+public extension CollectionType where Index: Comparable {
   subscript(r: OpenEndedRange<Index>) -> SubSequence {
     return suffixFrom(r.val)
   }
 }
 
-extension CollectionType where Index: Comparable, Index: BidirectionalIndexType {
+public extension CollectionType where Index: Comparable, Index: BidirectionalIndexType {
   subscript(r: OpenStartedRangeTo<Index>) -> SubSequence {
     return prefixUpTo(r.val)
   }
@@ -119,14 +119,14 @@ extension CollectionType where Index: Comparable, Index: BidirectionalIndexType 
   }
 }
 
-extension MutableCollectionType where Index: Comparable {
+public extension MutableCollectionType where Index: Comparable {
   subscript(r: OpenEndedRange<Index>) -> SubSequence {
     get { return suffixFrom(r.val) }
     set { self[r.val..<endIndex] = newValue }
   }
 }
 
-extension MutableCollectionType where Index: Comparable, Index: BidirectionalIndexType {
+public extension MutableCollectionType where Index: Comparable, Index: BidirectionalIndexType {
   subscript(r: OpenStartedRangeTo<Index>) -> SubSequence {
     get { return prefixUpTo(r.val) }
     set { self[startIndex..<r.val] = newValue }

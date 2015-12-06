@@ -45,10 +45,10 @@ func XCTAssertEqual<
     while true {
       let (e0,e1) = (g0.next(),g1.next())
       if e0 == nil {
-        if e1 == nil { break }
+        if e1 == nil { return }
         XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
       } else if e1 == nil {
-        if e0 == nil { break }
+        if e0 == nil { return }
         XCTFail(String(reflecting: rhs) + " is shorter than " + String(reflecting: lhs))
       }
       XCTAssert(e0! == e1!,

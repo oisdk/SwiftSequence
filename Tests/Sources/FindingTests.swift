@@ -9,7 +9,6 @@ class FindingTests: XCTestCase {
       ("testFindLast", testFindLast),
       ("testCount", testCount),
       ("testLastIndexOf", testLastIndexOf),
-      ("testIndices", testIndices),
       ("testPartition", testPartition),
       ("testAll", testAll)
     ]
@@ -68,20 +67,6 @@ class FindingTests: XCTestCase {
     let expectation = ar.indices.last { i in pred(ar[i]) }
     
     let reality = ar.lastIndexOf(pred)
-    
-    XCTAssert(expectation == reality)
-    
-  }
-  
-  func testIndices() {
-    
-    let ar = Array<Int>(randLength: 100)
-    
-    let pred = randPred()
-    
-    let expectation = ar.indices.filter { i in pred(ar[i]) }
-    
-    let reality = ar.indicesOf(pred)
     
     XCTAssert(expectation == reality)
     

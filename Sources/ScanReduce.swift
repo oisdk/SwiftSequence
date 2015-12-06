@@ -123,7 +123,6 @@ public struct Scan1Gen<G : GeneratorType> : GeneratorType {
     self.combine = combine
     if let initial = g?.next() {
       accu = initial
-      g = generator
     } else {
       self.g = nil
     }

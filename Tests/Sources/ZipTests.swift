@@ -21,8 +21,8 @@ class ZipTests: XCTestCase {
       XCTAssertEqual(Array(zipped).count, max(a.count,b.count))
       let ta = zipped.map(fst).prefixWhile { e in e != nil }.flatMap { id in id }
       let tb = zipped.map(snd).prefixWhile { e in e != nil }.flatMap { id in id }
-      XCTAssertEqual(a,ta)
-      XCTAssertEqual(b,tb)
+      XCTAssertEqual(a, Array(ta))
+      XCTAssertEqual(b, Array(tb))
       
     }
     

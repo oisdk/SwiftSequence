@@ -13,7 +13,8 @@ class CategoriseTests: XCTestCase {
       ("testLazyGroup", testLazyGroup),
       ("testLazyGroupClos", testLazyGroupClos),
       ("testMostFrequent", testMostFrequent)
-  ]
+    ]
+  }
   
   // MARK: Eager
   

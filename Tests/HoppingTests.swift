@@ -32,9 +32,25 @@ class SlicingTests: XCTestCase {
     for ar in (0..<20).map(Array<Int>.init) {
       for h in ar.indices.dropFirst() {
         for i in ar.indices {
-          XCTAssertEqualSeq(ar[i..., by: h], ar[i...].refHop(h))
-          XCTAssertEqualSeq(ar[...i, by: h], ar[...i].refHop(h))
-          XCTAssertEqualSeq(ar[..<i, by: h], ar[..<i].refHop(h))
+          let (a,b,c) = (ar[i..., by: h],ar[...i, by: h],ar[..<i, by: h])
+          XCTAssertEqualSeq(a, ar[i...].refHop(h))
+          XCTAssertEqualSeq(b, ar[...i].refHop(h))
+          XCTAssertEqualSeq(c, ar[..<i].refHop(h))
+          for (ja, jr) in zip(a.indices, 0...) {
+            for (ka, kr) in zip((ja..<a.endIndex), jr...) {
+              XCTAssertEqualSeq(a[ja..<ka], Array(a)[jr..<kr])
+            }
+          }
+          for (jb, jr) in zip(b.indices, 0...) {
+            for (kb, kr) in zip((jb..<b.endIndex), jr...) {
+              XCTAssertEqualSeq(b[jb..<kb], Array(b)[jr..<kr])
+            }
+          }
+          for (jc, jr) in zip(c.indices, 0...) {
+            for (kc, kr) in zip((jc..<c.endIndex), jr...) {
+              XCTAssertEqualSeq(c[jc..<kc], Array(c)[jr..<kr])
+            }
+          }
         }
       }
     }

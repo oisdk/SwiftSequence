@@ -24,22 +24,23 @@
 		707F999F1C13BA1900CE1A23 /* ScanReduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99901C13BA1900CE1A23 /* ScanReduce.swift */; };
 		707F99A01C13BA1900CE1A23 /* TakeDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99911C13BA1900CE1A23 /* TakeDrop.swift */; };
 		707F99A11C13BA1900CE1A23 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99921C13BA1900CE1A23 /* Zip.swift */; };
-		707F99B21C13BA2800CE1A23 /* CategoriseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A21C13BA2800CE1A23 /* CategoriseTests.swift */; };
-		707F99B31C13BA2800CE1A23 /* ChunkWindowSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A31C13BA2800CE1A23 /* ChunkWindowSplitTests.swift */; };
-		707F99B41C13BA2800CE1A23 /* CombinationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A41C13BA2800CE1A23 /* CombinationsTests.swift */; };
-		707F99B51C13BA2800CE1A23 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A51C13BA2800CE1A23 /* CycleTests.swift */; };
-		707F99B61C13BA2800CE1A23 /* EnumerateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A61C13BA2800CE1A23 /* EnumerateTests.swift */; };
-		707F99B71C13BA2800CE1A23 /* FindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A71C13BA2800CE1A23 /* FindingTests.swift */; };
-		707F99B81C13BA2800CE1A23 /* FlatMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A81C13BA2800CE1A23 /* FlatMapTests.swift */; };
-		707F99B91C13BA2800CE1A23 /* HopJumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99A91C13BA2800CE1A23 /* HopJumpTests.swift */; };
-		707F99BA1C13BA2800CE1A23 /* InterposeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99AA1C13BA2800CE1A23 /* InterposeTests.swift */; };
-		707F99BB1C13BA2800CE1A23 /* LazySeqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99AB1C13BA2800CE1A23 /* LazySeqTests.swift */; };
-		707F99BC1C13BA2800CE1A23 /* NestedSequencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99AC1C13BA2800CE1A23 /* NestedSequencesTests.swift */; };
-		707F99BD1C13BA2800CE1A23 /* PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99AD1C13BA2800CE1A23 /* PermutationsTests.swift */; };
-		707F99BE1C13BA2800CE1A23 /* ScanReduceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99AE1C13BA2800CE1A23 /* ScanReduceTests.swift */; };
-		707F99BF1C13BA2800CE1A23 /* TakeDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99AF1C13BA2800CE1A23 /* TakeDropTests.swift */; };
-		707F99C01C13BA2800CE1A23 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99B01C13BA2800CE1A23 /* TestHelpers.swift */; };
-		707F99C11C13BA2800CE1A23 /* ZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99B11C13BA2800CE1A23 /* ZipTests.swift */; };
+		70CB76E81C13BFD9003A7461 /* CategoriseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76C81C13BFC0003A7461 /* CategoriseTests.swift */; };
+		70CB76E91C13BFD9003A7461 /* ChunkWindowSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76C91C13BFC0003A7461 /* ChunkWindowSplitTests.swift */; };
+		70CB76EA1C13BFD9003A7461 /* CombinationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CA1C13BFC0003A7461 /* CombinationsTests.swift */; };
+		70CB76EB1C13BFD9003A7461 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CB1C13BFC0003A7461 /* CycleTests.swift */; };
+		70CB76EC1C13BFD9003A7461 /* EnumerateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CC1C13BFC0003A7461 /* EnumerateTests.swift */; };
+		70CB76ED1C13BFD9003A7461 /* FindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CD1C13BFC0003A7461 /* FindingTests.swift */; };
+		70CB76EE1C13BFD9003A7461 /* FlatMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CE1C13BFC0003A7461 /* FlatMapTests.swift */; };
+		70CB76EF1C13BFD9003A7461 /* HopJumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CF1C13BFC0003A7461 /* HopJumpTests.swift */; };
+		70CB76F01C13BFD9003A7461 /* InterposeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D01C13BFC0003A7461 /* InterposeTests.swift */; };
+		70CB76F11C13BFD9003A7461 /* LazySeqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D11C13BFC0003A7461 /* LazySeqTests.swift */; };
+		70CB76F21C13BFD9003A7461 /* NestedSequencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D21C13BFC0003A7461 /* NestedSequencesTests.swift */; };
+		70CB76F31C13BFD9003A7461 /* PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D31C13BFC0003A7461 /* PermutationsTests.swift */; };
+		70CB76F41C13BFD9003A7461 /* ScanReduceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D41C13BFC0003A7461 /* ScanReduceTests.swift */; };
+		70CB76F51C13BFD9003A7461 /* TakeDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D51C13BFC0003A7461 /* TakeDropTests.swift */; };
+		70CB76F61C13BFD9003A7461 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D61C13BFC0003A7461 /* TestHelpers.swift */; };
+		70CB76F71C13BFD9003A7461 /* ZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D71C13BFC0003A7461 /* ZipTests.swift */; };
+		70CB76FA1C13C03E003A7461 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 707F997B1C13B9EB00CE1A23 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,22 +74,22 @@
 		707F99901C13BA1900CE1A23 /* ScanReduce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScanReduce.swift; path = Sources/ScanReduce.swift; sourceTree = SOURCE_ROOT; };
 		707F99911C13BA1900CE1A23 /* TakeDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TakeDrop.swift; path = Sources/TakeDrop.swift; sourceTree = SOURCE_ROOT; };
 		707F99921C13BA1900CE1A23 /* Zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Zip.swift; path = Sources/Zip.swift; sourceTree = SOURCE_ROOT; };
-		707F99A21C13BA2800CE1A23 /* CategoriseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriseTests.swift; path = Tests/Sources/CategoriseTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99A31C13BA2800CE1A23 /* ChunkWindowSplitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChunkWindowSplitTests.swift; path = Tests/Sources/ChunkWindowSplitTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99A41C13BA2800CE1A23 /* CombinationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CombinationsTests.swift; path = Tests/Sources/CombinationsTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99A51C13BA2800CE1A23 /* CycleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CycleTests.swift; path = Tests/Sources/CycleTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99A61C13BA2800CE1A23 /* EnumerateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumerateTests.swift; path = Tests/Sources/EnumerateTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99A71C13BA2800CE1A23 /* FindingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FindingTests.swift; path = Tests/Sources/FindingTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99A81C13BA2800CE1A23 /* FlatMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatMapTests.swift; path = Tests/Sources/FlatMapTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99A91C13BA2800CE1A23 /* HopJumpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HopJumpTests.swift; path = Tests/Sources/HopJumpTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99AA1C13BA2800CE1A23 /* InterposeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterposeTests.swift; path = Tests/Sources/InterposeTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99AB1C13BA2800CE1A23 /* LazySeqTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LazySeqTests.swift; path = Tests/Sources/LazySeqTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99AC1C13BA2800CE1A23 /* NestedSequencesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NestedSequencesTests.swift; path = Tests/Sources/NestedSequencesTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99AD1C13BA2800CE1A23 /* PermutationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PermutationsTests.swift; path = Tests/Sources/PermutationsTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99AE1C13BA2800CE1A23 /* ScanReduceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScanReduceTests.swift; path = Tests/Sources/ScanReduceTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99AF1C13BA2800CE1A23 /* TakeDropTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TakeDropTests.swift; path = Tests/Sources/TakeDropTests.swift; sourceTree = SOURCE_ROOT; };
-		707F99B01C13BA2800CE1A23 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestHelpers.swift; path = Tests/Sources/TestHelpers.swift; sourceTree = SOURCE_ROOT; };
-		707F99B11C13BA2800CE1A23 /* ZipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZipTests.swift; path = Tests/Sources/ZipTests.swift; sourceTree = SOURCE_ROOT; };
+		70CB76C81C13BFC0003A7461 /* CategoriseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriseTests.swift; sourceTree = "<group>"; };
+		70CB76C91C13BFC0003A7461 /* ChunkWindowSplitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkWindowSplitTests.swift; sourceTree = "<group>"; };
+		70CB76CA1C13BFC0003A7461 /* CombinationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinationsTests.swift; sourceTree = "<group>"; };
+		70CB76CB1C13BFC0003A7461 /* CycleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleTests.swift; sourceTree = "<group>"; };
+		70CB76CC1C13BFC0003A7461 /* EnumerateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumerateTests.swift; sourceTree = "<group>"; };
+		70CB76CD1C13BFC0003A7461 /* FindingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindingTests.swift; sourceTree = "<group>"; };
+		70CB76CE1C13BFC0003A7461 /* FlatMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatMapTests.swift; sourceTree = "<group>"; };
+		70CB76CF1C13BFC0003A7461 /* HopJumpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HopJumpTests.swift; sourceTree = "<group>"; };
+		70CB76D01C13BFC0003A7461 /* InterposeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterposeTests.swift; sourceTree = "<group>"; };
+		70CB76D11C13BFC0003A7461 /* LazySeqTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazySeqTests.swift; sourceTree = "<group>"; };
+		70CB76D21C13BFC0003A7461 /* NestedSequencesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedSequencesTests.swift; sourceTree = "<group>"; };
+		70CB76D31C13BFC0003A7461 /* PermutationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermutationsTests.swift; sourceTree = "<group>"; };
+		70CB76D41C13BFC0003A7461 /* ScanReduceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReduceTests.swift; sourceTree = "<group>"; };
+		70CB76D51C13BFC0003A7461 /* TakeDropTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeDropTests.swift; sourceTree = "<group>"; };
+		70CB76D61C13BFC0003A7461 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		70CB76D71C13BFC0003A7461 /* ZipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				707F996C1C13B9EA00CE1A23 /* Sources */,
-				707F99781C13B9EB00CE1A23 /* SwiftSequenceTests */,
+				707F99781C13B9EB00CE1A23 /* Tests */,
 				707F996B1C13B9EA00CE1A23 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,28 +154,28 @@
 			path = SwiftSequence;
 			sourceTree = "<group>";
 		};
-		707F99781C13B9EB00CE1A23 /* SwiftSequenceTests */ = {
+		707F99781C13B9EB00CE1A23 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				707F99A21C13BA2800CE1A23 /* CategoriseTests.swift */,
-				707F99A31C13BA2800CE1A23 /* ChunkWindowSplitTests.swift */,
-				707F99A41C13BA2800CE1A23 /* CombinationsTests.swift */,
-				707F99A51C13BA2800CE1A23 /* CycleTests.swift */,
-				707F99A61C13BA2800CE1A23 /* EnumerateTests.swift */,
-				707F99A71C13BA2800CE1A23 /* FindingTests.swift */,
-				707F99A81C13BA2800CE1A23 /* FlatMapTests.swift */,
-				707F99A91C13BA2800CE1A23 /* HopJumpTests.swift */,
-				707F99AA1C13BA2800CE1A23 /* InterposeTests.swift */,
-				707F99AB1C13BA2800CE1A23 /* LazySeqTests.swift */,
-				707F99AC1C13BA2800CE1A23 /* NestedSequencesTests.swift */,
-				707F99AD1C13BA2800CE1A23 /* PermutationsTests.swift */,
-				707F99AE1C13BA2800CE1A23 /* ScanReduceTests.swift */,
-				707F99AF1C13BA2800CE1A23 /* TakeDropTests.swift */,
-				707F99B01C13BA2800CE1A23 /* TestHelpers.swift */,
-				707F99B11C13BA2800CE1A23 /* ZipTests.swift */,
+				70CB76C81C13BFC0003A7461 /* CategoriseTests.swift */,
+				70CB76C91C13BFC0003A7461 /* ChunkWindowSplitTests.swift */,
+				70CB76CA1C13BFC0003A7461 /* CombinationsTests.swift */,
+				70CB76CB1C13BFC0003A7461 /* CycleTests.swift */,
+				70CB76CC1C13BFC0003A7461 /* EnumerateTests.swift */,
+				70CB76CD1C13BFC0003A7461 /* FindingTests.swift */,
+				70CB76CE1C13BFC0003A7461 /* FlatMapTests.swift */,
+				70CB76CF1C13BFC0003A7461 /* HopJumpTests.swift */,
+				70CB76D01C13BFC0003A7461 /* InterposeTests.swift */,
+				70CB76D11C13BFC0003A7461 /* LazySeqTests.swift */,
+				70CB76D21C13BFC0003A7461 /* NestedSequencesTests.swift */,
+				70CB76D31C13BFC0003A7461 /* PermutationsTests.swift */,
+				70CB76D41C13BFC0003A7461 /* ScanReduceTests.swift */,
+				70CB76D51C13BFC0003A7461 /* TakeDropTests.swift */,
+				70CB76D61C13BFC0003A7461 /* TestHelpers.swift */,
+				70CB76D71C13BFC0003A7461 /* ZipTests.swift */,
 				707F997B1C13B9EB00CE1A23 /* Info.plist */,
 			);
-			path = SwiftSequenceTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70CB76FA1C13C03E003A7461 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,22 +309,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				707F99BE1C13BA2800CE1A23 /* ScanReduceTests.swift in Sources */,
-				707F99B71C13BA2800CE1A23 /* FindingTests.swift in Sources */,
-				707F99BF1C13BA2800CE1A23 /* TakeDropTests.swift in Sources */,
-				707F99C11C13BA2800CE1A23 /* ZipTests.swift in Sources */,
-				707F99BD1C13BA2800CE1A23 /* PermutationsTests.swift in Sources */,
-				707F99B91C13BA2800CE1A23 /* HopJumpTests.swift in Sources */,
-				707F99B51C13BA2800CE1A23 /* CycleTests.swift in Sources */,
-				707F99B31C13BA2800CE1A23 /* ChunkWindowSplitTests.swift in Sources */,
-				707F99BA1C13BA2800CE1A23 /* InterposeTests.swift in Sources */,
-				707F99B21C13BA2800CE1A23 /* CategoriseTests.swift in Sources */,
-				707F99BC1C13BA2800CE1A23 /* NestedSequencesTests.swift in Sources */,
-				707F99B81C13BA2800CE1A23 /* FlatMapTests.swift in Sources */,
-				707F99B61C13BA2800CE1A23 /* EnumerateTests.swift in Sources */,
-				707F99B41C13BA2800CE1A23 /* CombinationsTests.swift in Sources */,
-				707F99BB1C13BA2800CE1A23 /* LazySeqTests.swift in Sources */,
-				707F99C01C13BA2800CE1A23 /* TestHelpers.swift in Sources */,
+				70CB76F31C13BFD9003A7461 /* PermutationsTests.swift in Sources */,
+				70CB76F21C13BFD9003A7461 /* NestedSequencesTests.swift in Sources */,
+				70CB76E91C13BFD9003A7461 /* ChunkWindowSplitTests.swift in Sources */,
+				70CB76ED1C13BFD9003A7461 /* FindingTests.swift in Sources */,
+				70CB76EC1C13BFD9003A7461 /* EnumerateTests.swift in Sources */,
+				70CB76F11C13BFD9003A7461 /* LazySeqTests.swift in Sources */,
+				70CB76EF1C13BFD9003A7461 /* HopJumpTests.swift in Sources */,
+				70CB76EE1C13BFD9003A7461 /* FlatMapTests.swift in Sources */,
+				70CB76F41C13BFD9003A7461 /* ScanReduceTests.swift in Sources */,
+				70CB76E81C13BFD9003A7461 /* CategoriseTests.swift in Sources */,
+				70CB76EB1C13BFD9003A7461 /* CycleTests.swift in Sources */,
+				70CB76F61C13BFD9003A7461 /* TestHelpers.swift in Sources */,
+				70CB76F51C13BFD9003A7461 /* TakeDropTests.swift in Sources */,
+				70CB76F01C13BFD9003A7461 /* InterposeTests.swift in Sources */,
+				70CB76EA1C13BFD9003A7461 /* CombinationsTests.swift in Sources */,
+				70CB76F71C13BFD9003A7461 /* ZipTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftSequenceTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = donnacha.oisin.kidney.SwiftSequenceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,7 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftSequenceTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = donnacha.oisin.kidney.SwiftSequenceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

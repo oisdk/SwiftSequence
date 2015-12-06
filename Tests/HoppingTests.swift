@@ -40,6 +40,9 @@ class SlicingTests: XCTestCase {
     for ar in (0..<20).map(Array<Int>.init) {
       for h in ar.indices.dropFirst() {
         for i in ar.indices {
+          for j in i..<ar.endIndex {
+            XCTAssertEqualSeq(ar[i...j, by: h], ar[i...j][by: h])
+          }
           let (a,b,c) = (ar[i..., by: h],ar[...i, by: h],ar[..<i, by: h])
           XCTAssertEqualSeq(a, ar[i...].refHop(h))
           XCTAssertEqualSeq(b, ar[...i].refHop(h))

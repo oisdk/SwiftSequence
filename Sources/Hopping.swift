@@ -1,6 +1,3 @@
-
-// Hopping
-
 public struct RandomAccessHopCollection<
   Base: CollectionType where
   Base.Index : RandomAccessIndexType,
@@ -66,6 +63,9 @@ public extension CollectionType where
   Index == SubSequence.Index,
   SubSequence.Index: RandomAccessIndexType,
   SubSequence.Index.Distance: ForwardIndexType {
+  subscript(r: Range<Index>, by by: Index.Stride) -> RandomAccessHopCollection<SubSequence> {
+    return self[r][by: by]
+  }
   subscript(r: OpenEndedInterval<Index>, by by: Index.Stride) -> RandomAccessHopCollection<SubSequence> {
     return suffixFrom(r.val)[by: by]
   }

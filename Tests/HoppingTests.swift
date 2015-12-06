@@ -11,6 +11,14 @@ extension CollectionType where Index: RandomAccessIndexType {
 
 class SlicingTests: XCTestCase {
   
+  var allTests: [(String, () -> ())] {
+    return [
+      ("testHop", testHop),
+      ("testLongHop", testLongHop),
+      ("testSliceThenHop", testSliceThenHop)
+    ]
+  }
+  
   func testHop() {
     
     for ar in (0..<20).map(Array<Int>.init) {

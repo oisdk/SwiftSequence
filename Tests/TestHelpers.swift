@@ -85,7 +85,7 @@ struct WatcherSequence<S : SequenceType> : SequenceType {
   func generate() -> AnyGenerator<S.Generator.Element> {
     var g = seq.generate()
     var calledNil = false
-    return AnyGenerator {
+    return anyGenerator {
       XCTAssertFalse(calledNil, "Called a generator after it had already returned nil")
       if let e = g.next() { return e }
       calledNil = true

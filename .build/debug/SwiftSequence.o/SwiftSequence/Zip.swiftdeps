@@ -19,17 +19,18 @@ provides-member:
 provides-dynamic-lookup:
 depends-top-level:
 - "SequenceType"
-- "NilPaddedZipGenerator"
-- "LazySequenceType"
+- "GeneratorType"
+- "PaddedZip"
+- "NilPaddedZip"
 - "zipWithPadding"
 - "PaddedZipGenerator"
-- "NilPaddedZip"
 - !private "??"
-- "PaddedZip"
-- "GeneratorType"
+- "LazySequenceType"
+- "NilPaddedZipGenerator"
 depends-member:
 - ["Ps28CustomDebugStringConvertible", "Some"]
 - ["Ps13GeneratorType", "Element"]
+- !private ["Ps13GeneratorType", "g"]
 - !private ["Ps13GeneratorType", "g0"]
 - !private ["Ps13GeneratorType", "g1"]
 - !private ["Ps13GeneratorType", "init"]
@@ -107,6 +108,7 @@ depends-member:
 - ["V13SwiftSequence9PaddedZip", "Element"]
 - ["V13SwiftSequence9PaddedZip", "Elements"]
 - ["V13SwiftSequence9PaddedZip", "Generator"]
+- !private ["V13SwiftSequence9PaddedZip", "NilPaddedZipGenerator"]
 - ["V13SwiftSequence9PaddedZip", "PaddedZipGenerator"]
 - ["V13SwiftSequence9PaddedZip", "S0"]
 - ["V13SwiftSequence9PaddedZip", "S1"]
@@ -138,9 +140,9 @@ depends-member:
 - ["V13SwiftSequence18PaddedZipGenerator", "Element"]
 - ["V13SwiftSequence18PaddedZipGenerator", "G0"]
 - ["V13SwiftSequence18PaddedZipGenerator", "G1"]
+- ["V13SwiftSequence18PaddedZipGenerator", "NilPaddedZipGenerator"]
 - ["V13SwiftSequence18PaddedZipGenerator", "deinit"]
-- !private ["V13SwiftSequence18PaddedZipGenerator", "g0"]
-- !private ["V13SwiftSequence18PaddedZipGenerator", "g1"]
+- !private ["V13SwiftSequence18PaddedZipGenerator", "g"]
 - !private ["V13SwiftSequence18PaddedZipGenerator", "init"]
 - ["V13SwiftSequence18PaddedZipGenerator", "next"]
 - !private ["V13SwiftSequence18PaddedZipGenerator", "p0"]
@@ -189,4 +191,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "b0a4385fd90e4949a36478083eddc234"
+interface-hash: "92650f874c472279926f0b45b8b2d7c0"

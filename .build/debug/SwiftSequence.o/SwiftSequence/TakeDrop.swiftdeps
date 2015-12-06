@@ -28,27 +28,27 @@ provides-member:
 - ["Ps16LazySequenceType", "dropWhile"]
 provides-dynamic-lookup:
 depends-top-level:
-- "WhileGen"
-- "WhileSeq"
-- "Int"
-- "LazySequenceType"
-- "DropWhileSeq"
-- !private "-"
 - "SequenceType"
-- !private "!"
-- !private "+"
-- !private "FloatLiteralType"
-- !private "GeneratorSequence"
-- "Bool"
+- !private "..<"
 - !private "IntegerLiteralType"
 - !private "=="
-- !private "??"
+- "DropWhileSeq"
 - !private "Array"
-- !private "max"
+- !private "-"
 - "GeneratorType"
+- "WhileSeq"
+- "WhileGen"
+- !private "GeneratorSequence"
+- "LazySequenceType"
+- !private "!"
+- !private "max"
+- !private "??"
+- !private "FloatLiteralType"
+- "Bool"
 - "DropWhileGen"
-- !private "..<"
 - "CollectionType"
+- !private "+"
+- "Int"
 depends-member:
 - !private ["Sa", "Element"]
 - !private ["Sa", "Generator"]
@@ -475,4 +475,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "0b7380fc181b221e57da9831bededabb"
+interface-hash: "d8ef6968c514ef7b3bc387a8e51b9907"

@@ -44,11 +44,11 @@
     "swiftmodule": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/FlatMap~partial.swiftmodule",
     "swift-dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/FlatMap.swiftdeps"
   },
-  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/HopJump.swift": {
-    "dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/HopJump.d",
-    "object": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/Sources/HopJump.swift.o",
-    "swiftmodule": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/HopJump~partial.swiftmodule",
-    "swift-dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/HopJump.swiftdeps"
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Hopping.swift": {
+    "dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/Hopping.d",
+    "object": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/Sources/Hopping.swift.o",
+    "swiftmodule": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/Hopping~partial.swiftmodule",
+    "swift-dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/Hopping.swiftdeps"
   },
   "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Interpose.swift": {
     "dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/Interpose.d",
@@ -79,6 +79,12 @@
     "object": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/Sources/ScanReduce.swift.o",
     "swiftmodule": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/ScanReduce~partial.swiftmodule",
     "swift-dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/ScanReduce.swiftdeps"
+  },
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Slicing.swift": {
+    "dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/Slicing.d",
+    "object": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/Sources/Slicing.swift.o",
+    "swiftmodule": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/Slicing~partial.swiftmodule",
+    "swift-dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/Slicing.swiftdeps"
   },
   "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/TakeDrop.swift": {
     "dependencies": "/Users/oisinkidney/Desktop/Code/SwiftSequence/.build/debug/SwiftSequence.o/SwiftSequence/TakeDrop.d",

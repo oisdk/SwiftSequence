@@ -21,26 +21,26 @@ provides-member:
 - ["Ps12SequenceType", "lazyCombosWithRep"]
 provides-dynamic-lookup:
 depends-top-level:
+- "SequenceType"
+- "Int"
 - !private "-"
+- !private "++"
+- "ComboRepSeq"
+- !private "IntegerLiteralType"
+- !private "!"
+- "ComboSeq"
+- !private "--"
+- "ComboGen"
+- "LazySequenceType"
 - "ComboRepGen"
 - !private "zip"
-- !private "!"
-- "Int"
-- !private "++"
-- !private "!="
-- !private "FloatLiteralType"
-- "GeneratorType"
-- !private "Array"
-- "ComboRepSeq"
-- "SequenceType"
-- !private "+"
-- !private "..<"
-- "ComboSeq"
-- !private "IntegerLiteralType"
-- "ComboGen"
 - !private "??"
-- "LazySequenceType"
-- !private "--"
+- !private "..<"
+- !private "+"
+- !private "FloatLiteralType"
+- !private "Array"
+- !private "!="
+- "GeneratorType"
 depends-member:
 - !private ["Sa", "Element"]
 - !private ["Sa", "Generator"]
@@ -76,7 +76,6 @@ depends-member:
 - !private ["Vs10ArraySlice", "Index"]
 - !private ["Vs10ArraySlice", "SubSequence"]
 - !private ["Vs10ArraySlice", "_Element"]
-- !private ["Vs10ArraySlice", "deinit"]
 - !private ["Vs10ArraySlice", "successor"]
 - !private ["Ps22BidirectionalIndexType", "Distance"]
 - !private ["Ps22BidirectionalIndexType", "IntegerLiteralType"]
@@ -385,7 +384,6 @@ depends-member:
 - !private ["Ps16MutableIndexable", "startIndex"]
 - !private ["Ps16MutableIndexable", "subscript"]
 - !private ["Ps16MutableIndexable", "successor"]
-- !private ["Vs12MutableSlice", "deinit"]
 - !private ["Vs12MutableSlice", "successor"]
 - !private ["Ps16MutableSliceable", "Element"]
 - !private ["Ps16MutableSliceable", "Generator"]
@@ -405,6 +403,7 @@ depends-member:
 - !private ["Ps21NilLiteralConvertible", "_DisabledRangeIndex"]
 - !private ["Ps21NilLiteralConvertible", "map"]
 - !private ["Sq", "map"]
+- !private ["V13SwiftSequence25RandomAccessHopCollection", "successor"]
 - !private ["Ps21RandomAccessIndexType", "Distance"]
 - !private ["Ps21RandomAccessIndexType", "IntegerLiteralType"]
 - !private ["Ps21RandomAccessIndexType", "Stride"]
@@ -656,6 +655,7 @@ depends-nominal:
 - !private "Ps16MutableSliceable"
 - !private "Ps21NilLiteralConvertible"
 - !private "Sq"
+- !private "V13SwiftSequence25RandomAccessHopCollection"
 - !private "Ps21RandomAccessIndexType"
 - !private "Vs5Range"
 - !private "Vs14RangeGenerator"
@@ -689,4 +689,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "d40826dbf1d62a50f4a85a86518350b9"
+interface-hash: "dbbe3e14d1df3793bba0faef09b74459"

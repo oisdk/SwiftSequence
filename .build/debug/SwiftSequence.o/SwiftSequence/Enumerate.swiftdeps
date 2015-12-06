@@ -12,13 +12,13 @@ provides-member:
 - ["Ps14CollectionType", "specEnumerate"]
 provides-dynamic-lookup:
 depends-top-level:
-- !private "=="
-- "SequenceType"
 - "SpecEnumerateSeq"
 - !private "++"
+- !private "=="
+- "SequenceType"
 - "SpecEnumerateGen"
-- "CollectionType"
 - "GeneratorType"
+- "CollectionType"
 depends-member:
 - ["Ps21BitwiseOperationsType", "IntegerLiteralType"]
 - !private ["Sb", "_getBuiltinLogicValue"]
@@ -39,9 +39,11 @@ depends-member:
 - !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
 - ["Ps9Equatable", "Distance"]
 - ["Ps9Equatable", "IntegerLiteralType"]
+- !private ["Ps9Equatable", "Stride"]
 - ["Ps9Equatable", "_DisabledRangeIndex"]
 - !private ["Ps9Equatable", "_getBuiltinLogicValue"]
 - ["Ps16ForwardIndexType", "Distance"]
+- !private ["Ps16ForwardIndexType", "Stride"]
 - ["Ps16ForwardIndexType", "_DisabledRangeIndex"]
 - ["Ps13GeneratorType", "Element"]
 - !private ["Ps13GeneratorType", "base"]
@@ -129,6 +131,7 @@ depends-member:
 - ["Ps33_BuiltinIntegerLiteralConvertible", "IntegerLiteralType"]
 - ["Ps14_Incrementable", "Distance"]
 - ["Ps14_Incrementable", "IntegerLiteralType"]
+- !private ["Ps14_Incrementable", "Stride"]
 - ["Ps14_Incrementable", "_DisabledRangeIndex"]
 - ["Ps22_IntegerArithmeticType", "IntegerLiteralType"]
 - ["Ps12_IntegerType", "IntegerLiteralType"]
@@ -165,4 +168,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "23c98f132269d5b888f21a8117c2f15d"
+interface-hash: "ee682f7d6a4710a290bb3148f445ccb9"

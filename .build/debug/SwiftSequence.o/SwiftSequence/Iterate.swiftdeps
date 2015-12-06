@@ -2,25 +2,62 @@
 provides-top-level:
 - "IterateGenerator"
 - "IterateSequence"
+- "IterateEndGenerator"
+- "IterateEndSequence"
 provides-nominal:
 - "V13SwiftSequence16IterateGenerator"
 - "V13SwiftSequence15IterateSequence"
+- "V13SwiftSequence19IterateEndGenerator"
+- "V13SwiftSequence18IterateEndSequence"
 provides-member:
 - ["V13SwiftSequence16IterateGenerator", ""]
 - ["V13SwiftSequence15IterateSequence", ""]
+- ["V13SwiftSequence19IterateEndGenerator", ""]
+- ["V13SwiftSequence18IterateEndSequence", ""]
 provides-dynamic-lookup:
 depends-top-level:
-- "SequenceType"
-- "GeneratorType"
-- "IterateGenerator"
 - "IterateSequence"
+- "GeneratorType"
+- "IterateEndGenerator"
+- "IterateGenerator"
+- "SequenceType"
+- "IterateEndSequence"
 depends-member:
+- ["Ps28CustomDebugStringConvertible", "Some"]
 - ["Ps13GeneratorType", "Element"]
 - !private ["Ps13GeneratorType", "f"]
 - !private ["Ps13GeneratorType", "init"]
 - ["Ps13GeneratorType", "next"]
 - !private ["Ps13GeneratorType", "x"]
 - ["Ps13GeneratorType", ""]
+- ["V13SwiftSequence19IterateEndGenerator", "Element"]
+- ["V13SwiftSequence19IterateEndGenerator", "deinit"]
+- !private ["V13SwiftSequence19IterateEndGenerator", "f"]
+- !private ["V13SwiftSequence19IterateEndGenerator", "init"]
+- ["V13SwiftSequence19IterateEndGenerator", "next"]
+- !private ["V13SwiftSequence19IterateEndGenerator", "x"]
+- ["V13SwiftSequence18IterateEndSequence", "Element"]
+- ["V13SwiftSequence18IterateEndSequence", "Generator"]
+- ["V13SwiftSequence18IterateEndSequence", "IterateEndGenerator"]
+- ["V13SwiftSequence18IterateEndSequence", "SubSequence"]
+- ["V13SwiftSequence18IterateEndSequence", "_copyToNativeArrayBuffer"]
+- ["V13SwiftSequence18IterateEndSequence", "_customContainsEquatableElement"]
+- ["V13SwiftSequence18IterateEndSequence", "_initializeTo"]
+- ["V13SwiftSequence18IterateEndSequence", "_preprocessingPass"]
+- ["V13SwiftSequence18IterateEndSequence", "deinit"]
+- ["V13SwiftSequence18IterateEndSequence", "dropFirst"]
+- ["V13SwiftSequence18IterateEndSequence", "dropLast"]
+- !private ["V13SwiftSequence18IterateEndSequence", "f"]
+- ["V13SwiftSequence18IterateEndSequence", "filter"]
+- ["V13SwiftSequence18IterateEndSequence", "forEach"]
+- ["V13SwiftSequence18IterateEndSequence", "generate"]
+- !private ["V13SwiftSequence18IterateEndSequence", "init"]
+- ["V13SwiftSequence18IterateEndSequence", "map"]
+- ["V13SwiftSequence18IterateEndSequence", "prefix"]
+- ["V13SwiftSequence18IterateEndSequence", "split"]
+- ["V13SwiftSequence18IterateEndSequence", "suffix"]
+- ["V13SwiftSequence18IterateEndSequence", "underestimateCount"]
+- !private ["V13SwiftSequence18IterateEndSequence", "x"]
 - ["V13SwiftSequence16IterateGenerator", "Element"]
 - ["V13SwiftSequence16IterateGenerator", "deinit"]
 - !private ["V13SwiftSequence16IterateGenerator", "f"]
@@ -49,8 +86,11 @@ depends-member:
 - ["V13SwiftSequence15IterateSequence", "suffix"]
 - ["V13SwiftSequence15IterateSequence", "underestimateCount"]
 - !private ["V13SwiftSequence15IterateSequence", "x"]
+- ["Ps21NilLiteralConvertible", "Some"]
+- ["Sq", "Some"]
 - ["Ps12SequenceType", "Element"]
 - ["Ps12SequenceType", "Generator"]
+- !private ["Ps12SequenceType", "IterateEndGenerator"]
 - !private ["Ps12SequenceType", "IterateGenerator"]
 - ["Ps12SequenceType", "_copyToNativeArrayBuffer"]
 - ["Ps12SequenceType", "_customContainsEquatableElement"]
@@ -69,12 +109,19 @@ depends-member:
 - ["Ps12SequenceType", "underestimateCount"]
 - !private ["Ps12SequenceType", "x"]
 - ["Ps12SequenceType", ""]
+- ["Ps12_Reflectable", "Some"]
 depends-nominal:
+- "Ps28CustomDebugStringConvertible"
 - "Ps13GeneratorType"
+- "V13SwiftSequence19IterateEndGenerator"
+- "V13SwiftSequence18IterateEndSequence"
 - "V13SwiftSequence16IterateGenerator"
 - "V13SwiftSequence15IterateSequence"
+- "Ps21NilLiteralConvertible"
+- "Sq"
 - "Ps12SequenceType"
+- "Ps12_Reflectable"
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "70dd6c5dc2082f2474ffdb6b977b97b5"
+interface-hash: "2e89858f7bb87aedb8e09a420d53eebc"

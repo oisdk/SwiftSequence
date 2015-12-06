@@ -24,13 +24,13 @@ provides-member:
 provides-dynamic-lookup:
 depends-top-level:
 - "SequenceType"
-- "LazySequenceType"
-- "Scan1Gen"
-- "LazyScan1Seq"
 - "ScanGen"
-- "GeneratorType"
-- !private "GeneratorSequence"
 - "LazyScanSeq"
+- "Scan1Gen"
+- "LazySequenceType"
+- !private "GeneratorSequence"
+- "GeneratorType"
+- "LazyScan1Seq"
 depends-member:
 - ["Ps28CustomDebugStringConvertible", "Some"]
 - !private ["Vs17GeneratorSequence", "Element"]
@@ -202,4 +202,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "be640ad5a77cc3ce8fdc4de683087e99"
+interface-hash: "be14b290d886464f78381ec7f3f4e5a8"

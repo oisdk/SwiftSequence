@@ -21,23 +21,23 @@ provides-member:
 - ["Ps12SequenceType", "lazyPermutations"]
 provides-dynamic-lookup:
 depends-top-level:
-- "Comparable"
+- "Bool"
 - "SequenceType"
-- "LexPermGen"
+- !private "<"
+- !private "swap"
+- "Comparable"
 - "LazyMapSequence"
-- !private "..<"
+- !private "zip"
 - "GeneratorType"
 - !private "=="
-- "Bool"
-- "Int"
-- "LazySequenceType"
-- !private "zip"
-- !private "swap"
-- "LexPermSeq"
+- !private "Array"
 - !private "||"
 - "MutableCollectionType"
-- !private "<"
-- !private "Array"
+- "Int"
+- "LexPermSeq"
+- "LazySequenceType"
+- !private "..<"
+- "LexPermGen"
 depends-member:
 - !private ["Sa", "Generator"]
 - !private ["Sa", "Index"]
@@ -535,4 +535,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "019254024f64c33c96ee0cd7d5c038ce"
+interface-hash: "3c90ba0a3d7c241eb7792787108a0734"

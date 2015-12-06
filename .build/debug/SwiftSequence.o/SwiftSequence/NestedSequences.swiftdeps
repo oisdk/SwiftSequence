@@ -29,22 +29,22 @@ provides-member:
 - ["Ps16LazySequenceType", "transpose"]
 provides-dynamic-lookup:
 depends-top-level:
-- "SequenceType"
-- "LazySequenceType"
-- "Int"
-- !private "IntegerLiteralType"
-- "GeneratorType"
-- "lazyProduct"
-- "ProdSeq"
-- "TransposeSeq"
-- !private "+"
 - !private "Array"
+- "SequenceType"
+- !private "IntegerLiteralType"
+- "Int"
 - "TransposeGen"
+- "lazyProduct"
+- "TransposeSeq"
+- "LazySequenceType"
 - "CollectionType"
-- !private "*"
-- "product"
 - !private "??"
+- "ProdSeq"
+- !private "+"
+- "product"
+- "GeneratorType"
 - !private "FloatLiteralType"
+- !private "*"
 - "ProdGen"
 depends-member:
 - !private ["Sa", "Element"]
@@ -359,6 +359,7 @@ depends-member:
 - ["V13SwiftSequence7ProdSeq", "split"]
 - ["V13SwiftSequence7ProdSeq", "suffix"]
 - ["V13SwiftSequence7ProdSeq", "underestimateCount"]
+- !private ["V13SwiftSequence25RandomAccessHopCollection", "next"]
 - !private ["Ps21RandomAccessIndexType", "Distance"]
 - !private ["Ps21RandomAccessIndexType", "IntegerLiteralType"]
 - !private ["Ps21RandomAccessIndexType", "Stride"]
@@ -628,6 +629,7 @@ depends-nominal:
 - "Sq"
 - "V13SwiftSequence7ProdGen"
 - "V13SwiftSequence7ProdSeq"
+- !private "V13SwiftSequence25RandomAccessHopCollection"
 - !private "Ps21RandomAccessIndexType"
 - !private "Vs5Range"
 - !private "Vs14RangeGenerator"
@@ -665,4 +667,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "6aea88663e4dbb56ce4fc567f6c519e9"
+interface-hash: "dbb6c68155030eac99fd081d234a677b"

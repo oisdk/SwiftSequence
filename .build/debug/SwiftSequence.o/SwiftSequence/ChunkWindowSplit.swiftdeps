@@ -22,22 +22,21 @@ provides-member:
 - ["Ps18LazyCollectionType", "window"]
 provides-dynamic-lookup:
 depends-top-level:
-- !private "!="
-- "ChunkSeq"
-- "LazyCollectionType"
-- !private "=="
-- "WindowGen"
-- "WindowSeq"
-- "LazySequenceType"
 - "ChunkGen"
-- !private "++"
-- "GeneratorType"
-- !private "-"
-- "Bool"
-- !private "numericCast"
 - !private "..<"
+- !private "=="
+- !private "numericCast"
+- !private "-"
+- !private "!="
+- "LazyCollectionType"
+- "ChunkSeq"
+- "LazySequenceType"
+- "WindowGen"
+- "GeneratorType"
+- "WindowSeq"
 - !private "BooleanLiteralType"
 - "CollectionType"
+- "Bool"
 depends-member:
 - !private ["Sa", "Generator"]
 - !private ["Sa", "Index"]
@@ -141,12 +140,14 @@ depends-member:
 - ["Ps9Equatable", "_DisabledRangeIndex"]
 - !private ["Ps9Equatable", "_getBuiltinLogicValue"]
 - !private ["Ps9Equatable", "advancedBy"]
+- !private ["Ps9Equatable", "successor"]
 - ["Ps16ForwardIndexType", "Distance"]
 - !private ["Ps16ForwardIndexType", "IntegerLiteralType"]
 - !private ["Ps16ForwardIndexType", "Stride"]
 - ["Ps16ForwardIndexType", "_DisabledRangeIndex"]
 - !private ["Ps16ForwardIndexType", "advancedBy"]
 - !private ["Ps16ForwardIndexType", "deinit"]
+- !private ["Ps16ForwardIndexType", "successor"]
 - ["Ps13GeneratorType", "Element"]
 - !private ["Ps13GeneratorType", "c"]
 - !private ["Ps13GeneratorType", "i"]
@@ -364,6 +365,7 @@ depends-member:
 - !private ["Ps14_Incrementable", "Stride"]
 - ["Ps14_Incrementable", "_DisabledRangeIndex"]
 - !private ["Ps14_Incrementable", "advancedBy"]
+- !private ["Ps14_Incrementable", "successor"]
 - !private ["Ps22_IntegerArithmeticType", "Distance"]
 - ["Ps22_IntegerArithmeticType", "IntegerLiteralType"]
 - !private ["Ps22_IntegerArithmeticType", "Stride"]
@@ -440,4 +442,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "203b8f2328d3ad08e7281342484a168b"
+interface-hash: "107d7dd1f7f7aed9f89f2396bb9c975e"

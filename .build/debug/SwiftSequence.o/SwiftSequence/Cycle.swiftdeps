@@ -15,19 +15,19 @@ provides-member:
 - ["Ps14CollectionType", "cycle"]
 provides-dynamic-lookup:
 depends-top-level:
+- !private "IntegerLiteralType"
+- !private "..<"
 - "CycleNGen"
 - !private "-="
-- "CollectionType"
-- !private "BooleanLiteralType"
-- !private "FloatLiteralType"
-- !private "..<"
-- "LazySequenceType"
-- "Int"
-- "GeneratorType"
-- !private "IntegerLiteralType"
 - !private ">"
-- "CycleGen"
+- "LazySequenceType"
 - !private "*"
+- "CollectionType"
+- "Int"
+- !private "BooleanLiteralType"
+- "GeneratorType"
+- "CycleGen"
+- !private "FloatLiteralType"
 depends-member:
 - !private ["Sa", "Generator"]
 - !private ["Sa", "Index"]
@@ -415,4 +415,4 @@ depends-nominal:
 depends-dynamic-lookup:
 depends-external:
 - "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
-interface-hash: "3618b566884c7b7713cc7ab87351c976"
+interface-hash: "3858ae726b92486c2da6e46435dc0585"

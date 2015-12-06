@@ -1,5 +1,5 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class ScanReduceTests: XCTestCase {
   

@@ -25,7 +25,9 @@ class CategoriseTests: XCTestCase {
       let keyFunc = { i in i % n + 1 }
       let reality = randAr.categorise(keyFunc)
       for (k,v) in reality {
-        v.map(keyFunc).forEach { XCTAssertEqual(k, $0) }
+        for n in v.map(keyFunc) {
+          XCTAssertEqual(k, n)
+        }
       }
     }
   }

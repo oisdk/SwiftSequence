@@ -17,7 +17,7 @@ public extension SequenceType where Generator.Element : SequenceType, Generator.
   /// [[1, 2], [3, 4]].product()
   /// [[1, 3], [1, 4], [2, 3], [2, 4]]
   /// ```
-  
+  @warn_unused_result
   public func product() -> [[Generator.Element.Generator.Element]] {
     var g = generate()
     return g.product()
@@ -31,7 +31,7 @@ public extension SequenceType where Generator.Element : SequenceType {
   /// [[1, 2], [3, 4]].product()
   /// [[1, 3], [1, 4], [2, 3], [2, 4]]
   /// ```
-  
+  @warn_unused_result
   public func product() -> [[Generator.Element.Generator.Element]] {
     return map(Array.init).product()
   }
@@ -42,7 +42,7 @@ public extension SequenceType where Generator.Element : SequenceType {
 /// product([1, 2], [3, 4])
 /// [[1, 3], [1, 4], [2, 3], [2, 4]]
 /// ```
-
+@warn_unused_result
 public func product<C : CollectionType>(cols: C...) -> [[C.Generator.Element]] {
   return cols.product()
 }
@@ -78,7 +78,7 @@ public extension SequenceType where Generator.Element : SequenceType {
   ///
   /// [[1, 1, 1], [2, 2, 2], [3, 3, 3]]
   /// ```
-  
+  @warn_unused_result
   func transpose() -> [[Generator.Element.Generator.Element]] {
     return Array(TransposeSeq(seq: self))
   }
@@ -139,7 +139,7 @@ public struct ProdSeq<C : CollectionType> : LazySequenceType {
 ///
 /// [1, 3], [1, 4], [2, 3], [2, 4]
 /// ```
-
+@warn_unused_result
 public func lazyProduct<C : CollectionType>
   (cols: C...) -> ProdSeq<C> {
     return ProdSeq(cols: cols)
@@ -151,7 +151,7 @@ public func lazyProduct<C : CollectionType>
 ///
 /// [1, 3], [1, 4], [2, 3], [2, 4]
 /// ```
-
+@warn_unused_result
 public func lazyProduct<S : SequenceType>
   (cols: S...) -> ProdSeq<[S.Generator.Element]> {
     return ProdSeq(cols: cols.map(Array.init))
@@ -165,7 +165,7 @@ public extension SequenceType where Generator.Element : SequenceType {
   ///
   /// [1, 3], [1, 4], [2, 3], [2, 4]
   /// ```
-  
+  @warn_unused_result
   func lazyProduct() -> ProdSeq<[Generator.Element.Generator.Element]> {
     return ProdSeq(cols: map(Array.init))
   }
@@ -179,7 +179,7 @@ public extension SequenceType where Generator.Element : CollectionType {
   ///
   /// [1, 3], [1, 4], [2, 3], [2, 4]
   /// ```
-  
+  @warn_unused_result
   func lazyProduct() -> ProdSeq<Generator.Element> {
     return ProdSeq(cols: Array(self))
   }
@@ -208,6 +208,7 @@ public struct TransposeSeq<
 }
 
 public extension TransposeSeq where S: CollectionType {
+  @warn_unused_result
   public func underestimateCount() -> Int {
     return seq.first?.underestimateCount() ?? 0
   }
@@ -221,7 +222,7 @@ public extension LazySequenceType where Generator.Element: SequenceType {
   ///
   /// [1, 1, 1], [2, 2, 2], [3, 3, 3]
   /// ```
-  
+  @warn_unused_result
   func transpose() -> TransposeSeq<Self> {
     return TransposeSeq(seq: self)
   }

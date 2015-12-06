@@ -11,7 +11,7 @@ public extension SequenceType {
   /// ```swift
   /// [1, 2, 3].reduce(+) // 6
   /// ```
-  
+  @warn_unused_result
   func reduce
     (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element)
     rethrows -> Generator.Element? {
@@ -33,7 +33,7 @@ public extension SequenceType {
   /// 
   /// [1, 3, 6]
   /// ```
-  
+  @warn_unused_result
   func scan<T>(initial: T, @noescape combine: (accumulator: T, element: Generator.Element) throws -> T) rethrows -> [T] {
     var accu = initial
     return try map { e in
@@ -51,7 +51,7 @@ public extension SequenceType {
   ///
   /// [3, 6]
   /// ```
-  
+  @warn_unused_result
   func scan(@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element) rethrows -> [Generator.Element] {
     var g = generate()
     guard let i = g.next() else { return [] }
@@ -98,7 +98,7 @@ public extension LazySequenceType {
   ///
   /// 1, 3, 6
   /// ```
-  
+  @warn_unused_result
   func scan<T>(initial: T, combine: (accumulator: T, element: Generator.Element) -> T) -> LazyScanSeq<Self, T> {
     return LazyScanSeq(seq: self, combine: combine, initial: initial)
   }
@@ -144,7 +144,7 @@ public extension LazySequenceType {
   ///
   /// 3, 6
   /// ```
-  
+  @warn_unused_result
   func scan(combine: (accumulator: Generator.Element, element: Generator.Element) -> Generator.Element)
     -> LazyScan1Seq<Self> {
     return LazyScan1Seq(seq: self, combine: combine)

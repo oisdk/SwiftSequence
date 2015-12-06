@@ -36,7 +36,7 @@ public struct NilPaddedZip<S0: SequenceType, S1: SequenceType> : LazySequenceTyp
 ///
 /// (1?, 1?), (2?, 2?), (3?, nil)
 /// ```
-
+@warn_unused_result
 public func zipWithPadding<S0: SequenceType, S1: SequenceType>(s0: S0, _ s1: S1)
   -> NilPaddedZip<S0, S1> {
     return NilPaddedZip(s0: s0, s1: s1)
@@ -84,7 +84,7 @@ public struct PaddedZip<S0: SequenceType, S1: SequenceType> : LazySequenceType {
 ///
 /// (1, 1), (2, 2), (3, 900)
 /// ```
-
+@warn_unused_result
 public func zipWithPadding<
   S0: SequenceType, S1: SequenceType
   >(s0: S0, _ s1: S1, pad0: S0.Generator.Element, pad1: S1.Generator.Element)

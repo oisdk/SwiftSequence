@@ -13,7 +13,7 @@ public extension CollectionType {
   ///
   ///  [[1, 2], [3, 4], [5]]
   /// ```
-  
+  @warn_unused_result
   public func chunk(n: Index.Distance) -> [SubSequence] {
     var res: [SubSequence] = []
     for
@@ -38,7 +38,7 @@ public extension CollectionType {
   ///
   ///  [[1, 2], [2, 3], [3, 4]]
   ///   ```
-  
+  @warn_unused_result
   func window(n: Index.Distance) -> [SubSequence] {
     var ret: [SubSequence] = []
     ret.reserveCapacity(underestimateCount() - numericCast(n))
@@ -91,6 +91,7 @@ public extension LazyCollectionType {
   ///
   ///  [1, 2], [3, 4], [5]
   /// ```
+  @warn_unused_result
   func chunk(n: Index.Distance) -> ChunkSeq<Self> {
     return ChunkSeq(c: self, n: n)
   }
@@ -137,7 +138,7 @@ public extension LazyCollectionType {
   ///
   ///  [1, 2], [2, 3], [3, 4]
   ///   ```
-  
+  @warn_unused_result
   func window(n: Index.Distance) -> WindowSeq<Self> {
     return WindowSeq(c: self, n: n)
   }

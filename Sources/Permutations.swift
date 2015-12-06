@@ -3,7 +3,7 @@
 public extension MutableCollectionType {
   
   /// [Algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order)
-  
+
   public mutating func nextLexPerm
     (isOrderedBefore: (Generator.Element, Generator.Element) -> Bool) -> Self? {
       for k in indices.reverse().dropFirst()
@@ -67,7 +67,7 @@ public extension SequenceType {
   ///
   /// [[1, 2, 3]]
   /// ```
-  
+  @warn_unused_result
   public func lexPermutations
     (isOrderedBefore: (Generator.Element, Generator.Element) -> Bool) -> [[Generator.Element]] {
       return Array(LexPermSeq(col: Array(self), order: isOrderedBefore))
@@ -89,7 +89,7 @@ public extension MutableCollectionType where Generator.Element : Comparable {
   ///
   /// [[3, 2, 1]]
   /// ```
-  
+  @warn_unused_result
   public func lexPermutations() -> [[Generator.Element]] {
       return Array(LexPermSeq(col: Array(self), order: <))
   }
@@ -103,7 +103,7 @@ public extension SequenceType {
   /// 
   /// [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
   /// ```
-  
+  @warn_unused_result
   public func permutations() -> [[Generator.Element]] {
     var col = Array(self)
     return Array(LexPermSeq(col: Array(col.indices), order: <).map { inds in inds.map{col[$0]} })
@@ -137,7 +137,7 @@ public extension SequenceType {
   ///
   /// [1, 2, 3]
   /// ```
-  
+  @warn_unused_result
   public func lazyLexPermutations(isOrderedBefore: (Generator.Element, Generator.Element) -> Bool)
     -> LexPermSeq<[Generator.Element]> {
       return LexPermSeq(col: Array(self), order: isOrderedBefore)
@@ -159,10 +159,11 @@ public extension SequenceType where Generator.Element : Comparable {
   ///
   /// [3, 2, 1]
   /// ```
-  
+  @warn_unused_result
   public func lazyLexPermutations()  -> LexPermSeq<[Generator.Element]> {
       return LexPermSeq(col: Array(self), order: <)
-  }}
+  }
+}
 
 public extension SequenceType {
   
@@ -178,7 +179,7 @@ public extension SequenceType {
   ///
   /// [3, 2, 1], [3, 1, 2], [2, 3, 1], [2, 1, 3], [1, 3, 2], [1, 2, 3]
   /// ```
-  
+  @warn_unused_result
   public func lazyPermutations() -> LazyMapSequence<LexPermSeq<[Int]>, [Self.Generator.Element]> {
       let col = Array(self)
       return col.indices.lazyLexPermutations().map { $0.map { col[$0] } }

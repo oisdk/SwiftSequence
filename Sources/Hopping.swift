@@ -66,15 +66,6 @@ public extension CollectionType where
   subscript(r: Range<Index>, by by: Index.Stride) -> RandomAccessHopCollection<SubSequence> {
     return self[r][by: by]
   }
-  subscript(r: OpenEndedInterval<Index>, by by: Index.Stride) -> RandomAccessHopCollection<SubSequence> {
-    return suffixFrom(r.val)[by: by]
-  }
-  subscript(r: OpenStartedIntervalTo<Index>, by by: Index.Stride) -> RandomAccessHopCollection<SubSequence> {
-    return prefixUpTo(r.val)[by: by]
-  }
-  subscript(r: OpenStartedIntervalThrough<Index>, by by: Index.Stride) -> RandomAccessHopCollection<SubSequence> {
-    return prefixThrough(r.val)[by: by]
-  }
   subscript(r: OpenEndedRange<Index>, by by: Index.Stride) -> RandomAccessHopCollection<SubSequence> {
     return suffixFrom(r.val)[by: by]
   }

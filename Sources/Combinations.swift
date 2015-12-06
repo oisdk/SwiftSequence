@@ -84,12 +84,14 @@ extension SequenceType {
   /**
   Returns the combinations without repetition of length `n` of `self`
   */
+  @warn_unused_result
   public func combos(n: Int) -> [[Generator.Element]] {
     return Array(ComboSeq(n: n, col: Array(self)))
   }
   /**
   Returns the combinations with repetition of length `n` of `self`
   */
+  @warn_unused_result
   public func combosWithRep(n: Int) -> [[Generator.Element]] {
     return Array(ComboRepSeq(n: n, col: Array(self)))
   }
@@ -97,6 +99,7 @@ extension SequenceType {
   Returns the combinations without repetition of length `n` of `self`, generated lazily
   and on-demand
   */
+  @warn_unused_result
   public func lazyCombos(n: Int) -> ComboSeq<Generator.Element> {
     return ComboSeq(n: n, col: Array(self))
   }
@@ -104,6 +107,7 @@ extension SequenceType {
   Returns the combinations with repetition of length `n` of `self`, generated lazily and
   on-demand
   */
+  @warn_unused_result
   public func lazyCombosWithRep(n: Int) -> ComboRepSeq<Generator.Element> {
     return ComboRepSeq(n: n, col: Array(self))
   }

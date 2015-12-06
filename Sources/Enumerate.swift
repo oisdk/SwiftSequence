@@ -24,7 +24,7 @@ public extension CollectionType {
   /// and `e` is the respective elements. Effectively the same as `.enumerate()`, but the
   /// indices returned are `Self.Index`s, rather than `Int`s
   /// - SeeAlso: `enumerate()`
-  
+  @warn_unused_result
   func specEnumerate() -> SpecEnumerateSeq<Self> {
     return SpecEnumerateSeq(col: self)
   }

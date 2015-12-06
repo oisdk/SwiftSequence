@@ -10,7 +10,7 @@ public extension SequenceType {
   ///
   /// [1, 10, 2, 10, 3]
   /// ```
-  
+  @warn_unused_result
   func interpose(element: Generator.Element) -> [Generator.Element] {
     var g = generate()
     
@@ -30,7 +30,7 @@ public extension SequenceType {
   ///
   /// [1, 2, 10, 3, 4, 10, 5]
   /// ```
-  
+  @warn_unused_result
   func interpose(element: Generator.Element, n: Int) -> [Generator.Element] {
     
     var ret: [Generator.Element] = []
@@ -59,7 +59,7 @@ public extension SequenceType {
   ///
   /// [1, 10, 20, 2, 10, 20, 3]
   /// ```
-  
+  @warn_unused_result
   func interpose<C : CollectionType where C.Generator.Element == Generator.Element>
     (col: C) -> [Generator.Element] {
       var g = generate()
@@ -107,7 +107,7 @@ public extension SequenceType {
 ///
 /// [1, 10, 2, 20, 3, 30]
 /// ```
-
+@warn_unused_result
 public func interdig<
   S0 : SequenceType, S1 : SequenceType where
   S0.Generator.Element == S1.Generator.Element
@@ -134,7 +134,7 @@ public func interdig<
 ///
 /// [1, 2, 10, 20, 30, 3, 4, 40, 50, 60, 5]
 /// ```
-
+@warn_unused_result
 public func interdig<
   S0 : SequenceType, S1 : SequenceType where
   S0.Generator.Element == S1.Generator.Element
@@ -198,7 +198,7 @@ public extension LazySequenceType {
   ///
   /// 1, 10, 2, 10, 3, 10
   /// ```
-  
+  @warn_unused_result
   func interpose(element: Generator.Element) -> InterposeElSeq<Self> {
     return InterposeElSeq(element: element, n: 1, seq: self)
   }
@@ -210,7 +210,7 @@ public extension LazySequenceType {
   ///
   /// 1, 2, 10, 3, 4, 10, 5
   /// ```
-  
+  @warn_unused_result
   func interpose(element: Generator.Element, n: Int) -> InterposeElSeq<Self> {
     return InterposeElSeq(element: element, n: n, seq: self)
   }
@@ -264,7 +264,7 @@ public extension LazySequenceType {
   ///
   /// 1, 10, 20, 2, 10, 20, 3, 10, 20
   /// ```
-  
+  @warn_unused_result
   func interpose<
     C: CollectionType where
     C.Generator.Element == Generator.Element
@@ -279,7 +279,7 @@ public extension LazySequenceType {
   ///
   /// 1, 2, 10, 20, 3, 4, 10, 20, 5
   /// ```
-  
+  @warn_unused_result
   func interpose<
     C: CollectionType where
     C.Generator.Element == Generator.Element
@@ -340,7 +340,7 @@ public struct InterDigSeq<
 ///
 /// 1, 10, 2, 20, 3, 30
 /// ```
-
+@warn_unused_result
 public func interdig<
   S0 : LazySequenceType, S1 : LazySequenceType where
   S0.Generator.Element == S1.Generator.Element
@@ -357,7 +357,7 @@ public func interdig<
 ///
 /// 1, 2, 10, 20, 30, 3, 4, 40, 50, 60, 5
 /// ```
-
+@warn_unused_result
 public func interdig<
   S0 : SequenceType, S1 : SequenceType where
   S0.Generator.Element == S1.Generator.Element

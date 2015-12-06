@@ -29,7 +29,7 @@ public extension SequenceType {
   //[20: [Jo, An], 4000: [Cthulu]]
   ```
   */
-  
+  @warn_unused_result
   func categorise<U : Hashable>(@noescape keyFunc: Generator.Element throws -> U)
     rethrows -> [U:[Generator.Element]] {
     var dict: [U:[Generator.Element]] = [:]
@@ -53,7 +53,7 @@ public extension SequenceType where Generator.Element : Hashable {
   // [2: 1, 0: 3, 3: 3, 1: 3]
   ```
   */
-  
+  @warn_unused_result
   func freqs() -> [Generator.Element:Int] {
     var freqs: [Generator.Element:Int] = [:]
     for el in self { freqs[el] = freqs[el]?.successor() ?? 1 }
@@ -70,7 +70,7 @@ public extension SequenceType where Generator.Element : Hashable {
   // [3, 1, 2]
   ```
   */
-  
+  @warn_unused_result
   public func uniques() -> [Generator.Element] {
     var prevs: Set<Generator.Element> = []
     var uniqs: [Generator.Element] = []
@@ -82,7 +82,7 @@ public extension SequenceType where Generator.Element : Hashable {
   }
   
   /// Returns the element which occurs most frequently in `self`
-  
+  @warn_unused_result
   public func mostFrequent() -> Generator.Element? {
     var g = generate()
     guard let b = g.next() else { return nil }
@@ -133,7 +133,7 @@ public extension LazySequenceType where Generator.Element : Hashable {
   
   /// returns a `LazySequence` of the elements of `self`, in order, with
   /// duplicates removed
-  
+  @warn_unused_result
   func uniques() -> UniquesSeq<Self> {
     return UniquesSeq(seq: self)
   }
@@ -188,7 +188,7 @@ public extension LazySequenceType where Generator.Element : Equatable {
   ///
   /// [1], [2, 2], [3], [1, 1], [3], [4], [2]
   /// ```
-  
+  @warn_unused_result
   func group() -> GroupBySeq<Self> {
     return GroupBySeq(seq: self, isEquivalent: ==)
   }
@@ -203,7 +203,7 @@ public extension LazySequenceType {
   ///
   /// [1, 3, 5], [20, 22, 18], [6, 7]
   /// ```
-  
+  @warn_unused_result
   func group(isEquivalent: (Generator.Element, Generator.Element) -> Bool)
     -> GroupBySeq<Self> {
       return GroupBySeq(seq: self, isEquivalent: isEquivalent)

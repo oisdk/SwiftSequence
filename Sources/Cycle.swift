@@ -10,7 +10,7 @@ public extension CollectionType {
   ///
   /// [1, 2, 3, 1, 2, 3]
   /// ```
-  
+  @warn_unused_result
   func cycle(n: Int) -> [Generator.Element] {
     var cycled: [Generator.Element] = []
     cycled.reserveCapacity(underestimateCount() * n)
@@ -49,7 +49,7 @@ public extension LazySequenceType where Self : CollectionType {
   ///
   /// 1, 2, 3, 1, 2, 3
   /// ```
-  
+  @warn_unused_result
   func cycle(n: Int) -> CycleNGen<Self> {
     return CycleNGen(inner: self, innerGen: generate(), n: n)
   }
@@ -79,7 +79,7 @@ public extension CollectionType {
   ///
   /// 1, 2, 3, 1, 2, 3, 1...
   /// ```
-  
+  @warn_unused_result
   func cycle() -> CycleGen<Self> {
     return CycleGen(inner: self, innerGen: generate())
   }

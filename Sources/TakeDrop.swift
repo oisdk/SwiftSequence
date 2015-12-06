@@ -10,7 +10,7 @@ public extension SequenceType {
   ///
   /// [1, 2, 3]
   /// ```
-  
+  @warn_unused_result
   func prefixWhile(@noescape condition: Generator.Element throws -> Bool) rethrows -> [Generator.Element] {
     var ret : [Generator.Element] = []
     var g = generate()
@@ -30,7 +30,7 @@ public extension SequenceType {
   ///
   /// [4, 5, 2]
   /// ```
-  
+  @warn_unused_result
   func dropWhile(@noescape condition: Generator.Element throws -> Bool) rethrows -> [Generator.Element] {
     var g = generate()
     while let next = g.next() {
@@ -150,7 +150,7 @@ public extension LazySequenceType {
   ///
   /// 1, 2, 3
   /// ```
-  
+  @warn_unused_result
   func prefixWhile(condition: Generator.Element -> Bool) -> WhileSeq<Self> {
     return WhileSeq(seq: self, condition: condition)
   }
@@ -201,7 +201,7 @@ public extension LazySequenceType {
   ///
   /// 4, 5, 2
   /// ```
-  
+  @warn_unused_result
   func dropWhile(predicate: Generator.Element -> Bool) -> DropWhileSeq<Self> {
     return DropWhileSeq(predicate: predicate, seq: self)
   }

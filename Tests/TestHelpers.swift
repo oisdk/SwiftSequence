@@ -39,18 +39,21 @@ func XCTAssertEqualSeq<
   S0.Generator.Element : Equatable>(lhs: S0, _ rhs:S1) {
     var (g0,g1) = (lhs.generate(),rhs.generate())
     while true {
-      let (e0,e1) = (g0.next(),g1.next())
-      if e0 == nil {
-        if e1 == nil { return }
-        XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
-      } else if e1 == nil {
-        if e0 == nil { return }
-        XCTFail(String(reflecting: rhs) + " is shorter than " + String(reflecting: lhs))
+      guard let a = g0.next() else {
+        guard case nil = g1.next() else {
+          XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
+          return
+        }
+        return
       }
-      XCTAssert(e0! == e1!,
-        String(reflecting: e0!) + " does not equal " +
-        String(reflecting: e1!) + "\n" + "In the sequences: " +
-        String(reflecting: lhs) + " and " + String(reflecting: rhs)
+      guard let b = g1.next() else {
+        XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
+        return
+      }
+      XCTAssert(a == b,
+        String(a) + " does not equal " +
+        String(b) + "\n" + "In the sequences: " +
+        String(lhs) + " and " + String(reflecting: rhs)
       )
     }
 }

@@ -28,7 +28,8 @@ public struct RandomAccessHopCollection<
     base = b
     self.by = by
     fac = base.startIndex.distanceTo(base.startIndex.advancedBy(by))
-    endIndex = (base.startIndex.distanceTo(base.endIndex.predecessor()) / fac).successor()
+    if base.isEmpty { endIndex = 0 }
+    else { endIndex = (base.startIndex.distanceTo(base.endIndex.predecessor()) / fac).successor() }
     startIndex = 0
   }
   

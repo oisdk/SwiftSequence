@@ -1,0 +1,168 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "SpecEnumerateGen"
+- "SpecEnumerateSeq"
+provides-nominal:
+- "V13SwiftSequence16SpecEnumerateGen"
+- "V13SwiftSequence16SpecEnumerateSeq"
+provides-member:
+- ["V13SwiftSequence16SpecEnumerateGen", ""]
+- ["V13SwiftSequence16SpecEnumerateSeq", ""]
+- ["Ps14CollectionType", ""]
+- ["Ps14CollectionType", "specEnumerate"]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "=="
+- "SequenceType"
+- "SpecEnumerateSeq"
+- !private "++"
+- "SpecEnumerateGen"
+- "CollectionType"
+- "GeneratorType"
+depends-member:
+- ["Ps21BitwiseOperationsType", "IntegerLiteralType"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["Ps25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps11BooleanType", "_getBuiltinLogicValue"]
+- ["Ps14CollectionType", "Generator"]
+- ["Ps14CollectionType", "Index"]
+- ["Ps14CollectionType", "Self"]
+- ["Ps14CollectionType", "SpecEnumerateSeq"]
+- ["Ps14CollectionType", "SubSequence"]
+- ["Ps14CollectionType", "_Element"]
+- !private ["Ps14CollectionType", "endIndex"]
+- ["Ps14CollectionType", "specEnumerate"]
+- !private ["Ps14CollectionType", "startIndex"]
+- !private ["Ps14CollectionType", "subscript"]
+- ["Ps10Comparable", "IntegerLiteralType"]
+- ["Ps23CustomStringConvertible", "IntegerLiteralType"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- ["Ps9Equatable", "Distance"]
+- ["Ps9Equatable", "IntegerLiteralType"]
+- ["Ps9Equatable", "_DisabledRangeIndex"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- ["Ps16ForwardIndexType", "Distance"]
+- ["Ps16ForwardIndexType", "_DisabledRangeIndex"]
+- ["Ps13GeneratorType", "Element"]
+- !private ["Ps13GeneratorType", "base"]
+- !private ["Ps13GeneratorType", "i"]
+- !private ["Ps13GeneratorType", "init"]
+- ["Ps13GeneratorType", "next"]
+- ["Ps13GeneratorType", ""]
+- ["Ps8Hashable", "IntegerLiteralType"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["Ps9Indexable", "Generator"]
+- ["Ps9Indexable", "Index"]
+- ["Ps9Indexable", "Self"]
+- ["Ps9Indexable", "SpecEnumerateSeq"]
+- ["Ps9Indexable", "SubSequence"]
+- ["Ps9Indexable", "_Element"]
+- !private ["Ps9Indexable", "endIndex"]
+- !private ["Ps9Indexable", "startIndex"]
+- !private ["Ps9Indexable", "subscript"]
+- !private ["Vs17IndexingGenerator", "Element"]
+- ["Ps21IntegerArithmeticType", "IntegerLiteralType"]
+- ["Ps25IntegerLiteralConvertible", "IntegerLiteralType"]
+- ["Ps12SequenceType", "Element"]
+- ["Ps12SequenceType", "Generator"]
+- ["Ps12SequenceType", "Index"]
+- ["Ps12SequenceType", "Self"]
+- !private ["Ps12SequenceType", "SpecEnumerateGen"]
+- ["Ps12SequenceType", "SpecEnumerateSeq"]
+- ["Ps12SequenceType", "SubSequence"]
+- ["Ps12SequenceType", "_Element"]
+- ["Ps12SequenceType", "_copyToNativeArrayBuffer"]
+- ["Ps12SequenceType", "_customContainsEquatableElement"]
+- ["Ps12SequenceType", "_initializeTo"]
+- ["Ps12SequenceType", "_preprocessingPass"]
+- !private ["Ps12SequenceType", "col"]
+- ["Ps12SequenceType", "dropFirst"]
+- ["Ps12SequenceType", "dropLast"]
+- !private ["Ps12SequenceType", "endIndex"]
+- ["Ps12SequenceType", "filter"]
+- ["Ps12SequenceType", "forEach"]
+- ["Ps12SequenceType", "generate"]
+- !private ["Ps12SequenceType", "init"]
+- ["Ps12SequenceType", "map"]
+- ["Ps12SequenceType", "prefix"]
+- ["Ps12SequenceType", "split"]
+- !private ["Ps12SequenceType", "startIndex"]
+- !private ["Ps12SequenceType", "subscript"]
+- ["Ps12SequenceType", "suffix"]
+- ["Ps12SequenceType", "underestimateCount"]
+- ["Ps12SequenceType", ""]
+- ["Ps16SignedNumberType", "IntegerLiteralType"]
+- !private ["Vs5Slice", "Generator"]
+- !private ["Vs5Slice", "Index"]
+- !private ["Vs5Slice", "SubSequence"]
+- !private ["Vs5Slice", "_Element"]
+- ["V13SwiftSequence16SpecEnumerateGen", "Base"]
+- ["V13SwiftSequence16SpecEnumerateGen", "Element"]
+- !private ["V13SwiftSequence16SpecEnumerateGen", "base"]
+- ["V13SwiftSequence16SpecEnumerateGen", "deinit"]
+- !private ["V13SwiftSequence16SpecEnumerateGen", "i"]
+- !private ["V13SwiftSequence16SpecEnumerateGen", "init"]
+- ["V13SwiftSequence16SpecEnumerateGen", "next"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "Base"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "Element"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "Generator"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "SpecEnumerateGen"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "SubSequence"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "_copyToNativeArrayBuffer"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "_customContainsEquatableElement"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "_initializeTo"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "_preprocessingPass"]
+- !private ["V13SwiftSequence16SpecEnumerateSeq", "col"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "deinit"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "dropFirst"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "dropLast"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "filter"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "forEach"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "generate"]
+- !private ["V13SwiftSequence16SpecEnumerateSeq", "init"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "map"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "prefix"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "split"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "suffix"]
+- ["V13SwiftSequence16SpecEnumerateSeq", "underestimateCount"]
+- !private ["Ps33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- ["Ps33_BuiltinIntegerLiteralConvertible", "IntegerLiteralType"]
+- ["Ps14_Incrementable", "Distance"]
+- ["Ps14_Incrementable", "IntegerLiteralType"]
+- ["Ps14_Incrementable", "_DisabledRangeIndex"]
+- ["Ps22_IntegerArithmeticType", "IntegerLiteralType"]
+- ["Ps12_IntegerType", "IntegerLiteralType"]
+- !private ["Ps12_Reflectable", "_getBuiltinLogicValue"]
+- ["Ps18_SignedIntegerType", "IntegerLiteralType"]
+depends-nominal:
+- "Ps21BitwiseOperationsType"
+- !private "Sb"
+- !private "Ps25BooleanLiteralConvertible"
+- !private "Ps11BooleanType"
+- "Ps14CollectionType"
+- "Ps10Comparable"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- "Ps16ForwardIndexType"
+- "Ps13GeneratorType"
+- "Ps8Hashable"
+- "Ps9Indexable"
+- !private "Vs17IndexingGenerator"
+- "Ps21IntegerArithmeticType"
+- "Ps25IntegerLiteralConvertible"
+- "Ps12SequenceType"
+- "Ps16SignedNumberType"
+- !private "Vs5Slice"
+- "V13SwiftSequence16SpecEnumerateGen"
+- "V13SwiftSequence16SpecEnumerateSeq"
+- !private "Ps33_BuiltinBooleanLiteralConvertible"
+- "Ps33_BuiltinIntegerLiteralConvertible"
+- "Ps14_Incrementable"
+- "Ps22_IntegerArithmeticType"
+- "Ps12_IntegerType"
+- !private "Ps12_Reflectable"
+- "Ps18_SignedIntegerType"
+depends-dynamic-lookup:
+depends-external:
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+interface-hash: "23c98f132269d5b888f21a8117c2f15d"

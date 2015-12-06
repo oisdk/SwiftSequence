@@ -1,0 +1,131 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "FlatMapOptionalGenerator"
+- "FlatMapOptionalSequence"
+provides-nominal:
+- "V13SwiftSequence24FlatMapOptionalGenerator"
+- "V13SwiftSequence23FlatMapOptionalSequence"
+provides-member:
+- ["V13SwiftSequence24FlatMapOptionalGenerator", ""]
+- ["V13SwiftSequence23FlatMapOptionalSequence", ""]
+- ["Ps16LazySequenceType", ""]
+- ["Ps16LazySequenceType", "flatMap"]
+provides-dynamic-lookup:
+depends-top-level:
+- "GeneratorType"
+- "FlatMapOptionalGenerator"
+- "FlatMapOptionalSequence"
+- "LazySequenceType"
+depends-member:
+- ["Ps28CustomDebugStringConvertible", "Some"]
+- ["V13SwiftSequence24FlatMapOptionalGenerator", "Element"]
+- ["V13SwiftSequence24FlatMapOptionalGenerator", "G"]
+- ["V13SwiftSequence24FlatMapOptionalGenerator", "deinit"]
+- !private ["V13SwiftSequence24FlatMapOptionalGenerator", "generator"]
+- !private ["V13SwiftSequence24FlatMapOptionalGenerator", "init"]
+- ["V13SwiftSequence24FlatMapOptionalGenerator", "next"]
+- !private ["V13SwiftSequence24FlatMapOptionalGenerator", "transform"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "Element"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "Elements"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "FlatMapOptionalGenerator"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "Generator"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "S"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "SubSequence"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "_copyToNativeArrayBuffer"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "_customContainsEquatableElement"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "_initializeTo"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "_preprocessingPass"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "array"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "deinit"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "dropFirst"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "dropLast"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "elements"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "filter"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "forEach"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "generate"]
+- !private ["V13SwiftSequence23FlatMapOptionalSequence", "init"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "map"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "prefix"]
+- !private ["V13SwiftSequence23FlatMapOptionalSequence", "sequence"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "split"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "suffix"]
+- !private ["V13SwiftSequence23FlatMapOptionalSequence", "transform"]
+- ["V13SwiftSequence23FlatMapOptionalSequence", "underestimateCount"]
+- ["Ps13GeneratorType", "Element"]
+- !private ["Ps13GeneratorType", "generator"]
+- !private ["Ps13GeneratorType", "init"]
+- ["Ps13GeneratorType", "next"]
+- !private ["Ps13GeneratorType", "transform"]
+- ["Ps13GeneratorType", ""]
+- ["Ps16LazySequenceType", "Element"]
+- ["Ps16LazySequenceType", "Elements"]
+- !private ["Ps16LazySequenceType", "FlatMapOptionalGenerator"]
+- ["Ps16LazySequenceType", "FlatMapOptionalSequence"]
+- ["Ps16LazySequenceType", "Generator"]
+- ["Ps16LazySequenceType", "Self"]
+- ["Ps16LazySequenceType", "SubSequence"]
+- ["Ps16LazySequenceType", "_copyToNativeArrayBuffer"]
+- ["Ps16LazySequenceType", "_customContainsEquatableElement"]
+- ["Ps16LazySequenceType", "_initializeTo"]
+- ["Ps16LazySequenceType", "_preprocessingPass"]
+- ["Ps16LazySequenceType", "array"]
+- ["Ps16LazySequenceType", "dropFirst"]
+- ["Ps16LazySequenceType", "dropLast"]
+- ["Ps16LazySequenceType", "elements"]
+- ["Ps16LazySequenceType", "filter"]
+- ["Ps16LazySequenceType", "flatMap"]
+- ["Ps16LazySequenceType", "forEach"]
+- ["Ps16LazySequenceType", "generate"]
+- !private ["Ps16LazySequenceType", "init"]
+- ["Ps16LazySequenceType", "map"]
+- ["Ps16LazySequenceType", "prefix"]
+- !private ["Ps16LazySequenceType", "sequence"]
+- ["Ps16LazySequenceType", "split"]
+- ["Ps16LazySequenceType", "suffix"]
+- !private ["Ps16LazySequenceType", "transform"]
+- ["Ps16LazySequenceType", "underestimateCount"]
+- ["Ps16LazySequenceType", ""]
+- ["Ps21NilLiteralConvertible", "Some"]
+- ["Sq", "Some"]
+- ["Ps12SequenceType", "Element"]
+- ["Ps12SequenceType", "Elements"]
+- !private ["Ps12SequenceType", "FlatMapOptionalGenerator"]
+- ["Ps12SequenceType", "FlatMapOptionalSequence"]
+- ["Ps12SequenceType", "Generator"]
+- ["Ps12SequenceType", "Self"]
+- ["Ps12SequenceType", "SubSequence"]
+- ["Ps12SequenceType", "_copyToNativeArrayBuffer"]
+- ["Ps12SequenceType", "_customContainsEquatableElement"]
+- ["Ps12SequenceType", "_initializeTo"]
+- ["Ps12SequenceType", "_preprocessingPass"]
+- ["Ps12SequenceType", "array"]
+- ["Ps12SequenceType", "dropFirst"]
+- ["Ps12SequenceType", "dropLast"]
+- ["Ps12SequenceType", "elements"]
+- ["Ps12SequenceType", "filter"]
+- ["Ps12SequenceType", "forEach"]
+- ["Ps12SequenceType", "generate"]
+- !private ["Ps12SequenceType", "init"]
+- ["Ps12SequenceType", "map"]
+- ["Ps12SequenceType", "prefix"]
+- !private ["Ps12SequenceType", "sequence"]
+- ["Ps12SequenceType", "split"]
+- ["Ps12SequenceType", "suffix"]
+- !private ["Ps12SequenceType", "transform"]
+- ["Ps12SequenceType", "underestimateCount"]
+- ["Ps12SequenceType", ""]
+- ["Ps12_Reflectable", "Some"]
+depends-nominal:
+- "Ps28CustomDebugStringConvertible"
+- "V13SwiftSequence24FlatMapOptionalGenerator"
+- "V13SwiftSequence23FlatMapOptionalSequence"
+- "Ps13GeneratorType"
+- "Ps16LazySequenceType"
+- "Ps21NilLiteralConvertible"
+- "Sq"
+- "Ps12SequenceType"
+- "Ps12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+interface-hash: "e6f3e5c7c91b6183fc5b7e9614fa36d0"

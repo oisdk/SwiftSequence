@@ -1,0 +1,19 @@
+version: "Apple Swift version 2.2-dev (LLVM 46be9ff861, Clang 4deb154edc, Swift 778f82939c)"
+options: "c71173153a4692436ba17dee1a7941df"
+build_time: [502675548, 452483000]
+inputs:
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Categorise.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/ChunkWindowSplit.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Combinations.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Cycle.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Enumerate.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Finding.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/FlatMap.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/HopJump.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Interpose.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Iterate.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/NestedSequences.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Permutations.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/ScanReduce.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/TakeDrop.swift": [502675545, 0]
+  "/Users/oisinkidney/Desktop/Code/SwiftSequence/Sources/Zip.swift": [502675545, 0]

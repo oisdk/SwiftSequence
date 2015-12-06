@@ -1,0 +1,80 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "IterateGenerator"
+- "IterateSequence"
+provides-nominal:
+- "V13SwiftSequence16IterateGenerator"
+- "V13SwiftSequence15IterateSequence"
+provides-member:
+- ["V13SwiftSequence16IterateGenerator", ""]
+- ["V13SwiftSequence15IterateSequence", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "SequenceType"
+- "GeneratorType"
+- "IterateGenerator"
+- "IterateSequence"
+depends-member:
+- ["Ps13GeneratorType", "Element"]
+- !private ["Ps13GeneratorType", "f"]
+- !private ["Ps13GeneratorType", "init"]
+- ["Ps13GeneratorType", "next"]
+- !private ["Ps13GeneratorType", "x"]
+- ["Ps13GeneratorType", ""]
+- ["V13SwiftSequence16IterateGenerator", "Element"]
+- ["V13SwiftSequence16IterateGenerator", "deinit"]
+- !private ["V13SwiftSequence16IterateGenerator", "f"]
+- !private ["V13SwiftSequence16IterateGenerator", "init"]
+- ["V13SwiftSequence16IterateGenerator", "next"]
+- !private ["V13SwiftSequence16IterateGenerator", "x"]
+- ["V13SwiftSequence15IterateSequence", "Element"]
+- ["V13SwiftSequence15IterateSequence", "Generator"]
+- ["V13SwiftSequence15IterateSequence", "IterateGenerator"]
+- ["V13SwiftSequence15IterateSequence", "SubSequence"]
+- ["V13SwiftSequence15IterateSequence", "_copyToNativeArrayBuffer"]
+- ["V13SwiftSequence15IterateSequence", "_customContainsEquatableElement"]
+- ["V13SwiftSequence15IterateSequence", "_initializeTo"]
+- ["V13SwiftSequence15IterateSequence", "_preprocessingPass"]
+- ["V13SwiftSequence15IterateSequence", "deinit"]
+- ["V13SwiftSequence15IterateSequence", "dropFirst"]
+- ["V13SwiftSequence15IterateSequence", "dropLast"]
+- !private ["V13SwiftSequence15IterateSequence", "f"]
+- ["V13SwiftSequence15IterateSequence", "filter"]
+- ["V13SwiftSequence15IterateSequence", "forEach"]
+- ["V13SwiftSequence15IterateSequence", "generate"]
+- !private ["V13SwiftSequence15IterateSequence", "init"]
+- ["V13SwiftSequence15IterateSequence", "map"]
+- ["V13SwiftSequence15IterateSequence", "prefix"]
+- ["V13SwiftSequence15IterateSequence", "split"]
+- ["V13SwiftSequence15IterateSequence", "suffix"]
+- ["V13SwiftSequence15IterateSequence", "underestimateCount"]
+- !private ["V13SwiftSequence15IterateSequence", "x"]
+- ["Ps12SequenceType", "Element"]
+- ["Ps12SequenceType", "Generator"]
+- !private ["Ps12SequenceType", "IterateGenerator"]
+- ["Ps12SequenceType", "_copyToNativeArrayBuffer"]
+- ["Ps12SequenceType", "_customContainsEquatableElement"]
+- ["Ps12SequenceType", "_initializeTo"]
+- ["Ps12SequenceType", "_preprocessingPass"]
+- ["Ps12SequenceType", "dropFirst"]
+- ["Ps12SequenceType", "dropLast"]
+- !private ["Ps12SequenceType", "f"]
+- ["Ps12SequenceType", "filter"]
+- ["Ps12SequenceType", "forEach"]
+- ["Ps12SequenceType", "generate"]
+- ["Ps12SequenceType", "map"]
+- ["Ps12SequenceType", "prefix"]
+- ["Ps12SequenceType", "split"]
+- ["Ps12SequenceType", "suffix"]
+- ["Ps12SequenceType", "underestimateCount"]
+- !private ["Ps12SequenceType", "x"]
+- ["Ps12SequenceType", ""]
+depends-nominal:
+- "Ps13GeneratorType"
+- "V13SwiftSequence16IterateGenerator"
+- "V13SwiftSequence15IterateSequence"
+- "Ps12SequenceType"
+depends-dynamic-lookup:
+depends-external:
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+interface-hash: "70dd6c5dc2082f2474ffdb6b977b97b5"

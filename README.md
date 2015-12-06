@@ -20,7 +20,7 @@ To make an eager sequence lazy, the `lazy` property can be used:
 
   - [ScanReduce] (#scanreduce)
   - [TakeDrop] (#takedrop)
-  - [Hopping and Slicing] (#hopjump)
+  - [Hopping and Slicing] (#hopping-and-slicing)
   - [Interpose] (#interpose)
   - [Combinations] (#combinations)
   - [Permutations] (#permutations)

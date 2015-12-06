@@ -33,7 +33,9 @@ class ChunkWindowSplitTests: XCTestCase {
     for randAr in (1...20).map(Array<Int>.init) {
       let n = Int(arc4random()) % randAr.count + 1
       let windowed = randAr.window(n)
-      windowed.map { a in a.count }.forEach { XCTAssertEqual(n, $0) }
+      for i in windowed.map ({ a in a.count }) {
+        XCTAssertEqual(n, i)
+      }
       XCTAssertEqual(randAr, windowed.first!.dropLast() + windowed.flatMap { a in a.last })
     }
     

@@ -61,7 +61,7 @@ extension RandomAccessHopCollection: CustomStringConvertible, CustomDebugStringC
   }
 }
 
-extension CollectionType where
+public extension CollectionType where
   SubSequence: CollectionType,
   Index == SubSequence.Index,
   SubSequence.Index: RandomAccessIndexType,

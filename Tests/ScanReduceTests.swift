@@ -16,8 +16,8 @@ class ScanReduceTests: XCTestCase {
   // MARK: Eager
   
   func testReduce1() {
-    
-    let nums = [1, 2, 3, 4, 5]
+
+    let nums = WatcherSequence([1, 2, 3, 4, 5])
     
     let optSum = nums.reduce(+)
     
@@ -27,7 +27,7 @@ class ScanReduceTests: XCTestCase {
   
   func testScan() {
     
-    let nums = [1, 2, 3, 4, 5]
+    let nums = WatcherSequence([1, 2, 3, 4, 5])
     
     let scanSum = nums.scan(0, combine: +)
     
@@ -39,7 +39,7 @@ class ScanReduceTests: XCTestCase {
   
   func testScan1() {
     
-    let nums = [1, 2, 3, 4, 5]
+    let nums = WatcherSequence([1, 2, 3, 4, 5])
     
     let scanSum = nums.scan(+)
     
@@ -53,7 +53,7 @@ class ScanReduceTests: XCTestCase {
   
   func testLazyScan() {
     
-    let nums = [1, 2, 3, 4, 5].lazy
+    let nums = WatcherSequence([1, 2, 3, 4, 5]).lazy
     
     let scanSum = nums.scan(0, combine: +)
     
@@ -65,7 +65,7 @@ class ScanReduceTests: XCTestCase {
   
   func testLazyScan1() {
     
-    let nums = [1, 2, 3, 4, 5].lazy
+    let nums = WatcherSequence([1, 2, 3, 4, 5]).lazy
     
     let scanSum = nums.scan(+)
     

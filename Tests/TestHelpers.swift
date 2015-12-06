@@ -1,4 +1,4 @@
-import Foundation
+import Darwin
 import XCTest
 
 internal protocol Randable {
@@ -83,17 +83,21 @@ func XCTAssertEqualNested<
   }
 }
 
+struct WatcherGenerator<G: GeneratorType>: GeneratorType {
+  private var g: G
+  private var p: Bool
+  mutating func next() -> G.Element? {
+    XCTAssertFalse(p, "Called a generator after it had already returned nil")
+    if let e = g.next() { return e }
+    p = true
+    return nil
+  }
+}
+
 struct WatcherSequence<S : SequenceType> : SequenceType {
   private let seq: S
-  func generate() -> AnyGenerator<S.Generator.Element> {
-    var g = seq.generate()
-    var calledNil = false
-    return anyGenerator {
-      XCTAssertFalse(calledNil, "Called a generator after it had already returned nil")
-      if let e = g.next() { return e }
-      calledNil = true
-      return nil
-    }
+  func generate() -> WatcherGenerator<S.Generator> {
+    return WatcherGenerator(g: seq.generate(), p: false)
   }
   internal init(_ s: S) {
     seq = s

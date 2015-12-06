@@ -44,11 +44,12 @@ public extension CollectionType {
     ret.reserveCapacity(underestimateCount() - numericCast(n))
     var i = startIndex
     var j = i.advancedBy(n, limit: endIndex)
-    repeat {
+    while true {
       ret.append(self[i..<j])
-      ++i
-    } while j++ != endIndex
-    return ret
+      i = i.successor()
+      if j == endIndex { return ret }
+      j = j.successor()
+    }
   }
 }
 
@@ -109,7 +110,8 @@ public struct WindowGen<C: CollectionType> : GeneratorType {
       s = true
       return c[i..<j]
     }
-    return c[(i++)..<(j++)]
+    defer { (i,j) = (i.successor(),j.successor()) }
+    return c[i..<j]
   }
 }
 

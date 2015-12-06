@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/oisdk/SwiftSequence.svg?branch=master)](https://travis-ci.org/oisdk/SwiftSequence) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-# SwiftSequence
+# SwiftSequence #
 
 Full reference [here.](http://oisdk.github.io/SwiftSequence/index.html)
 
@@ -14,7 +14,13 @@ To make an eager sequence lazy, the `lazy` property can be used:
 [1, 2, 3].lazy.hop(2)
 
 // 1, 3
+
+
 ```
+## Contributing ##
+
+Contributions welcome! Anything at all, as long as it's related to sequences, Linux-compatible, and has a test or two.
+
 
 ## Contents ##
 

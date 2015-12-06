@@ -57,7 +57,7 @@
 		707F996A1C13B9EA00CE1A23 /* SwiftSequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		707F996D1C13B9EA00CE1A23 /* SwiftSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftSequence.h; sourceTree = "<group>"; };
 		707F996F1C13B9EA00CE1A23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		707F99741C13B9EB00CE1A23 /* SwiftSequenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSequenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		707F99741C13B9EB00CE1A23 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		707F997B1C13B9EB00CE1A23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		707F99841C13BA1900CE1A23 /* Categorise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Categorise.swift; path = Sources/Categorise.swift; sourceTree = SOURCE_ROOT; };
 		707F99851C13BA1900CE1A23 /* ChunkWindowSplit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChunkWindowSplit.swift; path = Sources/ChunkWindowSplit.swift; sourceTree = SOURCE_ROOT; };
@@ -124,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				707F996A1C13B9EA00CE1A23 /* SwiftSequence.framework */,
-				707F99741C13B9EB00CE1A23 /* SwiftSequenceTests.xctest */,
+				707F99741C13B9EB00CE1A23 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,9 +210,9 @@
 			productReference = 707F996A1C13B9EA00CE1A23 /* SwiftSequence.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		707F99731C13B9EB00CE1A23 /* SwiftSequenceTests */ = {
+		707F99731C13B9EB00CE1A23 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 707F99811C13B9EB00CE1A23 /* Build configuration list for PBXNativeTarget "SwiftSequenceTests" */;
+			buildConfigurationList = 707F99811C13B9EB00CE1A23 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				707F99701C13B9EB00CE1A23 /* Sources */,
 				707F99711C13B9EB00CE1A23 /* Frameworks */,
@@ -223,9 +223,9 @@
 			dependencies = (
 				707F99771C13B9EB00CE1A23 /* PBXTargetDependency */,
 			);
-			name = SwiftSequenceTests;
+			name = Tests;
 			productName = SwiftSequenceTests;
-			productReference = 707F99741C13B9EB00CE1A23 /* SwiftSequenceTests.xctest */;
+			productReference = 707F99741C13B9EB00CE1A23 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -259,7 +259,7 @@
 			projectRoot = "";
 			targets = (
 				707F99691C13B9EA00CE1A23 /* SwiftSequence */,
-				707F99731C13B9EB00CE1A23 /* SwiftSequenceTests */,
+				707F99731C13B9EB00CE1A23 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -468,7 +468,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = donnacha.oisin.kidney.SwiftSequenceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -479,7 +478,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = donnacha.oisin.kidney.SwiftSequenceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		707F99811C13B9EB00CE1A23 /* Build configuration list for PBXNativeTarget "SwiftSequenceTests" */ = {
+		707F99811C13B9EB00CE1A23 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				707F99821C13B9EB00CE1A23 /* Debug */,

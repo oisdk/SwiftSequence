@@ -21,13 +21,13 @@ class SlicingTests: XCTestCase {
   
   func testHop() {
     
-    for ar in (0..<20).map(Array<Int>.init) {
+    for ar in (0..<20).map(Array<Character>.init) {
       XCTAssertEqualSeq(ar, ar[by: 1])
     }
   }
   
   func testLongHop() {
-    for ar in (0..<20).map(Array<Int>.init) {
+    for ar in (0..<20).map(Array<Character>.init) {
       for i in (1..<20) {
         let expect = ar.refHop(i)
         let real = ar[by: i]
@@ -37,7 +37,7 @@ class SlicingTests: XCTestCase {
   }
   
   func testSliceThenHop() {
-    for ar in (0..<20).map(Array<Int>.init) {
+    for ar in (0..<20).map(Array<Character>.init) {
       for h in ar.indices.dropFirst() {
         for i in ar.indices {
           for j in i..<ar.endIndex {

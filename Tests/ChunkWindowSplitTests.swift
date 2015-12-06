@@ -17,7 +17,7 @@ class ChunkWindowSplitTests: XCTestCase {
   
   func testChunk() {
     
-    for randAr in (1...20).map(Array<Int>.init) {
+    for randAr in (1...20).map(Array<Character>.init) {
       let n = Int(arc4random()) % randAr.count + 1
       let chunkd = randAr.chunk(n)
       for a in chunkd {
@@ -30,7 +30,7 @@ class ChunkWindowSplitTests: XCTestCase {
   
   func testWindow() {
     
-    for randAr in (1...20).map(Array<Int>.init) {
+    for randAr in (1...20).map(Array<Character>.init) {
       let n = Int(arc4random()) % randAr.count + 1
       let windowed = randAr.window(n)
       for i in windowed.map ({ a in a.count }) {
@@ -45,7 +45,7 @@ class ChunkWindowSplitTests: XCTestCase {
   
   func testLazyChunk() {
     
-    for randAr in (1...20).map(Array<Int>.init) {
+    for randAr in (1...20).map(Array<Character>.init) {
       let n = Int(arc4random()) % randAr.count + 1
       XCTAssertEqualNested(randAr.lazy.chunk(n), randAr.chunk(n))
     }
@@ -53,7 +53,7 @@ class ChunkWindowSplitTests: XCTestCase {
   
   func testLazyWindow() {
     
-    for randAr in (1...20).map(Array<Int>.init) {
+    for randAr in (1...20).map(Array<Character>.init) {
       let n = Int(arc4random()) % randAr.count + 1
       XCTAssertEqualNested(randAr.lazy.window(n), randAr.window(n))
     }

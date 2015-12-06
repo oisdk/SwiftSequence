@@ -65,7 +65,7 @@ class CombinationsTests: XCTestCase {
   
   func testLazyCombosWithoutRep() {
     
-    for randAr in (0..<10).map(Array<Int>.init) {
+    for randAr in (0..<10).map(Array<Character>.init) {
       
       let eager = randAr.combos(min(randAr.count, 3))
       
@@ -79,7 +79,7 @@ class CombinationsTests: XCTestCase {
   
   func testLazyCombosWithRep() {
     
-    for randAr in(0..<10).map(Array<Int>.init) {
+    for randAr in(0..<10).map(Array<Character>.init) {
       
       let eager = randAr.combosWithRep(min(randAr.count, 3))
       

@@ -1,7 +1,20 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class PermutationsTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testLexPermsClosure", testLexPermsClosure),
+      ("testLexPerms", testLexPerms),
+      ("testPermsInds", testPermsInds),
+      ("testLazyLexPermsClosure", testLazyLexPermsClosure),
+      ("testLazyLexPerms", testLazyLexPerms),
+      ("testLazyPermsInds", testLazyPermsInds),
+      ("testCounts", testCounts)
+    ]
+  }
+  
   // MARK: Eager
   
   func testLexPermsClosure() {

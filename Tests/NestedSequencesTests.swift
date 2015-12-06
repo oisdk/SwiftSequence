@@ -1,7 +1,18 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class NestedSequencesTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testProdMethod", testProdMethod),
+      ("testProdFunc", testProdFunc),
+      ("testTranspose", testTranspose),
+      ("testLazyProdMethod", testLazyProdMethod),
+      ("testLazyProdFunc", testLazyProdFunc),
+      ("testLazyTranspose", testLazyTranspose)
+    ]
+  }
   
   // MARK: Eager
   

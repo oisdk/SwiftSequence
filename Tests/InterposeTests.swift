@@ -1,7 +1,24 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class InterposeTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testInterposeSingle", testInterposeSingle),
+      ("testInterposeMultiple", testInterposeMultiple),
+      ("testInterposeColSingle", testInterposeColSingle),
+      ("testInterposeColMultiple", testInterposeColMultiple),
+      ("testInterdigitate", testInterdigitate),
+      ("testInterdigitateMultiple", testInterdigitateMultiple),
+      ("testLazyInterposeSingle", testLazyInterposeSingle),
+      ("testLazyInterposeMultiple", testLazyInterposeMultiple),
+      ("testLazyInterposeColSingle", testLazyInterposeColSingle),
+      ("testLazyInterposeColMultiple", testLazyInterposeColMultiple),
+      ("testLazyInterdigitate", testLazyInterdigitate),
+      ("testLazyInterdigitateMultiple", testLazyInterdigitateMultiple)
+    ]
+  }
   
   // MARK: Eager
   

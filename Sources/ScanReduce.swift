@@ -16,7 +16,8 @@ public extension SequenceType {
     (@noescape combine: (accumulator: Generator.Element, element: Generator.Element) throws -> Generator.Element)
     rethrows -> Generator.Element? {
       var g = generate()
-      guard var accu = g.next() else { return nil }
+      guard let a = g.next() else { return nil }
+      var accu = a
       while let next = g.next() {
         accu = try combine(accumulator: accu, element: next)
       }
@@ -33,10 +34,11 @@ public extension SequenceType {
   /// [1, 3, 6]
   /// ```
   
-  func scan<T>(var initial: T, @noescape combine: (accumulator: T, element: Generator.Element) throws -> T) rethrows -> [T] {
+  func scan<T>(initial: T, @noescape combine: (accumulator: T, element: Generator.Element) throws -> T) rethrows -> [T] {
+    var accu = initial
     return try map { e in
-      initial = try combine(accumulator: initial, element: e)
-      return initial
+      accu = try combine(accumulator: accu, element: e)
+      return accu
     }
   }
   
@@ -116,11 +118,14 @@ public struct Scan1Gen<G : GeneratorType> : GeneratorType {
     return accu!
   }
   
-  private init(combine: (G.Element, G.Element) -> G.Element, var generator: G) {
+  private init(combine: (G.Element, G.Element) -> G.Element, generator: G) {
+    self.g = generator
     self.combine = combine
-    if let initial = generator.next() {
+    if let initial = g?.next() {
       accu = initial
       g = generator
+    } else {
+      self.g = nil
     }
   }
 }

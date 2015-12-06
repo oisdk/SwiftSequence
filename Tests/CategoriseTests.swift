@@ -1,8 +1,19 @@
 import XCTest
-import Foundation
-@testable import SwiftSequence
+import Darwin
+import SwiftSequence
 
 class CategoriseTests: XCTestCase {
+  
+  var allTests: [(String, () -> ())] {
+    return [
+      ("testCat", testCat),
+      ("testFreqs", testFreqs),
+      ("testUniques", testUniques),
+      ("testLazyUniques", testLazyUniques),
+      ("testLazyGroup", testLazyGroup),
+      ("testLazyGroupClos", testLazyGroupClos),
+      ("testMostFrequent", testMostFrequent)
+  ]
   
   // MARK: Eager
   

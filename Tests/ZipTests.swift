@@ -1,7 +1,14 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class ZipTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testWithNilPadding", testWithNilPadding),
+      ("testZipWithCustomPadding", testZipWithCustomPadding)
+    ]
+  }
   
   func testWithNilPadding() {
     

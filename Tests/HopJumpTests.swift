@@ -1,7 +1,16 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class HopJumpTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testEndless", testEndless),
+      ("testSwitches", testSwitches),
+      ("testSubScriptGet", testSubScriptGet),
+      ("testSubScriptSet", testSubScriptSet)
+    ]
+  }
   
   func testEndless() {
     

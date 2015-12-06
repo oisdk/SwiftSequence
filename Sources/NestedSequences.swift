@@ -60,7 +60,7 @@ public func product<S : SequenceType>(cols: S...) -> [[S.Generator.Element]] {
 // MARK: Transposition
 
 private extension SequenceType {
-  private func mMap<U>(@noescape transform: Generator.Element -> U?) -> [U]? {
+  private func mapM<U>(@noescape transform: Generator.Element -> U?) -> [U]? {
     var result: [U] = []
     result.reserveCapacity(underestimateCount())
     for e in self {
@@ -191,7 +191,7 @@ public struct TransposeGen<T, G : GeneratorType where G.Element == T> : Generato
   private var gens: [G]
   /// :nodoc:
   mutating public func next() -> [T]? {
-    return gens.indices.mMap { i in gens[i].next() }
+    return gens.indices.mapM { i in gens[i].next() }
   }
 }
 /// :nodoc:

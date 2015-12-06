@@ -3,26 +3,31 @@ import XCTest
 
 class TakeDropTests: XCTestCase {
   
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testTakeWhile", testTakeWhile),
+      ("testDropwhile", testDropwhile),
+      ("testLazyTakeWhile", testLazyTakeWhile),
+      ("testLazyDropwhile", testLazyDropwhile),
+      ("testBreak", testBreak),
+      ("testBreakPred", testBreakPred),
+    ]
+  }
+  
   // MARK: Eager
   
   func testTakeWhile() {
     
     let taken = [1, 2, 3, 4, 5, 1, 2, 3].prefixWhile { $0 < 5 }
-    
     let expectation = [1, 2, 3, 4]
-    
     XCTAssertEqual(taken)(expectation)
-    
   }
   
   func testDropwhile() {
     
     let dropped = [1, 2, 3, 4, 5, 1, 2, 3].dropWhile { $0 < 5 }
-    
     let expectation = [5, 1, 2, 3]
-    
     XCTAssertEqual(dropped)(expectation)
-    
   }
   
   // MARK: Lazy
@@ -30,21 +35,15 @@ class TakeDropTests: XCTestCase {
   func testLazyTakeWhile() {
     
     let taken = [1, 2, 3, 4, 5, 1, 2, 3].lazy.prefixWhile { $0 < 5 }
-    
     let expectation = [1, 2, 3, 4]
-    
     XCTAssertEqual(taken)(expectation)
-    
   }
   
   func testLazyDropwhile() {
     
     let dropped = [1, 2, 3, 4, 5, 1, 2, 3].lazy.dropWhile { $0 < 5 }
-    
     let expectation = [5, 1, 2, 3]
-    
     XCTAssertEqual(dropped)(expectation)
-    
   }
   
   func testBreak() {
@@ -62,11 +61,9 @@ class TakeDropTests: XCTestCase {
       let (af,ab) = AnySequence(randAr).breakAt(n)
       XCTAssertEqual(af)(f)
       XCTAssertEqual(ab)(b)
-      
-      
     }
-    
   }
+  
   func testBreakPred() {
     for randAr in (0...10).map(Array<Int>.init) {
       
@@ -82,7 +79,6 @@ class TakeDropTests: XCTestCase {
       
       XCTAssertEqual(af)(f)
       XCTAssertEqual(ab)(b)
-      
     }
   }
   

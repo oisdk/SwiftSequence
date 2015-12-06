@@ -1,7 +1,20 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class FindingTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testFindFirst", testFindFirst),
+      ("testFindLast", testFindLast),
+      ("testCount", testCount),
+      ("testLastIndexOf", testLastIndexOf),
+      ("testIndices", testIndices),
+      ("testPartition", testPartition),
+      ("testAll", testAll)
+    ]
+  }
+  
   
   func testFindFirst() {
     

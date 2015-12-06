@@ -1,7 +1,18 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class ChunkWindowSplitTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testChunk", testChunk),
+      ("testWindow", testWindow),
+      ("testLazyChunk", testLazyChunk),
+      ("testLazyWindow", testLazyWindow),
+      
+    ]
+  }
+  
   // MARK: Eager
   
   func testChunk() {
@@ -44,7 +55,5 @@ class ChunkWindowSplitTests: XCTestCase {
       let n = Int(arc4random()) % randAr.count + 1
       XCTAssertEqual(randAr.lazy.window(n))(randAr.window(n))
     }
-
   }
-  
 }

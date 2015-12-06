@@ -3,6 +3,16 @@ import XCTest
 
 class ScanReduceTests: XCTestCase {
   
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testReduce1", testReduce1),
+      ("testScan", testScan),
+      ("testScan1", testScan1),
+      ("testLazyScan", testLazyScan),
+      ("testLazyScan1", testLazyScan1)
+    ]
+  }
+  
   // MARK: Eager
   
   func testReduce1() {

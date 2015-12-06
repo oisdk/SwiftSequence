@@ -1,8 +1,20 @@
 import XCTest
-@testable import SwiftSequence
-import Foundation
+import SwiftSequence
+import Darwin
 
 class CombinationsTests: XCTestCase {
+  
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testCombosWithoutRep", testCombosWithoutRep),
+      ("testCombosWithRep", testCombosWithRep),
+      ("testLazyCombosWithoutRep", testLazyCombosWithoutRep),
+      ("testLazyCombosWithRep", testLazyCombosWithRep),
+      ("testNoDuplicates", testNoDuplicates)
+    ]
+  }
+  
   // MARK: Eager
   
   func testCombosWithoutRep() {

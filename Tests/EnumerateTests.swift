@@ -1,7 +1,15 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class EnumerateTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testEnumerate", testEnumerate)
+    ]
+  }
+  
+  
   func testEnumerate() {
     
     let word = "hello".characters

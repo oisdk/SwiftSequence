@@ -1,7 +1,15 @@
 import XCTest
-@testable import SwiftSequence
+import SwiftSequence
 
 class CycleTests: XCTestCase {
+  
+  var allTests : [(String, () -> ())] {
+    return [
+      ("testCylceN", testCylceN),
+      ("testLazyCycleN", testLazyCycleN),
+      ("testLazyCycle", testLazyCycle)
+    ]
+  }
   
   // MARK: Eager
   

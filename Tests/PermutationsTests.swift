@@ -113,10 +113,13 @@ class PermutationsTests: XCTestCase {
   
   func testCounts() {
     
-    for randAr in (1...5).map(Array<Character>.init) {
-      XCTAssertEqual(randAr.permutations().count, randAr.count.fac)
-      let i = Int.randLim(randAr.count) + 1
-      XCTAssertEqual(randAr.permutations(i).count, nk(randAr.count, i))
+    for randAr in (1...5).map(Array<Character>.init).map(Set.init) {
+      for i in (0..<randAr.count).map ({ n in n.successor() }) {
+        let perms = randAr.permutations(i)
+        let settd = Set(perms.map { cs in cs.map { c in String(c) }.joinWithSeparator("") })
+        XCTAssertEqual(perms.count, settd.count)
+        XCTAssertEqual(nk(randAr.count, i), perms.count)
+      }
     }
   }
 }

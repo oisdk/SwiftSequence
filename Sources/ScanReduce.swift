@@ -110,22 +110,18 @@ public struct Scan1Gen<G : GeneratorType> : GeneratorType {
   
   private let combine: (G.Element, G.Element) -> G.Element
   private var accu: G.Element?
-  private var g: G?
+  private var g: G
   
   public mutating func next() -> G.Element? {
-    guard let head = g?.next() else { return nil }
-    accu = combine(accu!, head)
+    guard let a = accu, e = g.next() else { return nil }
+    accu = combine(a, e)
     return accu!
   }
   
   private init(combine: (G.Element, G.Element) -> G.Element, generator: G) {
-    self.g = generator
+    g = generator
     self.combine = combine
-    if let initial = g?.next() {
-      accu = initial
-    } else {
-      self.g = nil
-    }
+    accu = g.next()
   }
 }
 /// :nodoc:

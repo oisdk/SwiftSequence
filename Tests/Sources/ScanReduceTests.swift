@@ -21,9 +21,7 @@ class ScanReduceTests: XCTestCase {
     
     let optSum = nums.reduce(+)
     
-    let assertion = XCTAssertEqual(15)
-    
-    let _ = optSum.map(assertion)
+    let _ = optSum.map { t in XCTAssertEqual(15, t) }
     
   }
   
@@ -35,7 +33,7 @@ class ScanReduceTests: XCTestCase {
     
     let expectation = [1, 3, 6, 10, 15]
     
-    XCTAssertEqual(scanSum)(expectation)
+    XCTAssertEqual(scanSum, expectation)
     
   }
   
@@ -47,7 +45,7 @@ class ScanReduceTests: XCTestCase {
     
     let expectation = [3, 6, 10, 15]
     
-    XCTAssertEqual(scanSum)(expectation)
+    XCTAssertEqual(scanSum, expectation)
     
   }
   
@@ -61,7 +59,7 @@ class ScanReduceTests: XCTestCase {
     
     let expectation = [1, 3, 6, 10, 15]
     
-    XCTAssertEqual(scanSum)(expectation)
+    XCTAssertEqualSeq(scanSum, expectation)
     
   }
   
@@ -73,7 +71,7 @@ class ScanReduceTests: XCTestCase {
     
     let expectation = [3, 6, 10, 15]
     
-    XCTAssertEqual(scanSum)(expectation)
+    XCTAssertEqualSeq(scanSum, expectation)
     
   }
 }

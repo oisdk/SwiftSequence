@@ -20,14 +20,14 @@ class TakeDropTests: XCTestCase {
     
     let taken = [1, 2, 3, 4, 5, 1, 2, 3].prefixWhile { $0 < 5 }
     let expectation = [1, 2, 3, 4]
-    XCTAssertEqual(taken)(expectation)
+    XCTAssertEqual(taken, expectation)
   }
   
   func testDropwhile() {
     
     let dropped = [1, 2, 3, 4, 5, 1, 2, 3].dropWhile { $0 < 5 }
     let expectation = [5, 1, 2, 3]
-    XCTAssertEqual(dropped)(expectation)
+    XCTAssertEqual(dropped, expectation)
   }
   
   // MARK: Lazy
@@ -36,14 +36,14 @@ class TakeDropTests: XCTestCase {
     
     let taken = [1, 2, 3, 4, 5, 1, 2, 3].lazy.prefixWhile { $0 < 5 }
     let expectation = [1, 2, 3, 4]
-    XCTAssertEqual(taken)(expectation)
+    XCTAssertEqualSeq(taken, expectation)
   }
   
   func testLazyDropwhile() {
     
     let dropped = [1, 2, 3, 4, 5, 1, 2, 3].lazy.dropWhile { $0 < 5 }
     let expectation = [5, 1, 2, 3]
-    XCTAssertEqual(dropped)(expectation)
+    XCTAssertEqualSeq(dropped, expectation)
   }
   
   func testBreak() {
@@ -56,11 +56,11 @@ class TakeDropTests: XCTestCase {
       
       XCTAssertEqual(f.count, n)
       XCTAssertEqual(b.count, randAr.count - n)
-      XCTAssertEqual(f + b)(randAr)
+      XCTAssertEqualSeq(f + b, randAr)
       
       let (af,ab) = AnySequence(randAr).breakAt(n)
-      XCTAssertEqual(af)(f)
-      XCTAssertEqual(ab)(b)
+      XCTAssertEqualSeq(af, f)
+      XCTAssertEqualSeq(ab, b)
     }
   }
   
@@ -73,12 +73,12 @@ class TakeDropTests: XCTestCase {
       
       XCTAssertFalse(f.contains(p))
       XCTAssert(b.first.map(p) ?? true)
-      XCTAssertEqual(f + b)(randAr)
+      XCTAssertEqualSeq(f + b, randAr)
       
       let (af,ab) = AnySequence(randAr).breakAt(p)
       
-      XCTAssertEqual(af)(f)
-      XCTAssertEqual(ab)(b)
+      XCTAssertEqualSeq(af, f)
+      XCTAssertEqualSeq(ab, b)
     }
   }
   

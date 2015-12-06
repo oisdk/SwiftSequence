@@ -16,7 +16,7 @@ class EnumerateTests: XCTestCase {
     
     for (index, letter) in word.specEnumerate() {
       
-      XCTAssertEqual(word[index])(letter)
+      XCTAssertEqual(word[index], letter)
       
     }
   }

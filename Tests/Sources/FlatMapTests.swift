@@ -17,7 +17,7 @@ class FlatMapTests: XCTestCase {
     
     let expectation = [1, 2]
     
-    XCTAssertEqual(flattened)(expectation)
+    XCTAssertEqualSeq(flattened, expectation)
     
   }
 

@@ -28,7 +28,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 10, 2, 10, 3]
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqual(interposed, expectation)
     
   }
   
@@ -38,7 +38,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 2, 10, 3, 4, 10, 5]
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqual(interposed, expectation)
     
   }
   
@@ -48,7 +48,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 10, 20, 2, 10, 20, 3]
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqual(interposed, expectation)
     
   }
   
@@ -58,7 +58,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 2, 10, 20, 3, 4, 10, 20, 5]
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqual(interposed, expectation)
     
   }
   
@@ -68,7 +68,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 10, 2, 20, 3, 30]
     
-    XCTAssertEqual(interdigged)(expectation)
+    XCTAssertEqual(interdigged, expectation)
     
   }
   
@@ -78,7 +78,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 2, 10, 20, 30, 3, 4, 40, 50, 60, 5]
     
-    XCTAssertEqual(interdigged)(expectation)
+    XCTAssertEqual(interdigged, expectation)
     
   }
   
@@ -90,7 +90,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 10, 2, 10, 3, 10].lazy
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqualSeq(interposed, expectation)
     
   }
   
@@ -100,7 +100,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 2, 10, 3, 4, 10, 5].lazy
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqualSeq(interposed, expectation)
     
   }
   
@@ -110,7 +110,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 10, 20, 2, 10, 20, 3, 10, 20]
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqualSeq(interposed, expectation)
     
   }
   
@@ -120,7 +120,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 2, 10, 20, 3, 4, 10, 20, 5]
     
-    XCTAssertEqual(interposed)(expectation)
+    XCTAssertEqualSeq(interposed, expectation)
     
   }
   
@@ -130,7 +130,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 10, 2, 20, 3, 30]
     
-    XCTAssertEqual(interdigged)(expectation)
+    XCTAssertEqualSeq(interdigged, expectation)
     
   }
   
@@ -140,7 +140,7 @@ class InterposeTests: XCTestCase {
     
     let expectation = [1, 2, 10, 20, 30, 3, 4, 40, 50, 60, 5]
     
-    XCTAssertEqual(interdigged)(expectation)
+    XCTAssertEqualSeq(interdigged, expectation)
     
   }
 }

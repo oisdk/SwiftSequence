@@ -19,7 +19,7 @@ class CycleTests: XCTestCase {
     
     let expectation = [1, 2, 3, 1, 2, 3]
     
-    XCTAssertEqual(cycled)(expectation)
+    XCTAssertEqual(cycled, expectation)
     
   }
   
@@ -31,7 +31,7 @@ class CycleTests: XCTestCase {
     
     let expectation = [1, 2, 3, 1, 2, 3]
     
-    XCTAssertEqual(cycled)(expectation)
+    XCTAssertEqualSeq(cycled, expectation)
     
   }
   

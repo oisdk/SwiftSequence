@@ -79,8 +79,8 @@ class FindingTests: XCTestCase {
     
     let (pass,fail) = ar.partition(pred)
     
-    XCTAssertEqual(ar.filter(pred))(pass)
-    XCTAssertEqual(ar.filter { e in !pred(e) })(fail)
+    XCTAssertEqual(ar.filter(pred), pass)
+    XCTAssertEqual(ar.filter { e in !pred(e) }, fail)
   }
   
   func testAll() {

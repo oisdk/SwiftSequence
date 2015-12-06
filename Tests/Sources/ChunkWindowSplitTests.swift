@@ -23,7 +23,7 @@ class ChunkWindowSplitTests: XCTestCase {
       for a in chunkd {
         XCTAssert( a.count <= n )
       }
-      XCTAssertEqual(chunkd.flatten())(randAr)
+      XCTAssertEqualSeq(chunkd.flatten(), randAr)
     }
     
   }
@@ -33,8 +33,8 @@ class ChunkWindowSplitTests: XCTestCase {
     for randAr in (1...20).map(Array<Int>.init) {
       let n = Int(arc4random()) % randAr.count + 1
       let windowed = randAr.window(n)
-      windowed.map { a in a.count }.forEach(XCTAssertEqual(n))
-      XCTAssertEqual(randAr)(windowed.first!.dropLast() + windowed.flatMap { a in a.last })
+      windowed.map { a in a.count }.forEach { XCTAssertEqual(n, $0) }
+      XCTAssertEqual(randAr, windowed.first!.dropLast() + windowed.flatMap { a in a.last })
     }
     
   }
@@ -45,7 +45,7 @@ class ChunkWindowSplitTests: XCTestCase {
     
     for randAr in (1...20).map(Array<Int>.init) {
       let n = Int(arc4random()) % randAr.count + 1
-      XCTAssertEqual(randAr.lazy.chunk(n))(randAr.chunk(n))
+      XCTAssertEqualNested(randAr.lazy.chunk(n), randAr.chunk(n))
     }
   }
   
@@ -53,7 +53,7 @@ class ChunkWindowSplitTests: XCTestCase {
     
     for randAr in (1...20).map(Array<Int>.init) {
       let n = Int(arc4random()) % randAr.count + 1
-      XCTAssertEqual(randAr.lazy.window(n))(randAr.window(n))
+      XCTAssertEqualNested(randAr.lazy.window(n), randAr.window(n))
     }
   }
 }

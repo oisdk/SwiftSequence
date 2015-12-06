@@ -33,14 +33,10 @@ func randPred() -> (Int -> Bool) {
   return { n in n % d == 0 }
 }
 
-func XCTAssertEqual<T : Equatable>(lhs: T)(_ rhs: T) {
-  XCTAssertEqual(lhs, rhs)
-}
-
-func XCTAssertEqual<
+func XCTAssertEqualSeq<
   S0 : SequenceType, S1 : SequenceType where
   S0.Generator.Element == S1.Generator.Element,
-  S0.Generator.Element : Equatable>(lhs: S0)(_ rhs:S1) {
+  S0.Generator.Element : Equatable>(lhs: S0, _ rhs:S1) {
     var (g0,g1) = (lhs.generate(),rhs.generate())
     while true {
       let (e0,e1) = (g0.next(),g1.next())
@@ -58,12 +54,13 @@ func XCTAssertEqual<
       )
     }
 }
-func XCTAssertEqual<
+
+func XCTAssertEqualNested<
   S0 : SequenceType, S1 : SequenceType where
   S0.Generator.Element : SequenceType,
   S1.Generator.Element : SequenceType,
   S0.Generator.Element.Generator.Element == S1.Generator.Element.Generator.Element,
-  S0.Generator.Element.Generator.Element : Equatable>(lhs: S0)(_ rhs:S1) {
+  S0.Generator.Element.Generator.Element : Equatable>(lhs: S0, _ rhs:S1) {
   var (g0,g1) = (lhs.generate(),rhs.generate())
   while true {
     let (e0,e1) = (g0.next(),g1.next())
@@ -79,7 +76,7 @@ func XCTAssertEqual<
       }
       return
     }
-    XCTAssertEqual(e0U)(e1U)
+    XCTAssertEqualSeq(e0U, e1U)
   }
 }
 
@@ -88,7 +85,7 @@ struct WatcherSequence<S : SequenceType> : SequenceType {
   func generate() -> AnyGenerator<S.Generator.Element> {
     var g = seq.generate()
     var calledNil = false
-    return anyGenerator {
+    return AnyGenerator {
       XCTAssertFalse(calledNil, "Called a generator after it had already returned nil")
       if let e = g.next() { return e }
       calledNil = true

@@ -71,7 +71,7 @@ class CombinationsTests: XCTestCase {
       
       let lazy = randAr.lazyCombos(min(randAr.count, 3))
       
-      XCTAssertEqual(eager)(lazy)
+      XCTAssertEqualNested(eager, lazy)
       
     }
     
@@ -85,7 +85,7 @@ class CombinationsTests: XCTestCase {
       
       let lazy = randAr.lazyCombosWithRep(min(randAr.count, 3))
       
-      XCTAssertEqual(eager)(lazy)
+      XCTAssertEqualNested(eager, lazy)
       
     }
     

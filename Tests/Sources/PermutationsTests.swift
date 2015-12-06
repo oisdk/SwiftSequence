@@ -29,7 +29,7 @@ class PermutationsTests: XCTestCase {
     
     let bExpectation = [[1, 2, 3]]
     
-    XCTAssertEqual(backward)(bExpectation)
+    XCTAssertEqual(backward, bExpectation)
     
   }
   
@@ -45,7 +45,7 @@ class PermutationsTests: XCTestCase {
     
     let bExpectation = [[3, 2, 1]]
     
-    XCTAssertEqual(backward)(bExpectation)
+    XCTAssertEqual(backward, bExpectation)
     
   }
   
@@ -55,7 +55,7 @@ class PermutationsTests: XCTestCase {
     
     let expectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssertEqual(perms)(expectation)
+    XCTAssertEqual(perms, expectation)
     
   }
   
@@ -67,13 +67,13 @@ class PermutationsTests: XCTestCase {
     
     let fExpectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssertEqual(forward)(fExpectation)
+    XCTAssertEqualNested(forward, fExpectation)
     
     let backward = [1, 2, 3].lazyLexPermutations(>)
     
     let bExpectation = [[1, 2, 3]]
     
-    XCTAssertEqual(backward)(bExpectation)
+    XCTAssertEqualNested(backward, bExpectation)
 
     
   }
@@ -84,13 +84,13 @@ class PermutationsTests: XCTestCase {
     
     let fExpectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssertEqual(forward)(fExpectation)
+    XCTAssertEqualNested(forward, fExpectation)
     
     let backward = [3, 2, 1].lazyLexPermutations()
     
     let bExpectation = [[3, 2, 1]]
     
-    XCTAssertEqual(backward)(bExpectation)
+    XCTAssertEqualNested(backward, bExpectation)
 
     
   }
@@ -101,7 +101,7 @@ class PermutationsTests: XCTestCase {
     
     let expectation = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     
-    XCTAssertEqual(perms)(expectation)
+    XCTAssertEqualNested(perms, expectation)
     
   }
   
@@ -114,9 +114,9 @@ class PermutationsTests: XCTestCase {
   func testCounts() {
     
     for randAr in (1...5).map(Array<Character>.init) {
-      XCTAssertEqual(randAr.permutations().count)(randAr.count.fac)
+      XCTAssertEqual(randAr.permutations().count, randAr.count.fac)
       let i = Int.randLim(randAr.count) + 1
-      XCTAssertEqual(randAr.permutations(i).count)(nk(randAr.count, i))
+      XCTAssertEqual(randAr.permutations(i).count, nk(randAr.count, i))
     }
   }
 }

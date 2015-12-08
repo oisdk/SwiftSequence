@@ -16,11 +16,12 @@ public extension CollectionType {
   @warn_unused_result
   public func chunk(n: Index.Distance) -> [SubSequence] {
     var res: [SubSequence] = []
-    for
-      var i = startIndex, j = i.advancedBy(n, limit: endIndex);
-      i != endIndex;
-      i = j, j = i.advancedBy(n, limit: endIndex) {
-        res.append(self[i..<j])
+    var i = startIndex
+    var j: Index
+    while i != endIndex {
+      j = i.advancedBy(n, limit: endIndex)
+      res.append(self[i..<j])
+      i = j
     }
     return res
   }

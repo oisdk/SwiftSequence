@@ -1,12 +1,9 @@
 /// :nodoc:
 public struct NilPaddedZipGenerator<G0: GeneratorType, G1: GeneratorType> : GeneratorType {
   
-  typealias E0 = G0.Element
-  typealias E1 = G1.Element
-  
   private var (g0, g1): (G0?, G1?)
   
-  public mutating func next() -> (E0?, E1?)? {
+  public mutating func next() -> (G0.Element?, G1.Element?)? {
     let (e0,e1) = (g0?.next(),g1?.next())
     switch (e0,e1) {
     case (nil,nil): return nil

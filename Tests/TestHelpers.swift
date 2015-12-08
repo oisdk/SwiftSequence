@@ -41,7 +41,7 @@ func XCTAssertEqualSeq<
     while true {
       guard let a = g0.next() else {
         guard case nil = g1.next() else {
-          XCTFail(String(reflecting: lhs) + " is shorter than " + String(reflecting: rhs))
+          XCTFail(String(lhs) + " is shorter than " + String(rhs))
           return
         }
         return

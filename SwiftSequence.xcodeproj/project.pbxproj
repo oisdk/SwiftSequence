@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CA50B271C3AA0B900A09709 /* LazyPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50B261C3AA0B900A09709 /* LazyPrefix.swift */; };
+		0CA50B291C3AA15800A09709 /* LazyPrefixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50B281C3AA15800A09709 /* LazyPrefixTests.swift */; };
 		70351DBE1C13C7A500781B3D /* Slicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70351DBD1C13C7A500781B3D /* Slicing.swift */; };
 		70351DC01C13CAC700781B3D /* HoppingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70351DBF1C13CAC700781B3D /* HoppingTests.swift */; };
 		707F996E1C13B9EA00CE1A23 /* SwiftSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 707F996D1C13B9EA00CE1A23 /* SwiftSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CA50B261C3AA0B900A09709 /* LazyPrefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LazyPrefix.swift; path = Sources/LazyPrefix.swift; sourceTree = SOURCE_ROOT; };
+		0CA50B281C3AA15800A09709 /* LazyPrefixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyPrefixTests.swift; sourceTree = "<group>"; };
 		70351DBD1C13C7A500781B3D /* Slicing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Slicing.swift; path = Sources/Slicing.swift; sourceTree = SOURCE_ROOT; };
 		70351DBF1C13CAC700781B3D /* HoppingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoppingTests.swift; sourceTree = "<group>"; };
 		707F996A1C13B9EA00CE1A23 /* SwiftSequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +150,7 @@
 				707F998B1C13BA1900CE1A23 /* Hopping.swift */,
 				707F998C1C13BA1900CE1A23 /* Interpose.swift */,
 				707F998D1C13BA1900CE1A23 /* Iterate.swift */,
+				0CA50B261C3AA0B900A09709 /* LazyPrefix.swift */,
 				707F998E1C13BA1900CE1A23 /* NestedSequences.swift */,
 				707F998F1C13BA1900CE1A23 /* Permutations.swift */,
 				707F99901C13BA1900CE1A23 /* ScanReduce.swift */,
@@ -173,6 +178,7 @@
 				70351DBF1C13CAC700781B3D /* HoppingTests.swift */,
 				70CB76D01C13BFC0003A7461 /* InterposeTests.swift */,
 				70CB76D11C13BFC0003A7461 /* LazySeqTests.swift */,
+				0CA50B281C3AA15800A09709 /* LazyPrefixTests.swift */,
 				70CB76D21C13BFC0003A7461 /* NestedSequencesTests.swift */,
 				70CB76D31C13BFC0003A7461 /* PermutationsTests.swift */,
 				70CB76D41C13BFC0003A7461 /* ScanReduceTests.swift */,
@@ -305,6 +311,7 @@
 				707F99A11C13BA1900CE1A23 /* Zip.swift in Sources */,
 				707F99931C13BA1900CE1A23 /* Categorise.swift in Sources */,
 				707F999E1C13BA1900CE1A23 /* Permutations.swift in Sources */,
+				0CA50B271C3AA0B900A09709 /* LazyPrefix.swift in Sources */,
 				707F99961C13BA1900CE1A23 /* Cycle.swift in Sources */,
 				707F99971C13BA1900CE1A23 /* Enumerate.swift in Sources */,
 				707F99951C13BA1900CE1A23 /* Combinations.swift in Sources */,
@@ -323,6 +330,7 @@
 				70CB76EC1C13BFD9003A7461 /* EnumerateTests.swift in Sources */,
 				70CB76F11C13BFD9003A7461 /* LazySeqTests.swift in Sources */,
 				70CB76EF1C13BFD9003A7461 /* SlicingTests.swift in Sources */,
+				0CA50B291C3AA15800A09709 /* LazyPrefixTests.swift in Sources */,
 				70CB76EE1C13BFD9003A7461 /* FlatMapTests.swift in Sources */,
 				70CB76F41C13BFD9003A7461 /* ScanReduceTests.swift in Sources */,
 				70CB76E81C13BFD9003A7461 /* CategoriseTests.swift in Sources */,

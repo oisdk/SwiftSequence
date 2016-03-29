@@ -8,7 +8,8 @@ public struct ComboGen<SubElement> : GeneratorType {
   mutating public func next() -> [SubElement]? {
     for (max, curInd) in zip(coll.indices.reverse(), inds.indices.reverse())
       where max != inds[curInd] {
-        curr[curInd] = coll[++inds[curInd]]
+        inds[curInd] += 1
+        curr[curInd] = coll[inds[curInd]]
         for j in inds.indices.suffixFrom(curInd+1) {
           inds[j] = inds[j-1].successor()
           curr[j] = coll[inds[j]]
@@ -33,7 +34,9 @@ public struct ComboSeq<Element> : LazySequenceType {
     self.col = col
     start = Array(col.prefixUpTo(n))
     var inds = Array(col.indices.prefixUpTo(n))
-    if !inds.isEmpty { --inds[n.predecessor()] }
+    if !inds.isEmpty {
+      inds[n.predecessor()] -= 1
+    }
     self.inds = inds
   }
 }
@@ -47,7 +50,8 @@ public struct ComboRepGen<Element> : GeneratorType {
   /// :nodoc:
   mutating public func next() -> [Element]? {
     for curInd in inds.indices.reverse() where max != inds[curInd] {
-      curr[curInd] = coll[++inds[curInd]]
+      inds[curInd] += 1
+      curr[curInd] = coll[inds[curInd]]
       for j in (curInd+1)..<inds.count {
         inds[j] = inds[j-1]
         curr[j] = coll[inds[j]]
@@ -73,7 +77,7 @@ public struct ComboRepSeq<Element> : LazySequenceType {
     self.col = col
     start = col.first.map { x in Array(count: n, repeatedValue: x) } ?? []
     var inds = Array(count: n, repeatedValue: col.startIndex)
-    if !inds.isEmpty { --inds[n-1] }
+    if !inds.isEmpty { inds[n-1] -= 1 }
     self.inds = inds
     max = col.endIndex.predecessor()
   }

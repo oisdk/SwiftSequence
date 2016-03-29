@@ -63,10 +63,11 @@ public struct CycleGen<C: CollectionType> : GeneratorType, LazySequenceType {
   private var innerGen: C.Generator
   /// :nodoc:
   public mutating func next() -> C.Generator.Element? {
-    for ;;innerGen = inner.generate() {
+    while true {
       if let next = innerGen.next() {
         return next
       }
+      innerGen = inner.generate()
     }
   }
 }

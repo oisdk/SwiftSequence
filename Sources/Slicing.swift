@@ -1,19 +1,19 @@
 // IntervalTypes
 
 public protocol OpenIntervalType {
-  typealias Value
+  associatedtype Value
   func contains(v: Value) -> Bool
 }
 public protocol OpenEndedIntervalType: OpenIntervalType {
-  typealias Value: Comparable
+  associatedtype Value: Comparable
   var val: Value { get }
 }
 public protocol OpenStartedIntervalTypeTo: OpenIntervalType {
-  typealias Value: Comparable
+  associatedtype Value: Comparable
   var val: Value { get }
 }
 public protocol OpenStartedIntervalTypeThrough: OpenIntervalType {
-  typealias Value: Comparable
+  associatedtype Value: Comparable
   var val: Value { get }
 }
 

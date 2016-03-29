@@ -38,7 +38,8 @@ public extension SequenceType {
     var i = n + 1
     
     while let next = g.next() {
-      if --i == 0 {
+      i -= 1
+      if i == 0 {
         ret.append(element)
         i = n
       }
@@ -88,7 +89,8 @@ public extension SequenceType {
         var i = n
         var ret = [$0]
         while let next = g.next() {
-          if --i == 0 {
+          i -= 1
+          if i == 0 {
             ret.appendContentsOf(col)
             i = n
           }
@@ -144,7 +146,7 @@ public func interdig<
     
     var (g0, g1) = (s0.generate(), s1.generate())
     
-    for ;; {
+    while true {
       for _ in 0..<s0Len {
         if let next = g0.next() {
           ret.append(next)
@@ -174,7 +176,8 @@ public struct InterposeElGen<G : GeneratorType> : GeneratorType {
   private let element: G.Element
   /// :nodoc:
   public mutating func next() -> G.Element? {
-    return --count < 0 ? {count = n; return element}() : g.next()
+    count -= 1
+    return count < 0 ? {count = n; return element}() : g.next()
   }
 }
 /// :nodoc:
@@ -231,7 +234,8 @@ public struct InterposeColGen<
   private var colG: C.Generator
   /// :nodoc:
   public mutating func next() -> G.Element? {
-    return --count <= 0 ? {
+    count -= 1
+    return count <= 0 ? {
       colG.next() ?? {
         count = n
         colG = col.generate()
@@ -305,8 +309,12 @@ public struct InterDigGen<
   private var count: Int
   /// :nodoc:
   public mutating func next() -> G0.Element? {
-    for (--count;;count = aN) {
-      if count >= bN { return count < 0 ? g1.next() : g0.next() }
+    while true {
+      count -= 1
+      if count >= bN {
+        return count < 0 ? g1.next() : g0.next()
+      }
+      count = aN
     }
   }
 }
@@ -327,7 +335,7 @@ public struct InterDigSeq<
     return InterDigGen(
       g0: s0.generate(),
       g1: s1.generate(),
-      aN: aN - 1,
+      aN: aN,
       bN: -bN,
       count: aN
     )

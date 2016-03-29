@@ -1,11 +1,13 @@
 /// :nodoc:
-public struct SpecEnumerateGen<Base : CollectionType> : GeneratorType {
+public struct SpecEnumerateGen<Base: CollectionType> : GeneratorType {
   
   private let base: Base
   private var i: Base.Index
   /// :nodoc:
   public mutating func next() -> (Base.Index, Base.Generator.Element)? {
-    return i == base.endIndex ? nil : (i, base[i++])
+    if i == base.endIndex { return nil }
+    defer { i = i.successor() }
+    return (i, base[i])
   }
 }
 /// :nodoc:

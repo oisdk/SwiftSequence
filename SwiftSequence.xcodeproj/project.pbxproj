@@ -19,7 +19,6 @@
 		707F99961C13BA1900CE1A23 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99871C13BA1900CE1A23 /* Cycle.swift */; };
 		707F99971C13BA1900CE1A23 /* Enumerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99881C13BA1900CE1A23 /* Enumerate.swift */; };
 		707F99981C13BA1900CE1A23 /* Finding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F99891C13BA1900CE1A23 /* Finding.swift */; };
-		707F99991C13BA1900CE1A23 /* FlatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F998A1C13BA1900CE1A23 /* FlatMap.swift */; };
 		707F999A1C13BA1900CE1A23 /* Hopping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F998B1C13BA1900CE1A23 /* Hopping.swift */; };
 		707F999B1C13BA1900CE1A23 /* Interpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F998C1C13BA1900CE1A23 /* Interpose.swift */; };
 		707F999C1C13BA1900CE1A23 /* Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F998D1C13BA1900CE1A23 /* Iterate.swift */; };
@@ -34,7 +33,6 @@
 		70CB76EB1C13BFD9003A7461 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CB1C13BFC0003A7461 /* CycleTests.swift */; };
 		70CB76EC1C13BFD9003A7461 /* EnumerateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CC1C13BFC0003A7461 /* EnumerateTests.swift */; };
 		70CB76ED1C13BFD9003A7461 /* FindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CD1C13BFC0003A7461 /* FindingTests.swift */; };
-		70CB76EE1C13BFD9003A7461 /* FlatMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CE1C13BFC0003A7461 /* FlatMapTests.swift */; };
 		70CB76EF1C13BFD9003A7461 /* SlicingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76CF1C13BFC0003A7461 /* SlicingTests.swift */; };
 		70CB76F01C13BFD9003A7461 /* InterposeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D01C13BFC0003A7461 /* InterposeTests.swift */; };
 		70CB76F11C13BFD9003A7461 /* LazySeqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CB76D11C13BFC0003A7461 /* LazySeqTests.swift */; };
@@ -73,7 +71,6 @@
 		707F99871C13BA1900CE1A23 /* Cycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cycle.swift; path = Sources/Cycle.swift; sourceTree = SOURCE_ROOT; };
 		707F99881C13BA1900CE1A23 /* Enumerate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enumerate.swift; path = Sources/Enumerate.swift; sourceTree = SOURCE_ROOT; };
 		707F99891C13BA1900CE1A23 /* Finding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Finding.swift; path = Sources/Finding.swift; sourceTree = SOURCE_ROOT; };
-		707F998A1C13BA1900CE1A23 /* FlatMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatMap.swift; path = Sources/FlatMap.swift; sourceTree = SOURCE_ROOT; };
 		707F998B1C13BA1900CE1A23 /* Hopping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hopping.swift; path = Sources/Hopping.swift; sourceTree = SOURCE_ROOT; };
 		707F998C1C13BA1900CE1A23 /* Interpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Interpose.swift; path = Sources/Interpose.swift; sourceTree = SOURCE_ROOT; };
 		707F998D1C13BA1900CE1A23 /* Iterate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Iterate.swift; path = Sources/Iterate.swift; sourceTree = SOURCE_ROOT; };
@@ -88,7 +85,6 @@
 		70CB76CB1C13BFC0003A7461 /* CycleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleTests.swift; sourceTree = "<group>"; };
 		70CB76CC1C13BFC0003A7461 /* EnumerateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumerateTests.swift; sourceTree = "<group>"; };
 		70CB76CD1C13BFC0003A7461 /* FindingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindingTests.swift; sourceTree = "<group>"; };
-		70CB76CE1C13BFC0003A7461 /* FlatMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatMapTests.swift; sourceTree = "<group>"; };
 		70CB76CF1C13BFC0003A7461 /* SlicingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlicingTests.swift; sourceTree = "<group>"; };
 		70CB76D01C13BFC0003A7461 /* InterposeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterposeTests.swift; sourceTree = "<group>"; };
 		70CB76D11C13BFC0003A7461 /* LazySeqTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazySeqTests.swift; sourceTree = "<group>"; };
@@ -146,7 +142,6 @@
 				707F99871C13BA1900CE1A23 /* Cycle.swift */,
 				707F99881C13BA1900CE1A23 /* Enumerate.swift */,
 				707F99891C13BA1900CE1A23 /* Finding.swift */,
-				707F998A1C13BA1900CE1A23 /* FlatMap.swift */,
 				707F998B1C13BA1900CE1A23 /* Hopping.swift */,
 				707F998C1C13BA1900CE1A23 /* Interpose.swift */,
 				707F998D1C13BA1900CE1A23 /* Iterate.swift */,
@@ -173,7 +168,6 @@
 				70CB76CB1C13BFC0003A7461 /* CycleTests.swift */,
 				70CB76CC1C13BFC0003A7461 /* EnumerateTests.swift */,
 				70CB76CD1C13BFC0003A7461 /* FindingTests.swift */,
-				70CB76CE1C13BFC0003A7461 /* FlatMapTests.swift */,
 				70CB76CF1C13BFC0003A7461 /* SlicingTests.swift */,
 				70351DBF1C13CAC700781B3D /* HoppingTests.swift */,
 				70CB76D01C13BFC0003A7461 /* InterposeTests.swift */,
@@ -302,7 +296,6 @@
 				707F99941C13BA1900CE1A23 /* ChunkWindowSplit.swift in Sources */,
 				70351DBE1C13C7A500781B3D /* Slicing.swift in Sources */,
 				707F99A01C13BA1900CE1A23 /* TakeDrop.swift in Sources */,
-				707F99991C13BA1900CE1A23 /* FlatMap.swift in Sources */,
 				707F999C1C13BA1900CE1A23 /* Iterate.swift in Sources */,
 				707F999B1C13BA1900CE1A23 /* Interpose.swift in Sources */,
 				707F999D1C13BA1900CE1A23 /* NestedSequences.swift in Sources */,
@@ -331,7 +324,6 @@
 				70CB76F11C13BFD9003A7461 /* LazySeqTests.swift in Sources */,
 				70CB76EF1C13BFD9003A7461 /* SlicingTests.swift in Sources */,
 				0CA50B291C3AA15800A09709 /* LazyPrefixTests.swift in Sources */,
-				70CB76EE1C13BFD9003A7461 /* FlatMapTests.swift in Sources */,
 				70CB76F41C13BFD9003A7461 /* ScanReduceTests.swift in Sources */,
 				70CB76E81C13BFD9003A7461 /* CategoriseTests.swift in Sources */,
 				70CB76EB1C13BFD9003A7461 /* CycleTests.swift in Sources */,

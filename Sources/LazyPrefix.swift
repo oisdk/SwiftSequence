@@ -38,7 +38,7 @@ public struct LazyPrefixGen<G : GeneratorType> : GeneratorType {
       return nil
     }
     
-    found++
+    found += 1
     return next
   }
 }

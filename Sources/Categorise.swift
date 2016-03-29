@@ -2,6 +2,13 @@
 
 // MARK: Categorise
 
+private extension Dictionary {
+  subscript(key: Key, or or: Value) -> Value {
+    get { return self[key] ?? or }
+    set { self[key] = newValue }
+  }
+}
+
 public extension SequenceType {
   
   /**
@@ -33,10 +40,7 @@ public extension SequenceType {
   func categorise<U : Hashable>(@noescape keyFunc: Generator.Element throws -> U)
     rethrows -> [U:[Generator.Element]] {
     var dict: [U:[Generator.Element]] = [:]
-    for el in self {
-      let key = try keyFunc(el)
-      if case nil = dict[key]?.append(el) { dict[key] = [el] }
-    }
+    for el in self { dict[try keyFunc(el), or: []].append(el) }
     return dict
   }
 }
@@ -56,7 +60,7 @@ public extension SequenceType where Generator.Element : Hashable {
   @warn_unused_result
   func freqs() -> [Generator.Element:Int] {
     var freqs: [Generator.Element:Int] = [:]
-    for el in self { freqs[el] = freqs[el]?.successor() ?? 1 }
+    for el in self { freqs[el, or: 0] += 1 }
     return freqs
   }
   
@@ -84,15 +88,13 @@ public extension SequenceType where Generator.Element : Hashable {
   /// Returns the element which occurs most frequently in `self`
   @warn_unused_result
   public func mostFrequent() -> Generator.Element? {
-    var g = generate()
-    guard let b = g.next() else { return nil }
-    var be = b
-    var bn = 1
     var freqs: [Generator.Element:Int] = [:]
-    for e in self {
-      let n = (freqs[e] ?? 0) + 1
-      if n > bn { (be,bn) = (e,n) }
-      freqs[e] = n
+    var be: Generator.Element? = nil
+    var bc = 0
+    for el in self {
+      let nc = freqs[el, or: 0] + 1
+      freqs[el] = nc
+      if nc > bc { (be,bc) = (el,nc) }
     }
     return be
   }

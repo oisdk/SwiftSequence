@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "14502BA339D6D5207A23319C456924A2D72458F0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "14502BA339D6D5207A23319C456924A2D72458F0" : 0,
+    "2DDF1D4E528EDA8D8E5AF503BA5680A30604BD70" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4EF82DEF-6DE4-4CC1-AB8D-D9C36D7C881D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "14502BA339D6D5207A23319C456924A2D72458F0" : "SwiftSequence\/",
+    "2DDF1D4E528EDA8D8E5AF503BA5680A30604BD70" : "SwiftSequence\/SwiftSequence\/Configurations\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftSequence",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftSequence.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/oisdk\/SwiftSequence.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "14502BA339D6D5207A23319C456924A2D72458F0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrackwitz\/xcconfigs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2DDF1D4E528EDA8D8E5AF503BA5680A30604BD70"
+    }
+  ]
+}

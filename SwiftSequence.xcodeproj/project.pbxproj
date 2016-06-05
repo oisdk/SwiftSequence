@@ -94,6 +94,9 @@
 		70CB76D51C13BFC0003A7461 /* TakeDropTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeDropTests.swift; sourceTree = "<group>"; };
 		70CB76D61C13BFC0003A7461 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		70CB76D71C13BFC0003A7461 /* ZipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipTests.swift; sourceTree = "<group>"; };
+		BF9C11AC1D03566700449EA6 /* UniversalFramework_Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Base.xcconfig; sourceTree = "<group>"; };
+		BF9C11AD1D03566700449EA6 /* UniversalFramework_Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Framework.xcconfig; sourceTree = "<group>"; };
+		BF9C11AE1D03566700449EA6 /* UniversalFramework_Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Test.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,7 @@
 			children = (
 				707F996C1C13B9EA00CE1A23 /* Sources */,
 				707F99781C13B9EB00CE1A23 /* Tests */,
+				BF9C11A71D03566700449EA6 /* Configurations */,
 				707F996B1C13B9EA00CE1A23 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -182,6 +186,17 @@
 				707F997B1C13B9EB00CE1A23 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		BF9C11A71D03566700449EA6 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				BF9C11AC1D03566700449EA6 /* UniversalFramework_Base.xcconfig */,
+				BF9C11AD1D03566700449EA6 /* UniversalFramework_Framework.xcconfig */,
+				BF9C11AE1D03566700449EA6 /* UniversalFramework_Test.xcconfig */,
+			);
+			name = Configurations;
+			path = Carthage/Checkouts/xcconfigs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +364,7 @@
 /* Begin XCBuildConfiguration section */
 		707F997C1C13B9EB00CE1A23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF9C11AC1D03566700449EA6 /* UniversalFramework_Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -396,6 +412,7 @@
 		};
 		707F997D1C13B9EB00CE1A23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF9C11AC1D03566700449EA6 /* UniversalFramework_Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -435,6 +452,7 @@
 		};
 		707F997F1C13B9EB00CE1A23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF9C11AD1D03566700449EA6 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -455,6 +473,7 @@
 		};
 		707F99801C13B9EB00CE1A23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF9C11AD1D03566700449EA6 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -474,6 +493,7 @@
 		};
 		707F99821C13B9EB00CE1A23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF9C11AE1D03566700449EA6 /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -484,6 +504,7 @@
 		};
 		707F99831C13B9EB00CE1A23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF9C11AE1D03566700449EA6 /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
